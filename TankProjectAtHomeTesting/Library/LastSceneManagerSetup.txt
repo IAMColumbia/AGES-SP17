@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/test with terrain.unity
+- path: Assets/Scenes/test with terrain.unity
   isLoaded: 1
   isActive: 1
