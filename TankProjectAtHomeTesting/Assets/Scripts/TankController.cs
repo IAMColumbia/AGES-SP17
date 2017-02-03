@@ -39,6 +39,31 @@ public class TankController : MonoBehaviour
     private float originalDrag;
     private float originalAngularDrag;
 
+    private bool LeftAndRightInputIsSameDirection
+    {
+        get
+        {
+            return (leftTrackInput > 0) == (rightTrackInput > 0);
+        }
+    }
+
+    private float ForwardVelocity
+    {
+        get
+        {
+            return transform.InverseTransformDirection(rigidBody.velocity).z;
+        }
+    }
+
+    private bool IsTryingToMoveOppositeOfForwardVelocity
+    {
+        get
+        {
+            // Since left and right input are the same, we know if left input > 0 then so is right input
+            return LeftAndRightInputIsSameDirection && !((leftTrackInput > 0) == (ForwardVelocity > 0));
+        }
+    }
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -108,11 +133,7 @@ public class TankController : MonoBehaviour
         }
 
 
-        // Conditions to apply brake (brake stops the wheels from rolling)
-        // - Trying to move opposite of forward velocity
-        //      Because we we want the tank to stop responsively when the player tries to switch directions
-        // - Joysticks are in neutral position
-        //      Because we don't want the tank rolling when it's trying to stop
+
 
         // Conditions to apply drag (drag stops the tank rigid body from sliding)
         // - Trying to move opposite of forward velocity
@@ -125,6 +146,17 @@ public class TankController : MonoBehaviour
         //      Because we don't want the tank spinning when it's trying to stop
         // - joysticks are pushed in same direction
         //      Because we don't want the tank spinning when it's trying to move straight
+
+    }
+
+    private void HandleBrakes()
+    {
+        // Conditions to apply brake (brake stops the wheels from rolling)
+        // - Trying to move opposite of forward velocity
+        //      Because we we want the tank to stop responsively when the player tries to switch directions
+        // - Joysticks are in neutral position
+        //      Because we don't want the tank rolling when it's trying to stop
+
 
     }
 
