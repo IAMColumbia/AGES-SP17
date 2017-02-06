@@ -210,6 +210,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 case CarDriveType.FrontWheelDrive:
                     thrustTorque = accel * (m_CurrentTorque / 2f);
                     m_WheelColliders[0].motorTorque = m_WheelColliders[1].motorTorque = thrustTorque;
+                    //Debug.Log("ThrustTorque: " + thrustTorque);
                     break;
 
                 case CarDriveType.RearWheelDrive:

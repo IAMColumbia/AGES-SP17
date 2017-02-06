@@ -9,9 +9,13 @@ public class SimpleCarControllerFromScratch : MonoBehaviour
     [SerializeField]
     float maxMotorTorque = 500;
     [SerializeField]
+    float maxSpeedInMPH = 100;
+    [SerializeField]
     float brakeTorque = 1000;
     [SerializeField]
     float reverseTorque = 200;
+    [SerializeField]
+    AnimationCurve torqueCurveModifier = new AnimationCurve(new Keyframe(0, 1), new Keyframe(10, 0.75f), new Keyframe(100, 0.1f));
 
     [SerializeField]
     WheelCollider[] wheelsConnectedToSteering;
@@ -61,6 +65,7 @@ public class SimpleCarControllerFromScratch : MonoBehaviour
     void FixedUpdate()
     {
         HandleDriving();
+        CapSpeed();
         HandleBrakes();
         HandleSteering();
         ApplyLocalPositionToWheelModels();
@@ -98,9 +103,18 @@ public class SimpleCarControllerFromScratch : MonoBehaviour
                 torqueToApply = reverseTorque;
             }
 
+            torqueToApply *= torqueCurveModifier.Evaluate(rigidBody.velocity.magnitude);
+            //Debug.Log(torqueCurveModifier.Evaluate(rigidBody.velocity.magnitude));
             for (int i = 0; i < wheelsConnectedToDriving.Length; i++)
             {
                 wheelsConnectedToDriving[i].motorTorque = torqueToApply * driveInput;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < wheelsConnectedToDriving.Length; i++)
+            {
+                wheelsConnectedToDriving[i].motorTorque = 0;
             }
         }
         
@@ -118,6 +132,21 @@ public class SimpleCarControllerFromScratch : MonoBehaviour
         {
             allWheels[i].brakeTorque = brakeTorqueToApply * Mathf.Abs(driveInput);
         }
+    }
+
+    private void CapSpeed()
+    {
+        // one meter per second = 2.23693629 miles per hour
+        const float mphConstant = 2.23693629f;
+
+        float speedInMPH = rigidBody.velocity.magnitude * mphConstant;
+        Debug.Log("MPH: " + speedInMPH);
+        if (speedInMPH > maxSpeedInMPH)
+        {
+            // convert back to meters per second, then multiply by direction
+            rigidBody.velocity = (maxSpeedInMPH / mphConstant) * rigidBody.velocity.normalized;
+        }
+
     }
 
 
