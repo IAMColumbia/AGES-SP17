@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
+//using System.Collections;
+//using System;
 
 public class SimpleCarController : MonoBehaviour {
 
@@ -28,6 +28,14 @@ public class SimpleCarController : MonoBehaviour {
     //private float brakinginput;
 
     private Rigidbody bodyThatIsRigid;
+    private float ForwardVelocity
+    {
+        get
+        {
+            return transform.InverseTransformDirection(bodyThatIsRigid.velocity).z;
+        }
+
+    }
 
     // Use this for initialization
     void Start ()
@@ -43,29 +51,46 @@ public class SimpleCarController : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        UpdateSteering();
+        UpdateMotorTorque();
+        UpdateBrakeTorque();
 
-        
+    }
 
+    private void UpdateBrakeTorque()
+    {
+
+        //if forward velocity doesnt match input, then add brake torque
+
+        float brakeTorqueToApply = 0;
+
+        bool forwardVelocityIsSameAsInput = (ForwardVelocity > 0) == (drivinginput > 0);
+
+        if (!forwardVelocityIsSameAsInput && drivinginput != 0)
+        {
+            brakeTorqueToApply = maxBrakeTorque;
+        }
+
+        for (int i = 0; i < wheelsUsedForBraking.Length; i++)
+        {
+            wheelsUsedForBraking[i].brakeTorque = brakeTorqueToApply;        
+        }
+    }
+
+    private void UpdateSteering()
+    {
         for (int i = 0; i < wheelsUsedForSteering.Length; i++)
         {
             wheelsUsedForSteering[i].steerAngle = steeringinput * maxSteerAngle;
         }
+    }
 
+    private void UpdateMotorTorque()
+    {
         for (int i = 0; i < wheelsUsedForDriving.Length; i++)
         {
             wheelsUsedForDriving[i].motorTorque = drivinginput * maxMotorTorque;
         }
-
-
-
-
-        float forwardVelocity = transform.InverseTransformDirection(bodyThatIsRigid.velocity).z;
-        for (int i = 0; i < wheelsUsedForBraking.Length; i++)
-        {
-            //if forward velocity matches input, then add motor torque
-            //if forward velocity doesnt match input, then add brake torque
-        }
-
     }
 
     private void GetInput()
