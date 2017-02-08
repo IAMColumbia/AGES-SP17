@@ -74,7 +74,7 @@ public class SimpleCarControllerFromScratch : MonoBehaviour
     private void ApplyLocalPositionToWheelModels()
     {
         Vector3 positionToSet;
-        Quaternion rotationToSet;
+        Quaternion rotationToSet;   
 
         for (int i = 0; i < allWheelModels.Length; i++)
         {
