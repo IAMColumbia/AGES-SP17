@@ -25,6 +25,7 @@ public class SimpleCarController : MonoBehaviour
     private float steeringInput;
     private float driveInput;
     private Rigidbody rigidBody;
+    private float ForwardVelocity;
 
     // Use this for initialization
     void Start ()
@@ -42,6 +43,10 @@ public class SimpleCarController : MonoBehaviour
     {
         float forwardVelocity = transform.InverseTransformDirection(rigidBody.velocity).z;
 
+        float breakTorqueToApply = 0;
+
+        
+
         for (int i = 0; i < wheelsUsedForSteering.Length; i++)
         {
             wheelsUsedForSteering[i].steerAngle = steeringInput * maxSteerAngle;
@@ -54,6 +59,7 @@ public class SimpleCarController : MonoBehaviour
 
         for (int i = 0; i < allWheelColliders.Length; i++)
         {
+            allWheelColliders[i].motorTorque = driveInput * 
             // TODO implement braking
             //if forwardVelocity matches input, then add motortorque
             //if forwardVelocity is opposite of input, add brakeTorque.
