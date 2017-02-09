@@ -21,11 +21,26 @@ public class SimpleCarController : MonoBehaviour {
     [SerializeField]
     private float brakeTorque = 1500;
 
+    [SerializeField]
+    private float maxVelocityMPH = 20;
+
+    [SerializeField]
+    private AnimationCurve torqueCurve = new AnimationCurve(new Keyframe(0, 1), new Keyframe(5, 0.1f));
+
     private float steeringInput = 0;
     private float accelerationInput = 0;
     private float brakingInput = 0;
 
+    float ForwardComponentOfVelocity {
+        get {
+            float answer = Vector3.Dot(transform.forward, rb.velocity);
+            return answer;
+        }
+    }
+
     private Rigidbody rb;
+
+    bool velocityDirectionOppositeOfAccelDirection;
 
 	// Use this for initialization
 	private void Start () {
@@ -40,48 +55,68 @@ public class SimpleCarController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        foreach(WheelCollider wheel in steeringWheels)
-        {
-            wheel.steerAngle = maxSteerAngle * steeringInput;
-        }
-
-        foreach(WheelCollider wheel in driveWheels)
-        {
-            wheel.motorTorque = motorTorque * accelerationInput;
-        }
-
-        foreach(WheelCollider wheel in allWheelColliders)
-        {
-            wheel.brakeTorque = brakeTorque * brakingInput;
-        }
+        UpdateSteering();
+        UpdateMotorTorque();
+        UpdateBraking();
+        CapSpeed();
     }
 
     private void GetInput()
     {
         steeringInput = Input.GetAxis("Horizontal");
         accelerationInput = Input.GetAxis("Vertical");
+        brakingInput = Input.GetAxis("Brake");
 
-        float forwardComponentOfVelocity = Vector3.Dot(transform.forward, rb.velocity);
-
-        brakingInput = 0;
-
-        if(accelerationInput >= 0)
+        //if accel input and current velocity are in opposite directions, brake instead of applying acceleration
+        if(accelerationInput > 0)
         {
-            if(forwardComponentOfVelocity < 0)
+            if(ForwardComponentOfVelocity < 0)
             {
-                brakingInput = accelerationInput;
+                brakingInput = brakeTorque;
                 accelerationInput = 0;
             }
         }
-        else
+        else if (accelerationInput < 0)
         {
-            if(forwardComponentOfVelocity >= 0)
+            if(ForwardComponentOfVelocity > 0)
             {
-                brakingInput = -accelerationInput;
+                brakingInput = brakeTorque;
                 accelerationInput = 0;
             }
         }
+    }
 
-        //brakingInput = Input.GetAxis("Brake");
+    private void UpdateMotorTorque()
+    {
+        foreach (WheelCollider wheel in driveWheels)
+        {
+            float torqueAdjust = torqueCurve.Evaluate(ForwardComponentOfVelocity);
+            wheel.motorTorque = motorTorque * torqueAdjust * accelerationInput;
+        }
+    }
+
+    private void UpdateSteering()
+    {
+        foreach (WheelCollider wheel in steeringWheels)
+        {
+            wheel.steerAngle = maxSteerAngle * steeringInput;
+        }
+    }
+
+    private void UpdateBraking()
+    {
+        foreach (WheelCollider wheel in allWheelColliders)
+        {
+            wheel.brakeTorque = brakeTorque * brakingInput;
+        }
+    }
+
+    private void CapSpeed()
+    {
+        const float mphConversion = 2.2f;
+        if(rb.velocity.magnitude * mphConversion > maxVelocityMPH)
+        {
+            rb.velocity = rb.velocity.normalized * maxVelocityMPH / mphConversion;
+        }
     }
 }
