@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 //using System.Collections;
 //using System;
 
@@ -8,10 +9,16 @@ public class SimpleCarController : MonoBehaviour {
     private float maxSteerAngle = 30;
 
     [SerializeField]
+    private AnimationCurve torqueCurveModifier = new AnimationCurve(new Keyframe(0, 1), new Keyframe(100,0.25f));
+
+    [SerializeField]
     private float maxMotorTorque = 500;
 
     [SerializeField]
     private float maxBrakeTorque;
+
+    [SerializeField]
+    private float maxSpeed = 7;
 
     [SerializeField]
     private WheelCollider[]  wheelsUsedForSteering;
@@ -21,6 +28,12 @@ public class SimpleCarController : MonoBehaviour {
 
     [SerializeField]
     private WheelCollider[] wheelsUsedForBraking;
+
+    [SerializeField]
+    private WheelCollider[] allWheelColliders;
+
+    [SerializeField]
+    private Transform[] allWheelModels;
 
 
     private float steeringinput;
@@ -54,7 +67,35 @@ public class SimpleCarController : MonoBehaviour {
         UpdateSteering();
         UpdateMotorTorque();
         UpdateBrakeTorque();
+        UpdateWheelModels();
 
+    }
+
+    private void CapSpeed()
+    {
+        const float mphConversion = 2.23693629f;
+
+        float currentSpeedInMPH = GetComponent<Rigidbody>().velocity.magnitude * mphConversion;
+
+        if(currentSpeedInMPH > maxSpeed)
+        {
+            GetComponent<Rigidbody>().velocity = (currentSpeedInMPH / mphConversion) * GetComponent<Rigidbody>().velocity.normalized;
+        }
+    }
+
+    private void UpdateWheelModels()
+    {
+        for (int i = 0; i < allWheelModels.Length; i++)
+        {
+            Vector3 positionToSet;
+            Quaternion rotationToSet;
+
+            allWheelColliders[i].GetWorldPose(out positionToSet, out rotationToSet);
+
+            allWheelModels[i].position = positionToSet;
+            allWheelModels[i].rotation = rotationToSet;
+
+        }
     }
 
     private void UpdateBrakeTorque()
@@ -87,6 +128,10 @@ public class SimpleCarController : MonoBehaviour {
 
     private void UpdateMotorTorque()
     {
+        
+        float curveMod = torqueCurveModifier.Evaluate(GetComponent<Rigidbody>().velocity.magnitude);
+
+        Debug.Log("Current Curve: " + curveMod);
         for (int i = 0; i < wheelsUsedForDriving.Length; i++)
         {
             wheelsUsedForDriving[i].motorTorque = drivinginput * maxMotorTorque;
