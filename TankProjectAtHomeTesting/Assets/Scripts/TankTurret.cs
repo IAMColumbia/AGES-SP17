@@ -7,7 +7,7 @@ public class TankTurret : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 50;
 
-    private float input;
+    private float rotationInput;
     private Rigidbody rigidbody_use;
 
     private ConfigurableJoint joint;
@@ -15,6 +15,8 @@ public class TankTurret : MonoBehaviour
     private Quaternion lockedRotation;
     private JointDrive lockedJointDrive;
     private JointDrive unlockedJointDrive;
+
+    private bool resetRotationPressed = false;
 
 	// Use this for initialization
 	void Start () 
@@ -32,17 +34,19 @@ public class TankTurret : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-        GetInput();
+        GetRotationInput();
 	}
 
-    private void GetInput()
+    private void GetRotationInput()
     {
-        input = Input.GetAxis("RotateTurret");
+        rotationInput = Input.GetAxis("RotateTurret");
+
+        resetRotationPressed = Input.GetButtonDown("ResetTurret");
     }
 
     private void FixedUpdate()
     {
-        if (input == 0)
+        if (rotationInput == 0)
         {
             joint.slerpDrive = lockedJointDrive;
         }
@@ -50,7 +54,7 @@ public class TankTurret : MonoBehaviour
         {
             joint.slerpDrive = unlockedJointDrive;
             
-            float rotationAmount = -1 * input * rotationSpeed * Time.deltaTime;
+            float rotationAmount = -1 * rotationInput * rotationSpeed * Time.deltaTime;
 
             Quaternion newRotation = Quaternion.Euler(0, rotationAmount, 0) * rigidbody_use.rotation;
 
@@ -61,5 +65,11 @@ public class TankTurret : MonoBehaviour
             
             // TODO: add a snap to front / default orientation button? Limit the max speed it rotates back? 
         }
+
+        if (resetRotationPressed)
+        {
+            joint.targetRotation = Quaternion.Euler(0, 0, 0);
+        }
+
     }
 }
