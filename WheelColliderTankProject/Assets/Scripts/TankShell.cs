@@ -9,10 +9,11 @@ public class TankShell : MonoBehaviour
     // It needs to go on the COLLIDER game object, which is a child of the tank shell model.
     // The collider had to go on a child object or the prefab wouldn't save the collider's shape settings...
     // That might be an issue with ProBuilder, or maybe just a Unity thing.
-
+    [SerializeField]
+    ParticleSystem HitParticles;
     [SerializeField]
     private float maxLifetime = 2;
-
+    int hitCount = 0;
     [SerializeField]
     private float explosionRadius = 10;
 
@@ -28,6 +29,7 @@ public class TankShell : MonoBehaviour
 	// Use this for initialization
 	private void Start () 
 	{
+       
         // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
         rigidbody_useThis = GetComponentInParent<Rigidbody>();
@@ -53,6 +55,21 @@ public class TankShell : MonoBehaviour
                 continue;
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
+            //Creates the Particle Affect on Hit
+          if (hitCount == 0)
+            {
+                
+                if (hitCount == 0)
+                {
+                    ParticleSystem shellHit = Instantiate(HitParticles) as ParticleSystem;
+                    shellHit.transform.parent = null;
+                    shellHit.transform.position = targetRigidbody.transform.position;
+                    shellHit.transform.parent = targetRigidbody.gameObject.transform;
+                    hitCount++;
+                }
+
+            }
+           
 
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
@@ -63,6 +80,8 @@ public class TankShell : MonoBehaviour
 
             if (heavyObject != null)
             {
+
+
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
             }
         }
