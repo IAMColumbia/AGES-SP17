@@ -25,6 +25,9 @@ public class TankShell : MonoBehaviour
 
     private Rigidbody rigidbody_useThis;
 
+    [SerializeField]
+    private ParticleSystem particlesystem;
+
 	// Use this for initialization
 	private void Start () 
 	{
@@ -35,6 +38,8 @@ public class TankShell : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
+
         // Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, layersToAffect);
 
@@ -64,9 +69,11 @@ public class TankShell : MonoBehaviour
             if (heavyObject != null)
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
+                
             }
         }
 
+        particlesystem.Play();
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
 
         // Destroy the shell, since it exploded
