@@ -7,7 +7,7 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     // This is the main class for controlling the tank.
     // It handles driving and steering.
     // It also handles IHeavyExplodableObject "exploding," but maybe it shouldn't...
-
+    #region Variables
     [Tooltip("Total torque divided across all wheels.")]
     [SerializeField]
     private float maxMotorTorqueAcrossAllWheels = 120000;
@@ -85,9 +85,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
             return (leftTrackInput == 0) && (rightTrackInput == 0);
         }
     }
-
-	// Use this for initialization
-	void Start () 
+    #endregion
+    // Use this for initialization
+    void Start () 
 	{
         rigidbody_useThis = GetComponent<Rigidbody>();
 
