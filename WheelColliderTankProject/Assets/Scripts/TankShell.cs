@@ -23,6 +23,9 @@ public class TankShell : MonoBehaviour
     [SerializeField]
     private LayerMask layersToAffect;
 
+    [SerializeField]
+    ParticleSystem explosionParticle;
+
     private Rigidbody rigidbody_useThis;
 
 	// Use this for initialization
@@ -54,6 +57,8 @@ public class TankShell : MonoBehaviour
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
 
+            
+
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
@@ -68,9 +73,14 @@ public class TankShell : MonoBehaviour
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+        //GameObject explosionParticleEffect = Instantiate(explosionParticle, transform) as GameObject;
+        explosionParticle/*Effect*/.transform.parent = null;
+        explosionParticle/*Effect*/.GetComponent<ParticleSystem>().Play();
 
+        Destroy(explosionParticle/*Effect*/, explosionParticle.duration);
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);
+        
     }
     
 }
