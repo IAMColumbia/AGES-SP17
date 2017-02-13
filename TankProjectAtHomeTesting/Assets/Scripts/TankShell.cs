@@ -11,6 +11,9 @@ public class TankShell : MonoBehaviour
     // That might be an issue with ProBuilder, or maybe just a Unity thing.
 
     [SerializeField]
+    float damageToDeal = 25;
+
+    [SerializeField]
     private float maxLifetime = 2;
 
     [SerializeField]
@@ -41,6 +44,7 @@ public class TankShell : MonoBehaviour
         // Go through all the colliders...
         for (int i = 0; i < colliders.Length; i++)
         {
+
             // ... and find their rigidbody.
             Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>();
 
@@ -65,6 +69,14 @@ public class TankShell : MonoBehaviour
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
             }
+
+            IDamageable damageableObject = targetRigidbody.GetComponentInParent<IDamageable>();
+
+            if (damageableObject != null)
+            {
+                damageableObject.TakeDamage(damageToDeal, Time.time);
+            }
+
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
