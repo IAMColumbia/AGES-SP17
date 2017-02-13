@@ -10,6 +10,8 @@ public class TankShell : MonoBehaviour
     // The collider had to go on a child object or the prefab wouldn't save the collider's shape settings...
     // That might be an issue with ProBuilder, or maybe just a Unity thing.
 
+    public ParticleSystem m_ExplosionParticles;         // Reference to the particles that will play on explosion.
+
     [SerializeField]
     private float maxLifetime = 2;
 
@@ -68,6 +70,15 @@ public class TankShell : MonoBehaviour
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+
+                    // Unparent the particles from the shell.
+                    m_ExplosionParticles.transform.parent = null;
+
+                    // Play the particle system.
+                    m_ExplosionParticles.Play();
+
+                    // Once the particles have finished, destroy the gameobject they are on.
+                    //Destroy(m_ExplosionParticles.gameObject, m_ExplosionParticles.duration);
 
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);
