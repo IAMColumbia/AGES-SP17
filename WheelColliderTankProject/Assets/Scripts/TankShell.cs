@@ -23,6 +23,9 @@ public class TankShell : MonoBehaviour
     [SerializeField]
     private LayerMask layersToAffect;
 
+    [SerializeField]
+    private ParticleSystem ExplosionParticle;
+
     private Rigidbody rigidbody_useThis;
 
 	// Use this for initialization
@@ -61,10 +64,19 @@ public class TankShell : MonoBehaviour
             // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
             IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
 
+            ExplosionParticle.transform.parent = null;
+
+            ExplosionParticle.Play();
+
+            Destroy(ExplosionParticle.gameObject, ExplosionParticle.duration);
+
+            Destroy(gameObject);
+
             if (heavyObject != null)
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
             }
+
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
