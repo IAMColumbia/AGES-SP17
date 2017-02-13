@@ -50,6 +50,12 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     private float normalDrag;
     private float normalAngularDrag;
 
+    [SerializeField]
+    string leftTrackMovement = "Left Tank Track_P1";
+
+    [SerializeField]
+    string rightTrackMovement = "Right Tank Track_P1";
+
     private Rigidbody rigidbody_useThis;
 
     private float ForwardVelocity
@@ -111,8 +117,16 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private void GetInput()
     {
-        leftTrackInput = Input.GetAxis("Left Tank Track");
-        rightTrackInput = Input.GetAxis("Right Tank Track");
+        if (gameObject.tag == "PlayerOne")
+        {
+            leftTrackInput = Input.GetAxis(leftTrackMovement);
+            rightTrackInput = Input.GetAxis(rightTrackMovement);
+        }
+        else if(gameObject.tag == "PlayerTwo")
+        {
+            leftTrackInput = Input.GetAxis(leftTrackMovement);
+            rightTrackInput = Input.GetAxis(rightTrackMovement);
+        }
     }
 
     private void FixedUpdate()

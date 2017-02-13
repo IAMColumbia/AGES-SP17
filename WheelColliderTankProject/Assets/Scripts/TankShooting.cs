@@ -11,6 +11,9 @@ public class TankShooting : MonoBehaviour
     private Transform shellSpawnPoint;
 
     [SerializeField]
+    string fire = "Fire1";
+
+    [SerializeField]
     private Rigidbody tankShellPrefab;
 
     [SerializeField]
@@ -18,7 +21,7 @@ public class TankShooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown(fire))
         {
             Fire();
         }

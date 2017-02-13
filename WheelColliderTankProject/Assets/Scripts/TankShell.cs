@@ -25,6 +25,9 @@ public class TankShell : MonoBehaviour
 
     private Rigidbody rigidbody_useThis;
 
+    [SerializeField]
+    ParticleSystem shellParticleSystem;
+
 	// Use this for initialization
 	private void Start () 
 	{
@@ -65,6 +68,10 @@ public class TankShell : MonoBehaviour
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
             }
+
+            shellParticleSystem.transform.parent = null;
+            shellParticleSystem.Play();
+            Destroy(shellParticleSystem.gameObject, shellParticleSystem.duration);
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
