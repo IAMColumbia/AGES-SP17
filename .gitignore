@@ -29,5 +29,3 @@ sysinfo.txt
 *.apk
 *.unitypackage
 *.meta
-*.meta
-CommandPattern/Assets/Scripts.meta
