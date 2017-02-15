@@ -56,13 +56,19 @@ public class ShellExplosion : MonoBehaviour
     private float CalculateDamage(Vector3 targetPosition)
     {
         // Calculate the amount of damage a target should take based on it's position.
-        return 0f;
+
         Vector3 explosionToTarget = targetPosition - transform.position;
 
         float explosionDistance = explosionToTarget.magnitude;
 
         float relativeDistance = (m_ExplosionRadius - explosionDistance) / m_ExplosionRadius;
 
-        //26:14 in video
+        float damage = relativeDistance * m_MaxDamage;
+
+        damage = Mathf.Max(0f, damage);
+
+        return damage;
+
+
     }
 }
