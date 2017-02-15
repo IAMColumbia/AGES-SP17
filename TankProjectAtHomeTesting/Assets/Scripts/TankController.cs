@@ -39,7 +39,11 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     [Tooltip("When hit by a shell, we use this much force to 'rock' the tank.")]
     [SerializeField]
-    float explosionForce = 7000000;
+    float maxExplosionForce = 7000000;
+
+    [Tooltip("When hit with a glancing blow by a shell, we use this much force to 'rock' the tank.")]
+    [SerializeField]
+    float minExplosionForce = 1000000;
 
     private float leftTrackInput;
     private float rightTrackInput;
@@ -219,9 +223,11 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     // IHeavyExplodableObject implementation
     // We use this because the tanks are so massive that they need special
     // behavior to "explode" in a satisfying way when hit by shells, etc.
-    public void Explode(Vector3 incomingProjectileDirection)
+    public void Explode(Vector3 incomingProjectileDirection, Vector3 pointOfExplosionOrigin, float explosionRadius)
     {
+        float distanceFromExplosion = (transform.position - pointOfExplosionOrigin).magnitude;
+        float adjustedExplosionForce = Mathf.Lerp(minExplosionForce, maxExplosionForce, distanceFromExplosion); 
         Vector3 explosionDirection = Vector3.up + incomingProjectileDirection;
-        rigidbody_useThis.AddForceAtPosition(explosionForce * explosionDirection, explosionPoint.position);
+        rigidbody_useThis.AddForceAtPosition(adjustedExplosionForce * explosionDirection, explosionPoint.position);
     }
 }
