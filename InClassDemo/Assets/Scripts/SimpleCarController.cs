@@ -8,7 +8,13 @@ public class SimpleCarController : MonoBehaviour {
     private float maxSteerAngle = 30;
 
     [SerializeField]
+    private AnimationCurve torqueCurveModifier = new AnimationCurve(new Keyframe(0, 1), new Keyframe(100, 0.25f));
+
+    [SerializeField]
     private float maxmoterTorque = 500;
+
+    [SerializeField]
+    private float maxSpeedInMPH = 7;
 
     [SerializeField]
     private WheelCollider[] wheelsUsedForSteering;
@@ -22,15 +28,37 @@ public class SimpleCarController : MonoBehaviour {
     [SerializeField]
     private WheelCollider[] allWheelColliders;
 
+    [SerializeField]
+    private Transform[] allWheelModels;
+
+
     private float steeringInput;
     private float driveInput;
     private Rigidbody rigidBody;
 
+    private float forwardVelocity
+    {
+        get
+        {
+            return transform.InverseTransformDirection(rigidBody.velocity).z;
+        }
+    }
+
 	// Use this for initialization
 	private void Start ()
     {
-        rigidBody = GetComponent<Rigidbody>();
-	}
+        for (int i = 0; i < allWheelModels.Length; i++)
+        {
+            Vector3 positionToSet;
+            Quaternion rotationToSet;
+
+            allWheelColliders[i].GetWorldPose(out positionToSet, out rotationToSet);
+
+            allWheelModels[i].position = positionToSet;
+            allWheelModels[i].rotation = rotationToSet;
+
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -40,24 +68,68 @@ public class SimpleCarController : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        UpdateSteering();
 
-        for (int i = 0; i < wheelsUsedForSteering.Length; i++)
+        UpdateMotorTorque();
+
+        UpdateBrakeTorque();
+
+        UpdateWheelModels();
+
+        CapSpeed();
+    }
+
+    private void CapSpeed()
+    {
+        const float mphConversion = 2.23693629f;
+
+        float currentSpeedInMPH = rigidBody.velocity.magnitude * mphConversion;
+
+        if (currentSpeedInMPH > maxSpeedInMPH)
         {
-            wheelsUsedForSteering[i].steerAngle = steeringInput * maxSteerAngle;
+            rigidBody.velocity = (currentSpeedInMPH / mphConversion) * rigidBody.velocity.normalized;
         }
 
-        for (int i = 0; i < wheelsUsedForDriving.Length; i++)
-        {
-            wheelsUsedForDriving[i].motorTorque = driveInput * maxmoterTorque;
-        }
+        Debug.Log("Current Speed: " + currentSpeedInMPH);
+    }
 
-        float forwardVelocity = transform.InverseTransformDirection(rigidBody.velocity).z;
+    private void UpdateWheelModels()
+    {
+        //throw new NotImplementedException();
+    }
+
+    private void UpdateBrakeTorque()
+    {
+        float brakeTorqueToApply = 0;
+
+        bool forwardVelocityIsSameDirectionAsInput = (forwardVelocity > 0) == (driveInput > 0);
+
+        if (!forwardVelocityIsSameDirectionAsInput && driveInput != 0)
+            brakeTorqueToApply = brakeTorque;
 
         for (int i = 0; i < allWheelColliders.Length; i++)
         {
-            //TODO implement braking
-            //if forwardVelocity matches input, then add motor torque
-            //if forwardVelocity is opposite of input, then add brake torque
+            allWheelColliders[i].brakeTorque = brakeTorqueToApply;
+        }
+    }
+
+    private void UpdateMotorTorque()
+    {
+        float curveMod = torqueCurveModifier.Evaluate(rigidBody.velocity.magnitude);
+
+        Debug.Log("Current CurveMod" + curveMod);
+
+        for (int i = 0; i < wheelsUsedForDriving.Length; i++)
+        {
+            wheelsUsedForDriving[i].motorTorque = driveInput * maxmoterTorque * curveMod;
+        }
+    }
+
+    private void UpdateSteering()
+    {
+        for (int i = 0; i < wheelsUsedForSteering.Length; i++)
+        {
+            wheelsUsedForSteering[i].steerAngle = steeringInput * maxSteerAngle;
         }
     }
 
