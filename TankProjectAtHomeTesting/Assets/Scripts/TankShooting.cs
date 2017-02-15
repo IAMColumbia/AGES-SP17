@@ -16,6 +16,13 @@ public class TankShooting : MonoBehaviour
     [SerializeField]
     private float projectileVelocity = 100;
 
+    [Tooltip("We're going to have a backwards force on the turret when the tank shoots to simulate recoil.")]
+    [SerializeField]
+    Rigidbody turretRigidBody;
+
+    [SerializeField]
+    float recoilForce = 100000;
+
     private void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -29,5 +36,7 @@ public class TankShooting : MonoBehaviour
         Rigidbody firedShell = GameObject.Instantiate(tankShellPrefab, shellSpawnPoint.position, shellSpawnPoint.rotation) as Rigidbody;
 
         firedShell.velocity = shellSpawnPoint.forward * projectileVelocity;
+
+        turretRigidBody.AddForce(turretRigidBody.transform.forward * -recoilForce);
     }    
 }
