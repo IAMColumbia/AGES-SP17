@@ -13,9 +13,8 @@ public class AICharacter : MonoBehaviour
     {
         characterToControl = GetComponent<CharacterController>();
     }
-
-	// Update is called once per frame
-	void Update () 
+    
+	void Update() 
 	{
         Vector3 towardDestination =  (pointToNavigateToward.position - characterToControl.transform.position).normalized;
 
