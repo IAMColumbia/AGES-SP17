@@ -25,8 +25,11 @@ public class TankShell : MonoBehaviour
 
     private Rigidbody rigidbody_useThis;
 
-	// Use this for initialization
-	private void Start () 
+    [SerializeField]
+    public ParticleSystem ExplosionParticles;
+
+    // Use this for initialization
+    private void Start () 
 	{
         // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
@@ -68,6 +71,11 @@ public class TankShell : MonoBehaviour
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+        ExplosionParticles.transform.parent = null;
+
+        ExplosionParticles.Play();
+
+        Destroy(ExplosionParticles.gameObject, ExplosionParticles.duration);
 
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);
