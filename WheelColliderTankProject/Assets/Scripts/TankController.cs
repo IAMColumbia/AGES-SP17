@@ -52,6 +52,18 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private Rigidbody rigidbody_useThis;
 
+    float tankHelth = 100;
+
+    [SerializeField]
+    GameObject Steam;
+
+    [SerializeField]
+    GameObject Smoke;
+
+    [SerializeField]
+    GameObject Fire;
+
+
     private float ForwardVelocity
     {
         get
@@ -223,5 +235,22 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     {
         Vector3 explosionDirection = Vector3.up + incomingProjectileDirection;
         rigidbody_useThis.AddForceAtPosition(explosionForce * explosionDirection, explosionPoint.position);
+        TakeDamage();
+    }
+
+    private void TakeDamage()
+    {
+        tankHelth = tankHelth - 33;
+
+        if (tankHelth > 0 )
+        { if (tankHelth < 68)
+                { Steam.SetActive(true); }
+                if (tankHelth < 35)
+                { Smoke.SetActive(true); }
+                if (tankHelth < 2)
+                { Fire.SetActive(true); }
+                        }
+            
+
     }
 }
