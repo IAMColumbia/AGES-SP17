@@ -11,6 +11,9 @@ public class TankShell : MonoBehaviour
     // That might be an issue with ProBuilder, or maybe just a Unity thing.
 
     [SerializeField]
+    GameObject explosionParticles;
+
+    [SerializeField]
     private float maxLifetime = 2;
 
     [SerializeField]
@@ -68,6 +71,10 @@ public class TankShell : MonoBehaviour
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+        explosionParticles.transform.parent = null;
+
+        explosionParticles.SetActive(true);
+
 
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);
