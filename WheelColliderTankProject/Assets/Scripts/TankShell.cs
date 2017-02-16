@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Effects;
 
 public class TankShell : MonoBehaviour 
 {
@@ -23,6 +24,9 @@ public class TankShell : MonoBehaviour
     [SerializeField]
     private LayerMask layersToAffect;
 
+    [SerializeField]
+    private MultiParticleSystem explosionParticleEffect;
+
     private Rigidbody rigidbody_useThis;
 
 	// Use this for initialization
@@ -31,6 +35,8 @@ public class TankShell : MonoBehaviour
         // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
         rigidbody_useThis = GetComponentInParent<Rigidbody>();
+
+        explosionParticleEffect = GetComponentInChildren<MultiParticleSystem>();
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -67,7 +73,9 @@ public class TankShell : MonoBehaviour
             }
         }
 
-        // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+        explosionParticleEffect.transform.parent = null;
+        explosionParticleEffect.Play();
+        Destroy(explosionParticleEffect.gameObject, explosionParticleEffect.duration);
 
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);
