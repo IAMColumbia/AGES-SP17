@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Effects;
 
 public class TankShell : MonoBehaviour 
 {
@@ -25,6 +26,9 @@ public class TankShell : MonoBehaviour
 
     private Rigidbody rigidbody_useThis;
 
+    [SerializeField]
+    ParticleSystemMultiplier explosionEffect;
+
 	// Use this for initialization
 	private void Start () 
 	{
@@ -37,7 +41,8 @@ public class TankShell : MonoBehaviour
     {
         // Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, layersToAffect);
-
+        //Create explosion effect object
+        ParticleSystemMultiplier newExplosion = GameObject.Instantiate(explosionEffect, transform.position, Quaternion.Euler(0,0,0)) as ParticleSystemMultiplier;
         // Go through all the colliders...
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -53,11 +58,11 @@ public class TankShell : MonoBehaviour
                 continue;
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
-
+            
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-          
+            
             // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
             IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
 

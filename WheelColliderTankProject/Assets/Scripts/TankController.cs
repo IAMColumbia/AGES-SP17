@@ -41,6 +41,7 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [SerializeField]
     float explosionForce = 7000000;
 
+    
     private float leftTrackInput;
     private float rightTrackInput;
 
@@ -98,6 +99,7 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
         normalAngularDrag = rigidbody_useThis.angularDrag;
         normalDrag = rigidbody_useThis.drag;
+        currentHealth = maxHealth;
 	}
 
     // Colors the tank for differentiating multiple players
