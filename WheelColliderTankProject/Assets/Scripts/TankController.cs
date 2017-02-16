@@ -112,7 +112,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     private void GetInput()
     {
         leftTrackInput = Input.GetAxis("Left Tank Track");
+       // leftTrackInput = Input.GetAxis("Horizontal");
         rightTrackInput = Input.GetAxis("Right Tank Track");
+        //rightTrackInput = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
