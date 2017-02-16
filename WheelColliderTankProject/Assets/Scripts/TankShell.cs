@@ -29,6 +29,9 @@ public class TankShell : MonoBehaviour
 
     private Rigidbody rigidbody_useThis;
 
+    [SerializeField]
+    private float baseDamage = 100;
+
 	// Use this for initialization
 	private void Start () 
 	{
@@ -70,6 +73,15 @@ public class TankShell : MonoBehaviour
             if (heavyObject != null)
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
+            }
+
+            IDamageable damageableObject = targetRigidbody.GetComponentInParent<IDamageable>();
+
+            Debug.Log(damageableObject);
+
+            if(damageableObject != null)
+            {
+                damageableObject.TakeDamage(baseDamage);
             }
         }
 

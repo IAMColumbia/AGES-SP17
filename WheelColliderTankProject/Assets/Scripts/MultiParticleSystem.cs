@@ -5,6 +5,7 @@ namespace UnityStandardAssets.Effects
 {
     public class MultiParticleSystem : MonoBehaviour
     {
+        [HideInInspector]
         public float duration = 0;
 
         ParticleSystem[] systems;
@@ -15,6 +16,7 @@ namespace UnityStandardAssets.Effects
             foreach (ParticleSystem system in systems)
             {
                 duration = Mathf.Max(duration, system.duration);
+                system.playOnAwake = false;
                 system.Clear();
                 system.Stop();
             }
