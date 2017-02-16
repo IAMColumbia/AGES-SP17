@@ -25,12 +25,22 @@ public class TankShell : MonoBehaviour
 
     private Rigidbody rigidbody_useThis;
 
-	// Use this for initialization
-	private void Start () 
+    [SerializeField]
+    private GameObject explosionObj;
+
+    [SerializeField]
+    private ParticleSystem explosionFX1;
+
+    [SerializeField]
+    private ParticleSystem explosionFX2;
+
+    // Use this for initialization
+    private void Start () 
 	{
         // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
         rigidbody_useThis = GetComponentInParent<Rigidbody>();
+        explosionObj.SetActive(false);
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -48,6 +58,8 @@ public class TankShell : MonoBehaviour
             // I'm leaving this code in as an example of continue; but I don't think
             // its the best way to organize this.
 
+            explosionObj.SetActive(true);
+
             // If they don't have a rigidbody, go on to the next collider.
             if (!targetRigidbody)
                 continue;
@@ -57,7 +69,14 @@ public class TankShell : MonoBehaviour
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-          
+
+            explosionObj.transform.parent = null;
+
+            explosionFX1.Play();
+            explosionFX2.Play();
+            Destroy(explosionObj.gameObject, explosionFX1.duration);
+
+
             // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
             IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
 
