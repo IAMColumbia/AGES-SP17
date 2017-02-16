@@ -11,6 +11,9 @@ public class TankShell : MonoBehaviour
     // That might be an issue with ProBuilder, or maybe just a Unity thing.
 
     [SerializeField]
+    public ParticleSystem m_ExplosionParticleSystem;
+
+    [SerializeField]
     private float maxLifetime = 2;
 
     [SerializeField]
@@ -53,6 +56,7 @@ public class TankShell : MonoBehaviour
                 continue;
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
+            
 
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
@@ -68,9 +72,16 @@ public class TankShell : MonoBehaviour
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+        m_ExplosionParticleSystem.transform.parent = null;
 
-        // Destroy the shell, since it exploded
-        Destroy(transform.parent.gameObject);
+        m_ExplosionParticleSystem.Play();
+        //Destroy(m_ExplosionParticleSystem.gameObject, m_ExplosionParticleSystem.duration);
+        Destroy(m_ExplosionParticleSystem.gameObject, m_ExplosionParticleSystem.duration);
+
+        //Destroy the shell, since it exploded
+        Destroy();
+        
+        
     }
     
 }
