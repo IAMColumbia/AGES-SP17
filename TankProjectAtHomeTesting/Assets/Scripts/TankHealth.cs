@@ -45,6 +45,8 @@ public class TankHealth : MonoBehaviour, IDamageable
     private float lastDamageID;
     private TankDamageState currentDamageState = TankDamageState.NoDamage;
 
+    public event Action CriticalDamageReceived;
+
     // IDamageable implementation
     public void TakeDamage(float amount, float id)
     {
@@ -68,7 +70,12 @@ public class TankHealth : MonoBehaviour, IDamageable
         // This logic does not support healing.
         if (currentHealth <= 0)
         {
-            currentDamageState = TankDamageState.CriticalDamage;
+            if (currentDamageState != TankDamageState.CriticalDamage)
+            {
+                currentDamageState = TankDamageState.CriticalDamage;
+                if (CriticalDamageReceived != null)
+                    CriticalDamageReceived.Invoke();
+            }
         }
         else
         {

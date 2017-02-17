@@ -45,6 +45,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [SerializeField]
     float minExplosionForce = 1000000;
 
+    private IDamageable tankHealth;
+
     private float leftTrackInput;
     private float rightTrackInput;
 
@@ -90,11 +92,18 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         }
     }
 
+    void Awake()
+    {
+        // Start gets called after Enable, so we have to 
+        // initialize tankHealth here.
+        tankHealth = GetComponent<TankHealth>();
+        rigidbody_useThis = GetComponent<Rigidbody>();
+    }
+
+
 	// Use this for initialization
 	void Start () 
 	{
-        rigidbody_useThis = GetComponent<Rigidbody>();
-
         normalFrictionCurve = leftTrackWheelColliders[0].sidewaysFriction;
 
         turnFrictionCurve = normalFrictionCurve;
@@ -218,6 +227,44 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         {
             track[i].motorTorque = motorTorqueToApply;
         }
+    }
+
+    // Subscribe and unsubscribe for the CriticalDamageReceived event
+    void OnEnable()
+    {
+        tankHealth.CriticalDamageReceived += BlowUpAfterCritcalDamage;
+    }
+
+    void OnDisable()
+    {
+        tankHealth.CriticalDamageReceived += BlowUpAfterCritcalDamage;
+    }
+
+    // CriticalDamageReceived event handler
+    void BlowUpAfterCritcalDamage()
+    {
+        StartCoroutine(BlowUpAfterTime(time: 3));
+    }
+
+    // Coroutine for having a cool explosion after a brief time once 
+    // the tank reaches critical damage
+    IEnumerator BlowUpAfterTime(float time)
+    {
+        Debug.Log(String.Format("Blowing up in {0} seconds!", time));
+        yield return new WaitForSeconds(time);
+
+        Debug.Log("Blowing up now!");
+        // Reduce the mass so the explosion looks cooler
+        rigidbody_useThis.mass = rigidbody_useThis.mass / 4f;
+
+        // TODO: make the explosions more random, less hardcoded / magic numbers
+        Explode(Vector3.up, explosionPoint.position, explosionRadius: 10);
+
+        yield return new WaitForSeconds(0.15f);
+        // TODO: disconnect the turret joint, turn off the wheel colliders and add rigidbodies to the tracks
+        // and disconnect them too? Then pieces can fly off the tank.
+        // Could also swap it to a "damaged" version of the model if we really wanted.
+        Explode(Vector3.right + transform.right, explosionPoint.position + transform.right * 5, explosionRadius: 10);
     }
 
     // IHeavyExplodableObject implementation
