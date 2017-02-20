@@ -28,6 +28,9 @@ public class TankShell : MonoBehaviour
     [SerializeField]
     ParticleSystem shellParticleSystem;
 
+    [SerializeField]
+    TankController tankController;
+
 	// Use this for initialization
 	private void Start () 
 	{
@@ -67,6 +70,7 @@ public class TankShell : MonoBehaviour
             if (heavyObject != null)
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
+                tankController.tankParticleSystem.Play();
             }
 
             shellParticleSystem.transform.parent = null;

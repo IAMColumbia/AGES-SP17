@@ -56,6 +56,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [SerializeField]
     string rightTrackMovement = "Right Tank Track_P1";
 
+
+    public ParticleSystem tankParticleSystem;
+
     private Rigidbody rigidbody_useThis;
 
     private float ForwardVelocity
