@@ -584,6 +584,7 @@ GameObject:
   - 114: {fileID: 114000012046246996}
   - 114: {fileID: 114000011865540188}
   - 114: {fileID: 114000011344550320}
+  - 114: {fileID: 114000010880075694}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -893,7 +894,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014127794938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.245712, y: 4.63, z: -8.174868}
+  m_LocalPosition: {x: 19.82, y: 3.9, z: -9.914265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2117,6 +2118,19 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114000010880075694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014127794938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9d01809f27a744bb0d478da0013f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
 --- !u!114 &114000010899559420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3412,7 +3426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479517c2ec61e3d43bc777f51d31bfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorToApply: {r: 0.9117647, g: 0.7938641, b: 0.40895328, a: 0}
+  colorToApply: {r: 0.50735295, g: 0.42075306, b: 0.13802986, a: 0}
 --- !u!114 &114000011865540188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3451,7 +3465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf2520180049e446b8cf53b3d0474ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMotorTorqueAcrossAllWheels: 120000
+  maxMotorTorqueAcrossAllWheels: 50000
   leftTrackWheelColliders:
   - {fileID: 146000013605654622}
   - {fileID: 146000011438300714}
@@ -3473,7 +3487,7 @@ MonoBehaviour:
   slowAngularDrag: 1.5
   slowDrag: 1
   explosionPoint: {fileID: 4000013199533414}
-  explosionForce: 7000000
+  explosionForce: 700000
 --- !u!114 &114000012476354808
 MonoBehaviour:
   m_ObjectHideFlags: 1

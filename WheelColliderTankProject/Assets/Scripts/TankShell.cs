@@ -18,7 +18,7 @@ public class TankShell : MonoBehaviour
 
     [Tooltip("Don't make this too high or it will look bad on light to average mass rigidbodies. There is a special interface for Heavy Explodable Objects.")]
     [SerializeField]
-    private float explosionForce = 2000;
+    private float explosionForce = 1000;
 
     [SerializeField]
     private LayerMask layersToAffect;
@@ -27,29 +27,22 @@ public class TankShell : MonoBehaviour
     private ParticleSystem ExplosionParticle;
 
     private Rigidbody rigidbody_useThis;
+    
 
-	// Use this for initialization
+
 	private void Start () 
 	{
-        // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
         rigidbody_useThis = GetComponentInParent<Rigidbody>();
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        // Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, layersToAffect);
-
-        // Go through all the colliders...
+        
         for (int i = 0; i < colliders.Length; i++)
         {
-            // ... and find their rigidbody.
             Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>();
-
-
-            // I'm leaving this code in as an example of continue; but I don't think
-            // its the best way to organize this.
 
             // If they don't have a rigidbody, go on to the next collider.
             if (!targetRigidbody)
@@ -57,32 +50,27 @@ public class TankShell : MonoBehaviour
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
 
-            // Add an explosion force. This is fine for most light to average mass rigidbodies.
-            // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-          
+
             // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
             IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
 
-            ExplosionParticle.transform.parent = null;
-
-            ExplosionParticle.Play();
-
-            Destroy(ExplosionParticle.gameObject, ExplosionParticle.duration);
-
-            Destroy(gameObject);
 
             if (heavyObject != null)
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
             }
 
+            TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
+            
+            targetHealth.TakeDamage();
         }
 
-        // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+            ExplosionParticle.transform.parent = null;
+            ExplosionParticle.Play();
 
-        // Destroy the shell, since it exploded
-        Destroy(transform.parent.gameObject);
+            Destroy(ExplosionParticle.gameObject, ExplosionParticle.duration);
+            Destroy(gameObject);
     }
     
 }
