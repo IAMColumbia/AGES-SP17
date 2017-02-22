@@ -20,6 +20,10 @@ public class TankManager
     public void Setup()
     {
         m_Movement = m_Instance.GetComponent<TankMovement>();
+        if(m_Movement == null)
+        {
+            Debug.Log("FUCK");
+        }
         m_Shooting = m_Instance.GetComponent<TankShooting>();
         m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
 
