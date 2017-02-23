@@ -11,7 +11,7 @@ public class SingletonCoinManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = GameObject.Find("SingletonCoinManager").GetComponent<SingletonCoinManager>();
+                 instance = GameObject.Find("SingletonCoinManager").GetComponent<SingletonCoinManager>();
             }
 
             return instance;
@@ -19,5 +19,5 @@ public class SingletonCoinManager : MonoBehaviour
     }
 
     public int CoinCount { get; set; }
-	
+
 }
