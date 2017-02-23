@@ -12,8 +12,19 @@ public class AnimateMenu : MonoBehaviour
     [SerializeField]
     Camera m_cameraA, m_cameraB;
 
+    [SerializeField]
+    float titleWidthRatio;
+
     float m_halfWidth;
     float m_fullHeight;
+
+    [SerializeField]
+    AnimationCurve moveCurve;
+
+    [SerializeField]
+    Button startButton;
+
+    float startTime;
 
     // Use this for initialization
     void Start()
@@ -36,15 +47,23 @@ public class AnimateMenu : MonoBehaviour
         m_canvasRect.sizeDelta = new Vector2(m_halfWidth * 2, m_fullHeight);
         m_canvasRect.position = new Vector3(m_halfWidth/2, 0, 0);
 
-        m_titleText.rectTransform.offsetMin = new Vector2(m_halfWidth, m_titleText.rectTransform.offsetMin.y);
-        m_titleText.rectTransform.offsetMax = new Vector2(m_halfWidth, m_titleText.rectTransform.offsetMax.y);
-        m_titleText.rectTransform.sizeDelta = new Vector2(1,10000);
+        SetTextPositionRelative(1);
+        m_titleText.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, m_halfWidth, m_halfWidth * titleWidthRatio);
+
+        startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        SetTextPositionRelative(moveCurve.Evaluate(Time.time - startTime));
+    }
+
+    void SetTextPositionRelative(float x)
+    {
+        float textWidth = m_halfWidth * titleWidthRatio;
+        float paddingLeft = (m_halfWidth - m_halfWidth * titleWidthRatio) / 2;
+        m_titleText.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, paddingLeft + (m_halfWidth - paddingLeft) * x, textWidth);
     }
 }
 
