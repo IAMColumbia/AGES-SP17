@@ -19,5 +19,4 @@ public class SingletonCoinManager : MonoBehaviour
     }
 
     public int CoinCount { get; set; }
-	
 }
