@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class AnimateMenu : MonoBehaviour
 {
     [SerializeField]
-    Image m_titleText;
+    Image m_titleTextA, m_titleTextB;
 
     Canvas m_canvas;
 
@@ -13,10 +13,12 @@ public class AnimateMenu : MonoBehaviour
     Camera m_cameraA, m_cameraB;
 
     [SerializeField]
-    float titleWidthRatio;
+    Toggle m_toggleA, m_toggleB;
 
-    float m_halfWidth;
-    float m_fullHeight;
+    Canvas m_canvasA, m_canvasB;
+
+    float m_Width;
+    float m_Height;
 
     [SerializeField]
     AnimationCurve moveCurve;
@@ -26,29 +28,20 @@ public class AnimateMenu : MonoBehaviour
 
     float startTime;
 
+    bool startingGame = false;
+
     // Use this for initialization
     void Start()
     {
-        m_canvas = FindObjectOfType<Canvas>();
 
-        m_halfWidth = m_cameraA.aspect * m_cameraA.orthographicSize * 2;
-        m_fullHeight = m_cameraA.orthographicSize * 2;
 
-        Debug.Log(m_halfWidth);
-        Debug.Log(m_fullHeight);
+        m_Width = m_cameraA.aspect * m_cameraA.orthographicSize;
+        m_Height = m_cameraA.orthographicSize * 2;
 
-        RectTransform m_canvasRect = m_canvas.GetComponent<RectTransform>();
-
-        if(m_canvasRect == null)
-        {
-            throw new System.NullReferenceException("I don't know how you did it, but the canvas is missing its RectTransform");
-        }
-
-        m_canvasRect.sizeDelta = new Vector2(m_halfWidth * 2, m_fullHeight);
-        m_canvasRect.position = new Vector3(m_halfWidth/2, 0, 0);
+        Debug.Log(m_Width);
+        Debug.Log(m_Height);
 
         SetTextPositionRelative(1);
-        m_titleText.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, m_halfWidth, m_halfWidth * titleWidthRatio);
 
         startTime = Time.time;
     }
@@ -57,13 +50,33 @@ public class AnimateMenu : MonoBehaviour
     void Update()
     {
         SetTextPositionRelative(moveCurve.Evaluate(Time.time - startTime));
+
+        if (Input.GetButtonDown("FireA") && !startingGame)
+        {
+            m_toggleA.isOn = !m_toggleA.isOn;
+        }
+
+        if (Input.GetButtonDown("FireB") && !startingGame)
+        {
+            m_toggleB.isOn = !m_toggleB.isOn;
+        }
+
+        if (m_toggleA.isOn && m_toggleB.isOn && !startingGame)
+        {
+            BeginGame();
+        }
     }
 
     void SetTextPositionRelative(float x)
     {
-        float textWidth = m_halfWidth * titleWidthRatio;
-        float paddingLeft = (m_halfWidth - m_halfWidth * titleWidthRatio) / 2;
-        m_titleText.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, paddingLeft + (m_halfWidth - paddingLeft) * x, textWidth);
+        m_titleTextA.rectTransform.anchoredPosition = new Vector2(m_cameraA.pixelWidth * x, 0);
+        m_titleTextB.rectTransform.anchoredPosition = new Vector2(-m_cameraB.pixelWidth * x, 0);
+    }
+
+    void BeginGame()
+    {
+        startingGame = true;
+        Debug.Log("STARTING GAME");
     }
 }
 
