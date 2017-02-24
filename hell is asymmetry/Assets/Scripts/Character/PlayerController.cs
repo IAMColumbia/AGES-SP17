@@ -21,6 +21,11 @@ public class PlayerController : Character, IDamageable {
     [SerializeField]
     string m_playerLetter;
 
+    [SerializeField]
+    float maxHealth;
+
+    public float Health { get; private set; }
+
     string verticalAxisName;
     string horizontalAxisName;
     string fireButtonName;
@@ -28,6 +33,8 @@ public class PlayerController : Character, IDamageable {
     float horizontalInput;
     float verticalInput;
     bool fireInput;
+
+    bool Alive;
 
     float maxX;
     float maxY;
@@ -46,6 +53,7 @@ public class PlayerController : Character, IDamageable {
 
 	// Use this for initialization
 	void Start () {
+        Health = maxHealth;
         Score = 0;
         verticalAxisName = "Vertical" + m_playerLetter;
         horizontalAxisName = "Horizontal" + m_playerLetter;
@@ -109,7 +117,18 @@ public class PlayerController : Character, IDamageable {
 
     public void takeDamage(Bullet bullet)
     {
-        Debug.Log(gameObject.name + " was hit by " + bullet.owner.name);
+        Health -= bullet.damage;
+        
+        if(Health <= 0 && Alive)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Alive = false;
+        
     }
 
     public void Shoot(Transform firingPosition)

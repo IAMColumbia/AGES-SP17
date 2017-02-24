@@ -17,8 +17,11 @@ public class Bullet : MonoBehaviour {
     [SerializeField]
     Material positiveMaterial, negativeMaterial;
 
+    float lifespan = 10;
+
 	// Use this for initialization
 	void Start () {
+        Destroy(this.gameObject, lifespan);
 	}
 	
 	// Update is called once per frame
@@ -73,14 +76,6 @@ public class Bullet : MonoBehaviour {
 
             m_renderer.material = negativeMaterial;
             m_collider.enabled = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Boundary")
-        {
-            Destroy(this.gameObject);
         }
     }
 }

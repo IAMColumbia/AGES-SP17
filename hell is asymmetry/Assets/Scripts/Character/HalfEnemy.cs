@@ -14,6 +14,8 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
     MeshRenderer m_Renderer;
     [SerializeField]
     Collider2D m_Collider;
+    [SerializeField]
+    float score = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +35,7 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
         Health -= bullet.damage;
         if (Health <= 0 && Alive)
         {
-            bullet.owner.AddScore(1);
+            bullet.owner.AddScore(score);
             Die();
         }
         Destroy(bullet.gameObject);
