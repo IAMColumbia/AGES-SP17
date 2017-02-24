@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
+
 
 public class TankHealth : MonoBehaviour, IDamageable
 {
@@ -24,8 +24,11 @@ public class TankHealth : MonoBehaviour, IDamageable
     ParticleSystem deathFire1;
     [SerializeField]
     ParticleSystem deatheFire2;
+    [SerializeField]
+    GameObject tankTurret;
 
     int currentTankHealth;
+    TankController tankController;
      
     public void TakeDamage()
     {
@@ -52,17 +55,29 @@ public class TankHealth : MonoBehaviour, IDamageable
             deathFire1.Play();
             deatheFire2.gameObject.SetActive(true);
             deatheFire2.Play();
-            this.gameObject.GetComponent<TankController>().enabled = false;
+            StartCoroutine(BlowUpTwice());
+            tankController.enabled = false;
+            this.gameObject.GetComponent<TankShooting>().enabled = false;
+            tankTurret.gameObject.GetComponent<TankTurret>().enabled = false;
         }
 
         Debug.Log("Current Health is " + currentTankHealth);
     }
 
+    private IEnumerator BlowUpTwice()
+    {
+        yield return new WaitForSeconds(1f);
+        tankController.Explode(gameObject.transform.position);
+        yield return new WaitForSeconds(3f);
+        tankController.Explode(gameObject.transform.position);
+
+    }
+
     // Use this for initialization
     void Start ()
     {
+        tankController = gameObject.GetComponent<TankController>();
         currentTankHealth = maxTankHealth;
-        //this.gameObject.GetComponent<TankController>();
 	
 	}
 	

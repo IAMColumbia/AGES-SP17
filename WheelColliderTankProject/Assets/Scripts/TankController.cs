@@ -41,6 +41,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [SerializeField]
     float explosionForce = 7000000;
 
+    [SerializeField]
+    ParticleSystem explosionParticle;
+
     private float leftTrackInput;
     private float rightTrackInput;
 
@@ -221,6 +224,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     // behavior to "explode" in a satisfying way when hit by shells, etc.
     public void Explode(Vector3 incomingProjectileDirection)
     {
+        explosionParticle.gameObject.SetActive(true);
+        explosionParticle.Play();
         Vector3 explosionDirection = Vector3.up + incomingProjectileDirection;
         rigidbody_useThis.AddForceAtPosition(explosionForce * explosionDirection, explosionPoint.position);
     }
