@@ -43,14 +43,23 @@ public class TankShell : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>();
-
-            // If they don't have a rigidbody, go on to the next collider.
+            
             if (!targetRigidbody)
                 continue;
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
 
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+            //Find the TankHealth script in the thing you just hit
+            TankHealth targetHealth = targetRigidbody.GetComponentInParent<TankHealth>();
+
+            //if it doesn't have one, move on...
+            if (!targetHealth)
+                continue;
+            
+            //Call the TakeDamage function from the target's Health script 
+            targetHealth.TakeDamage();
 
             // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
             IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
@@ -61,16 +70,16 @@ public class TankShell : MonoBehaviour
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
             }
 
-            TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
-            
-            targetHealth.TakeDamage();
-        }
-
             ExplosionParticle.transform.parent = null;
+
             ExplosionParticle.Play();
 
             Destroy(ExplosionParticle.gameObject, ExplosionParticle.duration);
-            Destroy(gameObject);
+
+            Destroy(transform.parent.gameObject);
+        }
+
+
     }
     
 }

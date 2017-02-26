@@ -16,9 +16,12 @@ public class TankShooting : MonoBehaviour
     [SerializeField]
     private float projectileVelocity = 100;
 
+    [SerializeField]
+    private int playerNumber;
+    
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire " + playerNumber))
         {
             Fire();
         }

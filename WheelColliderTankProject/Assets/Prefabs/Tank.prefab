@@ -894,7 +894,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014127794938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.82, y: 3.9, z: -9.914265}
+  m_LocalPosition: {x: 9.245712, y: 4.63, z: -8.174868}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2129,8 +2129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9d01809f27a744bb0d478da0013f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 100
   maxHealth: 100
+  DamageParticleStates:
+  - {fileID: 19800000, guid: 921a3ff88856fe04ebc86b196fd8cc59, type: 2}
 --- !u!114 &114000010899559420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3426,7 +3427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479517c2ec61e3d43bc777f51d31bfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorToApply: {r: 0.50735295, g: 0.42075306, b: 0.13802986, a: 0}
+  colorToApply: {r: 1, g: 0.8206897, b: 0.2352941, a: 0}
 --- !u!114 &114000011865540188
 MonoBehaviour:
   m_ObjectHideFlags: 1

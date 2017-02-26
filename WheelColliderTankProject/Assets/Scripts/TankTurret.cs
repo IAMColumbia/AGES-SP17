@@ -17,9 +17,13 @@ public class TankTurret : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 50;
 
+    [SerializeField]
+    private int playerNumber;
+
     private float rotationInput;
 
     private Rigidbody rigidbody_use;
+
 
     private ConfigurableJoint joint;
 
@@ -53,9 +57,9 @@ public class TankTurret : MonoBehaviour
 
     private void GetRotationInput()
     {
-        rotationInput = Input.GetAxis("RotateTurret");
+        rotationInput = Input.GetAxis("RotateTurret " + playerNumber);
 
-        resetRotationPressed = Input.GetButtonDown("ResetTurret");
+        resetRotationPressed = Input.GetButtonDown("ResetTurret " + playerNumber);
     }
 
     private void FixedUpdate()

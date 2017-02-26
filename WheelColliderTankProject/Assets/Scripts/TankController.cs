@@ -9,6 +9,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     // It also handles IHeavyExplodableObject "exploding," but maybe it shouldn't...
 
     [Tooltip("Total torque divided across all wheels.")]
+    
+
     [SerializeField]
     private float maxMotorTorqueAcrossAllWheels = 120000;
 
@@ -40,6 +42,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [Tooltip("When hit by a shell, we use this much force to 'rock' the tank.")]
     [SerializeField]
     float explosionForce = 7000000;
+
+    public int playerNumber;
 
     private float leftTrackInput;
     private float rightTrackInput;
@@ -111,8 +115,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private void GetInput()
     {
-        leftTrackInput = Input.GetAxis("Left Tank Track");
-        rightTrackInput = Input.GetAxis("Right Tank Track");
+        leftTrackInput = Input.GetAxis("Left Tank Track " + playerNumber);
+        rightTrackInput = Input.GetAxis("Right Tank Track " + playerNumber);
     }
 
     private void FixedUpdate()
