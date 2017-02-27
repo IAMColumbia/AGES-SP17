@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692498, g: 0.49678648, b: 0.5750842, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692546, g: 0.49678743, b: 0.5750859, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-992
+  m_Name: pb_Mesh-32486
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -223,7 +223,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-33382
+  m_Name: pb_Mesh-32768
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -351,7 +351,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-33420
+  m_Name: pb_Mesh-32806
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -479,7 +479,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1186
+  m_Name: pb_Mesh-32408
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -607,7 +607,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1244
+  m_Name: pb_Mesh-32394
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -735,7 +735,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-33396
+  m_Name: pb_Mesh-32782
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -863,7 +863,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-998
+  m_Name: pb_Mesh-32456
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1059,6 +1059,11 @@ Prefab:
       propertyPath: maxMotorTorqueAcrossAllWheels
       value: 1000000
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012325125654, guid: 1aed551a22a7f334aa2499e7e96d20a9,
+        type: 2}
+      propertyPath: startingHealth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1aed551a22a7f334aa2499e7e96d20a9, type: 2}
   m_IsPrefabParent: 0
@@ -1067,7 +1072,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-33444
+  m_Name: pb_Mesh-32830
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1436,6 +1441,11 @@ Prefab:
       propertyPath: maxMotorTorqueAcrossAllWheels
       value: 100000
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012325125654, guid: 1aed551a22a7f334aa2499e7e96d20a9,
+        type: 2}
+      propertyPath: startingHealth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1aed551a22a7f334aa2499e7e96d20a9, type: 2}
   m_IsPrefabParent: 0
@@ -1523,7 +1533,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1200
+  m_Name: pb_Mesh-32432
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1651,7 +1661,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-33474
+  m_Name: pb_Mesh-32860
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

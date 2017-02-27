@@ -63,8 +63,24 @@ public class TankHealth : MonoBehaviour, IDamageable
             //play larget fire
             particleEffects[3].particleEffect.SetActive(true);
             tankDamageState = DamageState.Critical;
+
+            StartCoroutine(Die());
         }
     }
 
+    IEnumerator Die()
+    {
+        Rigidbody myRigidbody = gameObject.GetComponent<Rigidbody>();
+        myRigidbody.mass = 100;
 
+        myRigidbody.velocity = Vector3.zero;
+
+        myRigidbody.AddExplosionForce(1f, transform.position - new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value), 5f);
+        myRigidbody.angularDrag = 0;
+
+        yield return new WaitForSeconds(2);
+
+        myRigidbody.velocity = Vector3.zero;
+        myRigidbody.AddExplosionForce(1f, transform.position - new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value), 5f);
+    }
 }
