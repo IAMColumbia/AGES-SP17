@@ -64,11 +64,20 @@ public class TankShell : MonoBehaviour
             // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
             IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
 
+            IDamageable damageableObject = targetRigidbody.GetComponentInParent<IDamageable>();
+
             if (heavyObject != null)
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
             }
+
+            if (damageableObject !=null)
+            {
+                damageableObject.TakeDamage();
+            }
         }
+
+
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
         explosionParticles.transform.parent = null;

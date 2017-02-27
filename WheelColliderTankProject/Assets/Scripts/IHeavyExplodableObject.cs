@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public interface IHeavyExplodableObject 
+public interface IHeavyExplodableObject
 {
     // Interface for heavy (high mass) rigidbodies that need to explode.
     // We have to use a toned down explosion for general cases, and this high force for
