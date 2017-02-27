@@ -58,6 +58,16 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private Rigidbody rigidbody_useThis;
 
+    public Player ControllingPlayer { get; set; }
+
+    public bool TankCanBeControlled
+    {
+        get
+        {
+            return ControllingPlayer != null;
+        }
+    }
+
     private float ForwardVelocity
     {
         get
@@ -119,13 +129,21 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     // Update is called once per frame
     void Update ()
     {
-        GetInput();
+            GetInput();
     }
 
     private void GetInput()
     {
-        leftTrackInput = Input.GetAxis("Left Tank Track");
-        rightTrackInput = Input.GetAxis("Right Tank Track");
+        if (TankCanBeControlled)
+        {
+            leftTrackInput = Input.GetAxis("Left Tank TrackP" + ControllingPlayer.PlayerNumber);
+            rightTrackInput = Input.GetAxis("Right Tank TrackP" + ControllingPlayer.PlayerNumber);
+        }
+        else
+        {
+            leftTrackInput = 0;
+            rightTrackInput = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -167,6 +185,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private void UpdateSidewaysFriction(WheelCollider[] track)
     {
+        //TODO: Consider reducing  wheel friction when tank is stopped,
+        // so other tanks that run into a stopped tank feels more satisfying
+
         if (!InputsAreNeutral && !InputsAreSameDirection)
         {
             for (int i = 0; i < track.Length; i++)
@@ -183,7 +204,6 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         }
     }
 
-    // TODO: reduce wheel friction when tank is stopped, so other tanks that run into a stopped tank feels more satisfying
 
     private void UpdateDrag()
     {

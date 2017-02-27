@@ -5,5 +5,5 @@ using System;
 public interface IDamageable 
 {
     event Action CriticalDamageReceived;
-    void TakeDamage(float amount, float id);
+    void TakeDamage(float amount, float id, IDamageSource source);
 }

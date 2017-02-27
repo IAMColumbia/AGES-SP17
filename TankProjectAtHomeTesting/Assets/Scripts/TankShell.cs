@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class TankShell : MonoBehaviour 
+public class TankShell : MonoBehaviour, IDamageSource
 {
     // This class dictates the behavior of the tank shell.
     // It explodes when it hits something and should do damage to IDamageables.
@@ -34,8 +35,11 @@ public class TankShell : MonoBehaviour
 
     private Rigidbody rigidbody_useThis;
 
-	// Use this for initialization
-	private void Start () 
+    public Player ControllingPlayer
+    { get; set; }
+
+    // Use this for initialization
+    private void Start () 
 	{
         // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
@@ -86,7 +90,7 @@ public class TankShell : MonoBehaviour
         {
             float damageToDeal = CalculateDamage(targetRigidbody.position);
 
-            damageableObject.TakeDamage(damageToDeal, Time.time);
+            damageableObject.TakeDamage(damageToDeal, Time.time, this);
         }
     }
 

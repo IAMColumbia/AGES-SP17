@@ -23,6 +23,8 @@ public class TankTurret : MonoBehaviour
 
     private ConfigurableJoint joint;
 
+    private TankController tankController;
+
     // The initial settings on the jointDrive are used for
     // the "locked" settings.
     private Quaternion lockedRotation;
@@ -35,6 +37,8 @@ public class TankTurret : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+        tankController = GetComponentInParent<TankController>();
+        
         rigidbody_use = GetComponent<Rigidbody>();
         joint = GetComponent<ConfigurableJoint>();
 
@@ -53,9 +57,16 @@ public class TankTurret : MonoBehaviour
 
     private void GetRotationInput()
     {
-        rotationInput = Input.GetAxis("RotateTurret");
-
-        resetRotationPressed = Input.GetButtonDown("ResetTurret");
+        if (tankController.TankCanBeControlled)
+        {
+            rotationInput = Input.GetAxis("RotateTurretP" + tankController.ControllingPlayer.PlayerNumber);
+            resetRotationPressed = Input.GetButtonDown("ResetTurretP" + tankController.ControllingPlayer.PlayerNumber);
+        }
+        else
+        {
+            rotationInput = 0;
+            resetRotationPressed = false;
+        }
     }
 
     private void FixedUpdate()

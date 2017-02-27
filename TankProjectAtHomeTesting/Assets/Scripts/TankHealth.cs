@@ -43,12 +43,14 @@ public class TankHealth : MonoBehaviour, IDamageable
 
     private float currentHealth;
     private float lastDamageID;
+    private bool isDead = false;
     private TankDamageState currentDamageState = TankDamageState.NoDamage;
 
     public event Action CriticalDamageReceived;
+    public static event Action<Player> TankDestroyed;
 
     // IDamageable implementation
-    public void TakeDamage(float amount, float id)
+    public void TakeDamage(float amount, float id, IDamageSource source)
     {
         if (lastDamageID != id)
         {
@@ -58,9 +60,9 @@ public class TankHealth : MonoBehaviour, IDamageable
             UpdateDamageState();
             UpdateHealthVFX(currentHealth);
 
-            if (currentHealth <= 0)
+            if (currentHealth <= 0 && !isDead)
             {
-                Die();
+                Die(source.ControllingPlayer);
             }
         }
     }
@@ -149,9 +151,13 @@ public class TankHealth : MonoBehaviour, IDamageable
         }
     }
 
-    private void Die()
+    private void Die(Player playerThatKilled)
     {
-       
+        isDead = true;
+        if (TankDestroyed != null)
+        {
+            TankDestroyed.Invoke(playerThatKilled);
+        }
     }
 
     // Use this for initialization
@@ -174,8 +180,28 @@ public class TankHealth : MonoBehaviour, IDamageable
         foreach (var particleSystem in criticalDamageParticleSystems)
         {
             particleSystem.Stop();
+            Debug.Log(particleSystem.isPlaying);
+        }
+
+        // For stopping stubborn particles. Not sure why they are stubborn.
+        StartCoroutine(StopParticlesAfterDelay());
+    }
+
+
+    // I honestly have no clue why, but for somereason these two groups
+    // of particle systems don't stop unless I call it twice...
+    private IEnumerator StopParticlesAfterDelay()
+    {
+        yield return new WaitForEndOfFrame();
+        foreach (var particleSystem in criticalDamageParticleSystems)
+        {
+            particleSystem.Stop();
+            Debug.Log(particleSystem.isPlaying);
+        }
+        foreach (var particleSystem in lightDamageParticleSystems)
+        {
+            particleSystem.Stop();
         }
     }
-	
 
 }

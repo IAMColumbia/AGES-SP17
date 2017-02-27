@@ -23,11 +23,21 @@ public class TankShooting : MonoBehaviour
     [SerializeField]
     float recoilForce = 100000;
 
+    private TankController tankController;
+
+    private void Start()
+    {
+        tankController = GetComponent<TankController>();
+    }
+
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (tankController.TankCanBeControlled)
         {
-            Fire();
+            if (Input.GetButtonDown("Fire1P" + tankController.ControllingPlayer.PlayerNumber))
+            {
+                Fire();
+            }
         }
     }
 
@@ -36,6 +46,11 @@ public class TankShooting : MonoBehaviour
         Rigidbody firedShell = GameObject.Instantiate(tankShellPrefab, shellSpawnPoint.position, shellSpawnPoint.rotation) as Rigidbody;
 
         firedShell.velocity = shellSpawnPoint.forward * projectileVelocity;
+
+        // TankShell script is on a collier child object so that onTriggerEnter works.
+        // The collider must be on a child because otherwise it's custom settings don't save with the prefab.
+        // I think this might be a probuilder issue.
+        firedShell.GetComponentInChildren<TankShell>().ControllingPlayer = tankController.ControllingPlayer;
 
         turretRigidBody.AddForce(turretRigidBody.transform.forward * -recoilForce);
     }    
