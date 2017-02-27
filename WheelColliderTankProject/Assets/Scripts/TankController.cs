@@ -2,11 +2,10 @@
 using System.Collections;
 using System;
 
-public class TankController : MonoBehaviour, IHeavyExplodableObject
+public class TankController : MonoBehaviour
 {
     // This is the main class for controlling the tank.
     // It handles driving and steering.
-    // It also handles IHeavyExplodableObject "exploding," but maybe it shouldn't...
 
     [Tooltip("Total torque divided across all wheels.")]
     [SerializeField]
@@ -32,14 +31,6 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [Tooltip("Drag is increased when we're trying to slow down the tank.")]
     [SerializeField]
     float slowDrag = 1;
-
-    [Tooltip("When hit by a shell, force is applied at this location to 'rock' the tank.")]
-    [SerializeField]
-    Transform explosionPoint;
-
-    [Tooltip("When hit by a shell, we use this much force to 'rock' the tank.")]
-    [SerializeField]
-    float explosionForce = 7000000;
 
     private float leftTrackInput;
     private float rightTrackInput;
@@ -219,9 +210,4 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     // IHeavyExplodableObject implementation
     // We use this because the tanks are so massive that they need special
     // behavior to "explode" in a satisfying way when hit by shells, etc.
-    public void Explode(Vector3 incomingProjectileDirection)
-    {
-        Vector3 explosionDirection = Vector3.up + incomingProjectileDirection;
-        rigidbody_useThis.AddForceAtPosition(explosionForce * explosionDirection, explosionPoint.position);
-    }
 }

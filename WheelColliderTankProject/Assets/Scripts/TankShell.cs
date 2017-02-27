@@ -57,6 +57,10 @@ public class TankShell : MonoBehaviour
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
 
+            TankHealth targetTankHealth = targetRigidbody.transform.parent.GetComponent<TankHealth>();
+
+            targetTankHealth.Damage();
+
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
