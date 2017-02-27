@@ -52,6 +52,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private Rigidbody rigidbody_useThis;
 
+    
+
     private float ForwardVelocity
     {
         get
@@ -224,4 +226,6 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         Vector3 explosionDirection = Vector3.up + incomingProjectileDirection;
         rigidbody_useThis.AddForceAtPosition(explosionForce * explosionDirection, explosionPoint.position);
     }
+
+   
 }
