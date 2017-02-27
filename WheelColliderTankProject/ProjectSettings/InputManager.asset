@@ -9,10 +9,10 @@ InputManager:
     m_Name: Left Tank Track
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: a
-    altPositiveButton: d
+    negativeButton: down
+    positiveButton: up
+    altNegativeButton: left
+    altPositiveButton: right
     gravity: 3
     dead: 0.001
     sensitivity: 3
@@ -25,10 +25,10 @@ InputManager:
     m_Name: Right Tank Track
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: a
-    altPositiveButton: d
+    negativeButton: down
+    positiveButton: up
+    altNegativeButton: right
+    altPositiveButton: left
     gravity: 3
     dead: 0.001
     sensitivity: 3
@@ -41,10 +41,10 @@ InputManager:
     m_Name: RotateTurret
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: up
-    positiveButton: down
-    altNegativeButton: w
-    altPositiveButton: s
+    negativeButton: right ctrl
+    positiveButton: '[0]'
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 3
     dead: 0.001
     sensitivity: 3
@@ -68,15 +68,15 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
-    m_Name: Fire2
+    m_Name: Left Tank Track
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: left alt
-    altNegativeButton: 
-    altPositiveButton: mouse 1
+    negativeButton: s
+    positiveButton: w
+    altNegativeButton: a
+    altPositiveButton: d
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -84,15 +84,15 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 0
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Fire3
+    m_Name: Right Tank Track
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: left cmd
-    altNegativeButton: 
-    altPositiveButton: mouse 2
+    negativeButton: s
+    positiveButton: w
+    altNegativeButton: d
+    altPositiveButton: a
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -100,9 +100,9 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 0
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Jump
+    m_Name: RotateTurret
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -116,13 +116,13 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 0
+    joyNum: 2
   - serializedVersion: 3
-    m_Name: Mouse X
+    m_Name: ResetTurret
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: '[1]'
+    positiveButton: '[1]'
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
