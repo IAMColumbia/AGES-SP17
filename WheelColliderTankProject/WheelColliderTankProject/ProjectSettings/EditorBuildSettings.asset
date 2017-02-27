@@ -29,3 +29,7 @@ EditorBuildSettings:
     path: Assets/SampleScenes/Scenes/Particles.unity
   - enabled: 1
     path: Assets/SampleScenes/Scenes/RollerBall.unity
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/Test Scene.unity
