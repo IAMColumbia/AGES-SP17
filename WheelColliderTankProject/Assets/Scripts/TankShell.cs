@@ -33,6 +33,7 @@ public class TankShell : MonoBehaviour
 	{
         // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
+        Destroy(explosionParticle.gameObject, maxLifetime);
         rigidbody_useThis = GetComponentInParent<Rigidbody>();
 	}
 
@@ -47,7 +48,6 @@ public class TankShell : MonoBehaviour
             // ... and find their rigidbody.
             Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>();
 
-
             // I'm leaving this code in as an example of continue; but I don't think
             // its the best way to organize this.
 
@@ -56,8 +56,7 @@ public class TankShell : MonoBehaviour
                 continue;
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
-
-            
+                        
 
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
@@ -77,10 +76,10 @@ public class TankShell : MonoBehaviour
         explosionParticle/*Effect*/.transform.parent = null;
         explosionParticle/*Effect*/.GetComponent<ParticleSystem>().Play();
 
-        Destroy(explosionParticle/*Effect*/, explosionParticle.duration);
+        //if (!explosionParticle.isPlaying)
+            //Destroy(explosionParticle/*Effect*//*, explosionParticle.duration*/);
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);
         
     }
-    
 }
