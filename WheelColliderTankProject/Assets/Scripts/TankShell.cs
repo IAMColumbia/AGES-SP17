@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.Effects;
+using System;
 
-public class TankShell : MonoBehaviour 
+public class TankShell : MonoBehaviour, IDamagable 
 {
     // This class dictates the behavior of the tank shell.
     // It explodes when it hits something and should do damage to IDamageables.
@@ -28,54 +29,80 @@ public class TankShell : MonoBehaviour
 
     [SerializeField]
     ParticleSystemMultiplier explosionEffect;
+    
 
-	// Use this for initialization
-	private void Start () 
+    [SerializeField]
+    private int damageEffect;
+
+    Rigidbody targetRigidbody;
+
+    bool hasDamagedTank;
+
+    // Use this for initialization
+    private void Start () 
 	{
         // Failsafe incase the bullet doesn't hit anything, destroy it after a while to make sure it goes away.
         Destroy(transform.parent.gameObject, maxLifetime);
         rigidbody_useThis = GetComponentInParent<Rigidbody>();
-	}
+        hasDamagedTank = false;
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, layersToAffect);
-        //Create explosion effect object
-        ParticleSystemMultiplier newExplosion = GameObject.Instantiate(explosionEffect, transform.position, Quaternion.Euler(0,0,0)) as ParticleSystemMultiplier;
-        // Go through all the colliders...
-        for (int i = 0; i < colliders.Length; i++)
+        if (!hasDamagedTank)
         {
-            // ... and find their rigidbody.
-            Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>();
+            // Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
+            Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, layersToAffect);
 
-
-            // I'm leaving this code in as an example of continue; but I don't think
-            // its the best way to organize this.
-
-            // If they don't have a rigidbody, go on to the next collider.
-            if (!targetRigidbody)
-                continue;
-
-            Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
-            
-            // Add an explosion force. This is fine for most light to average mass rigidbodies.
-            // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
-            targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-            
-            // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
-            IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
-
-            if (heavyObject != null)
+            // Go through all the colliders...
+            for (int i = 0; i < colliders.Length; i++)
             {
-                heavyObject.Explode(rigidbody_useThis.velocity.normalized);
+                // ... and find their rigidbody.
+                targetRigidbody = colliders[i].GetComponent<Rigidbody>();
+
+                // I'm leaving this code in as an example of continue; but I don't think
+                // its the best way to organize this.
+
+                // If they don't have a rigidbody, go on to the next collider.
+                if (!targetRigidbody)
+                    continue;
+
+
+
+                Debug.Log("Shell hit: " + targetRigidbody.gameObject.name + "DAMAGE: " + damageEffect);
+                DoDamage(damageEffect);
+
+
+                // Add an explosion force. This is fine for most light to average mass rigidbodies.
+                // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
+                targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+                // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
+                IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
+
+                if (heavyObject != null)
+                {
+                    heavyObject.Explode(rigidbody_useThis.velocity.normalized);
+                }
             }
+            //Create explosion effect object
+            ParticleSystemMultiplier newExplosion = GameObject.Instantiate(explosionEffect, transform.position, Quaternion.Euler(0, 0, 0)) as ParticleSystemMultiplier;
+            // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
+            
+            // Destroy the shell, since it exploded
+            Destroy(transform.parent.gameObject);
         }
-
-        // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
-
-        // Destroy the shell, since it exploded
-        Destroy(transform.parent.gameObject);
     }
-    
+
+    public void DoDamage(int damageAmount) {
+        ////check for IDamagable
+        //if (targetRigidbody.gameObject.GetComponent<IDamagable>() == typeof(IDamagable))
+        //    targetRigidbody.gameObject.GetComponent<IDamagable>().DoDamage(damageAmount);
+        ////else check parent if hit turret
+        //else if (targetRigidbody.gameObject.transform.parent.gameObject.GetComponent<IDamagable>() == typeof(IDamagable))
+            targetRigidbody.gameObject.transform.parent.gameObject.GetComponent<IDamagable>().DoDamage(damageAmount);
+        hasDamagedTank = true;
+
+    }
 }

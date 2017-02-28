@@ -41,7 +41,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [SerializeField]
     float explosionForce = 7000000;
 
-    
+    [SerializeField]
+    float maxHealth;
+
     private float leftTrackInput;
     private float rightTrackInput;
 
@@ -53,39 +55,19 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private Rigidbody rigidbody_useThis;
 
-    private float ForwardVelocity
-    {
-        get
-        {
-            return transform.InverseTransformDirection(rigidbody_useThis.velocity).z; 
-        }
-    }
+    private float ForwardVelocity{
+        get {return transform.InverseTransformDirection(rigidbody_useThis.velocity).z; }}
 
     // Returns true if left and right track input are the same direction
-    private bool InputsAreSameDirection
-    {
-        get
-        {
-            return (leftTrackInput > 0) ==  (rightTrackInput > 0);
-        }
-    }
+    private bool InputsAreSameDirection{
+        get{ return (leftTrackInput > 0) ==  (rightTrackInput > 0);}}
 
     // Returns true if left and right inputs are opposite of forward velocity
-    private bool InputsAreOppositeOfForwardVelocity
-    {
-        get
-        {
-            return InputsAreSameDirection && !((ForwardVelocity > 0) == (leftTrackInput > 0));
-        }
-    }
+    private bool InputsAreOppositeOfForwardVelocity{
+        get{return InputsAreSameDirection && !((ForwardVelocity > 0) == (leftTrackInput > 0));}}
 
-    private bool InputsAreNeutral
-    {
-        get
-        {
-            return (leftTrackInput == 0) && (rightTrackInput == 0);
-        }
-    }
+    private bool InputsAreNeutral{
+        get{return (leftTrackInput == 0) && (rightTrackInput == 0);}}
 
 	// Use this for initialization
 	void Start () 
@@ -99,7 +81,6 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
         normalAngularDrag = rigidbody_useThis.angularDrag;
         normalDrag = rigidbody_useThis.drag;
-        currentHealth = maxHealth;
 	}
 
     // Colors the tank for differentiating multiple players
