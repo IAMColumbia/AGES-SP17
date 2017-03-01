@@ -79,7 +79,7 @@ public class TankShell : MonoBehaviour
         Destroy(m_ExplosionParticleSystem.gameObject, m_ExplosionParticleSystem.duration);
 
         //Destroy the shell, since it exploded
-        Destroy();
+        Destroy(this);
         
         
     }
