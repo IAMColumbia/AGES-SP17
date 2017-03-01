@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour {
     public float damage = 1;
 
     [SerializeField]
-    MeshRenderer m_renderer;
+    Renderer m_renderer;
 
     [SerializeField]
     Collider2D m_collider;
@@ -73,7 +73,6 @@ public class Bullet : MonoBehaviour {
             {
                 damageableObject.takeDamage(this);
             }
-
             m_renderer.material = negativeMaterial;
             m_collider.enabled = false;
         }
