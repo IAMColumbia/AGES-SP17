@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
     private int m_RoundNumber;              
     private WaitForSeconds m_StartWait;     
     private WaitForSeconds m_EndWait;       
-/*    private TankManager m_RoundWinner;
+   private TankManager m_RoundWinner;
     private TankManager m_GameWinner;       
-*/
+
 
     private void Start()
     {
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
-/*        if (m_GameWinner != null)
+      if (m_GameWinner != null)
         {
             SceneManager.LoadScene(0);
         }
@@ -72,11 +72,18 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(GameLoop());
         }
-*/    }
+  }
 
 
     private IEnumerator RoundStarting()
     {
+        ResetAllTanks();
+        DisableTankControl();
+
+        m_CameraControl.SetStartPositionAndSize();
+
+        m_RoundNumber++;
+        m_MessageText.text = "ROUND" + m_NumRoundsToWin;
         yield return m_StartWait;
     }
 
@@ -106,7 +113,7 @@ public class GameManager : MonoBehaviour
         return numTanksLeft <= 1;
     }
 
-/*
+
     private TankManager GetRoundWinner()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
@@ -150,7 +157,7 @@ public class GameManager : MonoBehaviour
 
         return message;
     }
-*/
+
 
     private void ResetAllTanks()
     {
