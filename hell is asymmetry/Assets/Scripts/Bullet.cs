@@ -65,7 +65,7 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!(collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Boundary"))
+        if (!(collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Boundary" || collision.gameObject.tag == "Enemy"))
         {
             IDamageable damageableObject = collision.GetComponent<IDamageable>();
 
