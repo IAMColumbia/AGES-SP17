@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class AchievementManager : MonoBehaviour {
 
@@ -8,24 +9,39 @@ public class AchievementManager : MonoBehaviour {
     GameObject achievementPopupPanel;
 
     private List<Achievement> allAchievements;
-	// Use this for initialization
-	void Start ()
+
+	private void Start ()
     {
         achievementPopupPanel.SetActive(false);
-        //StartCoroutine(TestAchievements());
+        
+        BuildAchievementList();
+
+        InitializeAchievements();
+	}
+
+    private void OnEnable()
+    {
+        Achievement.AchievementUnlocked += DisplayPopup;
+    }
+    private void OnDisable()
+    {
+        Achievement.AchievementUnlocked -= DisplayPopup;
+    }
+
+    private void InitializeAchievements()
+    {
+        foreach (var achievement in allAchievements)
+        {
+            achievement.Initialize();
+        }
+    }
+
+    private void BuildAchievementList()
+    {
         allAchievements = new List<Achievement>();
         Achievement achievement = new KillEnemiesAchievement();
-
-        Achievement.AchievementUnlocked += DisplayPopup;
-
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        achievementPopupPanel.SetActive(true);
-	}
-
+        allAchievements.Add(achievement);
+    }
     private void DisplayPopup()
     {
         achievementPopupPanel.SetActive(true);

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Enemy : MonoBehaviour {
 
@@ -12,12 +13,6 @@ public class Enemy : MonoBehaviour {
         Die();
     }
 
-	// Use this for initialization
-	void Start ()
-    {
-        EnemyDied = Die;
-        EnemyDied += AnotherFunction;
-	}
 
     void Die()
     {
@@ -25,9 +20,8 @@ public class Enemy : MonoBehaviour {
         Destroy(gameObject);
 
         if (EnemyDied != null)
-        {
             EnemyDied.Invoke();
-        }
+        
 
         Destroy(gameObject);
     }
