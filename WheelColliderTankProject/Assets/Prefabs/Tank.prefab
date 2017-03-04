@@ -584,6 +584,11 @@ GameObject:
   - 114: {fileID: 114000012046246996}
   - 114: {fileID: 114000011865540188}
   - 114: {fileID: 114000011344550320}
+<<<<<<< HEAD
+  - 114: {fileID: 114000010807806214}
+=======
+  - 114: {fileID: 114000010567239158}
+>>>>>>> origin/FeagleyTest
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -893,7 +898,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014127794938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.91, y: 3, z: 29.39}
+  m_LocalPosition: {x: 9.245712, y: 4.63, z: -8.174868}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1160,7 +1165,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 1
+  m_SelectedWireframeHidden: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1349,7 +1354,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013434104182}
-  m_Material: {fileID: 13400000, guid: 9e01d4697a9b60a4485029bdd3c3a259, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1397,7 +1402,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012793520720}
-  m_Material: {fileID: 13400000, guid: 9e01d4697a9b60a4485029bdd3c3a259, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1487,6 +1492,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.31465244, z: 6.0529747}
   m_Center: {x: -0.00000035762787, y: -0.17806958, z: 0.0120334625}
+--- !u!114 &114000010567239158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014127794938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b99d8fc0a657145aa8613c1ab503cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  lightDamageParticles: {fileID: 0}
+  mediumDamageParticles: {fileID: 0}
+  heavyDamageParticles: {fileID: 0}
+  critcalDamageParticles: {fileID: 0}
 --- !u!114 &114000010786921070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2117,6 +2139,23 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114000010807806214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014127794938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b99d8fc0a657145aa8613c1ab503cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  lightDamageParticles: {fileID: 0}
+  mediumDamageParticles: {fileID: 0}
+  heavyDamageParticles: {fileID: 0}
+  critcalDamageParticles: {fileID: 0}
 --- !u!114 &114000010899559420
 MonoBehaviour:
   m_ObjectHideFlags: 1

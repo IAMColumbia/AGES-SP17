@@ -2,12 +2,18 @@
 using System.Collections;
 using System;
 
-public class TankHealth : MonoBehaviour, IDamageable
+public class TankHealth : MonoBehaviour, IDamageable, IHeavyExplodableObject
 {
+    float secondsToWait = 2;
+    private IEnumerator coroutine;
+
     [SerializeField]
     float maxHealth = 100f;
     [SerializeField]
     float currentHealth;
+
+    [SerializeField]
+    Vector3 incomingShell;
 
     [SerializeField]
     ParticleSystem lightDamageParticles;
@@ -16,7 +22,7 @@ public class TankHealth : MonoBehaviour, IDamageable
     [SerializeField]
     ParticleSystem heavyDamageParticles;
     [SerializeField]
-    ParticleSystem critcalDamageParticles;
+    ParticleSystem criticalDamageParticles;
 
     enum HealthStates { light, medium, heavy, critical};
     HealthStates currentDamageState;
@@ -60,21 +66,39 @@ public class TankHealth : MonoBehaviour, IDamageable
                 break;
             case HealthStates.critical:
                 print("You have taken critical damage.");
-                critcalDamageParticles.Play();
+                criticalDamageParticles.Play();
+
+                coroutine = WaitAndExplode(secondsToWait);
+                StartCoroutine(coroutine);
 
                 break;
         }
     }
-
-    // Use this for initialization
-    void Start ()
+    
+    public void Explode(Vector3 incomingProjectileDirection)
     {
+<<<<<<< HEAD
+        throw new NotImplementedException();
+    }
+
+    private IEnumerator WaitAndExplode(float waitTime)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(waitTime);
+            Debug.Log("Waiting for " + waitTime + " seconds.");
+            Explode(incomingShell);
+        }
+    }  
+}
+=======
         currentHealth = maxHealth;	
 	}
 	
 	// Update is called once per frame
 	void Update ()
-    {
-        
-	}
+    {        
+        //TakeDamage();
+    }
 }
+>>>>>>> origin/FeagleyTest
