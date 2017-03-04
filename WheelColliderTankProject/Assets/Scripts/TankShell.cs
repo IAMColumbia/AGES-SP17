@@ -26,6 +26,9 @@ public class TankShell : MonoBehaviour
     [SerializeField]
     ParticleSystem explosionParticle;
 
+    [SerializeField]
+    float damage = 20;
+
     private Rigidbody rigidbody_useThis;
 
 	// Use this for initialization
@@ -41,7 +44,7 @@ public class TankShell : MonoBehaviour
     {
         // Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, layersToAffect);
-
+        
         // Go through all the colliders...
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -63,21 +66,20 @@ public class TankShell : MonoBehaviour
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
           
             // Special behavior for heavy things, because otherwise they doesn't move in a very satisfying way when hit.
-            IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
+            /*IHeavyExplodableObject heavyObject = targetRigidbody.GetComponentInParent<IHeavyExplodableObject>();
 
             if (heavyObject != null)
             {
                 heavyObject.Explode(rigidbody_useThis.velocity.normalized);
-            }
+            }*/
+
+            targetRigidbody.gameObject.GetComponent<TankHealth>().TakeDamage(damage, rigidbody_useThis.velocity.normalized);
         }
 
         // TODO: Implement explosion VFX! See the TANKS! Unity tutorial for a perfect example.
-        //GameObject explosionParticleEffect = Instantiate(explosionParticle, transform) as GameObject;
-        explosionParticle/*Effect*/.transform.parent = null;
-        explosionParticle/*Effect*/.GetComponent<ParticleSystem>().Play();
+        explosionParticle.transform.parent = null;
+        explosionParticle.GetComponent<ParticleSystem>().Play();
 
-        //if (!explosionParticle.isPlaying)
-            //Destroy(explosionParticle/*Effect*//*, explosionParticle.duration*/);
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);
         

@@ -22,7 +22,7 @@ public class TankHealth : MonoBehaviour, IDamagable
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector3 explosionForce)
     {
         currentHealth -= damage;
 
@@ -31,19 +31,21 @@ public class TankHealth : MonoBehaviour, IDamagable
             stage1Damage.Play();
         }
 
-        if (currentHealth < 100 && currentHealth > 50)
+        if (currentHealth < (maxHealth - 51) && currentHealth > (maxHealth - 74))
         {
-            stage1Damage.Play();
+            stage2Damage.Play();
         }
 
-        if (currentHealth < 100 && currentHealth > 50)
+        if (currentHealth < (maxHealth - 75) && currentHealth > (maxHealth - 99))
         {
-            stage1Damage.Play();
+            stage3Damage.Play();
         }
 
-        if (currentHealth < 100 && currentHealth > 50)
+        if (currentHealth < (maxHealth - 100))
         {
-            stage1Damage.Play();
+            stage4Damage.Play();
+            IHeavyExplodableObject explodableObject = GetComponentInParent<IHeavyExplodableObject>();
+            explodableObject.Explode(explosionForce);
         }
     }
 }

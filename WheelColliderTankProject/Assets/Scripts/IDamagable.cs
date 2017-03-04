@@ -3,5 +3,5 @@ using System.Collections;
 
 public interface IDamagable
 {
-    void TakeDamage(float damage);
+    void TakeDamage(float damage, Vector3 explosionDirection);
 }
