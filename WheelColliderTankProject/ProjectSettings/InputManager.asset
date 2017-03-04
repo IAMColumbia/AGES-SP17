@@ -71,6 +71,7 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Name: ResetTurret
     descriptiveName: 
     descriptiveNegativeName: 
@@ -82,10 +83,18 @@ InputManager:
     m_Name: Left Tank Track
     descriptiveName: 
     descriptiveNegativeName: 
+=======
+    m_Name: Left Tank Track
+    descriptiveName: 
+    descriptiveNegativeName: 
+>>>>>>> origin/FeagleyTest
     negativeButton: s
     positiveButton: w
     altNegativeButton: a
     altPositiveButton: d
+<<<<<<< HEAD
+>>>>>>> origin/FeagleyTest
+=======
 >>>>>>> origin/FeagleyTest
     gravity: 1000
     dead: 0.001
