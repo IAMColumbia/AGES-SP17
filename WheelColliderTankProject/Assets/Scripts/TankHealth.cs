@@ -3,10 +3,9 @@ using System.Collections;
 using System;
 
 public class TankHealth : MonoBehaviour, IDamagable {
-
+    
     [SerializeField]
     private float maxHealth = 100;
-
 
     public ParticleSystem[] damageParticleSystem;
 
@@ -21,17 +20,13 @@ public class TankHealth : MonoBehaviour, IDamagable {
     private void Awake()
     {
         tankToParentTo = GetComponent<Transform>();
-
-        foreach (ParticleSystem particlesystem in damageParticleSystem)
+        
+        for (int i = 0; i < damageParticleSystem.Length; i++)
         {
-            for (int i = 0; i < damageParticleSystem.Length; i++)
-            {
-                damageParticleSystem[i] = Instantiate(damageParticleSystem[i], tankToParentTo) as ParticleSystem;
-                damageParticleSystem[i].gameObject.SetActive(false);
-            }
+             damageParticleSystem[i] = Instantiate(damageParticleSystem[i], tankToParentTo) as ParticleSystem;
+             damageParticleSystem[i].gameObject.SetActive(false);
         }
-
-
+        
         currentDamageState = DamageState.NoDamage;
 
         currentHealth = maxHealth;
@@ -124,10 +119,8 @@ public class TankHealth : MonoBehaviour, IDamagable {
                 currentDamageState = DamageState.Critical;
 
                 if(currentHealth <= 0)
-                {
-                    StartCoroutine(Explode());
-                    
-                }
+                    StartCoroutine(Die());
+
                 Debug.Log(currentDamageState);
 
                 break;
@@ -135,17 +128,20 @@ public class TankHealth : MonoBehaviour, IDamagable {
         }
     }
 
-    private IEnumerator Explode()
+    private IEnumerator Die()
     {
         Destroy(GetComponent<TankController>());
-        Destroy(GetComponent<TankShooting>());
-        Destroy(GetComponentInChildren<TankTurret>());
 
+        Destroy(GetComponent<TankShooting>());
+
+        Destroy(GetComponentInChildren<TankTurret>());
+        
         damageParticleSystem[3].gameObject.SetActive(true);
                     
         damageParticleSystem[3].Play();
 
         damageParticleSystem[3].transform.position = transform.position;
+
         damageParticleSystem[3].transform.parent = null;
 
         yield return new WaitForSeconds(3);
