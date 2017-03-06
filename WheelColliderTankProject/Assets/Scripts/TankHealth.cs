@@ -7,10 +7,10 @@ public class TankHealth : MonoBehaviour, IDamagable {
     [SerializeField]
     private float maxHealth = 100;
 
-    private Transform tankToParentTo;
 
     public ParticleSystem[] damageParticleSystem;
 
+    private Transform tankToParentTo;
     private float currentHealth;
     private int amountOfDamageTaken = 5;
 
@@ -21,6 +21,7 @@ public class TankHealth : MonoBehaviour, IDamagable {
     private void Awake()
     {
         tankToParentTo = GetComponent<Transform>();
+
         foreach (ParticleSystem particlesystem in damageParticleSystem)
         {
             for (int i = 0; i < damageParticleSystem.Length; i++)
@@ -123,25 +124,39 @@ public class TankHealth : MonoBehaviour, IDamagable {
                 currentDamageState = DamageState.Critical;
 
                 if(currentHealth <= 0)
-                { 
-                    damageParticleSystem[3].gameObject.SetActive(true);
+                {
+                    StartCoroutine(Explode());
                     
-                    damageParticleSystem[3].Play();
-
-                    damageParticleSystem[3].transform.position = transform.position;
-                    damageParticleSystem[3].transform.parent = null;
-
-                    for (int i = 0; i < damageParticleSystem.Length; i++)
-                    {
-                        Destroy(damageParticleSystem[i]);
-                    }
-
-                    gameObject.SetActive(false);
                 }
                 Debug.Log(currentDamageState);
 
                 break;
        
         }
+    }
+
+    private IEnumerator Explode()
+    {
+        Destroy(GetComponent<TankController>());
+        Destroy(GetComponent<TankShooting>());
+        Destroy(GetComponentInChildren<TankTurret>());
+
+        damageParticleSystem[3].gameObject.SetActive(true);
+                    
+        damageParticleSystem[3].Play();
+
+        damageParticleSystem[3].transform.position = transform.position;
+        damageParticleSystem[3].transform.parent = null;
+
+        yield return new WaitForSeconds(3);
+
+        for (int i = 0; i < damageParticleSystem.Length; i++)
+        {
+            Destroy(damageParticleSystem[i]);
+        }
+
+        gameObject.SetActive(false);
+
+        yield return null;
     }
 }
