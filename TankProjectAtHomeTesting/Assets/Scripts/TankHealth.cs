@@ -42,7 +42,7 @@ public class TankHealth : MonoBehaviour, IDamageable
     ParticleSystem[] criticalDamageParticleSystems;
 
     private float currentHealth;
-    private float lastDamageID;
+    private string lastDamageID;
     private bool isDead = false;
     private TankDamageState currentDamageState = TankDamageState.NoDamage;
 
@@ -50,7 +50,7 @@ public class TankHealth : MonoBehaviour, IDamageable
     public static event Action<Player> TankDestroyed;
 
     // IDamageable implementation
-    public void TakeDamage(float amount, float id, IDamageSource source)
+    public void TakeDamage(float amount, string id, IDamageSource source)
     {
         if (lastDamageID != id)
         {

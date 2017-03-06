@@ -27,9 +27,7 @@ public class TankTurret : MonoBehaviour
 
     // The initial settings on the jointDrive are used for
     // the "locked" settings.
-    private Quaternion lockedRotation;
     private JointDrive lockedJointDrive;
-
     private JointDrive unlockedJointDrive;
 
     private bool resetRotationPressed = false;
@@ -42,7 +40,6 @@ public class TankTurret : MonoBehaviour
         rigidbody_use = GetComponent<Rigidbody>();
         joint = GetComponent<ConfigurableJoint>();
 
-        lockedRotation = transform.localRotation;
         lockedJointDrive = joint.slerpDrive;
 
         unlockedJointDrive = lockedJointDrive;

@@ -90,7 +90,9 @@ public class TankShell : MonoBehaviour, IDamageSource
         {
             float damageToDeal = CalculateDamage(targetRigidbody.position);
 
-            damageableObject.TakeDamage(damageToDeal, Time.time, this);
+            string damageID = this.name + Time.time;
+
+            damageableObject.TakeDamage(damageToDeal, damageID, this);
         }
     }
 
@@ -133,6 +135,9 @@ public class TankShell : MonoBehaviour, IDamageSource
         float particleDuration = 3;
         particleGameObject.transform.SetParent(null);
         particleGameObject.SetActive(true);
+
+        // the particle duration var doesn't have to be perfect. Just longer than the particle effect.
+        // As long as the effect isn't set to loop that is!
         Destroy(particleGameObject, particleDuration);
     }
 }
