@@ -7,9 +7,9 @@ public class TankHealth : MonoBehaviour, IDamagable {
     [SerializeField]
     private float maxHealth = 100;
 
-    public ParticleSystem[] damageParticleSystem;
+    private Transform tankToParentTo;
 
-    public GameObject[] damageParticleGameObject;
+    public ParticleSystem[] damageParticleSystem;
 
     private float currentHealth;
     private int amountOfDamageTaken = 5;
@@ -20,15 +20,17 @@ public class TankHealth : MonoBehaviour, IDamagable {
 
     private void Awake()
     {
-        foreach (GameObject item in damageParticleGameObject)
+        tankToParentTo = GetComponent<Transform>();
+        foreach (ParticleSystem particlesystem in damageParticleSystem)
         {
             for (int i = 0; i < damageParticleSystem.Length; i++)
             {
-                damageParticleSystem[i] = Instantiate(damageParticleGameObject[i]).GetComponent<ParticleSystem>();
+                damageParticleSystem[i] = Instantiate(damageParticleSystem[i], tankToParentTo) as ParticleSystem;
                 damageParticleSystem[i].gameObject.SetActive(false);
             }
         }
-        
+
+
         currentDamageState = DamageState.NoDamage;
 
         currentHealth = maxHealth;
@@ -121,19 +123,20 @@ public class TankHealth : MonoBehaviour, IDamagable {
                 currentDamageState = DamageState.Critical;
 
                 if(currentHealth <= 0)
-                {
+                { 
                     damageParticleSystem[3].gameObject.SetActive(true);
+                    
+                    damageParticleSystem[3].Play();
 
                     damageParticleSystem[3].transform.position = transform.position;
-
-                    damageParticleSystem[3].Play();
+                    damageParticleSystem[3].transform.parent = null;
 
                     for (int i = 0; i < damageParticleSystem.Length; i++)
                     {
                         Destroy(damageParticleSystem[i]);
                     }
 
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                 }
                 Debug.Log(currentDamageState);
 
