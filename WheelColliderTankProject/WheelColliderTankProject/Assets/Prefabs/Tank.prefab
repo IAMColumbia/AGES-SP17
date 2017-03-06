@@ -4029,6 +4029,7 @@ MonoBehaviour:
     particleEffect: {fileID: 1000012060793940}
   - healthPercentageThreshhold: 0
     particleEffect: {fileID: 1000013507506028}
+  DeathExplosionForce: 15
 --- !u!114 &114000012476354808
 MonoBehaviour:
   m_ObjectHideFlags: 1

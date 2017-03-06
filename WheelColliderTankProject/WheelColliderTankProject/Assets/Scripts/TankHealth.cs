@@ -10,6 +10,8 @@ public class TankHealth : MonoBehaviour, IDamageable
     enum DamageState { Undamaged, Light, Medium, Heavy, Critical };
     DamageState tankDamageState;
     [SerializeField] List<DamageParticalEffect> particleEffects;
+    [SerializeField] float DeathExplosionForce;
+
 
     [Serializable]
     struct DamageParticalEffect
@@ -70,17 +72,10 @@ public class TankHealth : MonoBehaviour, IDamageable
 
     IEnumerator Die()
     {
-        Rigidbody myRigidbody = gameObject.GetComponent<Rigidbody>();
-        myRigidbody.mass = 100;
-
-        myRigidbody.velocity = Vector3.zero;
-
-        myRigidbody.AddExplosionForce(1f, transform.position - new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value), 5f);
-        myRigidbody.angularDrag = 0;
+        GetComponent<IHeavyExplodableObject>().Explode(new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value) * DeathExplosionForce);
 
         yield return new WaitForSeconds(2);
 
-        myRigidbody.velocity = Vector3.zero;
-        myRigidbody.AddExplosionForce(1f, transform.position - new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value), 5f);
+        GetComponent<IHeavyExplodableObject>().Explode(new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value) * DeathExplosionForce);
     }
 }
