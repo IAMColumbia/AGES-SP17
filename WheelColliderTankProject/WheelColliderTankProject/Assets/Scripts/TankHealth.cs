@@ -72,6 +72,9 @@ public class TankHealth : MonoBehaviour, IDamageable
 
     IEnumerator Die()
     {
+        if(GetComponent<TankController>())
+            GetComponent<TankController>().enabled = false;
+
         GetComponent<IHeavyExplodableObject>().Explode(new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value) * DeathExplosionForce);
 
         yield return new WaitForSeconds(2);
