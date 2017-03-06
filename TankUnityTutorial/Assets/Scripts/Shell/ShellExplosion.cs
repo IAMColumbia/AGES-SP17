@@ -30,16 +30,7 @@ public class ShellExplosion : MonoBehaviour
             if (!targetRigidbody)
                 continue;
 
-            targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);
-
-            TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
-
-            if (!targetHealth)
-                continue;
-
-            float damage = CalculateDamage(targetRigidbody.position);
-
-            targetHealth.TakeDamage(damage);
+            targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);           
         }
 
         m_ExplosionParticles.transform.parent = null;
@@ -50,21 +41,5 @@ public class ShellExplosion : MonoBehaviour
 
         Destroy(m_ExplosionParticles.gameObject, m_ExplosionParticles.duration);
         Destroy(gameObject);
-    }
-
-
-    private float CalculateDamage(Vector3 targetPosition)
-    {
-        Vector3 explosionToTarget = targetPosition - transform.position;
-
-        float explosionDistance = explosionToTarget.magnitude;
-
-        float relativeDistance = (m_ExplosionRadius - explosionDistance) / m_ExplosionRadius;
-
-        float damage = relativeDistance * m_MaxDamage;
-
-        damage = Mathf.Max(0f, damage);
-
-        return damage;
     }
 }
