@@ -3,16 +3,11 @@ using System.Collections;
 
 public class DamageBlocks : MonoBehaviour {
 
-    //[SerializedField]
-    public float blockDamage;
+    [SerializeField]
+    float blockDamage;
 
-    public LayerMask m_TankMask;
-    public ParticleSystem m_ExplosionParticles;
-    public AudioSource m_ExplosionAudio;
-    public float m_MaxDamage = 100f;
-    public float m_ExplosionForce = 1000f;
-    public float m_MaxLifeTime = 2f;
-    public float m_ExplosionRadius = 5f;
+    [SerializeField]
+    TankHealth targetHealth;
 
 
     private void Start()
@@ -20,44 +15,21 @@ public class DamageBlocks : MonoBehaviour {
         
     }
 
-    private void OnCollisionEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         // Find all the tanks in an area around the shell and damage them.
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, m_ExplosionRadius);
-
-        for (int i = 0; i < colliders.Length; i++)
+        if (other.gameObject.tag == "Player")
         {
-            Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>();
+            // Rigidbody targetRigidbody = other.gameObject.GetComponent<Rigidbody>();
 
-            if (!targetRigidbody)
-                continue;
+            // targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);
 
-            targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);
+            TankHealth targetHealth = other.gameObject.GetComponent<TankHealth>();
 
-            TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
+            targetHealth.TakeDamage(blockDamage);
 
-            if (!targetHealth)
-                continue;
-
-            float damage = CalculateDamage(targetRigidbody.position);
-
-            targetHealth.TakeDamage(damage);
+            Destroy(gameObject);           
         }       
-    }
-
-    private float CalculateDamage(Vector3 targetPosition)
-    {
-        Vector3 explosionToTarget = targetPosition - transform.position;
-
-        float explosionDistance = explosionToTarget.magnitude;
-
-        float relativeDistance = (m_ExplosionRadius - explosionDistance) / m_ExplosionRadius;
-
-        float damage = relativeDistance * m_MaxDamage;
-
-        damage = Mathf.Max(0f, damage);
-
-        return damage;
     }
 }

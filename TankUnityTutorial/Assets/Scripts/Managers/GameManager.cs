@@ -5,6 +5,18 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    Transform damageBlockSpawnPoints;
+
+    [SerializeField]
+    float maxBlocksSpawn;
+
+    [SerializeField]
+    GameObject damageBlockPrefab;
+
+    [SerializeField]
+    float secondsTillBlockSpawns;
+
     public int m_NumRoundsToWin = 5;        
     public float m_StartDelay = 3f;         
     public float m_EndDelay = 3f;           
@@ -16,7 +28,8 @@ public class GameManager : MonoBehaviour
 
     private int m_RoundNumber;              
     private WaitForSeconds m_StartWait;     
-    private WaitForSeconds m_EndWait;       
+    private WaitForSeconds m_EndWait;
+    private WaitForSeconds blockSpawn;       
     private TankManager m_RoundWinner;
     private TankManager m_GameWinner;       
 
@@ -25,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
+        blockSpawn = new WaitForSeconds(secondsTillBlockSpawns);
 
         SpawnAllTanks();
         SetCameraTargets();
@@ -44,6 +58,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SpawnBlocks()
+    {
+        for (int i = 0; i < maxBlocksSpawn; i++)
+        {
+            Instantiate(damageBlockPrefab, damageBlockSpawnPoints.transform);
+        }
+    }
 
     private void SetCameraTargets()
     {
@@ -95,8 +116,10 @@ public class GameManager : MonoBehaviour
 
         m_MessageText.text = string.Empty;
 
+        SpawnBlocks();
+
         while (!OneTankLeft())
-        {
+        {            
             yield return null;
         }
     }
@@ -208,4 +231,5 @@ public class GameManager : MonoBehaviour
             m_Tanks[i].DisableControl();
         }
     }
+
 }
