@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class TankHealth : MonoBehaviour
+public class TankHealth : MonoBehaviour, IKillable, IDamageable<float>
 {
     public float m_StartingHealth = 100f;          
     public Slider m_Slider;                        
@@ -9,11 +10,13 @@ public class TankHealth : MonoBehaviour
     public Color m_FullHealthColor = Color.green;  
     public Color m_ZeroHealthColor = Color.red;    
     public GameObject m_ExplosionPrefab;
-    
+    public GameObject Smoke;
    
     private AudioSource m_ExplosionAudio;          
-    private ParticleSystem m_ExplosionParticles;   
-    private float m_CurrentHealth;  
+    private ParticleSystem m_ExplosionParticles;
+    private ParticleSystem SmokeParticle;
+
+    public float m_CurrentHealth;  
     private bool m_Dead;            
 
 
@@ -21,8 +24,10 @@ public class TankHealth : MonoBehaviour
     {
         m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
         m_ExplosionAudio = m_ExplosionParticles.GetComponent<AudioSource>();
-
         m_ExplosionParticles.gameObject.SetActive(false);
+
+        SmokeParticle = Instantiate(Smoke).GetComponent<ParticleSystem>();
+        Smoke.gameObject.SetActive(false);
     }
 
 
@@ -40,9 +45,26 @@ public class TankHealth : MonoBehaviour
         // Adjust the tank's current health, update the UI based on the new health and check whether or not the tank is dead.
         m_CurrentHealth -= amount;
         SetHealthUI();
-        if(m_CurrentHealth <= 0f && !m_Dead)
+
+        if(m_CurrentHealth < 1f && !m_Dead)
+        {
+            SmokeParticle.transform.position = transform.position;
+            Smoke.gameObject.SetActive(true);
+        }
+        if (m_CurrentHealth <= .75f && !m_Dead)
+        {
+
+            SmokeParticle.startSize = 2;
+
+        }
+        if (m_CurrentHealth <= .50f && !m_Dead)
+        {
+            SmokeParticle.startSize = 5;
+        }
+        else if(m_CurrentHealth <= 0f && !m_Dead)
         {
             OnDeath();
+            SmokeParticle.startSize = 6;
         }
     }
 
@@ -65,5 +87,19 @@ public class TankHealth : MonoBehaviour
         m_ExplosionParticles.Play();
         m_ExplosionAudio.Play();
         gameObject.SetActive(false);
+    }
+
+    public void Damage(float damageTaken)
+    {
+        damageTaken = 1;
+       if(damageTaken == 1)
+        {
+
+        }
+    }
+
+    public void Kill()
+    {
+        throw new NotImplementedException();
     }
 }
