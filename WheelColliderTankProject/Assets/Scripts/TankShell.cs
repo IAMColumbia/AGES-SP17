@@ -57,8 +57,6 @@ public class TankShell : MonoBehaviour
             if (!targetRigidbody)
                 continue;
 
-            //Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
-
             // Add an explosion force. This is fine for most light to average mass rigidbodies.
             // Don't make it too high though or lighter objects go way too fast and it doesn't look good.
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
@@ -76,10 +74,15 @@ public class TankShell : MonoBehaviour
         }
 
         // Play explosion particle effects
+        explosionParticles.transform.parent = null;
+        smokeParticles.transform.parent = null;
+
         explosionParticles.Play();
         smokeParticles.Play();
 
         // Destroy the shell, since it exploded
-        Destroy(transform.parent.gameObject);
+        float particleDuration = 3f;
+
+        Destroy(transform.parent.gameObject, particleDuration);
     }
 }
