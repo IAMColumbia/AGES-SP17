@@ -20,15 +20,13 @@ public class TankHealth : MonoBehaviour, IDamageable<float> {
         {
             damageSigns[i].SetActive(false);
         }
-        //StartCoroutine("Killed");
-        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        VisualizeDamage();
-	}
+        StartCoroutine(DamageStates());
+    }
     public void TakeDamage(float damageTaken)
     {
         damageTaken = 10;
@@ -41,39 +39,61 @@ public class TankHealth : MonoBehaviour, IDamageable<float> {
         TakeDamage(tankHealth);
     }
 
-    void VisualizeDamage()
+    IEnumerator DamageStates()
     {
-        
-            if (tankHealth <= 80)
+            Debug.Log("Running");
+            if (tankHealth <= 75)
             {
-                damageSigns[0].SetActive(true);
-            }
-            if (tankHealth <= 60)
-            {
-                damageSigns[1].SetActive(true);
+                Debug.Log("Light Damage!");
+                StartCoroutine(LightDamage());
             }
             if (tankHealth <= 50)
             {
-                damageSigns[2].SetActive(true);
+                StartCoroutine(MediumDamage());
             }
-            if (tankHealth <= 30)
+            if (tankHealth <= 25)
             {
-                damageSigns[3].SetActive(true);
-                damageSigns[4].SetActive(true);
+                StartCoroutine(HeavyDamage());
             }
-            if (tankHealth <= 20)
+            if (tankHealth <= 0)
             {
-                damageSigns[5].SetActive(true);
+                StartCoroutine(CriticalDamage());
             }
-        if (tankHealth == 0)
+        
+        yield return null;
+    }
+    IEnumerator LightDamage()
+    {
+        if (tankHealth <= 75)
         {
-            alive = false;
-            Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(this.gameObject);
+            Debug.Log("Light Damage!");
+            damageSigns[0].SetActive(true);
         }
-
+        
+        yield return null;
     }
 
-   
-    
+    IEnumerator MediumDamage()
+    {
+        damageSigns[1].SetActive(true);
+        yield return null;
+    }
+    IEnumerator HeavyDamage()
+    {
+        damageSigns[2].SetActive(true);
+        damageSigns[3].SetActive(true);
+
+        yield return null;
+    }
+    IEnumerator CriticalDamage()
+    {
+        damageSigns[4].SetActive(true);
+        damageSigns[5].SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        alive = false;
+        Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(this.gameObject);
+    }
 }
