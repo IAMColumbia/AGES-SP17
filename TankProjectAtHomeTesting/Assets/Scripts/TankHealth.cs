@@ -69,51 +69,25 @@ public class TankHealth : MonoBehaviour, IDamageable
 
     private void UpdateDamageState()
     {
-        // This logic does not support healing.
-        if (currentHealth <= 0)
+        float damageTaken = maxHealth - currentHealth;
+
+        if (damageTaken >= maxHealth)
         {
-            if (currentDamageState != TankDamageState.CriticalDamage)
-            {
-                currentDamageState = TankDamageState.CriticalDamage;
-                if (CriticalDamageReceived != null)
-                    CriticalDamageReceived.Invoke();
-            }
+            currentDamageState = TankDamageState.CriticalDamage;
         }
-        else
+        else if (damageTaken >= heavyDamageThreshhold)
         {
-            switch (currentDamageState)
-            {
-                case TankDamageState.NoDamage:
-                    if (maxHealth - currentHealth >= heavyDamageThreshhold)
-                        currentDamageState = TankDamageState.HeavyDamage;
-
-                    else if (maxHealth - currentHealth >= mediumDamageThreshhold)
-                        currentDamageState = TankDamageState.MediumDamage;
-
-                    else if (maxHealth - currentHealth >= lightDamageThreshhold)
-                        currentDamageState = TankDamageState.LightDamage;
-                        break;
-
-                case TankDamageState.LightDamage:
-                    if (maxHealth - currentHealth >= heavyDamageThreshhold)
-                        currentDamageState = TankDamageState.HeavyDamage;
-
-                    else if (maxHealth - currentHealth >= mediumDamageThreshhold)
-                        currentDamageState = TankDamageState.MediumDamage;
-                    break;
-
-                case TankDamageState.MediumDamage:
-                    if (maxHealth - currentHealth >= heavyDamageThreshhold)
-                        currentDamageState = TankDamageState.HeavyDamage;
-                    break;
-
-                case TankDamageState.HeavyDamage:
-                case TankDamageState.CriticalDamage:
-                    break;
-                default:
-                    throw new System.Exception("Unsupported TankDamageState!");
-            }
+            currentDamageState = TankDamageState.HeavyDamage;
         }
+        else if (damageTaken >= mediumDamageThreshhold)
+        {
+            currentDamageState = TankDamageState.MediumDamage;
+        }
+        else if (damageTaken >= lightDamageThreshhold)
+        {
+            currentDamageState = TankDamageState.LightDamage;
+        }
+       
     }
 
     private void UpdateHealthVFX(float currentHealth)
@@ -157,6 +131,7 @@ public class TankHealth : MonoBehaviour, IDamageable
         if (TankDestroyed != null)
         {
             TankDestroyed.Invoke(playerThatKilled);
+            CriticalDamageReceived.Invoke();
         }
     }
 

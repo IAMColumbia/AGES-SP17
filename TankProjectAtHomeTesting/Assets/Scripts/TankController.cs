@@ -123,8 +123,6 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         normalDrag = rigidbody_useThis.drag;
 	}
 
-    // Colors the tank for differentiating multiple players
-
 
     // Update is called once per frame
     void Update ()

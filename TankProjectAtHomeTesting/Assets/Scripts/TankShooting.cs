@@ -4,7 +4,8 @@ using System.Collections;
 public class TankShooting : MonoBehaviour 
 {
     // This class just handles reading the fire input and firing the tank shell.
-    // TODO: we'll want to implement a fire cooldown. Probably use a coroutine?
+    [SerializeField]
+    float shootCooldown = 1.5f;
 
     [Tooltip("Bullet will spawn here. Make sure its collider isn't hitting the same tank that is shooting it!")]
     [SerializeField]
@@ -24,6 +25,7 @@ public class TankShooting : MonoBehaviour
     float recoilForce = 100000;
 
     private TankController tankController;
+    private bool canShoot = true;
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class TankShooting : MonoBehaviour
 
     private void Update()
     {
-        if (tankController.TankCanBeControlled)
+        if (tankController.TankCanBeControlled && canShoot)
         {
             if (Input.GetButtonDown("Fire1P" + tankController.ControllingPlayer.PlayerNumber))
             {
@@ -43,6 +45,8 @@ public class TankShooting : MonoBehaviour
 
     private void Fire()
     {
+        canShoot = false;
+        StartCoroutine(ResetCanShootAfterCooldown());
         Rigidbody firedShell = GameObject.Instantiate(tankShellPrefab, shellSpawnPoint.position, shellSpawnPoint.rotation) as Rigidbody;
 
         firedShell.velocity = shellSpawnPoint.forward * projectileVelocity;
@@ -54,4 +58,11 @@ public class TankShooting : MonoBehaviour
 
         turretRigidBody.AddForce(turretRigidBody.transform.forward * -recoilForce);
     }    
+
+    private IEnumerator ResetCanShootAfterCooldown()
+    {
+        yield return new WaitForSeconds(shootCooldown);
+
+        canShoot = true;
+    }
 }
