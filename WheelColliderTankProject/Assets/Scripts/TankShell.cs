@@ -29,6 +29,9 @@ public class TankShell : MonoBehaviour
     [SerializeField]
     private ParticleSystem explosionParticles;
 
+    [SerializeField]
+    private ParticleSystem smokeParticles;
+
     private Rigidbody rigidbody_useThis;
 
 	// Use this for initialization
@@ -74,6 +77,7 @@ public class TankShell : MonoBehaviour
 
         // Play explosion particle effects
         explosionParticles.Play();
+        smokeParticles.Play();
 
         // Destroy the shell, since it exploded
         Destroy(transform.parent.gameObject);

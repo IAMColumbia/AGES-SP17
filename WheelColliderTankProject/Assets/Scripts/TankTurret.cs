@@ -32,8 +32,9 @@ public class TankTurret : MonoBehaviour
 
     private bool resetRotationPressed = false;
 
-	// Use this for initialization
-	void Start () 
+    public bool canControl;
+    
+	void Start() 
 	{
         rigidbody_use = GetComponent<Rigidbody>();
         joint = GetComponent<ConfigurableJoint>();
@@ -43,12 +44,16 @@ public class TankTurret : MonoBehaviour
 
         unlockedJointDrive = lockedJointDrive;
         unlockedJointDrive.positionSpring = 0;
+
+        canControl = true;
     }
 	
-	// Update is called once per frame
-	void Update () 
+	void Update() 
 	{
-        GetRotationInput();
+        if (canControl)
+        {
+            GetRotationInput();
+        }
 	}
 
     private void GetRotationInput()

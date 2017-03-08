@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class TankHealth : MonoBehaviour, IDamagable
 {
@@ -48,8 +49,6 @@ public class TankHealth : MonoBehaviour, IDamagable
         health -= damageAmount;
         healthPercentage = health / maxHealth;
 
-        Debug.Log("healthPercentage: " + healthPercentage);
-
         UpdateDamageState();
     }
 
@@ -85,7 +84,18 @@ public class TankHealth : MonoBehaviour, IDamagable
 
         if (healthPercentage <= 0f)
         {
-            //disable tank movement and shooting
+            GetComponent<TankController>().canControl = false;
+            GetComponent<TankShooting>().canShoot = false;
+            gameObject.GetComponentInChildren<TankTurret>().canControl = false;
+
+            StartCoroutine(EndGame());
         }
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(5);
+
+        SceneManager.LoadScene("MainMenu");
     }
 }

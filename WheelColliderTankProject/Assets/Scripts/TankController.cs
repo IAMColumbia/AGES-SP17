@@ -65,7 +65,7 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     {
         get
         {
-            return (leftTrackInput > 0) ==  (rightTrackInput > 0);
+            return (leftTrackInput > 0) == (rightTrackInput > 0);
         }
     }
 
@@ -86,8 +86,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         }
     }
 
-	// Use this for initialization
-	void Start () 
+    public bool canControl;
+    
+	void Start() 
 	{
         rigidbody_useThis = GetComponent<Rigidbody>();
 
@@ -98,15 +99,16 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
         normalAngularDrag = rigidbody_useThis.angularDrag;
         normalDrag = rigidbody_useThis.drag;
+
+        canControl = true;
 	}
 
-    // Colors the tank for differentiating multiple players
-
-
-    // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        GetInput();
+        if (canControl)
+        {
+            GetInput();
+        }
     }
 
     private void GetInput()
