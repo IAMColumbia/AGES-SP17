@@ -78,7 +78,7 @@ public class TankTurret : MonoBehaviour
 
             // Update the joint's target rotation so it "locks" to that rotation now.
             // Not sure why it needs to be the opposite of our local rotation, but it does...
-            joint.targetRotation = Quaternion.Inverse(transform.localRotation);
+            joint.targetRotation = Quaternion.Inverse(lockedRotation);
         }
 
         HandleResetPressed();

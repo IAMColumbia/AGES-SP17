@@ -5,7 +5,24 @@ using System;
 public class TankHealth : MonoBehaviour, IDamagable
 {
     [SerializeField]
-    float maxHealth = 50;
+    ParticleSystem lightSmokeParticles;
+
+    [SerializeField]
+    ParticleSystem denseSmokeParticles;
+
+    [SerializeField]
+    ParticleSystem smallFireParticles;
+
+    [SerializeField]
+    ParticleSystem bigFireParticles;
+
+    bool lightSmokeParticlesIsPlaying;
+    bool denseSmokeParticlesIsPlaying;
+    bool smallFireParticlesIsPlaying;
+    bool bigFireParticlesIsPlaying;
+
+    [SerializeField]
+    float maxHealth = 50f;
 
     float health;
     float healthPercentage;
@@ -14,30 +31,61 @@ public class TankHealth : MonoBehaviour, IDamagable
     {
         health = maxHealth;
         healthPercentage = health / maxHealth;
+
+        lightSmokeParticles.gameObject.SetActive(false);
+        denseSmokeParticles.gameObject.SetActive(false);
+        smallFireParticles.gameObject.SetActive(false);
+        bigFireParticles.gameObject.SetActive(false);
+
+        lightSmokeParticlesIsPlaying = false;
+        denseSmokeParticlesIsPlaying = false;
+        smallFireParticlesIsPlaying = false;
+        bigFireParticlesIsPlaying = false;
+    }
+    
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        healthPercentage = health / maxHealth;
+
+        Debug.Log("healthPercentage: " + healthPercentage);
+
+        UpdateDamageState();
     }
 
-    public void Update()
+    private void UpdateDamageState()
     {
-        if (healthPercentage >= .1 && <= .5)
+        if (healthPercentage <= .9f && !lightSmokeParticlesIsPlaying)
         {
-            //light smoke
+            lightSmokeParticles.gameObject.SetActive(true);
+            lightSmokeParticles.Play();
+            lightSmokeParticlesIsPlaying = true;
         }
-        else if (healthPercentage > .5 && <= .74)
-        {
-            //denser smoke
-        }
-        else if (healthPercentage > .74 && <= .99)
-        {
-            //small fire
-        }
-        else if (healthPercentage > .99)
-        {
-            //big fire
-        }
-    }
 
-    public void TakeDamage()
-    {
-        //do damage
+        if (healthPercentage < .5f && !denseSmokeParticlesIsPlaying)
+        {
+            denseSmokeParticles.gameObject.SetActive(true);
+            denseSmokeParticles.Play();
+            denseSmokeParticlesIsPlaying = true;
+        }
+
+        if (healthPercentage < .36f && !smallFireParticlesIsPlaying)
+        {
+            smallFireParticles.gameObject.SetActive(true);
+            smallFireParticles.Play();
+            smallFireParticlesIsPlaying = true;
+        }
+
+        if (healthPercentage < .01f && !bigFireParticlesIsPlaying)
+        {
+            bigFireParticles.gameObject.SetActive(true);
+            bigFireParticles.Play();
+            bigFireParticlesIsPlaying = true;
+        }
+
+        if (healthPercentage <= 0f)
+        {
+            //disable tank movement and shooting
+        }
     }
 }
