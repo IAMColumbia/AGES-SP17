@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamageBlocks : MonoBehaviour {
+public class DamageBlocks : MonoBehaviour
+{
 
     [SerializeField]
     float blockDamage;
 
     [SerializeField]
+    float blockTimeAlive;
+
+    [SerializeField]
     TankHealth targetHealth;
 
-
-    private void Start()
+    private void Update()
     {
-        
+        DestroyAfterDelay();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -29,7 +32,12 @@ public class DamageBlocks : MonoBehaviour {
 
             targetHealth.TakeDamage(blockDamage);
 
-            Destroy(gameObject);           
-        }       
+            Destroy(gameObject);
+        }
+    }
+
+    private void DestroyAfterDelay()
+    {
+        Destroy(gameObject, blockTimeAlive);
     }
 }

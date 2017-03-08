@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    /*
     [SerializeField]
     Transform damageBlockSpawnPoints;
 
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     GameObject damageBlockPrefab;
+    */
 
     [SerializeField]
     float secondsTillBlockSpawns;
@@ -21,9 +23,13 @@ public class GameManager : MonoBehaviour
     public float m_StartDelay = 3f;         
     public float m_EndDelay = 3f;           
     public CameraControl m_CameraControl;   
-    public Text m_MessageText;              
+    public Text m_MessageText;       
+           
     public GameObject m_TankPrefab;         
-    public TankManager[] m_Tanks;           
+    public TankManager[] m_Tanks;
+
+    public GameObject blockPrefab;
+    public BlockManager[] blocks;         
 
 
     private int m_RoundNumber;              
@@ -41,6 +47,7 @@ public class GameManager : MonoBehaviour
         blockSpawn = new WaitForSeconds(secondsTillBlockSpawns);
 
         SpawnAllTanks();
+        SpawnBlocks();
         SetCameraTargets();
 
         StartCoroutine(GameLoop());
@@ -60,9 +67,10 @@ public class GameManager : MonoBehaviour
 
     private void SpawnBlocks()
     {
-        for (int i = 0; i < maxBlocksSpawn; i++)
+        for (int i = 0; i < blocks.Length; i++)
         {
-            Instantiate(damageBlockPrefab, damageBlockSpawnPoints.transform);
+           blocks[i].blockInstance = 
+                Instantiate(blockPrefab, blocks[i].blockSpawnPoint.position, blocks[i].blockSpawnPoint.rotation) as GameObject;            
         }
     }
 
@@ -99,7 +107,9 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundStarting()
     {
         ResetAllTanks();
+        ResetAllBlocks();
         DisableTankControl();
+        DisableBlocks();
 
         m_CameraControl.SetStartPositionAndSize();
 
@@ -113,14 +123,15 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundPlaying()
     {
         EnableTankControl();
+        EnableBlocks();
 
         m_MessageText.text = string.Empty;
 
-        SpawnBlocks();
 
         while (!OneTankLeft())
         {            
-            yield return null;
+            SpawnBlocks();
+            yield return blockSpawn;
         }
     }
 
@@ -128,6 +139,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundEnding()
     {
         DisableTankControl();
+        DisableBlocks();
 
         m_RoundWinner = null;
 
@@ -229,6 +241,30 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < m_Tanks.Length; i++)
         {
             m_Tanks[i].DisableControl();
+        }
+    }
+
+    private void ResetAllBlocks()
+    {
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            blocks[i].ResetBlocks();
+        }
+    }
+
+    private void EnableBlocks()
+    {
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            blocks[i].EnableSpawner();
+        }
+    }
+
+    private void DisableBlocks()
+    {
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            blocks[i].DisableSpawner();
         }
     }
 
