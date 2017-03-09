@@ -12,6 +12,7 @@ public class FootSoldierController : MonoBehaviour
 
     private void Start()
     {
+        ControllingPlayer = new Player(1);
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -38,6 +39,18 @@ public class FootSoldierController : MonoBehaviour
 
     private void UpdateRotation()
     {
+        Vector3 moveDirection = new Vector3(xInput, 0, yInput);
+       
+  
+      //  Debug.Log(moveDirection);
+        Debug.DrawRay(rigidbody.position, moveDirection * 3, Color.red);
+
+        float turnThreshold = 0.1f;
+        if (moveDirection.magnitude > turnThreshold)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = newRotation;
+        }
         // TODO: get vector 3 pointed in direction of input
         // then use
         // Quaternion.LookRotation(
@@ -45,6 +58,8 @@ public class FootSoldierController : MonoBehaviour
 
     private void UpdateMovement()
     {
-        
+        Vector3 moveDirection = new Vector3(xInput, 0, yInput);
+        float speed = 3;
+        rigidbody.MovePosition(rigidbody.position + (moveDirection * speed * Time.deltaTime));
     }
 }
