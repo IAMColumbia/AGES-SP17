@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < m_Tanks.Length; i++)
         {
-            message += m_Tanks[i].m_ColoredPlayerText + ": " + m_Tanks[i].m_Wins + " WINS\n";
+            message += m_Tanks[i].m_ColoredPlayerText + m_Tanks[i].m_ColoredColonText + m_Tanks[i].m_Wins + " WINS\n";
         }
 
         if (m_GameWinner != null)
