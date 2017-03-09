@@ -272,8 +272,10 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         yield return new WaitForSeconds(time);
 
         Debug.Log("Blowing up now!");
+
+        float massReductionFactor = 4;
         // Reduce the mass so the explosion looks cooler
-        rigidbody_useThis.mass = rigidbody_useThis.mass / 4f;
+        rigidbody_useThis.mass = rigidbody_useThis.mass / massReductionFactor;
 
         // TODO: make the explosions more random, less hardcoded / magic numbers
         Explode(Vector3.up, explosionPoint.position, explosionRadius: 10);
