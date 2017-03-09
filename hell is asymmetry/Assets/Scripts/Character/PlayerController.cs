@@ -133,8 +133,10 @@ public class PlayerController : Character, IDamageable {
 
     public void Shoot(Transform firingPosition)
     {
+        float tempBulletSpeed = 10;
+
         Bullet newBullet = Instantiate<Bullet>(bullet);
         newBullet.transform.position = firingPosition.position;
-        newBullet.Init(true, this.gameObject.layer, firingPosition.forward * 2, this);
+        newBullet.Init(true, this.gameObject.layer, firingPosition.forward * tempBulletSpeed, this);
     }
 }

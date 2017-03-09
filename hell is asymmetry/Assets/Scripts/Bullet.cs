@@ -65,7 +65,11 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!(collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Boundary" || collision.gameObject.tag == "Enemy"))
+        //bullets should not interact with other bullets, the boundary encompassing the screen, or gameobjects on the same "team"
+
+        string ownerTag = owner != null ? owner.gameObject.tag : "";
+
+        if (!(collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Boundary" || collision.gameObject.tag == ownerTag))
         {
             IDamageable damageableObject = collision.GetComponent<IDamageable>();
 

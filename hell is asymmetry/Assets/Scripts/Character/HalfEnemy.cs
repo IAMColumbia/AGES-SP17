@@ -30,11 +30,24 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
 	
 	}
 
+    IEnumerator flashOnDamageTaken(float time)
+    {
+        m_Renderer.material = parent.damageMaterial;
+
+        yield return new WaitForSeconds(time);
+
+        m_Renderer.material = parent.positiveMaterial;
+    }
+
     public void takeDamage(Bullet bullet)
     {
         Health -= bullet.damage;
+
+        StartCoroutine(flashOnDamageTaken(time: 0.1f));
+
         if (Health <= 0 && Alive)
         {
+            StopAllCoroutines();
             bullet.owner.AddScore(score);
             Die();
         }

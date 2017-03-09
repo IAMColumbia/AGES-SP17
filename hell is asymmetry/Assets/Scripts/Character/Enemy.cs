@@ -8,7 +8,7 @@ public class Enemy : Character, IDamageable {
     bool alive = true;
     public float MaxHealth = 100;
 
-    public Material positiveMaterial, negativeMaterial;
+    public Material positiveMaterial, negativeMaterial, damageMaterial;
 
     [SerializeField]
     HalfEnemy Aside, Bside;
