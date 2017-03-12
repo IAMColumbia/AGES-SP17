@@ -92,7 +92,7 @@ NavMeshSettings:
     manualCellSize: 0
     cellSize: 0.16666667
     accuratePlacement: 1
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: c7e4cad41956c8b4f83cbfe761481115, type: 2}
 --- !u!114 &1330737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,10 +167,10 @@ Prefab:
     - target: {fileID: 11485606, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 708509869}
     - target: {fileID: 11485606, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: OnInteractableClick
       objectReference: {fileID: 0}
     - target: {fileID: 11485606, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -384,6 +384,54 @@ MonoBehaviour:
   message: Get lost!
   textColor: {r: 0, g: 1, b: 1, a: 1}
   delay: 0
+--- !u!1001 &708509868
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056994202402202, guid: 10530f85f1157464285db7132560580e, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 10530f85f1157464285db7132560580e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &708509869 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114432836588834472, guid: 10530f85f1157464285db7132560580e,
+    type: 2}
+  m_PrefabInternal: {fileID: 708509868}
+  m_Script: {fileID: 11500000, guid: f11f483a89da339438272d00c3c95bfa, type: 3}
 --- !u!114 &789374198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,15 +741,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013644106482, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000013817075810, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000010953594216, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000013178173488, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -709,11 +757,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011622339866, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000012727677572, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000011594884080, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -725,15 +773,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013186571738, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000013780333780, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000012622077540, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000013333872850, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -741,35 +789,35 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011843579408, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000010605808140, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000011312830942, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000011688780970, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000012173431702, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000010626101604, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000012173416270, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000011328732106, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000013268056558, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -777,11 +825,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011096530410, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1000014281765782, guid: 8902cc0c7910bcd4ab3ccacb67555809, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 23000011670661526, guid: 8902cc0c7910bcd4ab3ccacb67555809,
         type: 2}
@@ -1383,12 +1431,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: 
-          m_Mode: 1
+        - m_Target: {fileID: 708509869}
+          m_MethodName: OnGroundClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
