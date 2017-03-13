@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TankHealth : MonoBehaviour {
+public class DeathBorder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

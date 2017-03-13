@@ -43,11 +43,11 @@ public class TankMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        turn();
-        accelerate();
+        Turn();
+        Accelerate();
     }
 
-    private void accelerate()
+    private void Accelerate()
     {
         /*gets a value from the controller tiggers, then multiplies said value by negative one
         (this is because the left trigger returns a positive value, and the right trigger returns a negative value)
@@ -68,15 +68,15 @@ public class TankMovement : MonoBehaviour
             myRigidBody.AddRelativeForce(movementVector * movementSpeed);
 
             //debug statement to check if it's going faster than max speed
-            Debug.Log("Speed is at " + (myRigidBody.velocity.magnitude * milesPerHourConst).ToString());
+            //Debug.Log("Speed is at " + (myRigidBody.velocity.magnitude * milesPerHourConst).ToString());
         }
 
-        updateIsAccelerating();
+        UpdateIsAccelerating();
 
         //Debug.Log(triggerInput.ToString());
     }
 
-    private void updateIsAccelerating()
+    private void UpdateIsAccelerating()
     {
         if ((Input.GetAxis(triggers) > 0.1) || (Input.GetAxis(triggers) < -0.1))
         {
@@ -88,7 +88,7 @@ public class TankMovement : MonoBehaviour
         }
     }
 
-    private void turn()
+    private void Turn()
     {
         if (isAccelerating)
         {

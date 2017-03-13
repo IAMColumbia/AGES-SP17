@@ -8,6 +8,12 @@ public class TankJump : MonoBehaviour
     private string jumpButton;
     [SerializeField]
     private float jumpSpeed;
+    [SerializeField]
+    private Transform groundDetectorPosition;
+    [SerializeField]
+    private Vector3 groundDetectorHalfExtents;
+    [SerializeField]
+    private LayerMask whatIsGround;
 
     private Rigidbody myRigidBody;
     private bool isOnGround;
@@ -21,16 +27,17 @@ public class TankJump : MonoBehaviour
     {
         myRigidBody = GetComponent<Rigidbody>();
         //for testing purposes, delete later
-        isOnGround = true;
+        //isOnGround = true;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        handleJump();
+        UpdateIsOnGround();
+        HandleJump();
 	}
 
-    private void handleJump()
+    private void HandleJump()
     {
         if (Input.GetAxis(jumpButton) >= 0.1 && isOnGround == true)
         {
@@ -38,8 +45,10 @@ public class TankJump : MonoBehaviour
         }
     }
 
-    private void updateIsOnGround()
+    private void UpdateIsOnGround()
     {
+        Collider[] groundObjectsArray = Physics.OverlapBox(groundDetectorPosition.position, groundDetectorHalfExtents, groundDetectorPosition.rotation, whatIsGround);
 
+        isOnGround = (groundObjectsArray.Length > 0);
     }
 }
