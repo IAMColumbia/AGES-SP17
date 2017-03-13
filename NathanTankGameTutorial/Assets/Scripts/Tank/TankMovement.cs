@@ -40,8 +40,8 @@ public class TankMovement : MonoBehaviour
 
     private void Start()
     {
-        MovementAxisName = "Vertical" + PlayerNumber;
-        TurnAxisName = "Horizontal" + PlayerNumber;
+        MovementAxisName = "Vertical_P" + PlayerNumber;
+        TurnAxisName = "Horizontal_P" + PlayerNumber;
 
         OriginalPitch = MovementAudio.pitch;
     }
