@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 
 public class TankMovement : MonoBehaviour
@@ -11,13 +12,15 @@ public class TankMovement : MonoBehaviour
     public AudioClip m_EngineDriving;      
     public float m_PitchRange = 0.2f;
 
-   
+    float rotateSpeed = 180f;
     
     private string m_MovementAxisName;     
-    private string m_TurnAxisName;         
+    private string m_TurnAxisName;
+    private string resetRotationName;
     private Rigidbody m_Rigidbody;         
     private float m_MovementInputValue;    
-    private float m_TurnInputValue;        
+    private float m_TurnInputValue;
+    private float rotationValue;        
     private float m_OriginalPitch;         
 
 
@@ -32,6 +35,7 @@ public class TankMovement : MonoBehaviour
         m_Rigidbody.isKinematic = false;
         m_MovementInputValue = 0f;
         m_TurnInputValue = 0f;
+       // rotationValue = 0f;
     }
 
 
@@ -45,6 +49,7 @@ public class TankMovement : MonoBehaviour
     {
         m_MovementAxisName = "Vertical" + m_PlayerNumber;
         m_TurnAxisName = "Horizontal" + m_PlayerNumber;
+        resetRotationName = "ResetRotation" + m_PlayerNumber;
 
         m_OriginalPitch = m_MovementAudio.pitch;
     }
@@ -54,6 +59,7 @@ public class TankMovement : MonoBehaviour
     {
         m_MovementInputValue = Input.GetAxis(m_MovementAxisName);
         m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
+       // rotationValue = Input.GetAxis(resetRotationName);
 
         EngineAudio();
     }
@@ -66,7 +72,7 @@ public class TankMovement : MonoBehaviour
             if (m_MovementAudio.clip == m_EngineDriving)
             {
                 m_MovementAudio.clip = m_EngineIdling;
-                m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+                m_MovementAudio.pitch = UnityEngine.Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
                 m_MovementAudio.Play();
             }
         }
@@ -75,7 +81,7 @@ public class TankMovement : MonoBehaviour
             if (m_MovementAudio.clip == m_EngineIdling)
             {
                 m_MovementAudio.clip = m_EngineDriving;
-                m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+                m_MovementAudio.pitch = UnityEngine.Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
                 m_MovementAudio.Play();
             }
         }
@@ -87,6 +93,7 @@ public class TankMovement : MonoBehaviour
         // Move and turn the tank.
         Move();
         Turn();
+        ResetRotation();
     }
 
 
@@ -105,5 +112,20 @@ public class TankMovement : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
 
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+    }
+
+    private void ResetRotation()
+    {
+       /*
+        float rotate = rotationValue * rotateSpeed * Time.deltaTime;
+        Quaternion resetRotation = Quaternion.Euler(0f, rotate, 0f); ;
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * resetRotation);
+        */
+
+        if (Input.GetButton(resetRotationName))
+        {
+            gameObject.transform.rotation = Quaternion.identity;
+        }
+
     }
 }

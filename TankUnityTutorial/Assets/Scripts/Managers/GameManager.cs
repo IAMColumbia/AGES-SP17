@@ -5,18 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    /*
-    [SerializeField]
-    Transform damageBlockSpawnPoints;
 
-    [SerializeField]
-    float maxBlocksSpawn;
-
-    [SerializeField]
-    GameObject damageBlockPrefab;
-    */
-
-    [SerializeField]
+   [SerializeField]
     float secondsTillBlockSpawns;
 
     public int m_NumRoundsToWin = 5;        
@@ -50,7 +40,7 @@ public class GameManager : MonoBehaviour
         SpawnBlocks();
         SetCameraTargets();
 
-        StartCoroutine(GameLoop());
+        StartCoroutine(GameLoop());      
     }
 
 
