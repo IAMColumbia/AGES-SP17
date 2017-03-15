@@ -20,7 +20,11 @@ public class Shield : MonoBehaviour {
 
         if(Input.GetButtonDown("Shield"))
         {
-            playersShield.SetActive(true);
+            if (!Input.GetButton("Attack"))
+            {
+                playersShield.SetActive(true);
+            }
+            
         }
         if (Input.GetButtonUp("Shield"))
         {

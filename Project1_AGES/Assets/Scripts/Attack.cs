@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Attack : MonoBehaviour {
 
-
+    [SerializeField]
+    private float speed;
 
 	// Use this for initialization
 	void Start () {
@@ -17,11 +18,21 @@ public class Attack : MonoBehaviour {
 
         if(Input.GetButtonDown("Attack"))
         {
-            this.transform.Rotate(90, 0, 0);
+            if (!Input.GetButton("Shield"))
+            {
+                transform.Rotate(90, 0, 0);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(90,0,0,1), Time.deltaTime * speed);
+            }
+            
         }
         if (Input.GetButtonUp("Attack"))
         {
-            this.transform.Rotate(-90, 0, 0);
+            if (!Input.GetButton("Shield"))
+            {
+                //transform.Rotate(-90, 0, 0);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(-90, 0, 0, 0), Time.deltaTime * speed);
+                transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
         }
 
 
