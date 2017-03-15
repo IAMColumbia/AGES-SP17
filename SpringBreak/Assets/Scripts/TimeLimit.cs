@@ -13,6 +13,9 @@ public class TimeLimit : MonoBehaviour {
     [SerializeField]
     Text timeText;
 
+    [SerializeField]
+    Camera cam;
+
     public float TimeLeft
     {
         get
@@ -39,7 +42,15 @@ public class TimeLimit : MonoBehaviour {
     void start()
     {      
         timeText = GetComponent<UnityEngine.UI.Text>();
+        cam = GetComponent<Camera>();
+        StartMatch();
     }
+
+    private void StartMatch()
+    {
+       
+    }
+
     void Update()
     {
 
