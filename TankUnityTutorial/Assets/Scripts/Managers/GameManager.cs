@@ -6,8 +6,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-   [SerializeField]
+    [SerializeField]
     float secondsTillBlockSpawns;
+
+    [SerializeField]
+    string sceneToLoad;
+
+    [SerializeField]
+    private TankHealth tankParticles;       
 
     public int m_NumRoundsToWin = 5;        
     public float m_StartDelay = 3f;         
@@ -27,7 +33,7 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds m_EndWait;
     private WaitForSeconds blockSpawn;       
     private TankManager m_RoundWinner;
-    private TankManager m_GameWinner;       
+    private TankManager m_GameWinner;
 
 
     private void Start()
@@ -85,7 +91,7 @@ public class GameManager : MonoBehaviour
 
         if (m_GameWinner != null)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(sceneToLoad);
         }
         else
         {
@@ -100,6 +106,7 @@ public class GameManager : MonoBehaviour
         ResetAllBlocks();
         DisableTankControl();
         DisableBlocks();
+        DisableParticleSystems();
 
         m_CameraControl.SetStartPositionAndSize();
 
@@ -258,4 +265,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void DisableParticleSystems()
+    {
+        tankParticles.tankParticles.gameObject.SetActive(false);
+    }
 }

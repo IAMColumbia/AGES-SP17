@@ -13,9 +13,6 @@ public class DamageBlocks : MonoBehaviour
     [SerializeField]
     TankHealth targetHealth;
 
-    [SerializeField]
-    ParticleSystem tankParticleSystem;
-
     private void Update()
     {
         DestroyAfterDelay();
@@ -34,12 +31,6 @@ public class DamageBlocks : MonoBehaviour
             TankHealth targetHealth = other.gameObject.GetComponent<TankHealth>();
 
             targetHealth.TakeDamage(blockDamage);
-
-            tankParticleSystem.transform.parent = null;
-
-            tankParticleSystem.Play();
-
-            Destroy(tankParticleSystem.gameObject, tankParticleSystem.duration);
             Destroy(gameObject);
         }
     }
