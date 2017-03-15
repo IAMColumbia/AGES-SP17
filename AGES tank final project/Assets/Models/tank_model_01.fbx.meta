@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 7dc71b254b427f84883fe4bac1e7f61b
+timeCreated: 1489542222
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: back
+    100002: body
+    100004: bottom
+    100006: engine
+    100008: exhaust1
+    100010: exhaust2
+    100012: gun
+    100014: hatch
+    100016: head
+    100018: left
+    100020: //RootNode
+    100022: tread_top_L
+    100024: tread_top_R
+    100026: treads1
+    100028: treads2
+    100030: treads___wheels_L
+    100032: treads___wheels_R
+    100034: wheel1
+    100036: wheel2
+    100038: wheel3
+    100040: wheel4
+    100042: wheel5
+    100044: wheel6
+    100046: wheel7
+    100048: wheel8
+    400000: back
+    400002: body
+    400004: bottom
+    400006: engine
+    400008: exhaust1
+    400010: exhaust2
+    400012: gun
+    400014: hatch
+    400016: head
+    400018: left
+    400020: //RootNode
+    400022: tread_top_L
+    400024: tread_top_R
+    400026: treads1
+    400028: treads2
+    400030: treads___wheels_L
+    400032: treads___wheels_R
+    400034: wheel1
+    400036: wheel2
+    400038: wheel3
+    400040: wheel4
+    400042: wheel5
+    400044: wheel6
+    400046: wheel7
+    400048: wheel8
+    2300000: body
+    2300002: engine
+    2300004: exhaust1
+    2300006: exhaust2
+    2300008: gun
+    2300010: hatch
+    2300012: head
+    2300014: tread_top_L
+    2300016: tread_top_R
+    2300018: treads1
+    2300020: treads2
+    2300022: wheel1
+    2300024: wheel2
+    2300026: wheel3
+    2300028: wheel4
+    2300030: wheel5
+    2300032: wheel6
+    2300034: wheel7
+    2300036: wheel8
+    3300000: body
+    3300002: engine
+    3300004: exhaust1
+    3300006: exhaust2
+    3300008: gun
+    3300010: hatch
+    3300012: head
+    3300014: tread_top_L
+    3300016: tread_top_R
+    3300018: treads1
+    3300020: treads2
+    3300022: wheel1
+    3300024: wheel2
+    3300026: wheel3
+    3300028: wheel4
+    3300030: wheel5
+    3300032: wheel6
+    3300034: wheel7
+    3300036: wheel8
+    4300000: body
+    4300002: head
+    4300004: gun
+    4300006: hatch
+    4300008: engine
+    4300010: tread_top_R
+    4300012: wheel1
+    4300014: wheel2
+    4300016: wheel3
+    4300018: wheel4
+    4300020: treads1
+    4300022: tread_top_L
+    4300024: wheel5
+    4300026: wheel6
+    4300028: wheel7
+    4300030: wheel8
+    4300032: treads2
+    4300034: exhaust1
+    4300036: exhaust2
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 13
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
