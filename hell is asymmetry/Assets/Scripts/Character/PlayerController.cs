@@ -50,6 +50,7 @@ public class PlayerController : Character, IDamageable {
 
     float timeBetweenShots;
     bool shooting = false;
+    bool readyToShoot = true;
 
 	// Use this for initialization
 	void Start () {
@@ -82,7 +83,8 @@ public class PlayerController : Character, IDamageable {
 
     void UpdateShooting()
     {
-        if(fireInput && !shooting)
+        //probably going to revisit this, prevents player from shooting faster than the specified fire rate
+        if(fireInput && !shooting && readyToShoot)
         {
             shooting = true;
             StartCoroutine(KeepShooting());
@@ -98,7 +100,9 @@ public class PlayerController : Character, IDamageable {
         while (shooting)
         {
             Shoot(firingPositions[0]);
+            readyToShoot = false;
             yield return new WaitForSeconds(timeBetweenShots);
+            readyToShoot = true;
         }
     }
 
