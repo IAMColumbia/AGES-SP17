@@ -17,11 +17,14 @@ public class PlayerControl : MonoBehaviour
 
     private Vector3 destinationPosition;
     private WaitForSeconds inputHoldWait;
+    private Interactable currentInteractable;
+    private bool handleInput = true;
 
     private const float stopDistanceProportion = 0.1f;
     private const float navMeshSampleDistance = 4f;
 
     private readonly int hashSpeedPara = Animator.StringToHash("Speed");
+    private readonly int hashLocomotionTag = Animator.StringToHash("Locomotion");
 
     private void Start()
     {
@@ -69,6 +72,14 @@ public class PlayerControl : MonoBehaviour
         agent.Stop();
         transform.position = destinationPosition;
         speed = 0f;
+
+        if (currentInteractable)
+        {
+            transform.rotation = currentInteractable.interactionLocation.rotation;
+            currentInteractable.Interact();
+            currentInteractable = null;
+            StartCoroutine(WaitForInteraction());
+        }
     }
 
     private void Slowing(out float speed, float distanceToDestination)
@@ -77,6 +88,9 @@ public class PlayerControl : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, destinationPosition, slowingSpeed * Time.deltaTime);
         float proportionalDistance = 1f - distanceToDestination / agent.stoppingDistance;
         speed = Mathf.Lerp(slowingSpeed, 0f, proportionalDistance);
+
+        Quaternion targetRotation = currentInteractable ? currentInteractable.interactionLocation.rotation : transform.rotation;
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, proportionalDistance);
     }
 
     private void Moving()
@@ -87,11 +101,51 @@ public class PlayerControl : MonoBehaviour
 
     public void OnGroundClick(BaseEventData data)
     {
+        if(!handleInput)
+        {
+            return;
+        }
+
+        currentInteractable = null;
+
         PointerEventData pData = (PointerEventData)data;
         NavMeshHit hit;
         if(NavMesh.SamplePosition(pData.pointerCurrentRaycast.worldPosition, out hit, navMeshSampleDistance, NavMesh.AllAreas))
         {
-
+            destinationPosition = hit.position;
         }
+        else
+        {
+            destinationPosition = pData.pointerCurrentRaycast.worldPosition;
+        }
+
+        agent.SetDestination(destinationPosition);
+        agent.Resume();
+    }
+
+    public void OnInteractableClick(Interactable interactable)
+    {
+        if(!handleInput)
+        {
+            return;
+        }
+
+        currentInteractable = interactable;
+        destinationPosition = currentInteractable.interactionLocation.position;
+
+
+    }
+    private IEnumerator WaitForInteraction()
+    {
+        handleInput = false;
+
+        yield return inputHoldWait;
+
+        while (animator.GetCurrentAnimatorStateInfo(0).tagHash != hashLocomotionTag)
+        {
+            yield return null;
+        }
+
+        handleInput = true;
     }
 }
