@@ -16,6 +16,8 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
     Collider2D m_Collider;
     [SerializeField]
     float score = 100;
+    [SerializeField]
+    ParticleSystem explosionSystem;
 
 	// Use this for initialization
 	void Start () {
@@ -59,5 +61,8 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
         Alive = false;
         m_Renderer.material = parent.negativeMaterial;
         m_Collider.enabled = false;
+        explosionSystem.transform.parent = null;
+        explosionSystem.Play();
+        Destroy(explosionSystem.gameObject, 4);
     }
 }

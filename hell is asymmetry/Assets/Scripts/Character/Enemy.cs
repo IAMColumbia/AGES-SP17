@@ -1,8 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
-public class Enemy : Character, IDamageable {
+public enum Event
+{
+    enemyDied,
+    waveEnded
+}
+
+public interface Observer
+{
+    void Notify(Subject sender, Event e);
+}
+
+public interface Subject
+{
+    void Subscribe(Observer o);
+}
+
+public class Enemy : Character, IDamageable, Subject {
 
     public bool Alive { get { return alive; } private set { alive = value; } }
     bool alive = true;
@@ -19,6 +36,8 @@ public class Enemy : Character, IDamageable {
     [SerializeField]
     public Transform[] firingPositions;
 
+    List<Observer> observers = new List<Observer>();
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -31,8 +50,18 @@ public class Enemy : Character, IDamageable {
         }
 	}
 
+    public void Subscribe(Observer o)
+    {
+        observers.Add(o);
+    }
+
     void Die()
     {
+        foreach(Observer o in observers)
+        {
+            o.Notify(this, Event.enemyDied);
+        }
+
         Destroy(this.gameObject);
     }
 
