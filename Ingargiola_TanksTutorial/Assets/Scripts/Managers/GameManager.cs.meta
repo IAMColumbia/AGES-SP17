@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 18e521b6f8588c44f9e68c769421eb47
-timeCreated: 1441706275
-licenseType: Store
+timeCreated: 1489713684
+licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_CameraControl: {instanceID: 0}
+  - m_MessageText: {instanceID: 0}
+  - m_TankPrefab: {fileID: 100012, guid: d6aa92edfea31574584e28400364504d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
