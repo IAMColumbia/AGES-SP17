@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class TankManager
 {
-    public Color m_PlayerColor;            
+    public Color m_PlayerColor;
     public Transform m_SpawnPoint;         
     [HideInInspector] public int m_PlayerNumber;             
     [HideInInspector] public string m_ColoredPlayerText;
