@@ -15,11 +15,7 @@ public class CameraPivot : MonoBehaviour {
     float rotationDamping;
 
     Vector3 cameraFollowPlayers;
-
-    void Start () {
-	
-	}
-	
+  
 	// Update is called once per frame
 	void Update () {
 
@@ -28,7 +24,7 @@ public class CameraPivot : MonoBehaviour {
 
         //This rotation focuses camera at this specific angle
         transform.rotation = Quaternion.AngleAxis(-30, Vector3.left);
-
+        
     }
 
     private void CameraRepositioning()
@@ -64,7 +60,8 @@ public class CameraPivot : MonoBehaviour {
         
                averagePos /= numTargets;
                averagePos.y = transform.position.y;
+              
                cameraFollowPlayers = averagePos;
             }
-
+     
 }

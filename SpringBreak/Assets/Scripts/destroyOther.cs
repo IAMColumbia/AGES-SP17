@@ -29,15 +29,14 @@ public class destroyOther : MonoBehaviour {
                 audioSource.Play();
                 GameObject temporaryExplosionHandler;
                 temporaryExplosionHandler = Instantiate(explosionPrefab, other.transform.position, explosionEmitter.transform.rotation) as GameObject;
-                temporaryExplosionHandler.transform.localScale += new Vector3(1, 1, 1);
-                animation.Play("explosion");
-                Rigidbody Temporary_RigidBody;
-                Temporary_RigidBody = temporaryExplosionHandler.GetComponent<Rigidbody>();
+     
+                //Rigidbody Temporary_RigidBody;
+                //Temporary_RigidBody = temporaryExplosionHandler.GetComponent<Rigidbody>();
 
             if (!animation.isPlaying)
             {
                 Destroy(temporaryExplosionHandler, .75f);
-                Destroy(other.gameObject, .60f);
+                Destroy(other.gameObject, .30f);
             }  
         }
         //if (other.gameObject.tag == "Box")

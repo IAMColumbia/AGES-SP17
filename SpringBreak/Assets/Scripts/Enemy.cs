@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
 
-    [SerializeField]
     GameObject player;
 
     [SerializeField]
@@ -48,32 +47,16 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //playerMotion();
+       // if (player == null)
+            player = GameObject.FindWithTag("Player");
         
-
-        playerDistance = Vector3.Distance(player.transform.position, transform.position);
-
-        //if(transform.position.y == waterPlane.transform.position.y)
-        //{
-        // //   transform.position.y = waterPlane.transform.position.y - 1; 
-        //}
-        if (isDead == false && playerDistance > 30f)
-        {
-            //anim.Play("PA_WarriorIdle_Clip");
-            lookAtPlayer();
-        }
-        if (isDead == false && playerDistance < 25f)
-        {
-           lookAtPlayer();
+           playerDistance = Vector3.Distance(player.transform.position, transform.position);              
+           lookAtPlayer();            
            enemyMotion();
-            fireWeapon();
-         
-        }
+        
         if (isDead == true)
         {
-          movementSpeed = 0; 
-          //anim.Play("PA_WarriorDeath_Clip");
-            //animation.Play("PA_WarriorDeath_Clip");
+          movementSpeed = 0;      
         }       
 
 	}
@@ -116,17 +99,7 @@ public class Enemy : MonoBehaviour {
     private void enemyMotion()
     {
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
-        //animation.Play("PA_WarriorForward_Clip");
-        // if (isMoving == movementSpeed)
-        // {
-        //     anim.SetFloat("isMoving", 1);
-        // }
-        //else 
-        //         {
-        //     anim.SetFloat("isMoving", 0);
-        // }
-
-
+     
     }
     
 }
