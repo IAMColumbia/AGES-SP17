@@ -22,8 +22,17 @@ public class MenuButtons : MonoBehaviour
     Toggle readyToggle3;
     [SerializeField]
     Toggle readyToggle4;
+    [SerializeField]
+    GameObject selectionPanel1;
+    [SerializeField]
+    GameObject selectionPanel2;
+    [SerializeField]
+    GameObject selectionPanel3;
+    [SerializeField]
+    GameObject selectionPanel4;
 
     List<Toggle> readyToggles = new List<Toggle>();
+    List<GameObject> selectionPanels = new List<GameObject>();
 
     private void Start()
     {
@@ -46,6 +55,34 @@ public class MenuButtons : MonoBehaviour
         creditsPanel.SetActive(false);
     }
 
+    public void BackPlayerSelectButtonPressed()
+    {
+        startPanel.SetActive(true);
+        playerSelectPanel.SetActive(false);
+    }
+
+    public void BackWeaponSelectButtonPressed()
+    {
+        foreach (GameObject selectionPanel in selectionPanels)
+        {
+            selectionPanel.SetActive(false);
+        }
+
+        foreach (Toggle readyToggle in readyToggles)
+        {
+            if (readyToggle.isOn)
+            {
+                readyToggle.isOn = false;
+            }
+        }
+
+        selectionPanels.Clear();
+        readyToggles.Clear();
+
+        playerSelectPanel.SetActive(true);
+        weaponSelectPanel.SetActive(false);
+    }
+
     public void QuitButtonPressed()
     {
         Application.Quit();
@@ -54,12 +91,15 @@ public class MenuButtons : MonoBehaviour
     public void TwoPlayersButtonPressed()
     {
         //number of players = 2
+        selectionPanels.Add(selectionPanel1);
+        selectionPanels.Add(selectionPanel2);
+
         readyToggles.Add(readyToggle1);
         readyToggles.Add(readyToggle2);
 
-        foreach (Toggle readyToggle in readyToggles)
+        foreach (GameObject selectionPanel in selectionPanels)
         {
-            readyToggle.gameObject.SetActive(true);
+            selectionPanel.SetActive(true);
         }
 
         weaponSelectPanel.SetActive(true);
@@ -69,13 +109,17 @@ public class MenuButtons : MonoBehaviour
     public void ThreePlayersButtonPressed()
     {
         //number of players = 3
+        selectionPanels.Add(selectionPanel1);
+        selectionPanels.Add(selectionPanel2);
+        selectionPanels.Add(selectionPanel3);
+
         readyToggles.Add(readyToggle1);
         readyToggles.Add(readyToggle2);
         readyToggles.Add(readyToggle3);
 
-        foreach (Toggle readyToggle in readyToggles)
+        foreach (GameObject selectionPanel in selectionPanels)
         {
-            readyToggle.gameObject.SetActive(true);
+            selectionPanel.SetActive(true);
         }
 
         weaponSelectPanel.SetActive(true);
@@ -85,14 +129,19 @@ public class MenuButtons : MonoBehaviour
     public void FourPlayersButtonPressed()
     {
         //number of players = 4
+        selectionPanels.Add(selectionPanel1);
+        selectionPanels.Add(selectionPanel2);
+        selectionPanels.Add(selectionPanel3);
+        selectionPanels.Add(selectionPanel4);
+
         readyToggles.Add(readyToggle1);
         readyToggles.Add(readyToggle2);
         readyToggles.Add(readyToggle3);
         readyToggles.Add(readyToggle4);
 
-        foreach (Toggle readyToggle in readyToggles)
+        foreach (GameObject selectionPanel in selectionPanels)
         {
-            readyToggle.gameObject.SetActive(true);
+            selectionPanel.SetActive(true);
         }
 
         weaponSelectPanel.SetActive(true);
@@ -113,7 +162,7 @@ public class MenuButtons : MonoBehaviour
 
         if (numberOfTogglesOn == readyToggles.Count)
         {
-            Debug.Log("start game");
+            SceneManager.LoadScene("Scene1");
         }
     }
 }
