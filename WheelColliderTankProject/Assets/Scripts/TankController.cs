@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class TankController : MonoBehaviour, IHeavyExplodableObject
+public class TankController : MonoBehaviour, IHeavyExplodableObject, IDamagable
 {
     // This is the main class for controlling the tank.
     // It handles driving and steering.
@@ -40,6 +40,18 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     [Tooltip("When hit by a shell, we use this much force to 'rock' the tank.")]
     [SerializeField]
     float explosionForce = 7000000;
+
+    [SerializeField]
+    float maxTankHealth = 25;
+
+    [SerializeField]
+    float tankHealth;
+
+    [SerializeField]
+    ParticleSystem smoke;
+
+    [SerializeField]
+    ParticleSystem.EmissionModule smokeEmissionModule;
 
     private float leftTrackInput;
     private float rightTrackInput;
@@ -89,6 +101,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 	// Use this for initialization
 	void Start () 
 	{
+        smokeEmissionModule = smoke.emission;
+
         rigidbody_useThis = GetComponent<Rigidbody>();
 
         normalFrictionCurve = leftTrackWheelColliders[0].sidewaysFriction;
@@ -98,6 +112,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
         normalAngularDrag = rigidbody_useThis.angularDrag;
         normalDrag = rigidbody_useThis.drag;
+
+        tankHealth = maxTankHealth;
 	}
 
     // Colors the tank for differentiating multiple players
@@ -107,6 +123,31 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     void Update ()
     {
         GetInput();
+        DamageSmoke();
+    }
+
+    private void DamageSmoke()
+    {
+        if (tankHealth < maxTankHealth * .90)
+        {
+            smokeEmissionModule.rate = 10;
+        }
+
+        if (tankHealth < maxTankHealth * .49)
+        {
+            smokeEmissionModule.rate = 100;
+        }
+
+        if (tankHealth < maxTankHealth * .25)
+        {
+            smokeEmissionModule.rate = 1000;
+        }
+
+        if (tankHealth <= 0)
+        {
+            smokeEmissionModule.rate = 100000;
+        }
+
     }
 
     private void GetInput()
@@ -223,5 +264,10 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     {
         Vector3 explosionDirection = Vector3.up + incomingProjectileDirection;
         rigidbody_useThis.AddForceAtPosition(explosionForce * explosionDirection, explosionPoint.position);
+    }
+
+    public void TakeDamage()
+    {
+        tankHealth = tankHealth - 1;
     }
 }
