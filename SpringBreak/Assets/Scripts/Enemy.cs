@@ -6,7 +6,7 @@ using System;
 public class Enemy : MonoBehaviour {
 
     // Use this for initialization
-
+    [SerializeField]
     GameObject player;
 
     [SerializeField]

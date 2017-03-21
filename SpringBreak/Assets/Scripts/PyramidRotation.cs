@@ -35,12 +35,14 @@ public class PyramidRotation : MonoBehaviour {
         Quaternion rotation = Quaternion.LookRotation(topCenter.transform.position - transform.position);
         if (transform.rotation.x <= -15 || transform.rotation.x >= 15)
         {
+            Debug.Log("rotation.x is beyond 15 degrees");
             transform.rotation = Quaternion.FromToRotation(Vector3.up, transform.forward);
             transform.rotation = Quaternion.Slerp(minRotation, maxRotation, step * Time.deltaTime);
           //  transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
         }
         else if (transform.rotation.z <= -15 || transform.rotation.z >= 15)
         {
+            Debug.Log("rotation.z is beyond 15 degrees");
             transform.rotation = Quaternion.FromToRotation(Vector3.up, transform.forward);
             transform.rotation = Quaternion.Slerp(minRotation, maxRotation, step * Time.deltaTime);
            // transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
@@ -53,8 +55,7 @@ public class PyramidRotation : MonoBehaviour {
     }
      private void stageMotion()
     {
-        transform.Translate(Vector3.u
-            p* step * Time.deltaTime);
+        transform.Translate(Vector3.up* step * Time.deltaTime);
     }
      void CheckPosition()
     {

@@ -9,14 +9,14 @@ public class Hazard : MonoBehaviour
     [SerializeField]
     GameObject player;
 
-    public int sceneToStart = 2;
+   // public int sceneToStart = 2;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             player.SetActive(false);
-            SceneManager.LoadScene(sceneToStart);
+        //    SceneManager.LoadScene(sceneToStart);
         }
     }
 }

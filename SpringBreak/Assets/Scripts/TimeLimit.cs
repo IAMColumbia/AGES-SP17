@@ -13,9 +13,6 @@ public class TimeLimit : MonoBehaviour {
     [SerializeField]
     Text timeText;
 
-    [SerializeField]
-    Camera cam;
-
     public float TimeLeft
     {
         get
