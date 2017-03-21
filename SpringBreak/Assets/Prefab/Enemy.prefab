@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013831593896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 12.72, z: 1.81}
+  m_LocalPosition: {x: 5.89, y: 18.22, z: 1.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -138,7 +138,7 @@ MonoBehaviour:
   player: {fileID: 1000013242847734, guid: 44135986ffd978d499ff77074423e7ee, type: 2}
   playerDistance: 3
   movementSpeed: 2
-  rotationDamping: 3
+  rotationDamping: 2
   sceneToStart: 2
 --- !u!136 &136000011932492722
 CapsuleCollider:

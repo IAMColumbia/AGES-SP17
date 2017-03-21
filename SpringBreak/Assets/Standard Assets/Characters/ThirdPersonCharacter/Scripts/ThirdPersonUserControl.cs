@@ -16,14 +16,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         //Copied from Tank movement  Ctrl+F "Bacon"
         //Combining tankmovement script to third person user control
-        private string m_MovementAxisName;
+        private string HorizontalMovementAxisName;
+        private string VerticalMovementAxisName;
         private Rigidbody m_Rigidbody;
         private float m_MovementInputValue;
 
         private void Start()
         {
             //Bacon
-            m_MovementAxisName = "Vertical" + m_PlayerNumber; 
+            HorizontalMovementAxisName = "Horizontal" + m_PlayerNumber;
+            VerticalMovementAxisName = "Vertical" + m_PlayerNumber;
+            
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -45,7 +48,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump" + m_PlayerNumber);
             }
         }
 
@@ -54,8 +57,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void FixedUpdate()
         {
             // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
+            //Replacing user control here.
+            float h = CrossPlatformInputManager.GetAxis(HorizontalMovementAxisName);
+            float v = CrossPlatformInputManager.GetAxis(VerticalMovementAxisName);
+
+            //float h = CrossPlatformInputManager.GetAxis("Horizontal");
+            //float v = CrossPlatformInputManager.GetAxis("Vertical");
             bool crouch = Input.GetKey(KeyCode.C);
 
             // calculate move direction to pass to character

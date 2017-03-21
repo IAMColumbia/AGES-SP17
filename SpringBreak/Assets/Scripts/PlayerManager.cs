@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
    
-public class PlayerManager
+public class PlayerManager : MonoBehaviour
 {
     public Color m_PlayerColor;
     public Transform m_SpawnPoint;
@@ -18,14 +18,14 @@ public class PlayerManager
     public int m_Wins;
 
 
-    private TankMovement m_Movement;
+    private ThirdPersonUserControl m_Movement;
     private TankShooting m_Shooting;
     private GameObject m_CanvasGameObject;
 
 
     public void Setup()
     {
-        m_Movement = m_Instance.GetComponent<TankMovement>();
+        m_Movement = m_Instance.GetComponent<ThirdPersonUserControl>();
         m_Shooting = m_Instance.GetComponent<TankShooting>();
         m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
 
