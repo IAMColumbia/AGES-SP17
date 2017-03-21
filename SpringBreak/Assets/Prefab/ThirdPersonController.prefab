@@ -1095,7 +1095,6 @@ GameObject:
   - 114: {fileID: 114000011988346528}
   - 114: {fileID: 114000012273107926}
   - 114: {fileID: 114000013824930570}
-  - 114: {fileID: 114000010121957894}
   m_Layer: 0
   m_Name: ThirdPersonController
   m_TagString: Player
@@ -2649,23 +2648,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010121957894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013242847734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be929ffb0b2002c47bcef6a9511cd157, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlayerColor: {r: 1, g: 1, b: 1, a: 0}
-  m_SpawnPoint: {fileID: 0}
-  m_PlayerNumber: 0
-  m_ColoredPlayerText: 
-  m_Instance: {fileID: 0}
-  m_Wins: 0
 --- !u!114 &114000010424763108
 MonoBehaviour:
   m_ObjectHideFlags: 1
