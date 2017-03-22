@@ -19233,7 +19233,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2266946
+  m_Name: pb_Mesh13768
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -20984,7 +20984,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2122830
+  m_Name: pb_Mesh13330
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -22537,7 +22537,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-2274058
+  m_Name: pb_Mesh13304
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -30514,7 +30514,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 52b7d70b1de7c4ce09662b77c14d9fda, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -30557,7 +30557,7 @@ Transform:
   m_GameObject: {fileID: 1658139408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: -5.7, z: -0}
-  m_LocalScale: {x: 70, y: 1, z: 70}
+  m_LocalScale: {x: 80, y: 1, z: 80}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -30573,7 +30573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f4545235a5c444d874fdf0b8251e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1000013242847734, guid: 44135986ffd978d499ff77074423e7ee, type: 2}
 --- !u!1 &1711339892
 GameObject:
   m_ObjectHideFlags: 0
@@ -34944,7 +34944,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13932
+  m_Name: pb_Mesh13986
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

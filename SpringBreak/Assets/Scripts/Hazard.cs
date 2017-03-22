@@ -15,7 +15,8 @@ public class Hazard : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player.SetActive(false);
+            Destroy(player);
+           // player.SetActive(false);         
         //    SceneManager.LoadScene(sceneToStart);
         }
     }
