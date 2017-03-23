@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 using System;
 
 public class Enemy : MonoBehaviour {
@@ -14,33 +14,26 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     float movementSpeed;
     [SerializeField]
-    float rotationDamping;
+    float rotationDamping;  
+    float timeLeftToFire;
+    float isMoving;
 
-    //[SerializeField]
-    //GameObject waterPlane;
+    [SerializeField]
+    WaterBlast waterBlastScript;
 
-    float isMoving; 
-
-    public int sceneToStart = 2;
-
-
-    
-
+    // public int sceneToStart = 2;
     //Animator anim;
-
     //Animation animation;
-
     //Rigidbody rigidBody; 
 
-   
     bool isDead = false;
-
+    bool justFired = false;
 
 
     void Start()
     {
-
-
+        timeLeftToFire = 3;
+        
         //anim = GetComponent<Animator>();
         //animation = GetComponent<Animation>();
     }
@@ -64,6 +57,18 @@ public class Enemy : MonoBehaviour {
     private void fireWeapon()
     {
         
+    Debug.Log("Fire weapon!");
+        if (timeLeftToFire <= 0)
+        {
+            //waterBlast.waterBlastAttack();
+            justFired = true;
+        }
+        if (justFired)
+        {
+            timeLeftToFire = 3;
+            timeLeftToFire -= Time.deltaTime;
+        }
+      
     }
 
     private void lookAwayFromPlayer()
@@ -85,7 +90,7 @@ public class Enemy : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             player.SetActive(false);
-            SceneManager.LoadScene(sceneToStart);
+          //  SceneManager.LoadScene(sceneToStart);
         }
         if (other.gameObject.tag == "Projectile")
         {
@@ -99,6 +104,11 @@ public class Enemy : MonoBehaviour {
     private void enemyMotion()
     {
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+        if(playerDistance < 3)
+        {
+            Debug.Log("Enemy within Range!");
+            fireWeapon();
+        }
      
     }
     

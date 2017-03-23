@@ -2,18 +2,23 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     public class GameManager : MonoBehaviour
     {
         public int m_NumRoundsToWin = 5;
-        public float m_StartDelay = 3f;
+        public float m_StartDelay = 4f;
+
+        float countDownTime = 4f;
         public float m_EndDelay = 3f;
         public CameraControl m_CameraControl;
         public Text m_MessageText;
         public GameObject m_TankPrefab;
         public TankManager[] m_Tanks;
+        [SerializeField]
+        GameObject[] startingPlatforms;
 
 
         private int m_RoundNumber;
@@ -30,10 +35,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             SpawnAllTanks();
             SetCameraTargets();
-
             StartCoroutine(GameLoop());
         }
-
+       
 
         private void SpawnAllTanks()
         {
@@ -62,6 +66,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private IEnumerator GameLoop()
         {
+           
             yield return StartCoroutine(RoundStarting());
             yield return StartCoroutine(RoundPlaying());
             yield return StartCoroutine(RoundEnding());
@@ -81,12 +86,29 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             ResetAllTanks();
             DisableTankControl();
-
+           
             m_CameraControl.SetStartPositionAndSize();
-
+            yield return StartCoroutine(StartCountDown());
             m_RoundNumber++;
-            m_MessageText.text = "ROUND" + m_NumRoundsToWin;
+            if (m_StartDelay == 0)
+            {
+                m_MessageText.text = "ROUND" + m_NumRoundsToWin + " Start!";
+            }
             yield return m_StartWait;
+        }
+        public IEnumerator StartCountDown()
+        {
+           
+            while (countDownTime > 0f)
+            {
+                countDownTime -= 1f;
+                yield return new WaitForSeconds(1f);
+                m_MessageText.text = countDownTime.ToString();                
+            }
+            if (countDownTime == 0)
+            {
+                m_MessageText.text = "Go!";
+            }
         }
 
 
@@ -182,8 +204,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Tanks[i].EnableControl();
             }
+            RemoveStartingPlatforms();
         }
 
+        private void RemoveStartingPlatforms()
+        {
+            for (int i = 0; i < startingPlatforms.Length; i++)
+            {
+                Destroy(startingPlatforms[i]);
+             }
+           
+        }
 
         private void DisableTankControl()
         {
