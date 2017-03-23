@@ -45,7 +45,7 @@ public class ActivateAbilities : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && cooldownTimer == 0)
         {
-            GameObject ability = Instantiate(activeAbility.chosenAbility1, transform.position, transform.rotation, transform) as GameObject;
+            GameObject ability = Instantiate(activeAbility.P1chosenAbility1, transform.position, transform.rotation, transform) as GameObject;
         }
     }
 

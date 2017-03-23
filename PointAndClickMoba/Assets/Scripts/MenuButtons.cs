@@ -15,6 +15,8 @@ public class MenuButtons : MonoBehaviour
     [SerializeField]
     GameObject weaponSelectPanel;
     [SerializeField]
+    AbilitySelect AbSelect;
+    [SerializeField]
     Toggle readyToggle1;
     [SerializeField]
     Toggle readyToggle2;
@@ -30,9 +32,26 @@ public class MenuButtons : MonoBehaviour
     GameObject selectionPanel3;
     [SerializeField]
     GameObject selectionPanel4;
+    [SerializeField]
+    Dropdown P1AbilitySelect1;
+    [SerializeField]
+    Dropdown P1AbilitySelect2;
+    [SerializeField]
+    Dropdown P2AbilitySelect1;
+    [SerializeField]
+    Dropdown P2AbilitySelect2;
+    [SerializeField]
+    Dropdown P3AbilitySelect1;
+    [SerializeField]
+    Dropdown P3AbilitySelect2;
+    [SerializeField]
+    Dropdown P4AbilitySelect1;
+    [SerializeField]
+    Dropdown P4AbilitySelect2;
 
     List<Toggle> readyToggles = new List<Toggle>();
     List<GameObject> selectionPanels = new List<GameObject>();
+    List<Dropdown> playerAbilities = new List<Dropdown>();
 
     private void Start()
     {
@@ -76,8 +95,14 @@ public class MenuButtons : MonoBehaviour
             }
         }
 
+        foreach (Dropdown abilityChoice in playerAbilities)
+        {
+            abilityChoice.value = 0;
+        }
+
         selectionPanels.Clear();
         readyToggles.Clear();
+        playerAbilities.Clear();
 
         playerSelectPanel.SetActive(true);
         weaponSelectPanel.SetActive(false);
@@ -96,6 +121,11 @@ public class MenuButtons : MonoBehaviour
 
         readyToggles.Add(readyToggle1);
         readyToggles.Add(readyToggle2);
+
+        playerAbilities.Add(P1AbilitySelect1);
+        playerAbilities.Add(P1AbilitySelect2);
+        playerAbilities.Add(P2AbilitySelect1);
+        playerAbilities.Add(P2AbilitySelect2);
 
         foreach (GameObject selectionPanel in selectionPanels)
         {
@@ -116,6 +146,13 @@ public class MenuButtons : MonoBehaviour
         readyToggles.Add(readyToggle1);
         readyToggles.Add(readyToggle2);
         readyToggles.Add(readyToggle3);
+
+        playerAbilities.Add(P1AbilitySelect1);
+        playerAbilities.Add(P1AbilitySelect2);
+        playerAbilities.Add(P2AbilitySelect1);
+        playerAbilities.Add(P2AbilitySelect2);
+        playerAbilities.Add(P3AbilitySelect1);
+        playerAbilities.Add(P3AbilitySelect2);
 
         foreach (GameObject selectionPanel in selectionPanels)
         {
@@ -138,6 +175,15 @@ public class MenuButtons : MonoBehaviour
         readyToggles.Add(readyToggle2);
         readyToggles.Add(readyToggle3);
         readyToggles.Add(readyToggle4);
+
+        playerAbilities.Add(P1AbilitySelect1);
+        playerAbilities.Add(P1AbilitySelect2);
+        playerAbilities.Add(P2AbilitySelect1);
+        playerAbilities.Add(P2AbilitySelect2);
+        playerAbilities.Add(P3AbilitySelect1);
+        playerAbilities.Add(P3AbilitySelect2);
+        playerAbilities.Add(P4AbilitySelect1);
+        playerAbilities.Add(P4AbilitySelect2);
 
         foreach (GameObject selectionPanel in selectionPanels)
         {
@@ -162,6 +208,24 @@ public class MenuButtons : MonoBehaviour
 
         if (numberOfTogglesOn == readyToggles.Count)
         {
+            AbSelect.P1chosenAbility1 = AbSelect.abilities[P1AbilitySelect1.value];
+            AbSelect.P1chosenAbility2 = AbSelect.abilities[P1AbilitySelect2.value];
+            AbSelect.P2chosenAbility1 = AbSelect.abilities[P2AbilitySelect1.value];
+            AbSelect.P2chosenAbility2 = AbSelect.abilities[P2AbilitySelect2.value];
+
+            if (selectionPanel3.activeSelf)
+            {
+                AbSelect.P3chosenAbility1 = AbSelect.abilities[P3AbilitySelect1.value];
+                AbSelect.P3chosenAbility2 = AbSelect.abilities[P3AbilitySelect2.value];
+            }
+
+            if (selectionPanel4.activeSelf)
+            {
+                AbSelect.P4chosenAbility1 = AbSelect.abilities[P4AbilitySelect1.value];
+                AbSelect.P4chosenAbility2 = AbSelect.abilities[P4AbilitySelect2.value];
+            }
+
+            DontDestroyOnLoad(AbSelect);
             SceneManager.LoadScene("Scene1");
         }
     }
