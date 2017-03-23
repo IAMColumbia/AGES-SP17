@@ -19,6 +19,8 @@ public class TankMovement : MonoBehaviour
     private float driftTurnSpeed;
     [SerializeField]
     private float maxSpeedInMPH;
+    [SerializeField]
+    private AudioSource engineAudio;
     #endregion
 
     private float triggerInput;
@@ -66,7 +68,6 @@ public class TankMovement : MonoBehaviour
         {
             //movement speed is actual "speed" of zamboni
             myRigidBody.AddRelativeForce(movementVector * movementSpeed);
-
             //debug statement to check if it's going faster than max speed
             //Debug.Log("Speed is at " + (myRigidBody.velocity.magnitude * milesPerHourConst).ToString());
         }
