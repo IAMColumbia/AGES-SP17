@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class CameraControl : MonoBehaviour
     private Camera m_Camera;                        
     private float m_ZoomSpeed;                      
     private Vector3 m_MoveVelocity;                 
-    private Vector3 m_DesiredPosition;              
+    private Vector3 m_DesiredPosition;
+    [SerializeField]
+    GameObject centeredGameObject;             
 
 
     private void Awake()
@@ -32,10 +35,16 @@ public class CameraControl : MonoBehaviour
     private void Move()
     {
         FindAveragePosition();
-
-        transform.position = Vector3.SmoothDamp(transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
+        Rotation();
+        transform.position = Vector3.SmoothDamp(centeredGameObject.transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
     }
 
+    private void Rotation()
+    {
+        
+        transform.RotateAround(m_MoveVelocity, m_DesiredPosition, 0.1f);
+
+    }
 
     private void FindAveragePosition()
     {
@@ -57,6 +66,7 @@ public class CameraControl : MonoBehaviour
         averagePos.y = transform.position.y;
 
         m_DesiredPosition = averagePos;
+        //Rotation(averagePos.y);
     }
 
 

@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour {
     Debug.Log("Fire weapon!");
         if (timeLeftToFire <= 0)
         {
-            //waterBlast.waterBlastAttack();
+            waterBlastScript.waterBlastAttack();
             justFired = true;
         }
         if (justFired)
