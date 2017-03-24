@@ -33,7 +33,9 @@ public class CameraRig : MonoBehaviour
 
     private void Move()
     {
-        throw new NotImplementedException();
+        FindAveragePosition();
+
+        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref moveVelocity, dampTime);
     }
 
     private void FindAveragePosition()
