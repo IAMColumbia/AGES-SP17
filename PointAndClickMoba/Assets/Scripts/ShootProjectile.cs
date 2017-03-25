@@ -4,11 +4,11 @@ using System.Collections;
 public class ShootProjectile : MonoBehaviour
 {
     [SerializeField]
-    float speed = 2;
+    float speed = 3;
     [SerializeField]
     float explosionRadius = 10;
     [SerializeField]
-    float travelDistance = 10;
+    float travelDistance = 15;
     [SerializeField]
     GameObject explosion;
     [SerializeField]

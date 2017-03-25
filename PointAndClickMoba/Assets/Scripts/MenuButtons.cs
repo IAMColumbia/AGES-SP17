@@ -54,6 +54,11 @@ public class MenuButtons : MonoBehaviour
     List<GameObject> selectionPanels = new List<GameObject>();
     List<Dropdown> playerAbilities = new List<Dropdown>();
 
+    void Start()
+    {
+        
+    }
+
     public void StartButtonPressed()
     {
         playerSelectPanel.SetActive(true);

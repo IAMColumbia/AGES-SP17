@@ -10,6 +10,8 @@ public class SpawnPlayers : MonoBehaviour
     GameObject cannonPrefab;
     [SerializeField]
     GameObject healthBarPrefab;
+    [SerializeField]
+    GameObject infoPanel;
 
     AbilitySelect AbSelect;
     GameObject p1Tank;
@@ -32,10 +34,17 @@ public class SpawnPlayers : MonoBehaviour
     AbilityCooldown p2CooldownSlider;
     AbilityCooldown p3CooldownSlider;
     AbilityCooldown p4CooldownSlider;
+    EndGame endGame;
 
     void Start()
     {
         AbSelect = GameObject.Find("AbilitySelector").GetComponent<AbilitySelect>();
+        endGame = GameObject.Find("EndGame").GetComponent<EndGame>();
+    }
+
+    public void StartButtonPressed()
+    {
+        infoPanel.SetActive(false);
 
         p1Tank = Instantiate(tankPrefab, new Vector3(-16, 0, -16), Quaternion.Euler(0, 45, 0)) as GameObject;
         p1Cannon = Instantiate(cannonPrefab, new Vector3(-16, 0, -16), Quaternion.Euler(0, 45, 0)) as GameObject;
@@ -45,14 +54,18 @@ public class SpawnPlayers : MonoBehaviour
         p1Tank.GetComponent<PlayerMovement>().horizontalMoveInput = "P1MoveHorizontal";
         p1Tank.GetComponent<PlayerMovement>().verticalMoveInput = "P1MoveVertical";
         p1Tank.GetComponent<TakeDamage>().healthSlider = p1HealthBar.transform.GetChild(0).GetComponentInChildren<Slider>();
+        p1Tank.GetComponent<TakeDamage>().Cannon = p1Cannon;
+        p1Tank.GetComponent<TakeDamage>().HealthBar = p1HealthBar;
         p1Cannon.GetComponent<RotateTowardMouse>().horizontalLookInput = "P1LookHorizontal";
         p1Cannon.GetComponent<RotateTowardMouse>().verticalLookInput = "P1LookVertical";
         p1Cannon.GetComponent<CameraFollow>().player = p1Tank;
         p1HealthBar.GetComponent<CameraFollow>().player = p1Tank;
+        p1HealthBar.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(0.9f, 0, 0, 1);
         p1CooldownSlider.playerNumber = 1;
         p1CooldownSlider.spawnLocation = p1Nozzle;
         p1CooldownSlider.activateButton1 = "P1Ability1";
         p1CooldownSlider.activateButton2 = "P1Ability2";
+        endGame.playerHealthBars.Add(p1HealthBar.transform.GetChild(0).GetChild(1).GetComponent<Slider>());
 
         p2Tank = Instantiate(tankPrefab, new Vector3(16, 0, 16), Quaternion.Euler(0, -135, 0)) as GameObject;
         p2Cannon = Instantiate(cannonPrefab, new Vector3(16, 0, 16), Quaternion.Euler(0, -135, 0)) as GameObject;
@@ -62,14 +75,18 @@ public class SpawnPlayers : MonoBehaviour
         p2Tank.GetComponent<PlayerMovement>().horizontalMoveInput = "P2MoveHorizontal";
         p2Tank.GetComponent<PlayerMovement>().verticalMoveInput = "P2MoveVertical";
         p2Tank.GetComponent<TakeDamage>().healthSlider = p2HealthBar.transform.GetChild(0).GetComponentInChildren<Slider>();
+        p2Tank.GetComponent<TakeDamage>().Cannon = p2Cannon;
+        p2Tank.GetComponent<TakeDamage>().HealthBar = p2HealthBar;
         p2Cannon.GetComponent<RotateTowardMouse>().horizontalLookInput = "P2LookHorizontal";
         p2Cannon.GetComponent<RotateTowardMouse>().verticalLookInput = "P2LookVertical";
         p2Cannon.GetComponent<CameraFollow>().player = p2Tank;
         p2HealthBar.GetComponent<CameraFollow>().player = p2Tank;
+        p2HealthBar.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(0, 0.3f, 0.7f, 1);
         p2CooldownSlider.playerNumber = 2;
         p2CooldownSlider.spawnLocation = p2Nozzle;
         p2CooldownSlider.activateButton1 = "P2Ability1";
         p2CooldownSlider.activateButton2 = "P2Ability2";
+        endGame.playerHealthBars.Add(p2HealthBar.transform.GetChild(0).GetChild(1).GetComponent<Slider>());
 
         if (AbSelect.numberOfPlayers == 3 || AbSelect.numberOfPlayers == 4)
         {
@@ -81,14 +98,18 @@ public class SpawnPlayers : MonoBehaviour
             p3Tank.GetComponent<PlayerMovement>().horizontalMoveInput = "P3MoveHorizontal";
             p3Tank.GetComponent<PlayerMovement>().verticalMoveInput = "P3MoveVertical";
             p3Tank.GetComponent<TakeDamage>().healthSlider = p3HealthBar.transform.GetChild(0).GetComponentInChildren<Slider>();
+            p3Tank.GetComponent<TakeDamage>().Cannon = p3Cannon;
+            p3Tank.GetComponent<TakeDamage>().HealthBar = p3HealthBar;
             p3Cannon.GetComponent<RotateTowardMouse>().horizontalLookInput = "P3LookHorizontal";
             p3Cannon.GetComponent<RotateTowardMouse>().verticalLookInput = "P3LookVertical";
             p3Cannon.GetComponent<CameraFollow>().player = p3Tank;
             p3HealthBar.GetComponent<CameraFollow>().player = p3Tank;
+            p3HealthBar.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(0, 0.7f, 0.3f, 1);
             p3CooldownSlider.playerNumber = 3;
             p3CooldownSlider.spawnLocation = p3Nozzle;
             p3CooldownSlider.activateButton1 = "P3Ability1";
             p3CooldownSlider.activateButton2 = "P3Ability2";
+            endGame.playerHealthBars.Add(p3HealthBar.transform.GetChild(0).GetChild(1).GetComponent<Slider>());
         }
 
         if (AbSelect.numberOfPlayers == 4)
@@ -101,14 +122,18 @@ public class SpawnPlayers : MonoBehaviour
             p4Tank.GetComponent<PlayerMovement>().horizontalMoveInput = "P4MoveHorizontal";
             p4Tank.GetComponent<PlayerMovement>().verticalMoveInput = "P4MoveVertical";
             p4Tank.GetComponent<TakeDamage>().healthSlider = p4HealthBar.transform.GetChild(0).GetComponentInChildren<Slider>();
+            p4Tank.GetComponent<TakeDamage>().Cannon = p4Cannon;
+            p4Tank.GetComponent<TakeDamage>().HealthBar = p4HealthBar;
             p4Cannon.GetComponent<RotateTowardMouse>().horizontalLookInput = "P4LookHorizontal";
             p4Cannon.GetComponent<RotateTowardMouse>().verticalLookInput = "P4LookVertical";
             p4Cannon.GetComponent<CameraFollow>().player = p4Tank;
             p4HealthBar.GetComponent<CameraFollow>().player = p4Tank;
+            p4HealthBar.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>().color = new Color(0.9f, 0.7f, 0, 1);
             p4CooldownSlider.playerNumber = 4;
             p4CooldownSlider.spawnLocation = p4Nozzle;
             p4CooldownSlider.activateButton1 = "P4Ability1";
             p4CooldownSlider.activateButton2 = "P4Ability2";
+            endGame.playerHealthBars.Add(p4HealthBar.transform.GetChild(0).GetChild(1).GetComponent<Slider>());
         }
     }
 }
