@@ -21,6 +21,8 @@ public class AbilitySelect : MonoBehaviour
     public GameObject P4chosenAbility1;
     [HideInInspector]
     public GameObject P4chosenAbility2;
+    [HideInInspector]
+    public int numberOfPlayers;
 
     void Update()
     {

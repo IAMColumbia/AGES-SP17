@@ -3,8 +3,7 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField]
-    GameObject player;
+    public GameObject player;
 
     //Vector3 offset;
 

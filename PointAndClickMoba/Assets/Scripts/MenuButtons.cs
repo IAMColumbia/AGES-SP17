@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -48,15 +49,10 @@ public class MenuButtons : MonoBehaviour
     Dropdown P4AbilitySelect1;
     [SerializeField]
     Dropdown P4AbilitySelect2;
-
+    
     List<Toggle> readyToggles = new List<Toggle>();
     List<GameObject> selectionPanels = new List<GameObject>();
     List<Dropdown> playerAbilities = new List<Dropdown>();
-
-    private void Start()
-    {
-
-    }
 
     public void StartButtonPressed()
     {
@@ -212,17 +208,20 @@ public class MenuButtons : MonoBehaviour
             AbSelect.P1chosenAbility2 = AbSelect.abilities[P1AbilitySelect2.value];
             AbSelect.P2chosenAbility1 = AbSelect.abilities[P2AbilitySelect1.value];
             AbSelect.P2chosenAbility2 = AbSelect.abilities[P2AbilitySelect2.value];
+            AbSelect.numberOfPlayers = 2;
 
             if (selectionPanel3.activeSelf)
             {
                 AbSelect.P3chosenAbility1 = AbSelect.abilities[P3AbilitySelect1.value];
                 AbSelect.P3chosenAbility2 = AbSelect.abilities[P3AbilitySelect2.value];
+                AbSelect.numberOfPlayers = 3;
             }
 
             if (selectionPanel4.activeSelf)
             {
                 AbSelect.P4chosenAbility1 = AbSelect.abilities[P4AbilitySelect1.value];
                 AbSelect.P4chosenAbility2 = AbSelect.abilities[P4AbilitySelect2.value];
+                AbSelect.numberOfPlayers = 4;
             }
 
             DontDestroyOnLoad(AbSelect);

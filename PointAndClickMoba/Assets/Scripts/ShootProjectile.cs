@@ -34,7 +34,10 @@ public class ShootProjectile : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        Explode();
+        if (collider.GetComponent<TakeDamage>())
+        {
+            Explode();
+        }
     }
 
     void Explode()

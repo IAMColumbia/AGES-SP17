@@ -3,10 +3,13 @@ using System.Collections;
 
 public class RotateTowardMouse : MonoBehaviour
 {
-	void FixedUpdate()
+    public string horizontalLookInput;
+    public string verticalLookInput;
+
+    void FixedUpdate()
     {
-        float lookHorizontal = Input.GetAxis("LookHorizontal");
-        float lookVertical = Input.GetAxis("LookVertical");
+        float lookHorizontal = Input.GetAxis(horizontalLookInput);
+        float lookVertical = Input.GetAxis(verticalLookInput);
 
         Vector3 lookDirection = new Vector3(lookHorizontal, 0.0f, lookVertical);
 

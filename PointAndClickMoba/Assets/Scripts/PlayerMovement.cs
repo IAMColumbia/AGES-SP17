@@ -8,13 +8,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float turnSpeed = 13;
 
-    [HideInInspector]
-    public float speedBoostAmount = 0;
+    public string horizontalMoveInput;
+    public string verticalMoveInput;
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis(horizontalMoveInput);
+        float moveVertical = Input.GetAxis(verticalMoveInput);
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         GetComponent<Rigidbody>().velocity = movement * speed;
@@ -24,10 +24,5 @@ public class PlayerMovement : MonoBehaviour
             Quaternion moveRotation = Quaternion.LookRotation(GetComponent<Rigidbody>().velocity);
             transform.rotation = Quaternion.Slerp(transform.rotation, moveRotation, turnSpeed * Time.deltaTime);
         }
-    }
-
-    float CalcSpeed()
-    {
-        return speed + speedBoostAmount;
     }
 }

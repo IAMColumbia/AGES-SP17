@@ -9,17 +9,17 @@ public class AbilityCooldown : MonoBehaviour
     Slider cooldownSlider;
     [SerializeField]
     AbilitySelect activeAbility;
-    [SerializeField]
-    Transform spawnLocation;
-    [SerializeField]
-    string activateButton1;
-    [SerializeField]
-    string activateButton2;
-    [SerializeField]
-    int playerNumber;
 
     [HideInInspector]
+    public string activateButton1;
+    [HideInInspector]
+    public string activateButton2;
+    [HideInInspector]
     public float cooldown;
+    [HideInInspector]
+    public Transform spawnLocation;
+    [HideInInspector]
+    public int playerNumber;
 
     float cooldownTimer;
     GameObject selectedAbility1;

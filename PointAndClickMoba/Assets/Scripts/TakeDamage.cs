@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class TakeDamage : MonoBehaviour
 {
     [SerializeField]
-    Slider healthSlider;
-    [SerializeField]
     float maxHealth = 100;
+
+    [HideInInspector]
+    public Slider healthSlider;
 
     float currentHealth;
 

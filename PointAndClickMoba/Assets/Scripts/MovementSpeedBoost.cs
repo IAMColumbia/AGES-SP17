@@ -9,13 +9,11 @@ public class MovementSpeedBoost : MonoBehaviour
 
     void Awake()
     {
-        player.speedBoostAmount = 3;
         Invoke("EndSpeedBoost", 4);
     }
 
     void EndSpeedBoost()
     {
-        player.speedBoostAmount = 0;
         Destroy(gameObject);
     }
 }
