@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(UnityEngine.Rigidbody))]
 public class TankMovement : MonoBehaviour
 {
     #region SerializedFields
@@ -47,6 +47,7 @@ public class TankMovement : MonoBehaviour
     {
         Turn();
         Accelerate();
+        CarAudio();
     }
 
     private void Accelerate()
@@ -93,7 +94,7 @@ public class TankMovement : MonoBehaviour
     {
         if (isAccelerating)
         {
-            if (Input.GetAxis(driftButton) >= 0.1)
+            if (Input.GetButton(driftButton))
             {
                 leftStickInput = (Input.GetAxis(leftStick) * driftTurnSpeed);
                 Debug.Log("I'm drifting!");
@@ -106,5 +107,18 @@ public class TankMovement : MonoBehaviour
             gameObject.transform.Rotate(xConstant, leftStickInput, zConstant);
         }
         //Debug.Log(leftStickInput.ToString());
+    }
+
+    //TODO: Fix this audio issue
+    private void CarAudio()
+    {
+        if (isAccelerating && engineAudio.isPlaying == false)
+        {
+            engineAudio.Play();
+        }
+        else
+        {
+            engineAudio.Stop();
+        }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(UnityEngine.Rigidbody))]
 public class TankDamage : MonoBehaviour
 {
     [SerializeField]
@@ -31,7 +31,7 @@ public class TankDamage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Rigidbody opponentRigidBody = collision.gameObject.GetComponent<Rigidbody>();
+            UnityEngine.Rigidbody opponentRigidBody = collision.gameObject.GetComponent<UnityEngine.Rigidbody>();
 
             //detects contact points and direction to be launched in direction opposite of contact
             Vector3 launchDirection = new Vector3();
@@ -56,7 +56,7 @@ public class TankDamage : MonoBehaviour
     }
 
     //PLEASE TEST ME
-    private void LaunchPlayer(int damage, float impactForce, Vector3 direction, Rigidbody objectToLaunch)
+    private void LaunchPlayer(int damage, float impactForce, Vector3 direction, UnityEngine.Rigidbody objectToLaunch)
     {
         float launchForce = damage * impactForce * damageMultiplier;
         objectToLaunch.AddForce(direction * launchForce);

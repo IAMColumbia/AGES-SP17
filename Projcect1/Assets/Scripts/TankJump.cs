@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(UnityEngine.Rigidbody))]
 public class TankJump : MonoBehaviour
 {
     [SerializeField]
@@ -18,7 +18,7 @@ public class TankJump : MonoBehaviour
     [SerializeField]
     private AudioSource jumpSound;
 
-    private Rigidbody myRigidBody;
+    private UnityEngine.Rigidbody myRigidBody;
     private bool isOnGround;
 
     private float xConst = 0;
@@ -28,7 +28,7 @@ public class TankJump : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        myRigidBody = GetComponent<Rigidbody>();
+        myRigidBody = GetComponent<UnityEngine.Rigidbody>();
         //for testing purposes, delete later
         //isOnGround = true;
 	}
@@ -42,7 +42,7 @@ public class TankJump : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetAxis(jumpButton) >= .05 && isOnGround == true)
+        if (Input.GetButtonDown(jumpButton) && isOnGround == true)
         {
             jumpSound.Play();
             myRigidBody.AddRelativeForce(xConst,jumpSpeed,zConst);
