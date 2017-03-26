@@ -116,7 +116,7 @@ public class TankMovement : MonoBehaviour
         {
             engineAudio.Play();
         }
-        else
+        if (!isAccelerating)
         {
             engineAudio.Stop();
         }
