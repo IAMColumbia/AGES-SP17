@@ -16,6 +16,8 @@ public class TankDamage : MonoBehaviour
     private float damageMultiplier;
     [SerializeField]
     private ParticleSystem explosion;
+    [SerializeField]
+    private AudioSource explosionSound;
 
 	// Use this for initialization
 	void Start ()
@@ -71,6 +73,9 @@ public class TankDamage : MonoBehaviour
 
     public void Explode()
     {
+        explosion.transform.parent = null;
+        explosionSound.Play();
         explosion.Play();
+        damageText.text = PlayerID + " : DEAD";
     }
 }
