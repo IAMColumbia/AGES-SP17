@@ -20,18 +20,18 @@ public class SpawnPrevention : MonoBehaviour {
 		if (obj.tag == "Point") 
 		{
 			Destroy (obj.gameObject);
-			Vector3 position = new Vector3 (Random.Range (-12f, 12f), 0.34f, Random.Range (-12f, 12f));
+			Vector3 position = new Vector3 (Random.Range (-12f, 12f), 5f, Random.Range (-12f, 12f));
 			Instantiate (point, position, Quaternion.identity);
 		}
 	}
 
-	public void OnTriggerStay(Collider obj)
-	{
-		if (obj.tag == "Point") 
-		{
-			Destroy (obj.gameObject);
-			Vector3 position = new Vector3 (Random.Range (-12f, 12f), 0.34f, Random.Range (-12f, 12f));
-			Instantiate (point, position, Quaternion.identity);
-		}
-	}
+//	public void OnTriggerStay(Collider obj)
+//	{
+//		if (obj.tag == "Point") 
+//		{
+//			Destroy (obj.gameObject);
+//			Vector3 position = new Vector3 (Random.Range (-12f, 12f), 5f, Random.Range (-12f, 12f));
+//			Instantiate (point, position, Quaternion.identity);
+//		}
+//	}
 }

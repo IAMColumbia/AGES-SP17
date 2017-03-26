@@ -5,13 +5,27 @@ public class PickUp : MonoBehaviour {
 
 	public int PointsPickedUp;
 	public GameObject point;
+	public GameObject pointParticleSystem;
+	public GameObject powerUp;
+	public GameObject powerUpParticleSystem;
+	public bool poweredUp;
+	[SerializeField]
+	private float widthRange;
+	[SerializeField]
+	private float depthRange;
+
 
 	// Use this for initialization
 	void Start () {
 	
+		poweredUp = false;
 		PointsPickedUp = 0;
-		Vector3 position = new Vector3 (Random.Range(-12f,12f), 0.34f, Random.Range(-12f,12f));
-		Instantiate (point, position, Quaternion.identity);
+
+		Vector3 position1 = new Vector3 (Random.Range(-widthRange,widthRange), 5f, Random.Range(-depthRange,depthRange));
+		Instantiate (point, position1, Quaternion.identity);
+
+		Vector3 position2 = new Vector3 (Random.Range(-widthRange,widthRange), 5f, Random.Range(-depthRange,depthRange));
+		Instantiate (powerUp, position2, Quaternion.identity);
 
 	}
 	
@@ -25,14 +39,23 @@ public class PickUp : MonoBehaviour {
 		if(obj.tag == "Point")
 		{
 			PointsPickedUp += 1;
+			poweredUp = false;
+
+			Instantiate (pointParticleSystem, obj.transform.position, Quaternion.identity);
+			//Destroy (pointParticleSystem.gameObject, 1f);
 			Destroy (obj.gameObject);
-			Vector3 position = new Vector3 (Random.Range(-12f,12f), 0.34f, Random.Range(-12f,12f));
+			Vector3 position = new Vector3 (Random.Range(-widthRange,widthRange), 5f, Random.Range(-depthRange,depthRange));
 			Instantiate (point, position, Quaternion.identity);
 		}
 
 		if(obj.tag == "PowerUp")
 		{
+			poweredUp = true;
+
+			Instantiate (powerUpParticleSystem, obj.transform.position, Quaternion.identity);
 			Destroy (obj.gameObject);
+			Vector3 position = new Vector3 (Random.Range(-widthRange,widthRange), 5f, Random.Range(-depthRange,depthRange));
+			Instantiate (powerUp, position, Quaternion.identity);
 		}
 	}
 }
