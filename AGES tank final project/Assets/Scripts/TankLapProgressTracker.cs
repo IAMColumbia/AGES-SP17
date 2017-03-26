@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TankLapProgressTracker : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class TankLapProgressTracker : MonoBehaviour
     private GameObject cameraToDeactivate;
     [SerializeField]
     private Collider finishLineCollider;
+    [SerializeField]
+    private Text playerLapText;
 
     public bool hasPassedCheckpoint1;
     public bool hasPassedCheckpoint2;
@@ -27,8 +30,9 @@ public class TankLapProgressTracker : MonoBehaviour
 	void Update ()
     {
         handleWinning();
-	
-	}
+        playerLapText.text = "Laps: " + currentLap + "/3";
+
+    }
 
     private void handleWinning()
     {

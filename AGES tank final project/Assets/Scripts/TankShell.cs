@@ -47,6 +47,10 @@ public class TankShell : MonoBehaviour
         {
             StartCoroutine(HandleStunForPlayer4());
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
     }
 

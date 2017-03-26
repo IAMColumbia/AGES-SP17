@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TankMovement : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class TankMovement : MonoBehaviour
     [SerializeField]
     private float boostMultiplier = 2f;
     [SerializeField]
-    private int boostUseLimit = 3;
+    private int boostsAvailable = 3;
+    [SerializeField]
+    private Slider boostSlider;
 
     private string movementAxisName;
     private string turnAxisName;
@@ -21,7 +24,7 @@ public class TankMovement : MonoBehaviour
     private float turnInputValue;
     private bool canBoost;
     private bool isBoosting;
-    private int boostsUsed = 0;
+    //private int boostsUsed = 3;
 
     private void Awake()
     {
@@ -42,15 +45,15 @@ public class TankMovement : MonoBehaviour
     {
         movementInputValue = Input.GetAxis(movementAxisName);
         turnInputValue = Input.GetAxis(turnAxisName);
-        StartCoroutine(Boost());
         CheckForAvailableBoosts();
-	
+        boostSlider.value = boostsAvailable;
 	}
 
     private void FixedUpdate()
     {
         Move();
         Turn();
+        StartCoroutine(Boost());
     }
 
     private void Move()
@@ -74,7 +77,7 @@ public class TankMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Boost" + playerNumber))
         {
-            boostsUsed++;
+            boostsAvailable--;
 
             if(canBoost)
             {
@@ -89,7 +92,7 @@ public class TankMovement : MonoBehaviour
 
     private void CheckForAvailableBoosts()
     {
-        if(boostsUsed == boostUseLimit)
+        if (boostsAvailable == 0)
         {
             canBoost = false;
         }

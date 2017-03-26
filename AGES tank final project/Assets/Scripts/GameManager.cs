@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject winnerPanel;
     [SerializeField]
+    private GameObject raceUIPanel;
+    [SerializeField]
     private TankLapProgressTracker player1Progress;
     [SerializeField]
     private TankLapProgressTracker player2Progress;
@@ -31,18 +33,22 @@ public class GameManager : MonoBehaviour
     {
         if(player1Progress.hasWon)
         {
+            raceUIPanel.SetActive(false);
             winnerPanel.SetActive(true);
         }
         else if(player2Progress.hasWon)
         {
+            raceUIPanel.SetActive(false);
             winnerPanel.SetActive(true);
         }
         else if (player3Progress.hasWon)
         {
+            raceUIPanel.SetActive(false);
             winnerPanel.SetActive(true);
         }
         else if (player4Progress.hasWon)
         {
+            raceUIPanel.SetActive(false);
             winnerPanel.SetActive(true);
         }
     }
