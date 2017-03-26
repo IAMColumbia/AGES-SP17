@@ -14,6 +14,8 @@ public class TankDamage : MonoBehaviour
     //please adjust damage multiplier, 100 is too much, 10 is still too little
     [SerializeField]
     private float damageMultiplier;
+    [SerializeField]
+    private ParticleSystem explosion;
 
 	// Use this for initialization
 	void Start ()
@@ -65,5 +67,10 @@ public class TankDamage : MonoBehaviour
     private void UpdateDamageText()
     {
         damageText.text = PlayerID + " Damage: " + playerDamage.ToString();
+    }
+
+    public void Explode()
+    {
+        explosion.Play();
     }
 }
