@@ -23,6 +23,14 @@ public class Bullet : MonoBehaviour
         bulletShotSound = GetComponent<AudioSource>();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void LaunchBullet(float bulletForce)
     {
         //bulletShotSound.Play();
