@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour {
     private void OnEnable()
     {
         currentHealth = StartingHealth;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
         isDead = false;
 
         SetHealthUI();
