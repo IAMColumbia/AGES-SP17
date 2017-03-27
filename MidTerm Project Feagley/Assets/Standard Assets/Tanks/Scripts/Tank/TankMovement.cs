@@ -16,7 +16,11 @@ public class TankMovement : MonoBehaviour
     private Rigidbody m_Rigidbody;         
     private float m_MovementInputValue;    
     private float m_TurnInputValue;        
-    private float m_OriginalPitch;         
+    private float m_OriginalPitch;
+
+    //added for midterm
+    private string m_StrafeAxisName;
+    private float m_StrafeInputValue;
 
 
     private void Awake()
@@ -45,6 +49,9 @@ public class TankMovement : MonoBehaviour
         m_TurnAxisName = "Horizontal" + m_PlayerNumber;
 
         m_OriginalPitch = m_MovementAudio.pitch;
+
+        //added for midterm
+        m_StrafeAxisName = "Strafe" + m_PlayerNumber;
     }
     
 
@@ -55,6 +62,9 @@ public class TankMovement : MonoBehaviour
         m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
 
         EngineAudio();
+        
+        //added for midterm
+        m_StrafeInputValue = Input.GetAxis(m_StrafeAxisName);
     }
 
 
@@ -88,6 +98,9 @@ public class TankMovement : MonoBehaviour
         // Move and turn the tank.
         Move();
         Turn();
+
+        //added for midterm
+        Strafe();
     }
 
 
@@ -107,5 +120,13 @@ public class TankMovement : MonoBehaviour
 
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+    }
+
+    //added for midterm
+    private void Strafe()
+    {
+        Vector3 strafeMovement = transform.right * m_StrafeInputValue * m_Speed * Time.deltaTime;
+
+        m_Rigidbody.MovePosition(m_Rigidbody.position + strafeMovement);
     }
 }
