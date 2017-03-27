@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
 using System.Collections;
 
 public class PlayerSelect : MonoBehaviour
