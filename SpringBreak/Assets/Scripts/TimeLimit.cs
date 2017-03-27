@@ -12,6 +12,10 @@ public class TimeLimit : MonoBehaviour {
 
     [SerializeField]
     Text timeText;
+    [SerializeField]
+    Text m_MessageText;
+
+    Hazard hazard = new Hazard();
 
     public float TimeLeft
     {
@@ -61,6 +65,11 @@ public class TimeLimit : MonoBehaviour {
         {
             Debug.Log("Time UP!");
             GameOver();
+        }
+        if(TimeLeft <= 30)
+        {
+            hazard.WaterRise();
+            m_MessageText.text = "Hurry up!";
         }
     }
 

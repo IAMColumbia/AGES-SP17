@@ -19,15 +19,25 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public TankManager[] m_Tanks;
         [SerializeField]
         GameObject[] startingPlatforms;
+        [SerializeField]
+        GameObject goal;
 
-
+       
         private int m_RoundNumber;
         private WaitForSeconds m_StartWait;
         private WaitForSeconds m_EndWait;
         private TankManager m_RoundWinner;
         private TankManager m_GameWinner;
 
-
+        Hazard hazard;
+        public bool HasGoal
+        {
+            get
+            {
+                return goal.activeSelf;
+            }
+           
+         }
         private void Start()
         {
             m_StartWait = new WaitForSeconds(m_StartDelay);
@@ -86,7 +96,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             ResetAllTanks();
             DisableTankControl();
-           
             m_CameraControl.SetStartPositionAndSize();
             yield return StartCoroutine(StartCountDown());
             m_RoundNumber++;
@@ -116,7 +125,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             EnableTankControl();
             m_MessageText.text = string.Empty;
-            while (!OneTankLeft())
+            while (!OneTankLeft() || !HasGoal)
             {
                 yield return null;
             }
