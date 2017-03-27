@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Jungle Nature Pack_rock
+  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _Diffuse1
+      second:
+        m_Texture: {fileID: 2800000, guid: 5f330c607da0b824886f1605c96f2787, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Diffuse2
+      second:
+        m_Texture: {fileID: 2800000, guid: 3c5bf4b407ef8a548812a1c2f08f1f1c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 3c5bf4b407ef8a548812a1c2f08f1f1c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _Shininess
+      second: 0.078125
+    - first:
+        name: _brightness1
+      second: 0.6964286
+    - first:
+        name: _brightness2
+      second: 0.64285713
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 0.7058823, g: 0.7058823, b: 0.7058823, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
