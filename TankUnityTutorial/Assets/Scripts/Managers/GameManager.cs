@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TankHealth tankParticles;       
 
-    public int m_NumRoundsToWin = 5;        
+    public float m_NumRoundsToWin = 5;        
     public float m_StartDelay = 3f;         
     public float m_EndDelay = 3f;           
     public CameraControl m_CameraControl;   
@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundPlaying()
     {
+        Debug.Log(m_NumRoundsToWin.ToString());
         EnableTankControl();
         EnableBlocks();
 
