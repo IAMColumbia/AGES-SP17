@@ -2,9 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(UnityEngine.Rigidbody))]
+[RequireComponent(typeof(Rigidbody))]
 public class TankDamage : MonoBehaviour
 {
+    #region SerializedFields
     [SerializeField]
     private int playerDamage;
     [SerializeField]
@@ -18,15 +19,10 @@ public class TankDamage : MonoBehaviour
     private ParticleSystem explosion;
     [SerializeField]
     private AudioSource explosionSound;
+    #endregion
 
-	// Use this for initialization
-	void Start ()
-    {
-
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
     {
         UpdateDamageText();
 	}
@@ -35,7 +31,7 @@ public class TankDamage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            UnityEngine.Rigidbody opponentRigidBody = collision.gameObject.GetComponent<UnityEngine.Rigidbody>();
+            Rigidbody opponentRigidBody = collision.gameObject.GetComponent<Rigidbody>();
 
             //detects contact points and direction to be launched in direction opposite of contact
             Vector3 launchDirection = new Vector3();
@@ -49,18 +45,18 @@ public class TankDamage : MonoBehaviour
 
         if (collision.gameObject.tag == "Bullet")
         {
-            //TODO: Have argument be taken from the Bullet, not hardcoded
             TakeDamage(1);
         }
     }
 
+    //Used to take damage from everything from bullets to collision
     private void TakeDamage(int damageToTake)
     {
         playerDamage = playerDamage + damageToTake;
     }
 
-    //PLEASE TEST ME
-    private void LaunchPlayer(int damage, float impactForce, Vector3 direction, UnityEngine.Rigidbody objectToLaunch)
+    //Used to exaggerate collision forces
+    private void LaunchPlayer(int damage, float impactForce, Vector3 direction, Rigidbody objectToLaunch)
     {
         float launchForce = damage * impactForce * damageMultiplier;
         objectToLaunch.AddForce(direction * launchForce);

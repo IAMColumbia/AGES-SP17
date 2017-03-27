@@ -6,11 +6,6 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private float forwardBulletForce = 100;
-    [SerializeField]
-    private float backwardBulletForce = -100;
-
     private Rigidbody bulletRigidBody;
     private AudioSource bulletShotSound;
 
@@ -33,8 +28,6 @@ public class Bullet : MonoBehaviour
 
     public void LaunchBullet(float bulletForce)
     {
-        //bulletShotSound.Play();
         bulletRigidBody.velocity = bulletForce * gameObject.transform.forward;
-        //bulletRigidBody.AddForce(xConst, yConst, bulletForce);
     }
 }

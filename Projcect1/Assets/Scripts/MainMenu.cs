@@ -3,23 +3,14 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
+    #region SerializedFields
     [SerializeField]
     private GameObject mainMenuPanel;
     [SerializeField]
     private GameObject instructionsPanel;
     [SerializeField]
     private GameObject creditsPanel;
-	// Use this for initialization
-	void Start ()
-    {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-	}
+    #endregion
 
     public void OpenInstructions()
     {

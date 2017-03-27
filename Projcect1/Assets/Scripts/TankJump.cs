@@ -2,9 +2,10 @@
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(UnityEngine.Rigidbody))]
+[RequireComponent(typeof(Rigidbody))]
 public class TankJump : MonoBehaviour
 {
+    #region SerializedFields
     [SerializeField]
     private string jumpButton;
     [SerializeField]
@@ -17,8 +18,9 @@ public class TankJump : MonoBehaviour
     private LayerMask whatIsGround;
     [SerializeField]
     private AudioSource jumpSound;
+    #endregion
 
-    private UnityEngine.Rigidbody myRigidBody;
+    private Rigidbody myRigidBody;
     private bool isOnGround;
 
     private float xConst = 0;
@@ -28,9 +30,8 @@ public class TankJump : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        myRigidBody = GetComponent<UnityEngine.Rigidbody>();
-        //for testing purposes, delete later
-        //isOnGround = true;
+        myRigidBody = GetComponent<Rigidbody>();
+
 	}
 	
 	// Update is called once per frame

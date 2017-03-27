@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class DeathBorder : MonoBehaviour
 {
+    #region SerializedFields
     [SerializeField]
     private GameObject[] players;
     [SerializeField]
@@ -12,6 +13,7 @@ public class DeathBorder : MonoBehaviour
     private Text winText;
     [SerializeField]
     private AudioSource stageMusic;
+    #endregion
 
     private int deadPlayers = 0;
 

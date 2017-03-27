@@ -106,10 +106,8 @@ public class TankMovement : MonoBehaviour
             
             gameObject.transform.Rotate(xConstant, leftStickInput, zConstant);
         }
-        //Debug.Log(leftStickInput.ToString());
     }
 
-    //TODO: Fix this audio issue
     private void CarAudio()
     {
         if (isAccelerating && engineAudio.isPlaying == false)

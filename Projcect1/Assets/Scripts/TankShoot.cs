@@ -18,21 +18,11 @@ public class TankShoot : MonoBehaviour
     [SerializeField]
     private float bulletLaunchForceFromBack = -100;
 
-
-    // Use this for initialization
-    void Start ()
-    {
-	
-	}
 	
 	// Update is called once per frame
 	void Update ()
     {
         ShootingHandler();
-    }
-
-    private void FixedUpdate()
-    {
     }
 
     private void ShootingHandler()
@@ -52,7 +42,6 @@ public class TankShoot : MonoBehaviour
         Debug.Log("Shot from front has been fired!");
         Bullet bulletClone = (Bullet) Instantiate(bullet, frontShotSpawnLocation.position, frontShotSpawnLocation.rotation);
         bulletClone.LaunchBullet(bulletLaunchForceFromFront);
-        //bulletInstance.velocity = bulletLaunchForce * frontShotSpawnLocation.forward;
     }
 
     private void ShootFromBack()

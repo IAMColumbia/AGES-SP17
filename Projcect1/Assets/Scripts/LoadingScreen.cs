@@ -6,10 +6,12 @@ using System;
 
 public class LoadingScreen : MonoBehaviour
 {
+    #region SerializedFields
     [SerializeField]
     GameObject loadingScreenPanel;
     [SerializeField]
     Slider progressSlider;
+    #endregion
 
     // Use this for initialization
     void Awake()
