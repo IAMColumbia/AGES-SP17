@@ -64,15 +64,15 @@ public class AbilityCooldown : MonoBehaviour
         {
             cooldownTimer = 0;
         }
-
-        if (Input.GetButtonDown(activateButton1) && cooldownTimer == 0)
+        
+        if (Input.GetAxis(activateButton1) > 0 && cooldownTimer == 0)
         {
             GameObject ability1 = Instantiate(selectedAbility1, spawnLocation.position, spawnLocation.rotation, spawnLocation) as GameObject;
             cooldownTimer = ability1.GetComponent<AbilityDetails>().cooldown;
             cooldownSlider.maxValue = ability1.GetComponent<AbilityDetails>().cooldown;
         }
         
-        if (Input.GetButtonDown(activateButton2) && cooldownTimer == 0)
+        if (Input.GetAxis(activateButton2) > 0 && cooldownTimer == 0)
         {
             GameObject ability2 = Instantiate(selectedAbility2, spawnLocation.position, spawnLocation.rotation, spawnLocation) as GameObject;
             cooldownTimer = ability2.GetComponent<AbilityDetails>().cooldown;

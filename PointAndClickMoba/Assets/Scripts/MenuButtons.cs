@@ -74,7 +74,7 @@ public class MenuButtons : MonoBehaviour
     {
         creditsPanel.SetActive(false);
     }
-
+    
     public void BackPlayerSelectButtonPressed()
     {
         startPanel.SetActive(true);
