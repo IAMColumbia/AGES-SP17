@@ -9,10 +9,26 @@ public class PickupManager : MonoBehaviour
     float maxLightRange;
     [SerializeField]
     float lightPulseSpeed;
+
     [SerializeField]
-    float speedIncreaseMultiplier = 2;
+    float speedIncreaseMultiplier = 2.0f;
     [SerializeField]
-    float shieldDurationInSeconds = 10;
+    float speedInceaseDurationInSeconds = 10.0f;
+    [SerializeField]
+    float doubleShotDurationInSeconds = 10.0f;
+    [SerializeField]
+    float shieldDurationInSeconds = 10.0f;
+
+    AudioSource powerUpSFX;
+    AudioSource powerDownSFX;
+
+    void Start()
+    {
+        AudioSource[] sources = this.GetComponents<AudioSource>();
+
+        powerUpSFX = sources[0];
+        powerDownSFX = sources[1];
+    }
 
     void Update()
     {
@@ -35,7 +51,7 @@ public class PickupManager : MonoBehaviour
             }
             else if (this.CompareTag("DoubleDamagePickup"))
             {
-                DoubleDamage(other.gameObject);
+                DoubleShot(other.gameObject);
             }
             else if (this.CompareTag("ShieldPickup"))
             {
@@ -50,25 +66,31 @@ public class PickupManager : MonoBehaviour
 
     void SpeedBoost(GameObject tank)
     {
-        //TODO: play sound effect
+        powerUpSFX.Play();
 
-        tank.GetComponent<TankMovement>().m_Speed *= speedIncreaseMultiplier;
+        StartCoroutine(ActivateSpeedBoost(tank));
 
-        Destroy(this.gameObject);
+        this.GetComponent<SphereCollider>().enabled = false;
+        this.GetComponent<MeshRenderer>().enabled = false;
+        this.GetComponent<ParticleSystem>().Stop();
+        this.GetComponent<Light>().enabled = false;
     }
 
-    void DoubleDamage(GameObject tank)
+    void DoubleShot(GameObject tank)
     {
-        //TODO: play sound effect
+        powerUpSFX.Play();
 
-        tank.GetComponent<TankShooting>().DoubleShotIsActive = true;
+        StartCoroutine(ActivateDoubleShot(tank));
 
-        Destroy(this.gameObject);
+        this.GetComponent<SphereCollider>().enabled = false;
+        this.GetComponent<MeshRenderer>().enabled = false;
+        this.GetComponent<ParticleSystem>().Stop();
+        this.GetComponent<Light>().enabled = false;
     }
 
     void Shield(GameObject tank)
     {
-        //TODO: play sound effect
+        powerUpSFX.Play();
 
         StartCoroutine(GenerateShield(tank));
 
@@ -78,13 +100,35 @@ public class PickupManager : MonoBehaviour
         this.GetComponent<Light>().enabled = false;
     }
 
+    IEnumerator ActivateSpeedBoost(GameObject tank)
+    {
+        tank.GetComponent<TankMovement>().TankMovementSpeedMultiplier = speedIncreaseMultiplier;
+        yield return new WaitForSeconds(speedInceaseDurationInSeconds);
+        tank.GetComponent<TankMovement>().TankMovementSpeedMultiplier = 1.0f;
+
+        powerDownSFX.Play();
+
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator ActivateDoubleShot(GameObject tank)
+    {
+        tank.GetComponent<TankShooting>().DoubleShotIsActive = true;
+        yield return new WaitForSeconds(doubleShotDurationInSeconds);
+        tank.GetComponent<TankShooting>().DoubleShotIsActive = false;
+
+        powerDownSFX.Play();
+
+        Destroy(this.gameObject);
+    }
+
     IEnumerator GenerateShield(GameObject tank)
     {
         tank.GetComponent<TankHealth>().ShieldIsActive = true;
-
         yield return new WaitForSeconds(shieldDurationInSeconds);
-
         tank.GetComponent<TankHealth>().ShieldIsActive = false;
+
+        powerDownSFX.Play();
 
         Destroy(this.gameObject);
     }

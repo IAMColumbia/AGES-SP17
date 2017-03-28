@@ -17,6 +17,16 @@ public class TankMovement : MonoBehaviour
     float m_TurnInputValue;        
     float m_OriginalPitch;
 
+    float tankMovementSpeedMultiplier = 1;
+
+    public float TankMovementSpeedMultiplier
+    {
+        set
+        {
+            tankMovementSpeedMultiplier = value;
+        }
+    }
+
     void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -88,7 +98,7 @@ public class TankMovement : MonoBehaviour
     {
         // Adjust the position of the tank based on the player's input.
 
-        Vector3 movement = transform.forward * m_MovementInputValue * m_Speed * Time.deltaTime;
+        Vector3 movement = transform.forward * m_MovementInputValue * m_Speed * tankMovementSpeedMultiplier * Time.deltaTime;
 
         m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
     }
