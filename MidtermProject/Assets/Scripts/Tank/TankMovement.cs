@@ -52,7 +52,6 @@ public class TankMovement : MonoBehaviour
         EngineAudio();
     }
 
-
     private void EngineAudio()
     {
         // Play the correct audio clip based on whether or not the tank is moving and what audio is currently playing.
@@ -77,7 +76,6 @@ public class TankMovement : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
         // Move and turn the tank.
@@ -85,7 +83,6 @@ public class TankMovement : MonoBehaviour
         Move();
         Turn();
     }
-
 
     private void Move()
     {
@@ -95,7 +92,6 @@ public class TankMovement : MonoBehaviour
 
         m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
     }
-
 
     private void Turn()
     {
