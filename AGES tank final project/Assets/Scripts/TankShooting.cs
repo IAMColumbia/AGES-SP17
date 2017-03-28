@@ -11,6 +11,10 @@ public class TankShooting : MonoBehaviour
     private float shellVelocity = 100f;
     [SerializeField]
     private float playerNumber = 1;
+    [SerializeField]
+    private AudioSource shootAudio;
+    [SerializeField]
+    private AudioClip shootSound;
 
     private bool canFire = true;
 
@@ -25,6 +29,8 @@ public class TankShooting : MonoBehaviour
 
     private void Fire()
     {
+        shootAudio.clip = shootSound;
+        shootAudio.Play();
         Rigidbody firedShell = GameObject.Instantiate(tankShellPrefab, shellSpawnPoint.position, shellSpawnPoint.rotation) as Rigidbody;
 
         firedShell.velocity = shellSpawnPoint.forward * shellVelocity;

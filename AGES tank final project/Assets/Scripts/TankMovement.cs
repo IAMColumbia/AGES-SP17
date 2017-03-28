@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TankMovement : MonoBehaviour
 {
+    //the majority of this script was taken and modified from the TANKS! tutorial
     [SerializeField]
     private int playerNumber = 1;
     [SerializeField]
@@ -16,6 +17,16 @@ public class TankMovement : MonoBehaviour
     private int boostsAvailable = 3;
     [SerializeField]
     private Slider boostSlider;
+    [SerializeField]
+    private ParticleSystem boostParticle;
+    [SerializeField]
+    private AudioSource movementAudio;
+    [SerializeField]
+    private AudioSource boostAudio;
+    [SerializeField]
+    private AudioClip engineMovingAudio;
+    [SerializeField]
+    private AudioClip TankBoostAudio;
 
     private string movementAxisName;
     private string turnAxisName;
@@ -24,7 +35,6 @@ public class TankMovement : MonoBehaviour
     private float turnInputValue;
     private bool canBoost;
     private bool isBoosting;
-    //private int boostsUsed = 3;
 
     private void Awake()
     {
@@ -47,6 +57,7 @@ public class TankMovement : MonoBehaviour
         turnInputValue = Input.GetAxis(turnAxisName);
         CheckForAvailableBoosts();
         boostSlider.value = boostsAvailable;
+        EngineAudio();
 	}
 
     private void FixedUpdate()
@@ -54,6 +65,26 @@ public class TankMovement : MonoBehaviour
         Move();
         Turn();
         StartCoroutine(Boost());
+    }
+
+    private void EngineAudio()
+    {
+        if (Mathf.Abs(movementInputValue) < 0.1f && Mathf.Abs(turnInputValue) < 0.1f)
+        {
+            if (movementAudio.clip == engineMovingAudio)
+            {
+                movementAudio.clip = null;
+                movementAudio.Play();
+            }
+        }
+        else
+        {
+            if (movementAudio.clip == null)
+            {
+                movementAudio.clip = engineMovingAudio;
+                movementAudio.Play();
+            }
+        }
     }
 
     private void Move()
@@ -81,7 +112,10 @@ public class TankMovement : MonoBehaviour
 
             if(canBoost)
             {
+                boostAudio.clip = TankBoostAudio;
+                boostAudio.Play();
                 isBoosting = true;
+                boostParticle.Play();
                 canBoost = false;
                 yield return new WaitForSeconds(0.5f);
                 isBoosting = false;

@@ -19,12 +19,6 @@ public class TankLapProgressTracker : MonoBehaviour
     public bool hasPassedCheckpoint4;
     public int currentLap = 1;
     public bool hasWon = false;
-
-	// Use this for initialization
-	void Start ()
-    {
-	
-	}
 	
 	// Update is called once per frame
 	void Update ()

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ApplyPlayerColorsAtStart : MonoBehaviour
 {
+    //this script was taken and modified from the wheel collider tank tutorial
     [SerializeField]
     private Color colorToApply;
     [SerializeField]
