@@ -10,12 +10,12 @@ public class ShellExplosion : MonoBehaviour
     public float m_MaxLifeTime = 2f;                  
     public float m_ExplosionRadius = 5f;
 
-    private void Start()
+    void Start()
     {
         Destroy(gameObject, m_MaxLifeTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         // Find all the tanks in an area around the shell and damage them.
 
@@ -53,7 +53,7 @@ public class ShellExplosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private float CalculateDamage(Vector3 targetPosition)
+    float CalculateDamage(Vector3 targetPosition)
     {
         // Calculate the amount of damage a target should take based on it's position.
 

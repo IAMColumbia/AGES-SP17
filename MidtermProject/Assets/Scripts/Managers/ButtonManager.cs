@@ -9,13 +9,13 @@ public class ButtonManager : MonoBehaviour
     [SerializeField]
     string creditsSceneName;
     [SerializeField]
-    string firstLevelName;
+    string firstLevelSceneName;
 
     MenuMusic menuMusic;
 
     public void StartGameButtonClicked()
     {
-        LoadingScene.LoadNewScene(firstLevelName);
+        SceneManager.LoadScene(firstLevelSceneName);
 
         menuMusic = GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<MenuMusic>();
         menuMusic.StopMusic();

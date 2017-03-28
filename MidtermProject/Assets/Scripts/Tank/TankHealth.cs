@@ -10,12 +10,12 @@ public class TankHealth : MonoBehaviour
     public Color m_ZeroHealthColor = Color.red;    
     public GameObject m_ExplosionPrefab;
     
-    private AudioSource m_ExplosionAudio;          
-    private ParticleSystem m_ExplosionParticles;   
-    private float m_CurrentHealth;  
-    private bool m_Dead;
+    AudioSource m_ExplosionAudio;          
+    ParticleSystem m_ExplosionParticles;   
+    float m_CurrentHealth;  
+    bool m_Dead;
 
-    private void Awake()
+    void Awake()
     {
         m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
         m_ExplosionAudio = m_ExplosionParticles.GetComponent<AudioSource>();
@@ -23,7 +23,7 @@ public class TankHealth : MonoBehaviour
         m_ExplosionParticles.gameObject.SetActive(false);
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         m_CurrentHealth = m_StartingHealth;
         m_Dead = false;
@@ -44,7 +44,7 @@ public class TankHealth : MonoBehaviour
         }
     }
 
-    private void SetHealthUI()
+    void SetHealthUI()
     {
         // Adjust the value and colour of the slider.
 
@@ -52,7 +52,7 @@ public class TankHealth : MonoBehaviour
         m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_CurrentHealth / m_StartingHealth);
     }
 
-    private void OnDeath()
+    void OnDeath()
     {
         // Play the effects for the death of the tank and deactivate it.
 

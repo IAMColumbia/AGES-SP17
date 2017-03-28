@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
     public GameObject m_TankPrefab;         
     public TankManager[] m_Tanks;
 
-    private int m_RoundNumber;              
-    private WaitForSeconds m_StartWait;     
-    private WaitForSeconds m_EndWait;
-    private TankManager m_RoundWinner;
-    private TankManager m_GameWinner;
+    int m_RoundNumber;              
+    WaitForSeconds m_StartWait;     
+    WaitForSeconds m_EndWait;
+    TankManager m_RoundWinner;
+    TankManager m_GameWinner;
 
-    private void Start()
+    void Start()
     {
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameLoop());
     }
 
-    private void SpawnAllTanks()
+    void SpawnAllTanks()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SetCameraTargets()
+    void SetCameraTargets()
     {
         Transform[] targets = new Transform[m_Tanks.Length];
 
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         m_CameraControl.m_Targets = targets;
     }
 
-    private IEnumerator GameLoop()
+    IEnumerator GameLoop()
     {
         yield return StartCoroutine(RoundStarting());
         yield return StartCoroutine(RoundPlaying());
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator RoundStarting()
+    IEnumerator RoundStarting()
     {
         ResetAllTanks();
         DisableTankControl();
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         yield return m_StartWait;
     }
 
-    private IEnumerator RoundPlaying()
+    IEnumerator RoundPlaying()
     {
         EnableTankControl();
 
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator RoundEnding()
+    IEnumerator RoundEnding()
     {
         DisableTankControl();
 
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         yield return m_EndWait;
     }
 
-    private bool OneTankLeft()
+    bool OneTankLeft()
     {
         int numTanksLeft = 0;
 
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         return numTanksLeft <= 1;
     }
 
-    private TankManager GetRoundWinner()
+    TankManager GetRoundWinner()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    private TankManager GetGameWinner()
+    TankManager GetGameWinner()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    private string EndMessage()
+    string EndMessage()
     {
         string message = "DRAW!";
 
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
         return message;
     }
 
-    private void ResetAllTanks()
+    void ResetAllTanks()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {
@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EnableTankControl()
+    void EnableTankControl()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {
@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void DisableTankControl()
+    void DisableTankControl()
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {

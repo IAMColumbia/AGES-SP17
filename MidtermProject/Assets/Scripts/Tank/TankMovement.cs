@@ -10,31 +10,31 @@ public class TankMovement : MonoBehaviour
     public AudioClip m_EngineDriving;      
     public float m_PitchRange = 0.2f;
     
-    private string m_MovementAxisName;     
-    private string m_TurnAxisName;         
-    private Rigidbody m_Rigidbody;         
-    private float m_MovementInputValue;    
-    private float m_TurnInputValue;        
-    private float m_OriginalPitch;
+    string m_MovementAxisName;     
+    string m_TurnAxisName;         
+    Rigidbody m_Rigidbody;         
+    float m_MovementInputValue;    
+    float m_TurnInputValue;        
+    float m_OriginalPitch;
 
-    private void Awake()
+    void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable ()
+    void OnEnable ()
     {
         m_Rigidbody.isKinematic = false;
         m_MovementInputValue = 0f;
         m_TurnInputValue = 0f;
     }
 
-    private void OnDisable ()
+    void OnDisable ()
     {
         m_Rigidbody.isKinematic = true;
     }
 
-    private void Start()
+    void Start()
     {
         m_MovementAxisName = "Vertical" + m_PlayerNumber;
         m_TurnAxisName = "Horizontal" + m_PlayerNumber;
@@ -42,7 +42,7 @@ public class TankMovement : MonoBehaviour
         m_OriginalPitch = m_MovementAudio.pitch;
     }
 
-    private void Update()
+    void Update()
     {
         // Store the player's input and make sure the audio for the engine is playing.
 
@@ -52,7 +52,7 @@ public class TankMovement : MonoBehaviour
         EngineAudio();
     }
 
-    private void EngineAudio()
+    void EngineAudio()
     {
         // Play the correct audio clip based on whether or not the tank is moving and what audio is currently playing.
 
@@ -76,7 +76,7 @@ public class TankMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         // Move and turn the tank.
 
@@ -84,7 +84,7 @@ public class TankMovement : MonoBehaviour
         Turn();
     }
 
-    private void Move()
+    void Move()
     {
         // Adjust the position of the tank based on the player's input.
 
@@ -93,7 +93,7 @@ public class TankMovement : MonoBehaviour
         m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
     }
 
-    private void Turn()
+    void Turn()
     {
         // Adjust the rotation of the tank based on the player's input.
 
