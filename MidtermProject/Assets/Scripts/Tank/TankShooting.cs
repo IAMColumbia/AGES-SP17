@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TankShooting : MonoBehaviour
 {
@@ -18,6 +19,16 @@ public class TankShooting : MonoBehaviour
     float m_CurrentLaunchForce;  
     float m_ChargeSpeed;         
     bool m_Fired;
+
+    bool doubleShotIsActive = false;
+
+    public bool DoubleShotIsActive
+    {
+        set
+        {
+            doubleShotIsActive = value;
+        }
+    }
 
     void OnEnable()
     {
@@ -41,7 +52,15 @@ public class TankShooting : MonoBehaviour
         if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
         {
             m_CurrentLaunchForce = m_MaxLaunchForce;
-            Fire();
+            
+            if (doubleShotIsActive)
+            {
+                DoubleFire();
+            }
+            else
+            {
+                Fire();
+            }
         }
         else if (Input.GetButtonDown(m_FireButton))
         {
@@ -59,11 +78,18 @@ public class TankShooting : MonoBehaviour
         }
         else if (Input.GetButtonUp(m_FireButton) && !m_Fired)
         {
-            Fire();
+            if (doubleShotIsActive)
+            {
+                DoubleFire();
+            }
+            else
+            {
+                Fire();
+            }
         }
     }
 
-    private void Fire()
+    void Fire()
     {
         // Instantiate and launch the shell.
 
@@ -76,5 +102,19 @@ public class TankShooting : MonoBehaviour
         m_ShootingAudio.Play();
 
         m_CurrentLaunchForce = m_MinLaunchForce;
+    }
+
+    void DoubleFire()
+    {
+        Fire();
+
+        StartCoroutine(FireSecondShell());
+    }
+
+    IEnumerator FireSecondShell()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        Fire();
     }
 }
