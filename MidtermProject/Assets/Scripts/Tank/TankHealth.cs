@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TankHealth : MonoBehaviour
 {
@@ -14,6 +15,16 @@ public class TankHealth : MonoBehaviour
     ParticleSystem m_ExplosionParticles;   
     float m_CurrentHealth;  
     bool m_Dead;
+
+    bool shieldIsActive = false;
+
+    public bool ShieldIsActive
+    {
+        set
+        {
+            shieldIsActive = value;
+        }
+    }
 
     void Awake()
     {
@@ -33,14 +44,17 @@ public class TankHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        // Adjust the tank's current health, update the UI based on the new health and check whether or not the tank is dead.
-
-        m_CurrentHealth -= amount;
-        SetHealthUI();
-
-        if (m_CurrentHealth <= 0f && !m_Dead)
+        if (!shieldIsActive)
         {
-            OnDeath();
+            // Adjust the tank's current health, update the UI based on the new health and check whether or not the tank is dead.
+
+            m_CurrentHealth -= amount;
+            SetHealthUI();
+
+            if (m_CurrentHealth <= 0f && !m_Dead)
+            {
+                OnDeath();
+            }
         }
     }
 

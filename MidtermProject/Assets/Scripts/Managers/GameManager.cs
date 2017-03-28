@@ -19,11 +19,26 @@ public class GameManager : MonoBehaviour
     TankManager m_RoundWinner;
     TankManager m_GameWinner;
 
+    [SerializeField]
+    Transform speedBoostPickupLocation;
+    [SerializeField]
+    Transform doubleShotPickupLocation;
+    [SerializeField]
+    Transform shieldPickupLocation;
+
+    [SerializeField]
+    GameObject speedBoostPickup;
+    [SerializeField]
+    GameObject doubleShotPickup;
+    [SerializeField]
+    GameObject shieldPickup;
+
     void Start()
     {
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
-        
+
+        ResetAllPickups();
         SpawnAllTanks();
         SetCameraTargets();
 
@@ -71,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator RoundStarting()
     {
+        ResetAllPickups();
         ResetAllTanks();
         DisableTankControl();
 
@@ -168,6 +184,17 @@ public class GameManager : MonoBehaviour
             message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
 
         return message;
+    }
+
+    public void ResetAllPickups()
+    {
+        Destroy(speedBoostPickup.gameObject);
+        Destroy(doubleShotPickup.gameObject);
+        Destroy(shieldPickup.gameObject);
+
+        Instantiate(speedBoostPickup, speedBoostPickupLocation.position, Quaternion.identity);
+        Instantiate(doubleShotPickup, doubleShotPickupLocation.position, Quaternion.identity);
+        Instantiate(shieldPickup, shieldPickupLocation.position, Quaternion.identity);
     }
 
     void ResetAllTanks()
