@@ -1,39 +1,37 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
-public class Inventory : MonoBehaviour
-{
-    public Image[] itemImages = new Image[numItemSlots];
-    public Item[] items = new Item[numItemSlots];
+public class Inventory : MonoBehaviour {
 
+    public Image[] ItemImages = new Image[NumItemSlots];
+    public Item[] Items = new Item[NumItemSlots];
 
-    public const int numItemSlots = 4;
-
+    public const int NumItemSlots = 4;
 
     public void AddItem(Item itemToAdd)
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < Items.Length; i++)
         {
-            if (items[i] == null)
+            if(Items[i] == null)
             {
-                items[i] = itemToAdd;
-                itemImages[i].sprite = itemToAdd.sprite;
-                itemImages[i].enabled = true;
+                Items[i] = itemToAdd;
+                ItemImages[i].sprite = itemToAdd.sprite;
+                ItemImages[i].enabled = true;
                 return;
             }
         }
     }
 
-
     public void RemoveItem (Item itemToRemove)
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < Items.Length; i++)
         {
-            if (items[i] == itemToRemove)
+            if(Items[i] == itemToRemove)
             {
-                items[i] = null;
-                itemImages[i].sprite = null;
-                itemImages[i].enabled = false;
+                Items[i] = null;
+                ItemImages[i].sprite = null;
+                ItemImages[i].enabled = false;
                 return;
             }
         }
