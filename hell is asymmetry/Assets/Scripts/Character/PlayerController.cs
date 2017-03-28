@@ -8,6 +8,11 @@ public class Character : MonoBehaviour
     public void AddScore(float points)
     {
         Score += points;
+
+        if (Score < 0)
+        {
+            Score = 0;
+        }
     }
 }
 
@@ -33,11 +38,34 @@ public class PlayerController : Character, IDamageable {
     float horizontalInput;
     float verticalInput;
     bool fireInput;
+    bool alive;
 
-    bool Alive;
+    float respawnCooldownTime = 3f;
+    bool readyToSpawn = false;
+
+    public bool Alive
+    {
+        get
+        {
+            return alive;
+        }
+        private set
+        {
+            alive = value;
+
+            m_collider.enabled = value;
+            foreach(MeshRenderer r in renderers)
+            {
+                r.enabled = value;
+            }
+        }
+    }
 
     float maxX;
     float maxY;
+
+    [SerializeField]
+    MeshRenderer[] renderers;
 
     [SerializeField]
     float horizontalMoveSpeed, verticalMoveSpeed, fireRate;
@@ -49,8 +77,13 @@ public class PlayerController : Character, IDamageable {
     Bullet bullet;
 
     float timeBetweenShots;
-    bool shooting = false;
-    bool readyToShoot = true;
+    float timeOfLastShot = 0;
+
+    PlayerController otherPlayer;
+
+    Collider2D m_collider;
+
+    spawnTimer m_timer;
 
 	// Use this for initialization
 	void Start () {
@@ -65,6 +98,22 @@ public class PlayerController : Character, IDamageable {
         maxY = boundary.size.y / 2;
 
         timeBetweenShots = 1 / fireRate;
+
+        PlayerController[] players = FindObjectsOfType<PlayerController>();
+
+        foreach(PlayerController player in players)
+        {
+            if(player != this)
+            {
+                otherPlayer = player;
+            }
+        }
+
+        m_collider = GetComponent<Collider2D>();
+
+        m_timer = GetComponentInChildren<spawnTimer>();
+
+        Alive = true;
 }
 	
 	// Update is called once per frame
@@ -83,40 +132,42 @@ public class PlayerController : Character, IDamageable {
 
     void UpdateShooting()
     {
-        //probably going to revisit this, prevents player from shooting faster than the specified fire rate
-        if(fireInput && !shooting && readyToShoot)
+        if (Alive)
         {
-            shooting = true;
-            StartCoroutine(KeepShooting());
+            if (fireInput && Time.time > timeOfLastShot + timeBetweenShots)
+            {
+                timeOfLastShot = Time.time;
+                Shoot(firingPositions[0]);
+            }
         }
-        if(!fireInput && shooting)
+        else
         {
-            shooting = false;
-        }
-    }
-
-    IEnumerator KeepShooting()
-    {
-        while (shooting)
-        {
-            Shoot(firingPositions[0]);
-            readyToShoot = false;
-            yield return new WaitForSeconds(timeBetweenShots);
-            readyToShoot = true;
+            if (fireInput && readyToSpawn)
+            {
+                readyToSpawn = false;
+                Respawn();
+            }
         }
     }
 
     void UpdateMovement(float deltaTime)
     {
-        Vector3 currentPos = transform.position;
+        if (Alive)
+        {
+            Vector3 currentPos = transform.position;
 
-        currentPos.y += verticalInput * verticalMoveSpeed * deltaTime;
-        currentPos.x += horizontalInput * horizontalMoveSpeed * deltaTime;
+            currentPos.y += verticalInput * verticalMoveSpeed * deltaTime;
+            currentPos.x += horizontalInput * horizontalMoveSpeed * deltaTime;
 
-        currentPos.x = Mathf.Clamp(currentPos.x, -maxX, maxX);
-        currentPos.y = Mathf.Clamp(currentPos.y, -maxY, maxY);
+            currentPos.x = Mathf.Clamp(currentPos.x, -maxX, maxX);
+            currentPos.y = Mathf.Clamp(currentPos.y, -maxY, maxY);
 
-        transform.position = currentPos;
+            transform.position = currentPos;
+        }
+        else
+        {
+            transform.position = otherPlayer.transform.position;
+        }
     }
 
     public void takeDamage(Bullet bullet)
@@ -129,10 +180,28 @@ public class PlayerController : Character, IDamageable {
         }
     }
 
+    public void RespawnTimerFinished()
+    {
+        readyToSpawn = true;
+    }
+
     public void Die()
     {
+        StopAllCoroutines();
+
+        spawnTimer.spawnTimerCallback timerCallback = RespawnTimerFinished;
+
+        m_timer.StartTimer(respawnCooldownTime, timerCallback);
+
         Alive = false;
-        
+        AddScore(-500);
+    }
+
+    public void Respawn()
+    {
+        m_timer.HideTimer();
+        Health = maxHealth;
+        Alive = true;
     }
 
     public void Shoot(Transform firingPosition)

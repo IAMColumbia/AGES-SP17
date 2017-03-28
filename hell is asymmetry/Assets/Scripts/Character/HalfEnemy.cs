@@ -56,6 +56,19 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
         Destroy(bullet.gameObject);
     }
 
+    public void takeDamage(float amount) //mostly used by parent Enemy or Wave to inflict instakill when necessary
+    {
+        Health -= amount;
+
+        StartCoroutine(flashOnDamageTaken(time: 0.1f));
+
+        if (Health <= 0 && Alive)
+        {
+            StopAllCoroutines();
+            Die();
+        }
+    }
+
     void Die()
     {
         Alive = false;
