@@ -12,11 +12,19 @@ namespace Complete
         public float m_MaxLifeTime = 2f;                    // The time in seconds before the shell is removed.
         public float m_ExplosionRadius = 5f;                // The maximum distance away from the explosion tanks can be and are still affected.
 
+        public float m_Stun = 1f; // --New Code
+        public float m_StunDuration = 0f;
+        public float m_StunSeconds = 1f;
+        public bool m_StunCollision = false; //New Code--
+        
+        
 
         private void Start ()
-        {
+        { 
             // If it isn't destroyed by then, destroy the shell after it's lifetime.
             Destroy (gameObject, m_MaxLifeTime);
+
+            m_StunDuration = m_Stun; //--New Code--
         }
 
 
@@ -50,6 +58,11 @@ namespace Complete
 
                 // Deal this damage to the tank.
                 targetHealth.TakeDamage (damage);
+
+                if (other.gameObject.tag == "stun")//--New Code
+                {
+                    gameObject.GetComponent<TankManager>().DisableControl();
+                }
             }
 
             // Unparent the particles from the shell.
@@ -68,7 +81,19 @@ namespace Complete
             Destroy (gameObject);
         }
 
+       /* private void Update()
+        {
+            if (m_StunCollision == true )
+            {
+                ReturnWait();
+                Debug.Log 
+            }
+        }
 
+        IEnumerator Wait()
+        {
+
+        }*/
         private float CalculateDamage (Vector3 targetPosition)
         {
             // Create a vector from the shell to the target.
