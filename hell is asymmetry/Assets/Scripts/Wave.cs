@@ -5,10 +5,8 @@ using System;
 
 public class Wave : MonoBehaviour, Observer, Subject {
 
-    [SerializeField]
-    Enemy enemyPrefab;
+    Enemy[] Enemies;
 
-    [SerializeField]
     int numEnemiesInWave;
 
     [SerializeField]
@@ -16,8 +14,6 @@ public class Wave : MonoBehaviour, Observer, Subject {
 
     [SerializeField]
     float startDelay = 1;
-
-    float waveWidth = 10;
 
     int numEnemiesRemaining;
 
@@ -44,6 +40,14 @@ public class Wave : MonoBehaviour, Observer, Subject {
     // Use this for initialization
     void Start () {
 
+        Enemies = GetComponentsInChildren<Enemy>();
+
+        foreach (Enemy enemy in Enemies)
+        {
+            enemy.Subscribe(this);
+            enemy.gameObject.SetActive(false);
+        }
+
         //if there is a previous wave, subscribe so we know when it ends
         if (previousWave != null)
         {
@@ -59,12 +63,11 @@ public class Wave : MonoBehaviour, Observer, Subject {
     {
         yield return new WaitForSeconds(startDelay);
 
-        for (int i = 0; i < numEnemiesInWave; i++)
+        numEnemiesInWave = Enemies.Length;
+
+        foreach(Enemy enemy in Enemies)
         {
-            Enemy newEnemy = Instantiate<Enemy>(enemyPrefab);
-            newEnemy.transform.parent = this.transform;
-            newEnemy.transform.localPosition = new Vector3(i * waveWidth/numEnemiesInWave, 0, 0); //temp, create a bunch of enemies in a line
-            newEnemy.Subscribe(this); //we want to know when the enemies die
+            enemy.gameObject.SetActive(true);
         }
 
         numEnemiesRemaining = numEnemiesInWave;

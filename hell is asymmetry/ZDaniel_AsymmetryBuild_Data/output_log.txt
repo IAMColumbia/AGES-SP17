@@ -1,0 +1,62 @@
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.050 seconds
+Platform assembly: C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\theen\Documents\School\Advanced Scripting and Environments\GitHub\AGES-SP17\hell is asymmetry\ZDaniel_AsymmetryBuild_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.531286 ms
+568.8889
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+1280
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2d48 -> priority: 1 
+STARTING GAME
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.883794 ms
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 1168.
+Total: 0.534209 ms (FindLiveObjects: 0.037406 ms CreateObjectMapping: 0.021041 ms MarkObjects: 0.464949 ms  DeleteObjects: 0.010520 ms)
+
+WAVE IS OVER
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+WAVE IS OVER
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+WAVE IS OVER
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.573661 ms
+
+Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 415.
+Total: 0.423159 ms (FindLiveObjects: 0.012273 ms CreateObjectMapping: 0.010812 ms MarkObjects: 0.188785 ms  DeleteObjects: 0.210995 ms)
+

@@ -43,10 +43,20 @@ public class Enemy : Character, IDamageable, Subject {
     [SerializeField]
     bool linked = false; //if true, both A and B die simultaneously, if false, one can be killed and the other will remain alive
 
+    [SerializeField]
+    float startDelay;
+
+    float startTime = float.MaxValue;
+
+    bool started = false;
+
+    Animator anim;
+
     List<Observer> observers = new List<Observer>();
 
 	// Use this for initialization
 	void Start () {
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -64,6 +74,12 @@ public class Enemy : Character, IDamageable, Subject {
             {
                 Die();
             }
+        }
+
+        if(Time.time > startTime && !started)
+        {
+            started = true;
+            anim.SetTrigger("go");
         }
 	}
 
@@ -101,12 +117,15 @@ public class Enemy : Character, IDamageable, Subject {
 
     public void Shoot(Transform firingPosition)
     {
-        Bullet newBulletA = Instantiate<Bullet>(bullet);
-        Bullet newBulletB = Instantiate<Bullet>(bullet);
-        newBulletA.transform.position = firingPosition.position;
-        newBulletB.transform.position = firingPosition.position;
-        newBulletA.Init(Aside.Alive, Aside.gameObject.layer, firingPosition.forward * 2, this);
-        newBulletB.Init(Bside.Alive, Bside.gameObject.layer, firingPosition.forward * 2, this);
+        if (started)
+        {
+            Bullet newBulletA = Instantiate<Bullet>(bullet);
+            Bullet newBulletB = Instantiate<Bullet>(bullet);
+            newBulletA.transform.position = firingPosition.position;
+            newBulletB.transform.position = firingPosition.position;
+            newBulletA.Init(Aside.Alive, Aside.gameObject.layer, firingPosition.forward * 2, this);
+            newBulletB.Init(Bside.Alive, Bside.gameObject.layer, firingPosition.forward * 2, this);
+        }
     }
 
     public void ShootAll()
@@ -121,4 +140,10 @@ public class Enemy : Character, IDamageable, Subject {
     {
         
     }
+
+    void OnEnable()
+    {
+        startTime = Time.time + startDelay;
+    }
+
 }

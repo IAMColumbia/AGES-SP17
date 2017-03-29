@@ -123,8 +123,8 @@ public class StatTracker : MonoBehaviour, Observer {
     void finalizeStats()
     {
         //update non-event stats
-        playerAStats[statType.accuracy].PlayerScore = playerAStats[statType.hits].PlayerScore / playerAStats[statType.shotsFired].PlayerScore;
-        playerBStats[statType.accuracy].PlayerScore = playerBStats[statType.hits].PlayerScore / playerBStats[statType.shotsFired].PlayerScore;
+        playerAStats[statType.accuracy].PlayerScore = playerAStats[statType.hits].PlayerScore / Mathf.Max(1, playerAStats[statType.shotsFired].PlayerScore); // the max is to prevent divide by zero
+        playerBStats[statType.accuracy].PlayerScore = playerBStats[statType.hits].PlayerScore / Mathf.Max(1, playerBStats[statType.shotsFired].PlayerScore);
 
         playerAStats[statType.score].PlayerScore = playerA.Score;
         playerBStats[statType.score].PlayerScore = playerB.Score;

@@ -74,11 +74,11 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
 
     void Die()
     {
-        Alive = false;
         m_Renderer.material = parent.negativeMaterial;
         m_Collider.enabled = false;
         explosionSystem.transform.parent = null;
         explosionSystem.Play();
         Destroy(explosionSystem.gameObject, 4);
+        Alive = false;
     }
 }

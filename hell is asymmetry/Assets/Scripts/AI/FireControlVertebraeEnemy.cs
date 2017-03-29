@@ -20,17 +20,17 @@ public class FireControlVertebraeEnemy : MonoBehaviour {
 
     public void ShootParallel()
     {
-        foreach (Transform t in firingPositionsParallel)
-        {
-            enemy.Shoot(t);
-        }
+            foreach (Transform t in firingPositionsParallel)
+            {
+                enemy.Shoot(t);
+            }
     }
 
     public void ShootAngled()
     {
-        foreach (Transform t in firingPositionsAngled)
-        {
-            enemy.Shoot(t);
-        }
+            foreach (Transform t in firingPositionsAngled)
+            {
+                enemy.Shoot(t);
+            }
     }
 }

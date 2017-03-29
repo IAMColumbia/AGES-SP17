@@ -13,11 +13,22 @@ public class FireControl : MonoBehaviour {
 	void Start () {
         enemy = GetComponent<Enemy>();
         timeBetweenShots = 1 / rateOfFire;
-        StartCoroutine(KeepShooting());
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        enemy = GetComponent<Enemy>();
+        StartCoroutine(KeepShooting());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 

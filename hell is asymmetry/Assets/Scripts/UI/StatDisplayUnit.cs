@@ -64,11 +64,11 @@ public class StatDisplayUnit : MonoBehaviour {
         string scorestring = scorePrefix + " ";
         if (scoreIsPercentage)
         {
-            scorestring += score.ToString("P2");
+            scorestring += score.ToString("P1");
         }
         else
         {
-            scorestring += Mathf.Floor(score).ToString("000000");
+            scorestring += Mathf.Floor(score).ToString();
         }
         return scorestring;
     }

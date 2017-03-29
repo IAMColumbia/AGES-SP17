@@ -10,8 +10,11 @@ public class EndOfWaveMessage : MonoBehaviour, Observer {
     [SerializeField]
     GameObject message;
 
+    AudioSource sound;
+
     // Use this for initialization
     void Start () {
+        sound = GetComponent<AudioSource>();
         message.SetActive(false);
         Wave[] waves = FindObjectsOfType<Wave>();
         foreach (Wave wave in waves)
@@ -32,6 +35,7 @@ public class EndOfWaveMessage : MonoBehaviour, Observer {
     IEnumerator showMessage(float t)
     {
         yield return new WaitForSeconds(1);
+        sound.Play();
         message.SetActive(true);
         yield return new WaitForSeconds(t);
         message.SetActive(false);

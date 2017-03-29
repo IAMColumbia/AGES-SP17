@@ -136,6 +136,18 @@ public class PlayerController : Character, IDamageable, Subject {
         UpdateShooting();
 	}
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.tag == "Enemy")
+        {
+            HalfEnemy damageable = collision.collider.gameObject.GetComponent<HalfEnemy>();
+
+            damageable.takeDamage(5);
+
+            this.takeDamage(9999);
+        }
+    }
+
     void GetInput()
     {
         horizontalInput = Input.GetAxis(horizontalAxisName);
@@ -188,6 +200,16 @@ public class PlayerController : Character, IDamageable, Subject {
         Health -= bullet.damage;
         
         if(Health <= 0 && Alive)
+        {
+            Die();
+        }
+    }
+
+    public void takeDamage(float amount)
+    {
+        Health -= amount;
+
+        if (Health <= 0 && Alive)
         {
             Die();
         }
