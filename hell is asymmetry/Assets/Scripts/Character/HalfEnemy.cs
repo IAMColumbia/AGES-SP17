@@ -43,6 +43,8 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
 
     public void takeDamage(Bullet bullet)
     {
+        bullet.owner.hitSuccess();
+
         Health -= bullet.damage;
 
         StartCoroutine(flashOnDamageTaken(time: 0.1f));
@@ -50,6 +52,7 @@ public class HalfEnemy : MonoBehaviour, IDamageable {
         if (Health <= 0 && Alive)
         {
             StopAllCoroutines();
+            bullet.owner.killSuccess();
             bullet.owner.AddScore(score);
             Die();
         }

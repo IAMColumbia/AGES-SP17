@@ -6,7 +6,11 @@ using System.Collections.Generic;
 public enum Event
 {
     enemyDied,
-    waveEnded
+    waveEnded,
+    hitEnemy,
+    killedEnemy,
+    firedBullet,
+    playerDied
 }
 
 public interface Observer

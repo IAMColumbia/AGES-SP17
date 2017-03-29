@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
+using System;
 
 public class Character : MonoBehaviour
 {
@@ -14,6 +15,16 @@ public class Character : MonoBehaviour
             Score = 0;
         }
     }
+
+    public virtual void hitSuccess()
+    {
+
+    }
+
+    public virtual void killSuccess()
+    {
+
+    }
 }
 
 public interface IDamageable
@@ -21,7 +32,7 @@ public interface IDamageable
     void takeDamage(Bullet bullet);
 }
 
-public class PlayerController : Character, IDamageable {
+public class PlayerController : Character, IDamageable, Subject {
 
     [SerializeField]
     string m_playerLetter;
@@ -84,6 +95,8 @@ public class PlayerController : Character, IDamageable {
     Collider2D m_collider;
 
     spawnTimer m_timer;
+
+    List<Observer> observers = new List<Observer>();
 
 	// Use this for initialization
 	void Start () {
@@ -195,6 +208,11 @@ public class PlayerController : Character, IDamageable {
 
         Alive = false;
         AddScore(-500);
+
+        foreach (Observer o in observers)
+        {
+            o.Notify(this, Event.playerDied);
+        }
     }
 
     public void Respawn()
@@ -211,5 +229,31 @@ public class PlayerController : Character, IDamageable {
         Bullet newBullet = Instantiate<Bullet>(bullet);
         newBullet.transform.position = firingPosition.position;
         newBullet.Init(true, this.gameObject.layer, firingPosition.forward * tempBulletSpeed, this);
+
+        foreach (Observer o in observers)
+        {
+            o.Notify(this, Event.firedBullet);
+        }
+    }
+
+    public override void hitSuccess()
+    {
+        foreach(Observer o in observers)
+        {
+            o.Notify(this, Event.hitEnemy);
+        }
+    }
+
+    public override void killSuccess()
+    {
+        foreach (Observer o in observers)
+        {
+            o.Notify(this, Event.killedEnemy);
+        }
+    }
+
+    public void Subscribe(Observer o)
+    {
+        observers.Add(o);
     }
 }

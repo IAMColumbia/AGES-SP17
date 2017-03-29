@@ -18,14 +18,19 @@ public class annoyingFace : MonoBehaviour {
 	void Start () {
         img = GetComponent<Image>();
 
-        StartCoroutine(flipAfter(flipTime));
-        StartCoroutine(switchAfter(switchTime));
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    private void OnEnable()
+    {
+        StartCoroutine(flipAfter(flipTime));
+        StartCoroutine(switchAfter(switchTime));
+    }
 
     IEnumerator flipAfter(float time)
     {

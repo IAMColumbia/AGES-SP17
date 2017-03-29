@@ -52,8 +52,6 @@ public class spawnTimer : MonoBehaviour {
         {
             timerImage.fillAmount = t / time;
             t += Time.deltaTime;
-
-            Debug.Log(t);
             yield return 0;
         }
 
