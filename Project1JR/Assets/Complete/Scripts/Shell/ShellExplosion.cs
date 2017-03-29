@@ -81,7 +81,7 @@ namespace Complete
             Destroy (gameObject);
         }
 
-       /* private void Update()
+        private void Update()
         {
             if (m_StunCollision == true )
             {
@@ -92,8 +92,8 @@ namespace Complete
 
         IEnumerator Wait()
         {
-
-        }*/
+            
+        }
         private float CalculateDamage (Vector3 targetPosition)
         {
             // Create a vector from the shell to the target.
