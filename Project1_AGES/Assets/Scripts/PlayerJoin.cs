@@ -42,6 +42,8 @@ public class PlayerJoin : MonoBehaviour {
     [SerializeField]
     private GameObject p4Text2;
 
+    private int numberOfPlayersJoined;
+
 
     // Use this for initialization
     void Start () {
@@ -63,6 +65,7 @@ public class PlayerJoin : MonoBehaviour {
             p1.SetActive(true);
             p1Text1.SetActive(false);
             p1Text2.SetActive(true);
+            numberOfPlayersJoined++;
         }
 
         if (Input.GetButtonDown("Enter2"))
@@ -70,6 +73,7 @@ public class PlayerJoin : MonoBehaviour {
             p2.SetActive(true);
             p2Text1.SetActive(false);
             p2Text2.SetActive(true);
+            numberOfPlayersJoined++;
         }
 
         if (Input.GetButtonDown("Enter3"))
@@ -77,6 +81,7 @@ public class PlayerJoin : MonoBehaviour {
             p3.SetActive(true);
             p3Text1.SetActive(false);
             p3Text2.SetActive(true);
+            numberOfPlayersJoined++;
         }
 
         if (Input.GetButtonDown("Enter4"))
@@ -84,9 +89,10 @@ public class PlayerJoin : MonoBehaviour {
             p4.SetActive(true);
             p4Text1.SetActive(false);
             p4Text2.SetActive(true);
+            numberOfPlayersJoined++;
         }
 
-        if(Input.GetButtonDown("Start"))
+        if(Input.GetButtonDown("Start") && numberOfPlayersJoined >= 2)
         {
             roundManager.SetActive(true);
             scoreBoard.SetActive(true);

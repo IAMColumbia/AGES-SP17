@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour {
+
+    [SerializeField]
+    private int gameScene;
+    [SerializeField]
+    private int menuScene;
 
     [SerializeField]
     private GameObject p1;
@@ -36,8 +42,18 @@ public class Win : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+        if (Input.GetButtonDown("Start"))
+        {
+            SceneManager.LoadScene(gameScene);
+        }
+
+        if (Input.GetButtonDown("Exit"))
+        {
+            SceneManager.LoadScene(menuScene);
+        }
+
+    }
 
     private void WinCalc()
     {
