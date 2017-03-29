@@ -1,0 +1,16 @@
+I don't have Microsoft word on this computer, so I hope this works...
+"SingletonPlayerSelect" is located:	Assets -> Scripts -> SingletonPattern -> Singleton
+"PlayerSelect" is located under:	Assets -> Scripts -> Managers -> PlayerSelect (inherits from SingletonPlayerSelect)
+"GameStart" is located under:		Assets -> Scripts -> Maangers -> GameStart (lines 19, 20 use PlayerSelect's player list)
+
+
+
+I used the singleton pattern for the "SingletonPlayerSelect" class, primarily because I only ever wanted one instance of the "PlayerSelect" class.
+I also ran into problems in which I needed to access the list of currently active players, but was unable to since it was private.
+I felt this was a perfect excuse to make the PlayerSelect class a singleton, and I was able to resolve both problems simultaneously.
+There were a few other times I used static throughout my project (not singleton, just static), but I'm beginning to see how static can cause
+	a LOT of confusion / bad programming if I'm not careful with it.
+
+There's a few situations which would have benefitted from the event pattern.  Unfortunately, I programmed those features before we discussed
+event pattern in class (and, to be perfectly honest, I was too lazy to go back and change it... it works buuuuuuut...).
+If I ever stop being lazy, I might go back and clean this project up, use better encapsulation, and add the event pattern.

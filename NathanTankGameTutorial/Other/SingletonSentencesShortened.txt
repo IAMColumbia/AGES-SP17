@@ -1,0 +1,9 @@
+"SingletonPlayerSelect" is located:	Assets -> Scripts -> SingletonPattern -> Singleton
+"PlayerSelect" is located under:	Assets -> Scripts -> Managers -> PlayerSelect (inherits from SingletonPlayerSelect)
+"GameStart" is located under:		Assets -> Scripts -> Maangers -> GameStart (lines 19, 20 use PlayerSelect's player list)
+
+
+(NOTE: I only did Singleton)
+I used the singleton pattern for the "SingletonPlayerSelect" class, primarily because I only ever wanted one instance of the "PlayerSelect" class.
+I also ran into problems in which I needed to access the list of currently active players, but was unable to access it cleanly.
+I felt this was a perfect excuse to make the PlayerSelect class a singleton, and I was able to resolve both problems simultaneously.
