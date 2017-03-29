@@ -1,10 +1,8 @@
 using System;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
+using UnityStandardAssets.Characters.ThirdPerson;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
-{
-    [RequireComponent(typeof (ThirdPersonCharacter))]
+[RequireComponent(typeof (ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
         public int m_PlayerNumber = 1;
@@ -12,21 +10,39 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
-        private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
+        private bool m_Jump;
+        //private string horizontalInput;
+        //private string verticalInput;
+        private string crouchInput;
+        private string jumpInput;
+        // the world-relative desired move direction, calculated from the camForward and user input.
 
         //Copied from Tank movement  Ctrl+F "Bacon"
         //Combining tankmovement script to third person user control
-        private string HorizontalMovementAxisName;
-        private string VerticalMovementAxisName;
+
         private Rigidbody m_Rigidbody;
         private float m_MovementInputValue;
 
+        static void playerNumber(int m_PlayerNumber)
+        {
+            m_PlayerNumber *= m_PlayerNumber;
+        }
         private void Start()
         {
             //Bacon
-            HorizontalMovementAxisName = "Horizontal" + m_PlayerNumber;
-            VerticalMovementAxisName = "Vertical" + m_PlayerNumber;
+
+      //      public string playerPrefix = "P1_";
+
+ 
+   //  bool is_jump = Input.GetButtonDown(playerPrefix + "Jump");
+    
+ 
+            m_Character = GetComponent<ThirdPersonCharacter>();
             
+            //horizontalInput = "Horizontal" + m_PlayerNumber;
+            //verticalInput = "Vertical" + m_PlayerNumber;
+            crouchInput = "Crouch" + m_PlayerNumber;
+           
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -40,7 +56,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
 
             // get the third person character ( this should never be null due to require component )
-            m_Character = GetComponent<ThirdPersonCharacter>();
+         
         }
 
 
@@ -48,7 +64,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump" + m_PlayerNumber);
+                m_Jump = Input.GetButton("Jump" + m_PlayerNumber);
             }
         }
 
@@ -58,25 +74,28 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             // read inputs
             //Replacing user control here.
-            float h = CrossPlatformInputManager.GetAxis(HorizontalMovementAxisName);
-            float v = CrossPlatformInputManager.GetAxis(VerticalMovementAxisName);
+            //float h = CrossPlatformInputManager.GetAxis(HorizontalMovementAxisName);
+            //float v = CrossPlatformInputManager.GetAxis(VerticalMovementAxisName);
 
-            //float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            //float v = CrossPlatformInputManager.GetAxis("Vertical");
-            bool crouch = Input.GetKey(KeyCode.C);
-
+            float h = Input.GetAxis("Horizontal" + m_PlayerNumber);
+            float v = Input.GetAxis("Vertical" + m_PlayerNumber);
+            bool crouch = Input.GetButton(crouchInput);
             // calculate move direction to pass to character
             if (m_Cam != null)
             {
-                // calculate camera relative direction to move:
-                //m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                //m_Move = v*m_CamForward + h*m_Cam.right;
+            //    // calculate camera relative direction to move:
+                  m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+                  m_Move = v*m_CamForward + h*m_Cam.right;
             }
-            else
-            {
+           
+           
                 // we use world-relative directions in the case of no main camera
-                m_Move = v*Vector3.forward + h*Vector3.right;
-            }
+                else{
+
+
+                     m_Move = v * Vector3.forward + h * Vector3.right;
+                     Debug.Log("Should be moving");
+                 }
 #if !MOBILE_INPUT
 			// walk speed multiplier
 	        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
@@ -87,4 +106,5 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             m_Jump = false;
         }
     }
-}
+
+

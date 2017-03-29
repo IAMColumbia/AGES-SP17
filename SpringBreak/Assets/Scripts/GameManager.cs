@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.ThirdPerson;
 using System;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
-{
+
     public class GameManager : MonoBehaviour
     {
         public int m_NumRoundsToWin = 5;
@@ -16,25 +16,28 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public CameraControl m_CameraControl;
         public Text m_MessageText;
         public GameObject m_TankPrefab;
-        public TankManager[] m_Tanks;
+        public PlayerManager[] m_Tanks;
+
+        public TimeLimit timeLimit;
         [SerializeField]
         GameObject[] startingPlatforms;
         [SerializeField]
-        GameObject goal;
+        GameObject goalSphere;
 
        
         private int m_RoundNumber;
         private WaitForSeconds m_StartWait;
         private WaitForSeconds m_EndWait;
-        private TankManager m_RoundWinner;
-        private TankManager m_GameWinner;
+    //The scripts are aligned with player manager not tank manager...I think.
+        private PlayerManager m_RoundWinner;
+        private PlayerManager m_GameWinner;
 
         Hazard hazard;
         public bool HasGoal
         {
             get
             {
-                return goal.activeSelf;
+                return goalSphere.activeSelf;
             }
            
          }
@@ -53,8 +56,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
-                m_Tanks[i].m_Instance =
-                    Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
+                m_Tanks[i].m_Instance = Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
                 m_Tanks[i].m_PlayerNumber = i + 1;
                 m_Tanks[i].Setup();
             }
@@ -153,11 +155,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 
-        private TankManager GetRoundWinner()
+        private PlayerManager GetRoundWinner()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
-                if (m_Tanks[i].m_Instance.activeSelf)
+                if (m_Tanks[i].m_Instance.activeSelf || HasGoal)
                     return m_Tanks[i];
             }
 
@@ -165,7 +167,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 
-        private TankManager GetGameWinner()
+        private PlayerManager GetGameWinner()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
@@ -233,4 +235,3 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
         }
     }
-}

@@ -110,7 +110,8 @@ public class CameraControl : MonoBehaviour
         FindAveragePosition();
 
         transform.position = m_DesiredPosition;
-
-        m_Camera.orthographicSize = FindRequiredSize();
+         m_Camera.orthographicSize = FindRequiredSize();
+       
+       
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using UnityEngine;
-
-namespace UnityStandardAssets.Characters.ThirdPerson
-{
+using UnityStandardAssets.Characters.ThirdPerson;
    
 public class PlayerManager : MonoBehaviour
 {
     public Color m_PlayerColor;
     public Transform m_SpawnPoint;
+
     [HideInInspector]
     public int m_PlayerNumber;
     [HideInInspector]
@@ -69,5 +68,4 @@ public class PlayerManager : MonoBehaviour
         m_Instance.SetActive(false);
         m_Instance.SetActive(true);
     }
-}
 }

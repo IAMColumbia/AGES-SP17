@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.ThirdPerson;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
-{
-    public class GoalSphere : MonoBehaviour
+public class GoalSphere : MonoBehaviour
     {
 
         // Use this for initialization
@@ -47,9 +46,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                     Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, 0, t));
                     GetComponent<MeshRenderer>().material.color = newColor;
                 }
-                gameObject.SetActive(false);
-
             }
         }
     }
-}

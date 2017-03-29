@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 //using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.ThirdPerson;
 using System;
 
 public class Enemy : MonoBehaviour {

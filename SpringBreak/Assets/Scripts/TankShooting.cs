@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
-{
     public class TankShooting : MonoBehaviour
     {
         public int m_PlayerNumber = 1;
@@ -21,9 +20,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private float m_CurrentLaunchForce;
         private float m_ChargeSpeed;
         private bool m_Fired;
+   
 
-
-        private void OnEnable()
+    private void OnEnable()
         {
             m_CurrentLaunchForce = m_MinLaunchForce;
             m_AimSlider.value = m_MinLaunchForce;
@@ -87,4 +86,3 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             m_CurrentLaunchForce = m_MinLaunchForce;
         }
     }
-}
