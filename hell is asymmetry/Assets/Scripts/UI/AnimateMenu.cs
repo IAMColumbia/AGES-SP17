@@ -26,9 +26,17 @@ public class AnimateMenu : MonoBehaviour
     [SerializeField]
     Button startButton;
 
+    [SerializeField]
+    Slider[] progressSliders;
+
+    [SerializeField]
+    string sceneToLoad;
+
     float startTime;
 
     bool startingGame = false;
+
+    AsyncOperation loadProgress = null;
 
     // Use this for initialization
     void Start()
@@ -77,6 +85,19 @@ public class AnimateMenu : MonoBehaviour
     {
         startingGame = true;
         Debug.Log("STARTING GAME");
+
+        loadProgress = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneToLoad);
+    }
+
+    private void OnGUI()
+    {
+        if(loadProgress != null)
+        {
+            foreach(Slider s in progressSliders)
+            {
+                s.value = loadProgress.progress;
+            }
+        }
     }
 }
 
