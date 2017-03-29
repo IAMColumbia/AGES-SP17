@@ -7,8 +7,11 @@ public class PlayerMovement : MonoBehaviour {
     private float speed;
 	[SerializeField]
 	private float boostSpeed;
-	private float startingSpeed;
+    [SerializeField]
+    private string playerNumber;
+    private float startingSpeed;
 	private Quaternion startingRotation;
+    public bool canPlayerMove;
 
 	public GameObject PlayerTrigger;
 	public GameObject speedTrailParticleSystem;
@@ -18,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 		startingSpeed = speed;
 		startingRotation = gameObject.transform.rotation;
+        canPlayerMove = false;
 
 	}
 	
@@ -38,9 +42,13 @@ public class PlayerMovement : MonoBehaviour {
 			speedTrailParticleSystem.SetActive(false);
 		}
 
-        float dirX = Input.GetAxis("Horizontal") * speed;
-        float dirZ = Input.GetAxis("Vertical") * speed;
-		transform.Translate(dirX,0,dirZ);
+        if (canPlayerMove == true)
+        {
+            float dirX = Input.GetAxis("Horizontal" + playerNumber) * speed;
+            float dirZ = Input.GetAxis("Vertical" + playerNumber) * speed;
+            transform.Translate(dirX, 0, dirZ);
+        }
+
         //Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         //transform.rotation = Quaternion.LookRotation(movement);
 

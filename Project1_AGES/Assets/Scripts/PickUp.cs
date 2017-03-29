@@ -21,13 +21,13 @@ public class PickUp : MonoBehaviour {
 		poweredUp = false;
 		PointsPickedUp = 0;
 
-		Vector3 position1 = new Vector3 (Random.Range(-widthRange,widthRange), 5f, Random.Range(-depthRange,depthRange));
-		Instantiate (point, position1, Quaternion.identity);
+        //Vector3 position1 = new Vector3(Random.Range(-widthRange, widthRange), 5f, Random.Range(-depthRange, depthRange));
+        //Instantiate(point, position1, Quaternion.identity);
 
-		Vector3 position2 = new Vector3 (Random.Range(-widthRange,widthRange), 5f, Random.Range(-depthRange,depthRange));
-		Instantiate (powerUp, position2, Quaternion.identity);
+        //Vector3 position2 = new Vector3(Random.Range(-widthRange, widthRange), 5f, Random.Range(-depthRange, depthRange));
+        //Instantiate(powerUp, position2, Quaternion.identity);
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
