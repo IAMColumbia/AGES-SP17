@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
-public class QuitOnClick : MonoBehaviour, IQuitOnClick
-{
+public class QuitOnClick1 : MonoBehaviour {
 
-	public void Quit()
+	public void QuitGame()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -13,9 +11,5 @@ public class QuitOnClick : MonoBehaviour, IQuitOnClick
         Application.Quit ();
 #endif
     }
-
-    public void QuitGame()
-    {
-        throw new NotImplementedException();
-    }
+   
 }
