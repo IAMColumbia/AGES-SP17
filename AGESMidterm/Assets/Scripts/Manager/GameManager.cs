@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour {
     public AudioSource Audio;
     public AudioClip[] RoundSounds;
     public List<PlayerManager> Players;
+    public GameObject[] WallSections;
 
+    private enum WallSectionStates { FourPlayer, ThreePlayer, TwoPlayer };
+    private WallSectionStates WallSectionCurrentState;
     private int roundNumber;
     private WaitForSeconds startWait;
     private WaitForSeconds endWait;
@@ -27,11 +30,27 @@ public class GameManager : MonoBehaviour {
         endWait = new WaitForSeconds(EndDelay);
 
         SpawnAllPlayers();
-
+        WallSectionCurrentState = WallSectionStates.FourPlayer;
         StartCoroutine(GameLoop());
 	}
+    private void UpdateWallSectionState()
+    {
+        switch (WallSectionCurrentState)
+        {
+            case WallSectionStates.FourPlayer:
+                WallSections[0].SetActive(true);
+                WallSections[1].SetActive(true);
+                
+                break;
+            case WallSectionStates.ThreePlayer:
+                WallSections[0].SetActive(false);
+                break;
+            case WallSectionStates.TwoPlayer:
+                WallSections[1].SetActive(false);
 
-
+                break;
+        }
+    }
     private void SpawnAllPlayers()
     {
         for (int i = 0; i < Players.Count; i++)
@@ -111,6 +130,16 @@ public class GameManager : MonoBehaviour {
             if (Players[i].Instance.activeSelf)
                 numPlayersLeft++;
         }
+        if (numPlayersLeft == 3)
+        {
+            WallSectionCurrentState = WallSectionStates.ThreePlayer;
+            UpdateWallSectionState();
+        }
+        else if (numPlayersLeft == 2)
+        {
+            WallSectionCurrentState = WallSectionStates.TwoPlayer;
+            UpdateWallSectionState();
+        }
         return numPlayersLeft <= 1;
     }
 
@@ -182,6 +211,8 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < Players.Count; i++)
         {
             Players[i].Reset();
+            WallSectionCurrentState = WallSectionStates.FourPlayer;
+            UpdateWallSectionState();
         }
     }
 }
