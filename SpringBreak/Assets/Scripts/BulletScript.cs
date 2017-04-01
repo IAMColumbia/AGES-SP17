@@ -46,7 +46,7 @@ public class BulletScript : MonoBehaviour
             Temporary_RigidBody.AddForce(transform.forward * bulletForwardForce * Time.deltaTime);
 
             //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
-            Destroy(temporaryBulletHandler, 3f);
+            Destroy(temporaryBulletHandler, .5f);
         }
     }
    

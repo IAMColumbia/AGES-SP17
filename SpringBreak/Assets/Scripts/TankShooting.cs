@@ -5,84 +5,53 @@ using UnityStandardAssets.Characters.ThirdPerson;
     public class TankShooting : MonoBehaviour
     {
         public int m_PlayerNumber = 1;
-        public Rigidbody bullet;
-        public Transform bulletEmitter;
-        public Slider m_AimSlider;
-        //public AudioSource m_ShootingAudio;  
-        //public AudioClip m_ChargingClip;     
-        //public AudioClip m_FireClip;         
-        public float m_MinLaunchForce = 15f;
-        public float m_MaxLaunchForce = 30f;
-        public float m_MaxChargeTime = 0.75f;
+        public GameObject bullet;
+        public GameObject bulletEmitter;
 
+        public AudioSource m_ShootingAudio;  
+        public AudioClip m_ChargingClip;     
+        public AudioClip m_FireClip;
 
-        private string m_FireButton;
-        private float m_CurrentLaunchForce;
-        private float m_ChargeSpeed;
-        private bool m_Fired;
-   
-
-    private void OnEnable()
-        {
-            m_CurrentLaunchForce = m_MinLaunchForce;
-            m_AimSlider.value = m_MinLaunchForce;
-        }
-
+    [SerializeField]
+    float bulletForwardForce;
+    private string m_FireButton;
 
         private void Start()
         {
-            m_FireButton = "Fire" + m_PlayerNumber;
-
-            m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
+            m_FireButton = "Fire" + m_PlayerNumber;     
         }
-
-
         private void Update()
         {
             // Track the current state of the fire button and make decisions based on the current launch force.
-            m_AimSlider.value = m_MinLaunchForce;
-            if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
+                   
+         if (Input.GetButton(m_FireButton))
             {
-                // at max charge, not yet fired
-                m_CurrentLaunchForce = m_MaxLaunchForce;
-                Fire();
-            }
-            else if (Input.GetButtonDown(m_FireButton) && !m_Fired)
-            {
-                //Have we pressed fire for the first time?
-                m_Fired = false;
-                m_CurrentLaunchForce = m_MinLaunchForce;
-
-                //m_ShootingAudio.clip = m_ChargingClip;
-                //m_ShootingAudio.Play();
-            }
-            else if (Input.GetButton(m_FireButton) && !m_Fired)
-            {
-
-                //Holding the fire button, not fired yet
-                m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
-                m_AimSlider.value = m_CurrentLaunchForce;
-            }
-            else if (Input.GetButtonUp(m_FireButton) && !m_Fired)
-            {
-                //We released the button, having not fired yet
-                Fire();
-            }
+            //Debug.Log("Player Fired Weapon");
+          
+            Fire(); 
+               
+                m_ShootingAudio.clip = m_ChargingClip;
+                m_ShootingAudio.Play();
+            }              
         }
-
 
         private void Fire()
         {
-            // Instantiate and launch the shell.
-            m_Fired = true;
+        // Instantiate and launch the shell.
 
-            Rigidbody shellInstance = Instantiate(bullet, bulletEmitter.position,bulletEmitter.rotation) as Rigidbody;
+        GameObject temporaryBulletHandler;
+        temporaryBulletHandler = Instantiate(bullet, bulletEmitter.transform.position, bulletEmitter.transform.rotation) as GameObject;
 
-            shellInstance.velocity = m_CurrentLaunchForce * bulletEmitter.forward;
+                Rigidbody Temporary_RigidBody;
+                Temporary_RigidBody = temporaryBulletHandler.GetComponent<Rigidbody>();
 
-            //m_ShootingAudio.clip = m_FireClip;
-            //m_ShootingAudio.Play();
+        //Tell the bullet to be "pushed" forward by an amount set by Bullet_Forward_Force.
+                  Temporary_RigidBody.AddForce(transform.forward * bulletForwardForce * Time.deltaTime);
 
-            m_CurrentLaunchForce = m_MinLaunchForce;
-        }
+        //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.     
+            m_ShootingAudio.clip = m_FireClip;
+            m_ShootingAudio.Play();
+          
+            Destroy(temporaryBulletHandler, .5f);       
     }
+}

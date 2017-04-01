@@ -17,15 +17,14 @@ public class TimeLimit : MonoBehaviour {
 
     [SerializeField]
     GameObject[] weightedObjects;
-
-    [SerializeField]
-    float waterSpeed = 0.5f;
-
-    [SerializeField]
-    GameObject waterPlane;
-
+    
     [SerializeField]
     float itemSpawnHeight = 15;
+
+    [SerializeField]
+    GameObject goalSphereToggle;
+
+    Hazard hazard;
 
     public float TimeLeft
     {
@@ -38,7 +37,16 @@ public class TimeLimit : MonoBehaviour {
             timeLeft = value;
         }
     }
-    float timeLeft = 99;
+    public bool HasGoal
+    {
+        get
+        {                  
+            return goalSphereToggle.activeSelf;
+
+        }
+
+    }
+    float timeLeft = 58;
 
     float timeAdded;
     public void TimeUP()
@@ -59,7 +67,7 @@ public class TimeLimit : MonoBehaviour {
 
     private void StartMatch()
     {
-        WaterDescend();
+        hazard.WaterDescend();
     }
 
     void Update()
@@ -71,22 +79,23 @@ public class TimeLimit : MonoBehaviour {
         timeText.text = ((int)TimeLeft).ToString();
 
         // Debug.Log("Time Left: " + timeLeft);
-        if (TimeLeft < 0)
-        {
-           
-            
-        }
+      
         if (TimeLeft <= 50)
         {
-            WaterRise();
-            m_MessageText.text = "Hurry up!";
+            float warningMessageInterval = 5;
+           
+           warningMessageInterval -= Time.deltaTime;
+            if(warningMessageInterval <= 0)
+            {
+             m_MessageText.text = "";
+            }
+           m_MessageText.text = "Hurry up!";
         }
         if (TimeLeft == 80)
         {
             SpawnItems();
         }
     }
-
     private void SpawnItems()
     {
 
@@ -96,21 +105,7 @@ public class TimeLimit : MonoBehaviour {
             Vector3 position = new Vector3(UnityEngine.Random.Range(-10.0f, 10.0f), itemSpawnHeight, UnityEngine.Random.Range(-10.0f, 10.0f));
             Instantiate(weightedObjects[r], position, Quaternion.identity);
         }                         
-    }
-
-    public void WaterRise()
-    {
-        waterSpeed = 0.5f;
-        waterPlane.transform.Translate(Vector3.up * waterSpeed * Time.deltaTime, Space.World);
-
-    }
-    public void WaterDescend()
-    {
-        waterSpeed = 1.5f;
-        waterPlane.transform.Translate(Vector3.down * waterSpeed * Time.deltaTime, Space.World);
-
-    }
-
+    }   
     private void GameOver()
     {
         throw new NotImplementedException();

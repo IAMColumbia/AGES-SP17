@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
    
-public class PlayerManager : MonoBehaviour
+[Serializable]
+public class PlayerManager 
 {
     public Color m_PlayerColor;
     public Transform m_SpawnPoint;
@@ -15,13 +16,12 @@ public class PlayerManager : MonoBehaviour
     public GameObject m_Instance;
     [HideInInspector]
     public int m_Wins;
-
-
+    
     private ThirdPersonUserControl m_Movement;
     private TankShooting m_Shooting;
     private GameObject m_CanvasGameObject;
 
-
+   
     public void Setup()
     {
         m_Movement = m_Instance.GetComponent<ThirdPersonUserControl>();

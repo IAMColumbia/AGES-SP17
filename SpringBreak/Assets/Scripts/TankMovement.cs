@@ -15,9 +15,10 @@ public class TankMovement : MonoBehaviour
     private string m_TurnAxisName;         
     private Rigidbody m_Rigidbody;         
     private float m_MovementInputValue;    
-    private float m_TurnInputValue;        
+    private float m_TurnInputValue;
     //private float m_OriginalPitch;         
 
+    PlayerHealth playerHealth;
 
     private void Awake()
     {

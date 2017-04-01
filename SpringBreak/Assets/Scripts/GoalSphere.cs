@@ -1,41 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
+using System;
 
 public class GoalSphere : MonoBehaviour
     {
 
         // Use this for initialization
         bool shouldDisableWhenDonePlayingSoundEffect = false;
-        AudioSource audioSource;
+        public AudioSource audioSource;
         float duration = 3;
 
         [SerializeField]
-        GameObject goalSphere;
+        GameObject goalSphereToggle;
+    GameManager gameManager;
+    [SerializeField]
+    GameObject centerPlatform;
 
+    [SerializeField]
+    Vector3 winnerPlatform; 
+    PlayerManager[] m_Tanks;
+  //(center.transform.position.x, center.transform.position.y, transform.position.z);
 
-        private void OnCollisionEnter(Collision other)
+    
+    void Start()
+    {
+       // AudioSource audioSource = GetComponent<AudioSource>();
+       goalSphereToggle.SetActive(false);
+       
+    }
+     void Update()
+    {
+        Rotation();
+    }
+
+    void Rotation()
+    {
+        transform.Rotate(0, 100 * Time.deltaTime, 0);
+        if (shouldDisableWhenDonePlayingSoundEffect)
+        {
+            transform.Rotate(25, 300 * Time.deltaTime, 100);
+            FadeOut();
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.tag == "Player")
             {
-                goalSphere.SetActive(true);
+              Debug.Log("Player touched Sphere");
+              //audioSource.Play();
+              goalSphereToggle.SetActive(true);
+              centerPlatform.SetActive(true);
+              other.gameObject.transform.position = winnerPlatform;                    
             }
         }
-        private void Start()
-        {
-            goalSphere.SetActive(false);
-        }
-        void Rotation()
-        {
-            transform.Rotate(0, 100 * Time.deltaTime, 0);
-            if (shouldDisableWhenDonePlayingSoundEffect)
-            {
-                transform.Rotate(25, 300 * Time.deltaTime, 100);
-                FadeOut();
-            }
-        }
-
-        public void FadeOut()
+    public void FadeOut()
         {
             if (shouldDisableWhenDonePlayingSoundEffect && !audioSource.isPlaying)
             {
@@ -48,4 +68,4 @@ public class GoalSphere : MonoBehaviour
                 }
             }
         }
-    }
+}

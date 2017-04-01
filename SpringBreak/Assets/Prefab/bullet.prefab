@@ -23,9 +23,9 @@ GameObject:
   - 135: {fileID: 135000011777661454}
   - 23: {fileID: 23000012267215252}
   - 82: {fileID: 82000012935179606}
-  - 54: {fileID: 54000013889605684}
   - 108: {fileID: 108000013646666044}
   - 114: {fileID: 114000012659403610}
+  - 54: {fileID: 54000010392478394}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Projectile
@@ -113,7 +113,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010757533034}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54000013889605684
+--- !u!54 &54000010392478394
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,7 +122,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.01
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -137,7 +137,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d0ef135d384cf3f499673b9b8fc02a2a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b748332fb0d593947a0b9915cf00aa30, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

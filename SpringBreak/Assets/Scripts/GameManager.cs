@@ -8,7 +8,7 @@ using System;
 
     public class GameManager : MonoBehaviour
     {
-        public int m_NumRoundsToWin = 5;
+        public int m_NumRoundsToWin = 3;
         public float m_StartDelay = 4f;
 
         float countDownTime = 4f;
@@ -16,16 +16,19 @@ using System;
         public CameraControl m_CameraControl;
         public Text m_MessageText;
         public GameObject m_TankPrefab;
+
+        [SerializeField]
         public PlayerManager[] m_Tanks;
 
         public TimeLimit timeLimit;
-        [SerializeField]
+       
+    [SerializeField]
         GameObject[] startingPlatforms;
         [SerializeField]
-        GameObject goalSphere;
+        GameObject goalSphereToggle;
 
        
-        private int m_RoundNumber;
+        private int m_RoundNumber = 1;
         private WaitForSeconds m_StartWait;
         private WaitForSeconds m_EndWait;
     //The scripts are aligned with player manager not tank manager...I think.
@@ -37,7 +40,7 @@ using System;
         {
             get
             {
-                return goalSphere.activeSelf;
+                return goalSphereToggle.activeSelf;
             }
            
          }
@@ -96,20 +99,26 @@ using System;
 
         private IEnumerator RoundStarting()
         {
+            ShowStartingPlatforms();
             ResetAllTanks();
             DisableTankControl();
             m_CameraControl.SetStartPositionAndSize();
-            yield return StartCoroutine(StartCountDown());
+           yield return StartCoroutine(StartCountDown());
             m_RoundNumber++;
-            if (m_StartDelay == 0)
-            {
-                m_MessageText.text = "ROUND" + m_NumRoundsToWin + " Start!";
-            }
+            //if (m_StartDelay == 0)
+            //{
+            //    m_MessageText.text = "ROUND" + m_NumRoundsToWin + " Start!";
+            //}
             yield return m_StartWait;
         }
-        public IEnumerator StartCountDown()
-        {
-           
+
+    //private void ResetTimer()
+    //{
+    //    timeLimit.TimeLeft = 99;
+    //}
+
+    public IEnumerator StartCountDown()
+        {          
             while (countDownTime > 0f)
             {
                 countDownTime -= 1f;
@@ -118,14 +127,14 @@ using System;
             }
             if (countDownTime == 0)
             {
-                m_MessageText.text = "Go!";
+                m_MessageText.text = "Round " + m_RoundNumber + " Start!";
             }
         }
-
-
         private IEnumerator RoundPlaying()
         {
             EnableTankControl();
+        //ResetTimer();
+            HideStartingPlatforms();
             m_MessageText.text = string.Empty;
             while (!OneTankLeft() || !HasGoal)
             {
@@ -133,14 +142,19 @@ using System;
             }
            
         }
-
-
         private IEnumerator RoundEnding()
         {
+            DisableTankControl();
+            m_RoundWinner = null;
+        m_RoundWinner = GetRoundWinner();
+        if (m_RoundWinner != null)
+            m_RoundWinner.m_Wins++;
+
+        m_GameWinner = GetGameWinner();
+        string message = EndMessage();
+            //timelimit.timeleft = 0;
             yield return m_EndWait;
         }
-
-
         private bool OneTankLeft()
         {
             int numTanksLeft = 0;
@@ -153,36 +167,38 @@ using System;
 
             return numTanksLeft <= 1;
         }
-
-
         private PlayerManager GetRoundWinner()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
-                if (m_Tanks[i].m_Instance.activeSelf || HasGoal)
+                if (m_Tanks[i].m_Instance.activeSelf)
                     return m_Tanks[i];
+            if (HasGoal == true)
+            {
+                if(gameObject.tag == "Player")
+                return m_Tanks[i]; //  return m_Tanks[i];
             }
-
+        }
+           
             return null;
         }
-
-
         private PlayerManager GetGameWinner()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
                 if (m_Tanks[i].m_Wins == m_NumRoundsToWin)
-                    return m_Tanks[i];
-            }
+                    return m_Tanks[i]; //  return m_Tanks[i];
+        }
 
             return null;
         }
-
-
         private string EndMessage()
         {
-            string message = "DRAW!";
-
+          string message = "DRAW!";
+            if (timeLimit.TimeLeft < 0 && m_RoundWinner == null && m_GameWinner == null)
+                 {
+                       message = "Time UP!" + "\n\n\n" + "DRAW!";
+                 }           
             if (m_RoundWinner != null)
                 message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
 
@@ -195,11 +211,9 @@ using System;
 
             if (m_GameWinner != null)
                 message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
-
-            return message;
+        
+            return message;             
         }
-
-
         private void ResetAllTanks()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
@@ -207,27 +221,30 @@ using System;
                 m_Tanks[i].Reset();
             }
         }
-
-
         private void EnableTankControl()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
                 m_Tanks[i].EnableControl();
             }
-            RemoveStartingPlatforms();
         }
-
-        private void RemoveStartingPlatforms()
+        private void HideStartingPlatforms()
         {
             for (int i = 0; i < startingPlatforms.Length; i++)
             {
-                Destroy(startingPlatforms[i]);
+                startingPlatforms[i].SetActive(false);
              }
            
         }
+    private void ShowStartingPlatforms()
+    {
+        for (int i = 0; i < startingPlatforms.Length; i++)
+        {
+            startingPlatforms[i].SetActive(true);
+        }
+    }
 
-        private void DisableTankControl()
+    private void DisableTankControl()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
