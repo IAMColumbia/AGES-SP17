@@ -29,9 +29,11 @@ public class TankMovement : MonoBehaviour
     private AudioClip TankBoostAudio;
 
     private string movementAxisName;
+    private string reverseAxisName;
     private string turnAxisName;
     private Rigidbody rigidBody;
     private float movementInputValue;
+    private float reverseInputValue;
     private float turnInputValue;
     private bool canBoost;
     private bool isBoosting;
@@ -45,6 +47,7 @@ public class TankMovement : MonoBehaviour
     private void Start ()
     {
         movementAxisName = "Vertical" + playerNumber;
+        reverseAxisName = "Reverse" + playerNumber;
         turnAxisName = "Horizontal" + playerNumber;
         canBoost = true;
 	
@@ -54,6 +57,7 @@ public class TankMovement : MonoBehaviour
 	private void Update ()
     {
         movementInputValue = Input.GetAxis(movementAxisName);
+        reverseInputValue = Input.GetAxis(reverseAxisName);
         turnInputValue = Input.GetAxis(turnAxisName);
         CheckForAvailableBoosts();
         boostSlider.value = boostsAvailable;
@@ -69,7 +73,7 @@ public class TankMovement : MonoBehaviour
 
     private void EngineAudio()
     {
-        if (Mathf.Abs(movementInputValue) < 0.1f && Mathf.Abs(turnInputValue) < 0.1f)
+        if (Mathf.Abs(movementInputValue) < 0.1f && Mathf.Abs(turnInputValue) < 0.1f && Mathf.Abs(reverseInputValue) < 0.1f)
         {
             if (movementAudio.clip == engineMovingAudio)
             {
@@ -90,10 +94,13 @@ public class TankMovement : MonoBehaviour
     private void Move()
     {
         Vector3 movement = transform.forward * movementInputValue * speed * Time.deltaTime;
+        Vector3 movementReverse = transform.forward * reverseInputValue * speed * Time.deltaTime;
         rigidBody.MovePosition(rigidBody.position + movement);
+        rigidBody.MovePosition(rigidBody.position + movementReverse);
         if(isBoosting)
         {
             rigidBody.MovePosition(rigidBody.position + movement * boostMultiplier);
+            rigidBody.MovePosition(rigidBody.position + movementReverse * boostMultiplier);
         }
     }
 
