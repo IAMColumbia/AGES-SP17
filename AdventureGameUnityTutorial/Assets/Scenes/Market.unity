@@ -853,10 +853,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4900350095ceff24fbe8c1ac5f1e17c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: AlreadyGotFish
-  requiredConditions:
-  - {fileID: 1999503990}
-  reactionCollection: {fileID: 773705719}
+  Description: 
+  RequiredConditions: []
+  ReactionCollection: {fileID: 0}
 --- !u!114 &493698176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,10 +966,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4900350095ceff24fbe8c1ac5f1e17c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: NoCoin
-  requiredConditions:
-  - {fileID: 1396242976}
-  reactionCollection: {fileID: 1986364766}
+  Description: 
+  RequiredConditions: []
+  ReactionCollection: {fileID: 0}
 --- !u!114 &608498811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,34 +1261,6 @@ AudioSource:
   m_PrefabParentObject: {fileID: 8277418, guid: 0036c73aed31ec14fbbf45853c79fc14,
     type: 2}
   m_PrefabInternal: {fileID: 1936555036}
---- !u!114 &848497505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c14b7cdc8cc6347b3a5d48d05c9c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: BirdDisturbed
-  satisfied: 1
-  hash: -235457156
---- !u!114 &938190891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c14b7cdc8cc6347b3a5d48d05c9c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: HasCoin
-  satisfied: 1
-  hash: 1129137663
 --- !u!114 &938471497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,11 +1300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4900350095ceff24fbe8c1ac5f1e17c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: NeedsCoffee
-  requiredConditions:
-  - {fileID: 938190891}
-  - {fileID: 1120959720}
-  reactionCollection: {fileID: 75465419}
+  Description: 
+  RequiredConditions: []
+  ReactionCollection: {fileID: 0}
 --- !u!114 &1037460390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,20 +1345,6 @@ MonoBehaviour:
   audioSource: {fileID: 1397227339}
   audioClip: {fileID: 8300000, guid: e52b46c6d5c1a1f4c925e2a0dc209330, type: 3}
   delay: 0
---- !u!114 &1120959720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c14b7cdc8cc6347b3a5d48d05c9c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: PickedUpCoffee
-  satisfied: 0
-  hash: 1911255643
 --- !u!114 &1170795811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,20 +1442,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3651ed03b8d254a478d9747447d9f2f6, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1209751514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c14b7cdc8cc6347b3a5d48d05c9c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: PickedUpGlasses
-  satisfied: 1
-  hash: 1481727687
 --- !u!1001 &1209869595
 Prefab:
   m_ObjectHideFlags: 0
@@ -2944,20 +2884,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 1
   item: {fileID: 11400000, guid: f0776cdb931cbdb4b83c5035ebf49463, type: 2}
---- !u!114 &1396242976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c14b7cdc8cc6347b3a5d48d05c9c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: PickedUpCoin
-  satisfied: 1
-  hash: 514706441
 --- !u!82 &1397227339 stripped
 AudioSource:
   m_PrefabParentObject: {fileID: 8299186, guid: 0036c73aed31ec14fbbf45853c79fc14,
@@ -3437,10 +3363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4900350095ceff24fbe8c1ac5f1e17c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: BirdDisturbed
-  requiredConditions:
-  - {fileID: 848497505}
-  reactionCollection: {fileID: 555312890}
+  Description: 
+  RequiredConditions: []
+  ReactionCollection: {fileID: 0}
 --- !u!114 &1770216813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3466,10 +3391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4900350095ceff24fbe8c1ac5f1e17c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: PickedUpGlasses
-  requiredConditions:
-  - {fileID: 1209751514}
-  reactionCollection: {fileID: 0}
+  Description: 
+  RequiredConditions: []
+  ReactionCollection: {fileID: 0}
 --- !u!114 &1835530277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3632,20 +3556,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1250726208}
   m_RootOrder: 2
---- !u!114 &1999503990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c14b7cdc8cc6347b3a5d48d05c9c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: PickedUpFish
-  satisfied: 1
-  hash: 1957699431
 --- !u!1001 &2035261305
 Prefab:
   m_ObjectHideFlags: 0

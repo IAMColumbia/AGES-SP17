@@ -295,9 +295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f8a149ea5a3aa4583dc1cab3334cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Hey Frank, you shouldn't go through without the boss's coffee.
-  textColor: {r: 0, g: 1, b: 1, a: 1}
-  delay: 0
+  Message: 
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  Delay: 0
 --- !u!114 &363901190 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11441280, guid: d48734bd22479a14cb1a52b40aa09db4,
@@ -329,9 +329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f8a149ea5a3aa4583dc1cab3334cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Hey Frank!  Go on through!
-  textColor: {r: 0, g: 1, b: 1, a: 1}
-  delay: 0
+  Message: 
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  Delay: 0
 --- !u!114 &639733709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,9 +385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f8a149ea5a3aa4583dc1cab3334cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Get lost!
-  textColor: {r: 0, g: 1, b: 1, a: 1}
-  delay: 0
+  Message: 
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  Delay: 0
 --- !u!114 &789374198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1608,9 +1608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f8a149ea5a3aa4583dc1cab3334cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: He looks pretty trustworthy.
-  textColor: {r: 1, g: 1, b: 1, a: 1}
-  delay: 0
+  Message: He looks pretty trustworthy.
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  Delay: 0
 --- !u!1001 &1276257937
 Prefab:
   m_ObjectHideFlags: 0
@@ -1833,9 +1833,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f8a149ea5a3aa4583dc1cab3334cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: ACCESS DENIED!
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  delay: 0
+  Message: 
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  Delay: 0
 --- !u!1 &1402756246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,9 +2310,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f8a149ea5a3aa4583dc1cab3334cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: YOU WIN!
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  delay: 0
+  Message: 
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  Delay: 0
 --- !u!114 &1906371743
 MonoBehaviour:
   m_ObjectHideFlags: 0
