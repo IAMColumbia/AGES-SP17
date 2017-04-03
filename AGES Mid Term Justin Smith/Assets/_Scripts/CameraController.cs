@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
 	void Start ()
     {
         ResetCamera();
-        StartCoroutine(WaitForRoundToStart());
 	}
 	
 	void Update ()
@@ -44,6 +43,8 @@ public class CameraController : MonoBehaviour
         distanceToMoveCamera = Vector3.Distance(startCameraPoint.position, gamePlayCameraPoint.position);
         transform.position = startCameraPoint.position;
         transform.rotation = startCameraPoint.rotation;
+
+        StartCoroutine(WaitForRoundToStart());
     }
 
     void MoveCameraToGamePosition()

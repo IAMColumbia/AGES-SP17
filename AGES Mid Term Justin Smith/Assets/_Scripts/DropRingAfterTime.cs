@@ -9,9 +9,11 @@ public class DropRingAfterTime : MonoBehaviour
     [SerializeField]
     Rigidbody rigidBody;
     [SerializeField]
-    GameObject destroyThis;
+    GameObject disableThis;
+    [SerializeField]
+    Transform spawnPoint;
 
-    float secondsBeforeDestroyRing = 5;
+    float secondsBeforeDisableRing = 3;
 
 	void Start ()
     {
@@ -24,6 +26,25 @@ public class DropRingAfterTime : MonoBehaviour
 
         rigidBody.isKinematic = false;
 
-        Destroy(destroyThis, secondsBeforeDestroyRing);
+        StartCoroutine(WaitThenDisableRing());
+        //Destroy(disableThis, secondsBeforeDisableRing);
+    }
+
+    IEnumerator WaitThenDisableRing()
+    {
+        yield return new WaitForSeconds(secondsBeforeDisableRing);
+
+        rigidBody.isKinematic = true;
+        disableThis.SetActive(false);
+    }
+
+    public void Reset()
+    {
+        transform.position = spawnPoint.position;
+        rigidBody.isKinematic = true;
+        disableThis.SetActive(true);
+
+        StopAllCoroutines();
+        StartCoroutine(WaitThenDropRing());
     }
 }

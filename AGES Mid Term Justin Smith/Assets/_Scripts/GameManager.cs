@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject playerPrefab;
     [SerializeField]
+    CameraController mainCamera;
+    [SerializeField]
+    LiftRampsAfterStart[] allRamps;
+    [SerializeField]
+    DropRingAfterTime[] allStagePieces;
+    [SerializeField]
     PlayerManager[] players;
     public PlayerManager[] Players
     {
@@ -71,7 +77,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundStarting()
     {
+        cameraControl.ResetCamera();
         ResetAllPlayers();
+        ResetAllRamps();
+        ResetAllStagePieces();
         DisablePlayerControl();
 
         roundNumber++;
@@ -83,7 +92,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundPlaying()
     {
-        EnablePlayerControl();
+        MakeAllPlayersKinimetic();
+        StartCoroutine(WaitToEnablePlayers());
 
         messageText.text = string.Empty;
 
@@ -93,6 +103,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator WaitToEnablePlayers()
+    {
+        yield return new WaitForSeconds(3f);
+
+        EnablePlayerControl();
+    }
+
+    void MakeAllPlayersKinimetic()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].MakeNotKinematic();
+        }
+    }
 
     private IEnumerator RoundEnding()
     {
@@ -111,8 +135,7 @@ public class GameManager : MonoBehaviour
         messageText.text = message;
 
 
-        yield return endWait;
-    }
+        yield return endWait;    }
 
 
     private bool OneTankLeft()
@@ -128,6 +151,13 @@ public class GameManager : MonoBehaviour
         return numTanksLeft <= 1;
     }
 
+    void LockPlayersYAxis()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].LockYAxis();
+        }
+    }
 
     private PlayerManager GetRoundWinner()
     {
@@ -182,6 +212,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ResetAllRamps()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            allRamps[i].Reset();
+        }
+    }
+    private void ResetAllStagePieces()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            allStagePieces[i].Reset();
+        }
+    }
 
     private void EnablePlayerControl()
     {

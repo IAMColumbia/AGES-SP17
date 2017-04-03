@@ -3,14 +3,20 @@ using System.Collections;
 
 public class LiftRampsAfterStart : MonoBehaviour
 {
+    [SerializeField]
+    Transform spawnPoint;
+
     Transform startPoint;
     Transform endPoint;
 
     bool canLiftRamp;
+    bool isFirstRound = true;
     float liftSpeed = 10.0f;
     float startTime;
     float distanceToMoveRamp;
-    float secondsToWaitBeforeLiftingRamp = 6.5f;
+    WaitForSeconds secondsToWaitBeforeLiftingRamp = new WaitForSeconds(6.5f);
+    WaitForSeconds secondsToWaitAtRoundStart = new WaitForSeconds(3.0f);
+    Quaternion spawnRotation;
     //float timeToWait = 3.0f;
     //bool hasFinishedWaiting = false;
     
@@ -20,15 +26,10 @@ public class LiftRampsAfterStart : MonoBehaviour
         endPoint = GameObject.Find("RampEndPoint").GetComponent<Transform>();
         canLiftRamp = false;
         distanceToMoveRamp = Vector3.Distance(startPoint.position, endPoint.position);
-        StartCoroutine(WaitThenGiveOkToLiftRamp());
-        
     }
 
     void Update()
     {
-        //if (hasFinishedWaiting && !canLiftRamp)
-        //    StartCoroutine(WaitThenGiveOkToLiftRamp());
-
         if (canLiftRamp)
             LiftRampAboveRing();
     }
@@ -39,18 +40,24 @@ public class LiftRampsAfterStart : MonoBehaviour
         float fractionOfDistance = distanceCovered / distanceToMoveRamp;
         transform.position = Vector3.Lerp(startPoint.position, endPoint.position, fractionOfDistance);
     }
-
-    //IEnumerator WaitForRoundToStart()
-    //{
-    //    yield return new WaitForSeconds(timeToWait);
-
-    //    hasFinishedWaiting = true;
-    //}
-
-    IEnumerator WaitThenGiveOkToLiftRamp()
+    
+    public IEnumerator WaitThenGiveOkToLiftRamp()
     {
-        yield return new WaitForSeconds(secondsToWaitBeforeLiftingRamp);
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+
+        if (isFirstRound)
+            yield return secondsToWaitBeforeLiftingRamp;
+        else
+            yield return secondsToWaitAtRoundStart;
+
         startTime = Time.time;
         canLiftRamp = true;
+    }
+
+    public void Reset()
+    {
+        canLiftRamp = false;
+        StartCoroutine(WaitThenGiveOkToLiftRamp());
     }
 }

@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public int playerNumber = 1;
     public float speed = 100f;
-    public float turnSpeed = 180f;
+    //public float turnSpeed = 180f;
 
     //public AudioSource m_MovementAudio;
     //public AudioClip m_EngineIdling;
@@ -45,8 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody.isKinematic = true;
     }
-
-
+    
     void Start()
     {
         distToGround = GetComponent<Collider>().bounds.extents.y;
