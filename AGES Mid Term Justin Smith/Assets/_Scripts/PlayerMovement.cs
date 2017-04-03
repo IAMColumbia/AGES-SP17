@@ -3,7 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     public int playerNumber = 1;
-    public float speed = 12f;
+    public float speed = 100f;
     public float turnSpeed = 180f;
 
     //public AudioSource m_MovementAudio;
@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     //public AudioClip m_EngineDriving;
     //public float m_PitchRange = 0.2f;
 
-    float jumpThrust = 25.0f;
+    float jumpThrust = .5f;
     string moveHorizontal;
     string moveVertical;
     string jumpInput;
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        rigidBody.AddForce(0, 0, jumpThrust * speed, ForceMode.Impulse);
+        rigidBody.AddForce(0, jumpThrust * speed, 0, ForceMode.Impulse);
     }
 
     //void Turn()
