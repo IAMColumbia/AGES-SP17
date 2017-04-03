@@ -55,6 +55,8 @@ public class CalculateScore : MonoBehaviour
     GameObject scorePanel;
     [SerializeField]
     Text scoreText;
+    [SerializeField]
+    GameObject tryAgainButton;
 
     List<Toggle[]> questions = new List<Toggle[]>();
     List<Toggle> answers = new List<Toggle>();
@@ -153,6 +155,7 @@ public class CalculateScore : MonoBehaviour
             setDialogue.SetDialogueText(13);
             scoreText.text = gradeString(score);
             scorePanel.SetActive(true);
+            tryAgainButton.SetActive(true);
             hasCheckedAnswers = true;
         }
     }

@@ -8,7 +8,7 @@ public class TimeMeter : MonoBehaviour
     float startTime;
 
     [HideInInspector]
-    public float timeLeft;
+    public float timeLeft { get; set; }
     [HideInInspector]
     public bool startHasBeenPressed { get; set; }
 
