@@ -5,14 +5,13 @@ using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
 using System;
 
-
     public class GameManager : MonoBehaviour
     {
         public int m_NumRoundsToWin = 3;
-        public float m_StartDelay = 4f;
-
+        public float m_StartDelay = 3f;
+        public float m_ResetDelay = 10f;
         float countDownTime = 4f;
-        public float m_EndDelay = 3f;
+        public float m_EndDelay = 10f;
         public CameraControl m_CameraControl;
         public Text m_MessageText;
         public GameObject m_TankPrefab;
@@ -24,37 +23,33 @@ using System;
        
     [SerializeField]
         GameObject[] startingPlatforms;
-        [SerializeField]
+  
+    [SerializeField]
         GameObject goalSphereToggle;
+    [SerializeField]
+    GameObject waterPlane;
 
-       
+
         private int m_RoundNumber = 1;
         private WaitForSeconds m_StartWait;
         private WaitForSeconds m_EndWait;
+        private WaitForSeconds m_ResetTime;
     //The scripts are aligned with player manager not tank manager...I think.
         private PlayerManager m_RoundWinner;
         private PlayerManager m_GameWinner;
-
-        Hazard hazard;
-        public bool HasGoal
-        {
-            get
-            {
-                return goalSphereToggle.activeSelf;
-            }
-           
-         }
+          
         private void Start()
         {
             m_StartWait = new WaitForSeconds(m_StartDelay);
             m_EndWait = new WaitForSeconds(m_EndDelay);
+        m_ResetTime = new WaitForSeconds(m_ResetDelay);
 
-            SpawnAllTanks();
+        ShowStartingPlatforms();
+        SpawnAllTanks();
             SetCameraTargets();
             StartCoroutine(GameLoop());
         }
        
-
         private void SpawnAllTanks()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
@@ -64,7 +59,6 @@ using System;
                 m_Tanks[i].Setup();
             }
         }
-
 
         private void SetCameraTargets()
         {
@@ -78,10 +72,8 @@ using System;
             m_CameraControl.m_Targets = targets;
         }
 
-
         private IEnumerator GameLoop()
-        {
-           
+        {         
             yield return StartCoroutine(RoundStarting());
             yield return StartCoroutine(RoundPlaying());
             yield return StartCoroutine(RoundEnding());
@@ -96,26 +88,37 @@ using System;
             }
         }
 
-
         private IEnumerator RoundStarting()
         {
+            goalSphereToggle.SetActive(false);
+            //Debug.Log("Round Starting");
             ShowStartingPlatforms();
             ResetAllTanks();
             DisableTankControl();
             m_CameraControl.SetStartPositionAndSize();
-           yield return StartCoroutine(StartCountDown());
-            m_RoundNumber++;
-            //if (m_StartDelay == 0)
-            //{
-            //    m_MessageText.text = "ROUND" + m_NumRoundsToWin + " Start!";
-            //}
-            yield return m_StartWait;
-        }
+        for (int i = 0; i < startingPlatforms.Length; i++)
+        {
+            if (i != startingPlatforms.Length)
+            {
+                yield return new WaitForSeconds(1);
+            }
+        }                         
+         //goalSphereToggle && waterPlane.transform.position.y <= 1.5            
+            yield return StartCoroutine(StartCountDown());
 
-    //private void ResetTimer()
-    //{
-    //    timeLimit.TimeLeft = 99;
-    //}
+                m_RoundNumber++;
+                if (m_StartDelay == 0)
+                    {
+                         m_MessageText.text = "ROUND" + m_NumRoundsToWin + " Start!";
+                    }
+                yield return m_StartWait;
+            
+    }
+
+    private IEnumerator WaitAGodDamnSecond()
+    {
+        yield return m_ResetDelay;
+    }
 
     public IEnumerator StartCountDown()
         {          
@@ -131,29 +134,43 @@ using System;
             }
         }
         private IEnumerator RoundPlaying()
-        {
+        {   
+            Debug.Log("RoundPlaying");
+             waterPlane.transform.position = Vector3.zero;
             EnableTankControl();
-        //ResetTimer();
             HideStartingPlatforms();
-            m_MessageText.text = string.Empty;
-            while (!OneTankLeft() || !HasGoal)
+            
+        if (waterPlane.transform.position.y <= 1.5)
+        {
+            
+            EnableTankControl();
+            HideStartingPlatforms();
+        }
+        else
+        {
+            WaitAGodDamnSecond();
+            Debug.Log("Round Stalling");
+        }
+        m_MessageText.text = string.Empty;        
+            while (!OneTankLeft())
             {
                 yield return null;
-            }
-           
+            }          
         }
         private IEnumerator RoundEnding()
         {
+                        //+Debug.Log("Round ended");
             DisableTankControl();
-            m_RoundWinner = null;
-        m_RoundWinner = GetRoundWinner();
-        if (m_RoundWinner != null)
-            m_RoundWinner.m_Wins++;
+            m_RoundWinner = null; //Original roundwinner placement
+            m_RoundWinner = GetRoundWinner();
 
-        m_GameWinner = GetGameWinner();
-        string message = EndMessage();
-            //timelimit.timeleft = 0;
-            yield return m_EndWait;
+            if (m_RoundWinner != null)
+            m_RoundWinner.m_Wins++;
+       // goalSphereToggle.SetActive(false);
+      //  m_RoundWinner = null; //I think this should be after...I get roundwinner
+            m_GameWinner = GetGameWinner();
+             string message = EndMessage();
+                yield return m_EndWait;
         }
         private bool OneTankLeft()
         {
@@ -164,7 +181,6 @@ using System;
                 if (m_Tanks[i].m_Instance.activeSelf)
                     numTanksLeft++;
             }
-
             return numTanksLeft <= 1;
         }
         private PlayerManager GetRoundWinner()
@@ -173,13 +189,7 @@ using System;
             {
                 if (m_Tanks[i].m_Instance.activeSelf)
                     return m_Tanks[i];
-            if (HasGoal == true)
-            {
-                if(gameObject.tag == "Player")
-                return m_Tanks[i]; //  return m_Tanks[i];
-            }
-        }
-           
+        }           
             return null;
         }
         private PlayerManager GetGameWinner()
@@ -189,29 +199,30 @@ using System;
                 if (m_Tanks[i].m_Wins == m_NumRoundsToWin)
                     return m_Tanks[i]; //  return m_Tanks[i];
         }
-
             return null;
         }
         private string EndMessage()
         {
-          string message = "DRAW!";
-            if (timeLimit.TimeLeft < 0 && m_RoundWinner == null && m_GameWinner == null)
+          string message = "DRAW!";        
+            if (m_RoundWinner == null)
                  {
                        message = "Time UP!" + "\n\n\n" + "DRAW!";
-                 }           
-            if (m_RoundWinner != null)
-                message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
-
-            message += "\n\n\n\n";
-
+                 }
+        if (m_RoundWinner != null)
+        {
+            return message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
+            return message += "\n\n\n\n";
+        }           
             for (int i = 0; i < m_Tanks.Length; i++)
             {
-                message += m_Tanks[i].m_ColoredPlayerText + ": " + m_Tanks[i].m_Wins + " WINS\n";
+                return message += m_Tanks[i].m_ColoredPlayerText + ": " + m_Tanks[i].m_Wins + " WINS\n";
             }
 
-            if (m_GameWinner != null)
-                message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
-        
+        if (m_GameWinner != null)
+        {
+            return message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
+        }
+            
             return message;             
         }
         private void ResetAllTanks()
@@ -233,8 +244,7 @@ using System;
             for (int i = 0; i < startingPlatforms.Length; i++)
             {
                 startingPlatforms[i].SetActive(false);
-             }
-           
+             }         
         }
     private void ShowStartingPlatforms()
     {
@@ -243,12 +253,11 @@ using System;
             startingPlatforms[i].SetActive(true);
         }
     }
-
     private void DisableTankControl()
         {
             for (int i = 0; i < m_Tanks.Length; i++)
             {
                 m_Tanks[i].DisableControl();
             }
-        }
-    }
+        } 
+}

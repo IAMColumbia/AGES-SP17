@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012865526804}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1, z: 11.36}
+  m_LocalPosition: {x: 0, y: -1, z: 26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
@@ -126,10 +126,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013644682666}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 19.22, z: -8.53}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0, w: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.14202566, y: 0.14202566, z: 0.14202566}
+  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
   m_Children:
   - {fileID: 4000010226124110}
   - {fileID: 4000011096889666}
@@ -246,8 +246,8 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 4
-  m_Height: 22
+  m_Radius: 8
+  m_Height: 50
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198000010283080996
@@ -3728,7 +3728,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1386212786
+  randomSeed: 193045481
   InitialModule:
     serializedVersion: 2
     enabled: 1

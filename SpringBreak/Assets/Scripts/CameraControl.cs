@@ -16,9 +16,19 @@ public class CameraControl : MonoBehaviour
     private Vector3 m_MoveVelocity;                 
     private Vector3 m_DesiredPosition;
     [SerializeField]
-    GameObject centeredGameObject;             
+    GameObject centeredGameObject;
+    [SerializeField]
+    GameObject goalSphereToggle;
 
+    public bool HasGoal
+    {
+        get
+        {
+            return goalSphereToggle.activeSelf;
 
+        }
+
+    }
     private void Awake()
     {
         m_Camera = GetComponentInChildren<Camera>();
@@ -29,14 +39,22 @@ public class CameraControl : MonoBehaviour
     {
         Move();
         Zoom();
+        Rotation();
     }
 
 
     private void Move()
     {
         FindAveragePosition();
-        Rotation();
+        Vector3 resetPosition = new Vector3(0, 0, 0);
+        if (goalSphereToggle)
+        {
+
+            transform.position = resetPosition;          
+            //transform.position = m_DesiredPosition;
+        }
         transform.position = Vector3.SmoothDamp(centeredGameObject.transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
+
     }
 
     private void Rotation()

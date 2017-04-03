@@ -4,7 +4,7 @@ using System.Collections;
 public class pushScript : MonoBehaviour {
 
     // Use this for initialization
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collision other)
     {
         Rigidbody playerRigidBody;
         playerRigidBody = other.gameObject.GetComponent<Rigidbody>();

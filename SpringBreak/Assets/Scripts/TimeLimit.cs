@@ -23,8 +23,9 @@ public class TimeLimit : MonoBehaviour {
 
     [SerializeField]
     GameObject goalSphereToggle;
+    [SerializeField]
+    GameObject waterPlane;
 
-    Hazard hazard;
 
     public float TimeLeft
     {
@@ -46,7 +47,7 @@ public class TimeLimit : MonoBehaviour {
         }
 
     }
-    float timeLeft = 58;
+    float timeLeft = 112;
 
     float timeAdded;
     public void TimeUP()
@@ -67,7 +68,7 @@ public class TimeLimit : MonoBehaviour {
 
     private void StartMatch()
     {
-        hazard.WaterDescend();
+     
     }
 
     void Update()
@@ -89,13 +90,30 @@ public class TimeLimit : MonoBehaviour {
             {
              m_MessageText.text = "";
             }
+           SlowWaterRise();
            m_MessageText.text = "Hurry up!";
         }
-        if (TimeLeft == 80)
+        //if (TimeLeft == 80)
+        //{
+        //    SpawnItems();
+        //}
+        if (HasGoal)
         {
-            SpawnItems();
+            TimeLeft = 99;
         }
     }
+
+    private void SlowWaterRise()
+    {
+        float waterSpeed;
+
+        waterSpeed = 0.03f;
+        waterPlane.transform.Translate(Vector3.up * waterSpeed * Time.deltaTime, Space.World);
+        waterPlane.transform.Translate(Vector3.up);
+         
+        
+    }
+
     private void SpawnItems()
     {
 
