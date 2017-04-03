@@ -6,6 +6,8 @@ public class BuildingManager : MonoBehaviour {
 
     public ParticleSystem explosionSystem;
     public AudioSource explosionAudio;
+    public AudioClip glassBreak;
+
 
     int stateOfBuilding;
     int buildingHealth = 15;
@@ -37,7 +39,11 @@ public class BuildingManager : MonoBehaviour {
     {
         Debug.Log("building health: " + buildingHealth);
         buildingHealth--;
-        
+
+
+        AudioSource buildingDamage = GetComponent<AudioSource>();
+        buildingDamage.clip = glassBreak;
+        buildingDamage.Play();
 
         if(buildingHealth <= 0)
         {
