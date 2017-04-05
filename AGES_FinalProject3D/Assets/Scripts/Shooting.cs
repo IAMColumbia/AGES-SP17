@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Shooting : MonoBehaviour {
+public class Shooting : MonoBehaviour
+{
+    [SerializeField]
+    private string shootButton;
+    [SerializeField]
+    private GameObject bullet;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+        Shoot();
 	}
+
+    void Shoot()
+    {
+        if (Input.GetButtonDown(shootButton))
+        {
+            Debug.Log("Shot fired!");
+        }
+    }
 }

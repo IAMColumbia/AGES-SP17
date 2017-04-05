@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     private float maxVerticalTilt;
     [SerializeField]
     private float maxHorizontalTilt;
+    [SerializeField]
+    private float maxSpeedinMPH;
 
     private Rigidbody playerRigidBody;
 
@@ -25,6 +27,7 @@ public class Movement : MonoBehaviour
     private float currentHorizontalTilt;
 
     private const float zeroConstant = 0;
+    private const float rotationEulerConstant = 360;
 
 	// Use this for initialization
 	void Start ()
@@ -36,7 +39,8 @@ public class Movement : MonoBehaviour
 	void Update ()
     {
         UpdateTurnInput();
-	}
+        UpdateCurrentTilt();
+    }
 
 
     private void FixedUpdate()
@@ -50,17 +54,28 @@ public class Movement : MonoBehaviour
         leftStickInputHorizontal = (Input.GetAxis(leftStickHorizontal) * turnSpeed);
     }
 
+    private void UpdateCurrentTilt()
+    {
+        currentVerticalTilt = gameObject.transform.rotation.eulerAngles.x;
+
+        currentHorizontalTilt = gameObject.transform.rotation.eulerAngles.y;
+
+        Debug.Log("X tilt is " + currentVerticalTilt + " Y tilt is " + currentHorizontalTilt);
+    }
+
+    //TODO: gameObject will turn to max turn angle, but won't turn back once it has reached that position
     private void Turn()
     {
-        //TODO: Update current vertical tilt
-        if (currentVerticalTilt < maxVerticalTilt)
+        if (currentVerticalTilt < maxVerticalTilt || currentVerticalTilt > ((rotationEulerConstant - maxVerticalTilt)))
         {
             gameObject.transform.Rotate(leftStickInputVertical, zeroConstant, zeroConstant);
         }
 
-        if (currentHorizontalTilt < maxHorizontalTilt)
+        if (currentHorizontalTilt < maxHorizontalTilt || currentHorizontalTilt > (rotationEulerConstant - maxHorizontalTilt))
         {
             gameObject.transform.Rotate(zeroConstant, leftStickInputHorizontal, zeroConstant);
         }
+
+        Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
     }
 }
