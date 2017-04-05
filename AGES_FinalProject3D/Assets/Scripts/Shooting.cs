@@ -25,6 +25,8 @@ public class Shooting : MonoBehaviour
         if (Input.GetButtonDown(shootButton))
         {
             Debug.Log("Shot fired!");
+            GameObject bulletInstance = Instantiate(bullet) as GameObject;
+            bulletInstance.gameObject.transform.Translate(gameObject.transform.forward);
         }
     }
 }
