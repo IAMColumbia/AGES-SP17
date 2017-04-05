@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 
     public Animator animator;
@@ -20,6 +19,7 @@ public class PlayerControl : MonoBehaviour
     private Interactable currentInteractable;
     private bool handleInput = true;
 
+    private const string startingPositionKey = "starting position";
     private const float stopDistanceProportion = 0.1f;
     private const float navMeshSampleDistance = 4f;
 
@@ -102,22 +102,22 @@ public class PlayerControl : MonoBehaviour
     public void OnGroundClick(BaseEventData data)
     {
         if(!handleInput)
-        {
+        
             return;
-        }
+        
 
         currentInteractable = null;
 
         PointerEventData pData = (PointerEventData)data;
         NavMeshHit hit;
         if(NavMesh.SamplePosition(pData.pointerCurrentRaycast.worldPosition, out hit, navMeshSampleDistance, NavMesh.AllAreas))
-        {
+        
             destinationPosition = hit.position;
-        }
+        
         else
-        {
+        
             destinationPosition = pData.pointerCurrentRaycast.worldPosition;
-        }
+        
 
         agent.SetDestination(destinationPosition);
         agent.Resume();
@@ -126,13 +126,13 @@ public class PlayerControl : MonoBehaviour
     public void OnInteractableClick(Interactable interactable)
     {
         if(!handleInput)
-        {
+        
             return;
-        }
 
         currentInteractable = interactable;
         destinationPosition = currentInteractable.interactionLocation.position;
-
+        agent.SetDestination(destinationPosition);
+        agent.Resume();
 
     }
     private IEnumerator WaitForInteraction()
