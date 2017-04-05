@@ -4,7 +4,7 @@ using System.Collections;
 public class Sweep : MonoBehaviour {
 
     float initY;
-    float t = 0;
+    public float t = 0;
     public float speed;
 
 	// Use this for initialization
@@ -20,8 +20,12 @@ public class Sweep : MonoBehaviour {
         {
             t = 0;
         }
+        if(t < 0)
+        {
+            t = Mathf.PI * 2;
+        }
 
-        goToAngle(t);
+        goToAngle(t - Mathf.PI / 2);
 	}
 
     void goToAngle(float theta)
