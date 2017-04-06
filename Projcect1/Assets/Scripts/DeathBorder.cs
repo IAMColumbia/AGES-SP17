@@ -35,6 +35,11 @@ public class DeathBorder : MonoBehaviour
                 updateWinnerText();
             }
         }
+
+        if (other.gameObject.tag == "Bullet")
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     private void updateWinnerText()

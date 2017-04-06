@@ -27,6 +27,7 @@ public class TankDamage : MonoBehaviour
         UpdateDamageText();
 	}
 
+    //TODO: Don't make all players involved take same damage
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -39,8 +40,8 @@ public class TankDamage : MonoBehaviour
             launchDirection = -launchDirection.normalized;
 
             LaunchPlayer(playerDamage,collision.relativeVelocity.magnitude,launchDirection,opponentRigidBody);
-            //TODO: Add Dynamic Values
-            TakeDamage(3);
+            int impactForceInt = (int)collision.relativeVelocity.magnitude;
+            TakeDamage(impactForceInt);
         }
 
         if (collision.gameObject.tag == "Bullet")
