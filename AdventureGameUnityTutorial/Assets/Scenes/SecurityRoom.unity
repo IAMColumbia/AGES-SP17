@@ -298,26 +298,6 @@ MonoBehaviour:
   Message: 
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   Delay: 0
---- !u!114 &363901190 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11441280, guid: d48734bd22479a14cb1a52b40aa09db4,
-    type: 2}
-  m_PrefabInternal: {fileID: 904848606}
-  m_Script: {fileID: 11500000, guid: 1fc7ecfe98531f2429694b8c81a6748a, type: 3}
---- !u!114 &396363955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c14b7cdc8cc6347b3a5d48d05c9c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: PickedUpCoin
-  satisfied: 0
-  hash: 514706441
 --- !u!114 &503792339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +491,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474418, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.25
+      value: 4.94
       objectReference: {fileID: 0}
     - target: {fileID: 474418, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -536,10 +516,10 @@ Prefab:
     - target: {fileID: 11485606, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1054599891}
     - target: {fileID: 11485606, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: OnInteractableClick
       objectReference: {fileID: 0}
     - target: {fileID: 11485606, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1582,21 +1562,6 @@ MonoBehaviour:
   delay: 0
   animator: {fileID: 0}
   trigger: 
---- !u!114 &1270635879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4900350095ceff24fbe8c1ac5f1e17c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Description: New condition collection
-  RequiredConditions:
-  - {fileID: 396363955}
-  ReactionCollection: {fileID: 0}
 --- !u!114 &1272427429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,10 +1769,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85941078afdf3244b2a1ae50fea256c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionLocation: {fileID: 1701855997}
-  conditionCollections:
-  - {fileID: 1270635879}
-  defaultReactionCollection: {fileID: 363901190}
+  InteractionLocation: {fileID: 0}
+  ConditionCollections: []
+  DefaultReactionCollection: {fileID: 0}
 --- !u!114 &1283123098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,10 +2014,6 @@ MonoBehaviour:
   Description: 
   RequiredConditions: []
   ReactionCollection: {fileID: 0}
---- !u!4 &1701855997 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 491826, guid: d48734bd22479a14cb1a52b40aa09db4, type: 2}
-  m_PrefabInternal: {fileID: 904848606}
 --- !u!1001 &1746140237
 Prefab:
   m_ObjectHideFlags: 0

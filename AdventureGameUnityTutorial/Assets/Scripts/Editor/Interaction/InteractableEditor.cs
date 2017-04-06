@@ -5,9 +5,9 @@ using UnityEditor;
 public class InteractableEditor : EditorWithSubEditors<ConditionCollectionEditor, ConditionCollection>
 {
     private Interactable interactable;
-    private SerializedProperty interactionLocationProperty;
-    private SerializedProperty collectionsProperty;
-    private SerializedProperty defaultReactionCollectionProperty;
+    private SerializedProperty InteractionLocationProperty;
+    private SerializedProperty CollectionsProperty;
+    private SerializedProperty DefaultReactionCollectionProperty;
 
 
     private const float collectionButtonWidth = 125f;
@@ -20,11 +20,11 @@ public class InteractableEditor : EditorWithSubEditors<ConditionCollectionEditor
     {
         interactable = (Interactable)target;
 
-        collectionsProperty = serializedObject.FindProperty(interactablePropConditionCollectionsName);
-        interactionLocationProperty = serializedObject.FindProperty(interactablePropInteractionLocationName);
-        defaultReactionCollectionProperty = serializedObject.FindProperty(interactablePropDefaultReactionCollectionName);
+        CollectionsProperty = serializedObject.FindProperty(interactablePropConditionCollectionsName);
+        InteractionLocationProperty = serializedObject.FindProperty(interactablePropInteractionLocationName);
+        DefaultReactionCollectionProperty = serializedObject.FindProperty(interactablePropDefaultReactionCollectionName);
         
-        CheckAndCreateSubEditors(interactable.conditionCollections);
+        CheckAndCreateSubEditors(interactable.ConditionCollections);
     }
 
 
@@ -36,7 +36,7 @@ public class InteractableEditor : EditorWithSubEditors<ConditionCollectionEditor
 
     protected override void SubEditorSetup(ConditionCollectionEditor editor)
     {
-        editor.collectionsProperty = collectionsProperty;
+        editor.collectionsProperty = CollectionsProperty;
     }
 
 
@@ -44,9 +44,9 @@ public class InteractableEditor : EditorWithSubEditors<ConditionCollectionEditor
     {
         serializedObject.Update ();
         
-        CheckAndCreateSubEditors(interactable.conditionCollections);
+        CheckAndCreateSubEditors(interactable.ConditionCollections);
         
-        EditorGUILayout.PropertyField (interactionLocationProperty);
+        EditorGUILayout.PropertyField (InteractionLocationProperty);
 
         for (int i = 0; i < subEditors.Length; i++)
         {
@@ -59,13 +59,13 @@ public class InteractableEditor : EditorWithSubEditors<ConditionCollectionEditor
         if (GUILayout.Button("Add Collection", GUILayout.Width(collectionButtonWidth)))
         {
             ConditionCollection newCollection = ConditionCollectionEditor.CreateConditionCollection ();
-            collectionsProperty.AddToObjectArray (newCollection);
+            CollectionsProperty.AddToObjectArray (newCollection);
         }
         EditorGUILayout.EndHorizontal ();
 
         EditorGUILayout.Space ();
 
-        EditorGUILayout.PropertyField (defaultReactionCollectionProperty);
+        EditorGUILayout.PropertyField (DefaultReactionCollectionProperty);
 
         serializedObject.ApplyModifiedProperties ();
     }

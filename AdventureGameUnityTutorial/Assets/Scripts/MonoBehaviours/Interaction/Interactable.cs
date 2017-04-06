@@ -2,19 +2,19 @@
 
 public class Interactable : MonoBehaviour
 {
-    public Transform interactionLocation;
-    public ConditionCollection[] conditionCollections = new ConditionCollection[0];
-    public ReactionCollection defaultReactionCollection;
+    public Transform InteractionLocation;
+    public ConditionCollection[] ConditionCollections = new ConditionCollection[0];
+    public ReactionCollection DefaultReactionCollection;
 
 
     public void Interact ()
     {
-        for (int i = 0; i < conditionCollections.Length; i++)
+        for (int i = 0; i < ConditionCollections.Length; i++)
         {
-            if (conditionCollections[i].CheckAndReact ())
+            if (ConditionCollections[i].CheckAndReact ())
                 return;
         }
 
-        defaultReactionCollection.React ();
+        DefaultReactionCollection.React ();
     }
 }
