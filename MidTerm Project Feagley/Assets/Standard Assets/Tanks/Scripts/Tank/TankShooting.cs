@@ -44,6 +44,9 @@ public class TankShooting : MonoBehaviour
         if(m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
         {
             //at max charge, not yet fired
+
+            //m_Shell.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+
             m_CurrentLaunchForce = m_MaxLaunchForce;
             Fire();
         }
@@ -64,8 +67,8 @@ public class TankShooting : MonoBehaviour
             m_AimSlider.value = m_CurrentLaunchForce;
         }
         else if(Input.GetButtonUp(m_FireButton) && !m_Fired)
-        {
-            //we released the button, having not fired yet
+        {            
+            //we released the button, having not fired yet            
             Fire();
         }
     }
@@ -82,6 +85,8 @@ public class TankShooting : MonoBehaviour
 
         m_ShootingAudio.clip = m_FireClip;
         m_ShootingAudio.Play();
+
+        
 
         m_CurrentLaunchForce = m_MinLaunchForce;
     }
