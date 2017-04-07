@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float maxHorizontalTilt;
     [SerializeField]
+    private float accelerationSpeed;
+    [SerializeField]
     private float maxSpeedinMPH;
 
     private Rigidbody playerRigidBody;
@@ -45,8 +47,10 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //AccelerateForward();
         Turn();
     }
+
 
     private void UpdateTurnInput()
     {
@@ -63,18 +67,26 @@ public class Movement : MonoBehaviour
         Debug.Log("X tilt is " + currentVerticalTilt + " Y tilt is " + currentHorizontalTilt);
     }
 
+    private void AccelerateForward()
+    {
+        playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed);
+    }
+
     //TODO: gameObject will turn to max turn angle, but won't turn back once it has reached that position
     private void Turn()
     {
-        if (currentVerticalTilt < maxVerticalTilt || currentVerticalTilt > ((rotationEulerConstant - maxVerticalTilt)))
-        {
-            gameObject.transform.Rotate(leftStickInputVertical, zeroConstant, zeroConstant);
-        }
+        //if (currentVerticalTilt < maxVerticalTilt || currentVerticalTilt > ((rotationEulerConstant - maxVerticalTilt)))
+        //{
+        //    gameObject.transform.Rotate(leftStickInputVertical, zeroConstant, zeroConstant);
+        //}
 
-        if (currentHorizontalTilt < maxHorizontalTilt || currentHorizontalTilt > (rotationEulerConstant - maxHorizontalTilt))
-        {
-            gameObject.transform.Rotate(zeroConstant, leftStickInputHorizontal, zeroConstant);
-        }
+        //if (currentHorizontalTilt < maxHorizontalTilt || currentHorizontalTilt > (rotationEulerConstant - maxHorizontalTilt))
+        //{
+        //    gameObject.transform.Rotate(zeroConstant, leftStickInputHorizontal, zeroConstant);
+        //}
+
+        gameObject.transform.Rotate(zeroConstant, leftStickInputHorizontal, zeroConstant);
+        gameObject.transform.Rotate(leftStickInputVertical, zeroConstant, zeroConstant);
 
         Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
     }

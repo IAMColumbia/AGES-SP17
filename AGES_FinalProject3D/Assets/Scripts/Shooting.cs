@@ -6,7 +6,11 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     private string shootButton;
     [SerializeField]
-    private GameObject bullet;
+    private Rigidbody bullet;
+    [SerializeField]
+    private float bulletSpeed;
+
+    private const float zeroConstant = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -25,8 +29,8 @@ public class Shooting : MonoBehaviour
         if (Input.GetButtonDown(shootButton))
         {
             Debug.Log("Shot fired!");
-            GameObject bulletInstance = Instantiate(bullet) as GameObject;
-            bulletInstance.gameObject.transform.Translate(gameObject.transform.forward);
+            Rigidbody bulletInstance = Instantiate(bullet) as Rigidbody;
+            bulletInstance.AddForce(zeroConstant, zeroConstant, bulletSpeed);
         }
     }
 }
