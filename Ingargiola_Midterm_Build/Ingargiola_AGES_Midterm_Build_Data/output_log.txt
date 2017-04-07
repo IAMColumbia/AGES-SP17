@@ -1,0 +1,2146 @@
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA Quadro K3100M (ID=0x11b6)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.081 seconds
+Platform assembly: C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\m.ingargiola21\Desktop\Ingargiola_Midterm\Ingargiola_Midterm_Build\Ingargiola_AGES_Midterm_Build_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.631582 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: e70 -> priority: 1 
+  Thread -> id: 51bc -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.963589 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 241.
+Total: 0.223235 ms (FindLiveObjects: 0.019794 ms CreateObjectMapping: 0.014295 ms MarkObjects: 0.181447 ms  DeleteObjects: 0.006964 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.171159 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 263.
+Total: 0.640380 ms (FindLiveObjects: 0.045453 ms CreateObjectMapping: 0.035556 ms MarkObjects: 0.546907 ms  DeleteObjects: 0.010630 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.411280 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1177.
+Total: 0.400650 ms (FindLiveObjects: 0.056083 ms CreateObjectMapping: 0.024192 ms MarkObjects: 0.310476 ms  DeleteObjects: 0.009530 ms)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+ArgumentException: Input Key named: Cancel is unknown
+  at (wrapper managed-to-native) UnityEngine.Input:GetKeyString (string)
+  at UnityEngine.Input.GetKey (System.String name) [0x00000] in <filename unknown>:0 
+  at GameManager.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
