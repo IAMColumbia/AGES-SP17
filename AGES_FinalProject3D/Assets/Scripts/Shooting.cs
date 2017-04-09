@@ -6,6 +6,12 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     private string shootButton;
     [SerializeField]
+    private string rightStickVertical;
+    [SerializeField]
+    private string rightStickHorizontal;
+    [SerializeField]
+    private Transform reticle;
+    [SerializeField]
     private Rigidbody bullet;
     [SerializeField]
     private float bulletSpeed;
@@ -21,6 +27,7 @@ public class Shooting : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        RotateToReticle();
         Shoot();
 	}
 
@@ -29,8 +36,13 @@ public class Shooting : MonoBehaviour
         if (Input.GetButtonDown(shootButton))
         {
             Debug.Log("Shot fired!");
-            Rigidbody bulletInstance = Instantiate(bullet) as Rigidbody;
-            bulletInstance.AddForce(zeroConstant, zeroConstant, bulletSpeed);
+            Rigidbody bulletInstance = Instantiate(bullet,gameObject.transform.position,gameObject.transform.rotation) as Rigidbody;
+            bulletInstance.AddForce(zeroConstant, bulletSpeed, zeroConstant);
         }
+    }
+
+    void RotateToReticle()
+    {
+        gameObject.transform.LookAt(reticle);
     }
 }

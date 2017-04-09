@@ -48,7 +48,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         //AccelerateForward();
-        Turn();
+        MoveShipPosition();
     }
 
 
@@ -72,21 +72,9 @@ public class Movement : MonoBehaviour
         playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed);
     }
 
-    //TODO: gameObject will turn to max turn angle, but won't turn back once it has reached that position
-    private void Turn()
+    private void MoveShipPosition()
     {
-        //if (currentVerticalTilt < maxVerticalTilt || currentVerticalTilt > ((rotationEulerConstant - maxVerticalTilt)))
-        //{
-        //    gameObject.transform.Rotate(leftStickInputVertical, zeroConstant, zeroConstant);
-        //}
-
-        //if (currentHorizontalTilt < maxHorizontalTilt || currentHorizontalTilt > (rotationEulerConstant - maxHorizontalTilt))
-        //{
-        //    gameObject.transform.Rotate(zeroConstant, leftStickInputHorizontal, zeroConstant);
-        //}
-
-        gameObject.transform.Rotate(zeroConstant, leftStickInputHorizontal, zeroConstant);
-        gameObject.transform.Rotate(leftStickInputVertical, zeroConstant, zeroConstant);
+        gameObject.transform.Translate(leftStickInputHorizontal, leftStickInputVertical, zeroConstant, Space.World);
 
         Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
     }
