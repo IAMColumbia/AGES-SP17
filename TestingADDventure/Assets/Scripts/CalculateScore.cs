@@ -111,8 +111,8 @@ public class CalculateScore : MonoBehaviour
         correctAnswers.Add(correctAnswer10);
 
         score = 0;
-        hasCheckedAnswers = false;
-        hasSetQuestionsOff = false;
+        hasCheckedAnswers = true;
+        hasSetQuestionsOff = true;
     }
 
     void Update()

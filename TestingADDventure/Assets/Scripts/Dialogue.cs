@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
+    [SerializeField]
+    Text dialogueText;
+
     List<string> dialogueList = new List<string>();
 
     void Start()
     {
-        GetComponent<Text>().text = "Okay, let's get started. ";
+        Debug.Log("start");
+        //dialogueText.text = "Okay, let's get started. ";
 
         dialogueList.Add("That one was easy. I got this. "); //0
         dialogueList.Add("This is pretty simple so far. "); //1
@@ -29,6 +33,6 @@ public class Dialogue : MonoBehaviour
 
     public void SetDialogueText(int listNum)
     {
-        GetComponent<Text>().text = dialogueList[listNum];
+        dialogueText.text = dialogueList[listNum];
     }
 }
