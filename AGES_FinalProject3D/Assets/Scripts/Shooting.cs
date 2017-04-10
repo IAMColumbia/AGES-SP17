@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Shooting : MonoBehaviour
 {
@@ -11,11 +12,16 @@ public class Shooting : MonoBehaviour
     private string rightStickHorizontal;
 
     [SerializeField]
-    float maxDistanceToActivate = 10;
-    [SerializeField]
     LayerMask layerToCheckForEnemies;
+    [SerializeField]
+    private Transform shootingPosition;
+    [SerializeField]
+    private float shootingReticleSpeed;
 
+    private float maxDistanceToActivate = 10;
     private const float zeroConstant = 0;
+    private float rightStickVerticalInput;
+    private float rightStickHorizontalInput;
 
 	// Use this for initialization
 	void Start ()
@@ -27,20 +33,37 @@ public class Shooting : MonoBehaviour
 	void Update ()
     {
         Shoot();
+        UpdateRightStickInput();
+        MoveReticle();
 	}
+
+    private void UpdateRightStickInput()
+    {
+        rightStickHorizontalInput = Input.GetAxis(rightStickHorizontal) * shootingReticleSpeed;
+        rightStickVerticalInput = Input.GetAxis(rightStickVertical) * shootingReticleSpeed;
+    }
+
+    private void MoveReticle()
+    {
+        shootingPosition.gameObject.transform.Translate(rightStickHorizontalInput, rightStickVerticalInput, zeroConstant, Space.World);
+        maxDistanceToActivate = shootingPosition.position.z - gameObject.transform.position.z;
+    }
 
     void Shoot()
     {
         if (Input.GetButton(shootButton))
         {
-            Vector3 endpoint = (transform.forward * maxDistanceToActivate) + transform.position;
+            Vector3 endpoint = shootingPosition.position;
 
             RaycastHit raycastHit;
 
             Health enemyHealth;
 
+            //Shooting works but drawline does not currently
             Debug.DrawLine(transform.position, endpoint, Color.green, 2);
 
+            //Change max distance to activate float so it's at the same location as the reticle
+            //Check about where the ray is being cast.
             if (Physics.Raycast(transform.position,transform.forward, out raycastHit,maxDistanceToActivate,layerToCheckForEnemies))
             {
                 enemyHealth = raycastHit.transform.gameObject.GetComponent<Health>();
