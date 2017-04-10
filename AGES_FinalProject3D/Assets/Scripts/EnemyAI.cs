@@ -17,15 +17,16 @@ public class EnemyAI : MonoBehaviour
 	
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Player")
         {
             Explode();
         }
     }
 
-    private void Explode()
+    public void Explode()
     {
+        gameObject.SetActive(false);
     }
 }

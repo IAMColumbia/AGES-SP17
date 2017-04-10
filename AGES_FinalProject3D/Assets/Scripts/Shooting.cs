@@ -16,6 +16,11 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     private float bulletSpeed;
 
+    [SerializeField]
+    float maxDistanceToActivate = 10;
+    [SerializeField]
+    LayerMask layerToCheckForEnemies;
+
     private const float zeroConstant = 0;
 
 	// Use this for initialization
@@ -27,22 +32,35 @@ public class Shooting : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        RotateToReticle();
         Shoot();
 	}
 
     void Shoot()
     {
-        if (Input.GetButtonDown(shootButton))
+        if (Input.GetButton(shootButton))
         {
-            Debug.Log("Shot fired!");
-            Rigidbody bulletInstance = Instantiate(bullet,gameObject.transform.position,gameObject.transform.rotation) as Rigidbody;
-            bulletInstance.AddForce(zeroConstant, bulletSpeed, zeroConstant);
+            Vector3 endpoint = (transform.forward * maxDistanceToActivate) + transform.position;
+
+            RaycastHit raycastHit;
+
+            EnemyAI enemy;
+
+            Debug.DrawLine(transform.position, endpoint, Color.green, 2);
+
+            if (Physics.Raycast(transform.position,transform.forward, out raycastHit,maxDistanceToActivate,layerToCheckForEnemies))
+            {
+                enemy = raycastHit.transform.gameObject.GetComponent<EnemyAI>();
+
+                if (enemy != null)
+                {
+                    enemy.Explode();
+                }
+            }
         }
     }
 
-    void RotateToReticle()
-    {
-        gameObject.transform.LookAt(reticle);
-    }
+    //void RotateToReticle()
+    //{
+    //    gameObject.transform.LookAt(reticle);
+    //}
 }
