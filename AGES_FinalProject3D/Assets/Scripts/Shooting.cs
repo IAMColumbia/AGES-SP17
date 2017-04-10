@@ -9,12 +9,6 @@ public class Shooting : MonoBehaviour
     private string rightStickVertical;
     [SerializeField]
     private string rightStickHorizontal;
-    [SerializeField]
-    private Transform reticle;
-    [SerializeField]
-    private Rigidbody bullet;
-    [SerializeField]
-    private float bulletSpeed;
 
     [SerializeField]
     float maxDistanceToActivate = 10;
@@ -43,17 +37,17 @@ public class Shooting : MonoBehaviour
 
             RaycastHit raycastHit;
 
-            EnemyAI enemy;
+            Health enemyHealth;
 
             Debug.DrawLine(transform.position, endpoint, Color.green, 2);
 
             if (Physics.Raycast(transform.position,transform.forward, out raycastHit,maxDistanceToActivate,layerToCheckForEnemies))
             {
-                enemy = raycastHit.transform.gameObject.GetComponent<EnemyAI>();
+                enemyHealth = raycastHit.transform.gameObject.GetComponent<Health>();
 
-                if (enemy != null)
+                if (enemyHealth != null)
                 {
-                    enemy.Explode();
+                    enemyHealth.TakeDamage(1);
                 }
             }
         }

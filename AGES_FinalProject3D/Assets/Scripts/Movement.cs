@@ -10,11 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private string leftStickHorizontal;
     [SerializeField]
-    private float turnSpeed;
-    [SerializeField]
-    private float maxVerticalTilt;
-    [SerializeField]
-    private float maxHorizontalTilt;
+    private float turnMultiplier;
     [SerializeField]
     private float accelerationSpeed;
     [SerializeField]
@@ -54,8 +50,8 @@ public class Movement : MonoBehaviour
 
     private void UpdateTurnInput()
     {
-        leftStickInputVertical = (Input.GetAxis(leftStickVertical) * turnSpeed);
-        leftStickInputHorizontal = (Input.GetAxis(leftStickHorizontal) * turnSpeed);
+        leftStickInputVertical = (Input.GetAxis(leftStickVertical) * turnMultiplier);
+        leftStickInputHorizontal = (Input.GetAxis(leftStickHorizontal) * turnMultiplier);
     }
 
     private void UpdateCurrentTilt()
@@ -64,7 +60,7 @@ public class Movement : MonoBehaviour
 
         currentHorizontalTilt = gameObject.transform.rotation.eulerAngles.y;
 
-        Debug.Log("X tilt is " + currentVerticalTilt + " Y tilt is " + currentHorizontalTilt);
+        //Debug.Log("X tilt is " + currentVerticalTilt + " Y tilt is " + currentHorizontalTilt);
     }
 
     private void AccelerateForward()
@@ -76,6 +72,6 @@ public class Movement : MonoBehaviour
     {
         gameObject.transform.Translate(leftStickInputHorizontal, leftStickInputVertical, zeroConstant, Space.World);
 
-        Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
+        //Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
     }
 }
