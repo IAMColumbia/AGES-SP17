@@ -27,6 +27,7 @@ public class TimeLimit : MonoBehaviour {
     GameObject waterPlane;
 
 
+
     public float TimeLeft
     {
         get
@@ -61,21 +62,10 @@ public class TimeLimit : MonoBehaviour {
    
     void start()
     {      
-        timeText = GetComponent<UnityEngine.UI.Text>();
-        
-        StartMatch();
-    }
-
-    private void StartMatch()
-    {
-     
-    }
-
+        timeText = GetComponent<UnityEngine.UI.Text>();             
+    }   
     void Update()
-    {
-
-        // TimeLeft + timeAdded;
-
+    {      
         TimeLeft -= Time.deltaTime;
         timeText.text = ((int)TimeLeft).ToString();
 
@@ -109,14 +99,11 @@ public class TimeLimit : MonoBehaviour {
 
         waterSpeed = 0.03f;
         waterPlane.transform.Translate(Vector3.up * waterSpeed * Time.deltaTime, Space.World);
-        waterPlane.transform.Translate(Vector3.up);
-         
-        
+        waterPlane.transform.Translate(Vector3.up);                
     }
 
     private void SpawnItems()
     {
-
         for (int i = 0; i < weightedObjects.Length; i++)
         {                           
             int r = UnityEngine.Random.Range(0, weightedObjects.Length);

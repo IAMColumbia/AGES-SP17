@@ -9,9 +9,9 @@ using System;
     {
         public int m_NumRoundsToWin = 3;
         public float m_StartDelay = 3f;
-        public float m_ResetDelay = 10f;
+        public float m_ResetDelay = 5f;
         float countDownTime = 4f;
-        public float m_EndDelay = 10f;
+        public float m_EndDelay = 5f;
         public CameraControl m_CameraControl;
         public Text m_MessageText;
         public GameObject m_TankPrefab;
