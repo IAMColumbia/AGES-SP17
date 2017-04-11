@@ -18,6 +18,9 @@ public class TorpedoUI : MonoBehaviour {
     [SerializeField]
     ScrollRect torpedoInformationPanel;
 
+    [SerializeField]
+    TorpedoLauncher torpedoLauncher;
+
     public Transform torpedoInfoList;
 
 	// Use this for initialization
@@ -45,5 +48,6 @@ public class TorpedoUI : MonoBehaviour {
     public void Fire()
     {
         Debug.Log("firing torpedo from tube A; heading is " + ATheta);
+        torpedoLauncher.LaunchTorpedo(ATheta);
     }
 }

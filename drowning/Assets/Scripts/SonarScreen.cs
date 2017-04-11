@@ -26,15 +26,6 @@ public class SonarScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        SpawnRandomPing();
-        SpawnRandomPing();
-        SpawnRandomPing();
-        SpawnRandomPing();
-        SpawnRandomPing();
-        SpawnRandomPing();
-        SpawnRandomPing();
-        SpawnRandomPing();
-        SpawnRandomPing();
     }
 	
 	// Update is called once per frame
@@ -71,7 +62,7 @@ public class SonarScreen : MonoBehaviour {
         SpawnPingAt(t, r);
     }
 
-    void SpawnPingAt(float theta, float range)
+    public SonarPing SpawnPingAt(float theta, float range)
     {
         float rangeOnScreen = Mathf.Clamp(range, 0, maxRange) / maxRange * screenRadius; //convert range units to screen units
 
@@ -88,6 +79,20 @@ public class SonarScreen : MonoBehaviour {
         SonarPing p = new SonarPing(theta, range, newPing);
 
         pingsOnScreen.Add(p);
+
+        return p;
+    }
+
+    public void RemovePing(SonarPing ping)
+    {
+        for(int i = pingsOnScreen.Count - 1; i >= 0; i--)
+        {
+            if(pingsOnScreen[i] == ping)
+            {
+                pingsOnScreen.RemoveAt(i);
+                ping.DeletePing();
+            }
+        }
     }
 }
 
@@ -132,5 +137,10 @@ public class SonarPing
         pingImage.color = c;
 
         active = true;
+    }
+
+    public void DeletePing()
+    {
+        GameObject.Destroy(pingImage.gameObject);
     }
 }

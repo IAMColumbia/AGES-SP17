@@ -8,9 +8,9 @@ public class Torpedo : MonoBehaviour {
 
     TorpedoInfoPanel torpedoInfo = null;
 
-    Transform torpedoInfoList;
+    public Transform torpedoInfoList;
 
-    public float FuseTime = 6, Speed = 1, Heading = 0;
+    public float FuseTime = 20, Speed = 5, Heading = 0;
 
     float remainingFuse;
 
@@ -20,15 +20,13 @@ public class Torpedo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        TorpedoUI t = FindObjectOfType<TorpedoUI>();
-        torpedoInfoList = t.torpedoInfoList;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (fired)
         {
-            transform.localPosition += unitMovement * Speed;
+            transform.localPosition += unitMovement * Speed * Time.fixedDeltaTime;
 
             if(torpedoInfo != null)
             {
@@ -39,6 +37,7 @@ public class Torpedo : MonoBehaviour {
 
             if(remainingFuse <= 0)
             {
+                torpedoInfo.updateStatus("MISSED");
                 Die();
             }
         }
@@ -59,10 +58,15 @@ public class Torpedo : MonoBehaviour {
         fired = true;
     }
 
-    void Die()
+    public void HitEnemy()
     {
         torpedoInfo.updateStatus("KILL CONFIRMED");
-        Destroy(torpedoInfo.gameObject, 3);
-        Destroy(this);
+        Die();
+    }
+
+    void Die()
+    {
+        torpedoInfo.Remove(3);
+        Destroy(this.gameObject);
     }
 }

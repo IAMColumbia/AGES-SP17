@@ -6,12 +6,14 @@ public class TorpedoLauncher : MonoBehaviour {
     [SerializeField]
     Torpedo torpedoPrefab;
 
-    float speed = 10;
-    float fuseTime = 6;
+    Transform torpedoInfoList;
+
+    float speed = 5;
+    float fuseTime = 20;
 
 	// Use this for initialization
 	void Start () {
-	
+        torpedoInfoList = GameObject.FindObjectOfType<TorpedoUI>().torpedoInfoList;
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,7 @@ public class TorpedoLauncher : MonoBehaviour {
     {
         Torpedo newTorpedo = Instantiate<Torpedo>(torpedoPrefab);
         newTorpedo.transform.SetParent(transform, false);
+        newTorpedo.torpedoInfoList = torpedoInfoList;
 
         newTorpedo.Speed = speed;
         newTorpedo.FuseTime = fuseTime;
