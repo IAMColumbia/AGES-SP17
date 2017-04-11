@@ -8,36 +8,64 @@ public class CameraPosition : MonoBehaviour {
     {
         "Center",
         "Sonar",
-        "Engine"
+        "Engine",
+        "Torpedo"
     };
 
-    int cameraPositionIndex = 0;
+    int cameraPositionIndex = -1;
 
     [SerializeField]
     Animator m_animator;
 
+    [SerializeField]
+    Canvas torpedoUI; //temporary until screens actually look good
+
 	// Use this for initialization
 	void Start () {
-	
+        nextCameraPosition();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            cameraPositionIndex++;
-
-            if(cameraPositionIndex >= cameraPositions.Length) { cameraPositionIndex = 0; }
-
-            m_animator.SetTrigger(cameraPositions[cameraPositionIndex]);
+            nextCameraPosition();
+            updateTorpedoUI();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            cameraPositionIndex--;
-
-            if (cameraPositionIndex < 0) { cameraPositionIndex = cameraPositions.Length - 1; }
-
-            m_animator.SetTrigger(cameraPositions[cameraPositionIndex]);
+            prevCameraPosition();
+            updateTorpedoUI();
         }
 	}
+
+    void nextCameraPosition()
+    {
+        cameraPositionIndex++;
+
+        if (cameraPositionIndex >= cameraPositions.Length) { cameraPositionIndex = 0; }
+
+        m_animator.SetTrigger(cameraPositions[cameraPositionIndex]);
+    }
+
+    void prevCameraPosition()
+    {
+        cameraPositionIndex--;
+
+        if (cameraPositionIndex < 0) { cameraPositionIndex = cameraPositions.Length - 1; }
+
+        m_animator.SetTrigger(cameraPositions[cameraPositionIndex]);
+    }
+
+    void updateTorpedoUI()
+    {
+        if(cameraPositions[cameraPositionIndex] == "Torpedo")
+        {
+            torpedoUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            torpedoUI.gameObject.SetActive(false);
+        }
+    }
 }

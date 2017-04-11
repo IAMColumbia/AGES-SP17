@@ -13,6 +13,7 @@ public class PowerUI : MonoBehaviour {
     float t = 0;
 
     public float speed;
+    public Color finishedColor;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +29,13 @@ public class PowerUI : MonoBehaviour {
     void goToPercent(float percentage)
     {
         percentage = Mathf.Clamp01(percentage);
-        PercentageText.text = percentage.ToString("###.00%");
+        PercentageText.text = percentage.ToString("###.000%");
         FillImage.fillAmount = percentage;
+
+        if(percentage == 1)
+        {
+            PowerText.color = finishedColor;
+            PercentageText.color = finishedColor;
+        }
     }
 }
