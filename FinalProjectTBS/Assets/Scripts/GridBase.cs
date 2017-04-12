@@ -108,7 +108,9 @@ namespace GridMaster
 
                 for (int i = 0; i < agents; i++)
                 {
-                    Pathfinding.PathfindMaster.Instance.RequestPathfind(startNode, endNode, ShowPath);
+                    //Pathfinding.PathfindMaster.Instance.RequestPathfind(startNode, endNode, ShowPath);
+
+
                 }
             }
         }
