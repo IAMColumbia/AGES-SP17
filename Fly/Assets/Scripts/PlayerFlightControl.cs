@@ -8,7 +8,7 @@ public class PlayerFlightControl : MonoBehaviour {
     [SerializeField]
     float m_Speed = 12f;
     [SerializeField]
-    float m_TurnSpeed = 10f;
+    float m_TurnSpeed = 180f;
     [SerializeField]
     AudioSource m_MovementAudio;
     [SerializeField]
@@ -18,23 +18,24 @@ public class PlayerFlightControl : MonoBehaviour {
 
     //Variables private
     Vector3 eulerAngleVelocity;
+
     Rigidbody m_Rigidbody;
     string m_MovementAxisName;
     string m_TurnAxisName;
-   
-    float m_MovementInputValue;
-    float m_TurnInputValue;
+
+
+    //Pitch, Roll, Yaw
+    //Pitch is tilt Up/Down (Y axis)  || Vertical refactor to Pitch
+    //Yaw is moving forward/back (Z axis  || Movement refactor to Yaw
+    //Roll is tilting left/right (X axis) || Turn refactor to Roll
+    float m_HorizontalInputValue;
+    float m_VerticalInputValue;
     float m_OriginalPitch;
     
     //mvem
-    float moveHorizontal;
-    float moveVertical;
     /// <summary>
     //
     /// </summary>
-	//void Start () {
-       
- //   }
     void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -43,49 +44,71 @@ public class PlayerFlightControl : MonoBehaviour {
     void OnEnable()
     {
         m_Rigidbody.isKinematic = false;
-        m_MovementInputValue = 0f;
-        m_TurnInputValue = 0f;
+        //m_movementInput
+        m_HorizontalInputValue = 0f;
+        //m_turnInput
+        m_VerticalInputValue = 0f;
     }
     private void OnDisable()
     {
         m_Rigidbody.isKinematic = true;
     }
+    void Start()
+    {
+        
+    }
     // Update is called once per frame
     void Update () {
-        moveHorizontal = Input.GetAxis("Horizontal");
-        moveVertical = Input.GetAxis("Vertical");
+        m_HorizontalInputValue = Input.GetAxis("Horizontal");
+        m_VerticalInputValue = Input.GetAxis("Vertical");
     }
     void FixedUpdate()
     {
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         m_Rigidbody = GetComponent<Rigidbody>();
         //rb is now m_Rigidbody
-        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
-
-        Turn();
-        //Move();
+       
+        Roll();  //Roll is tilting left/right (X axis)
+        Pitch(); //Pitch is tilt Up/Down (Y axis)
+        Yaw();  //Yaw is moving forward/back (Z axis
+        AutoRotate();
+        AutoMovement();
     }
-    //private void Move()
-    //{
-    //    Vector3 alwaysMoving;
 
-    //    alwaysMoving = Vector3.forward;
-    //    transform.position = alwaysMoving;
-    //    //for (int i = 0; i < Time.fixedTime; i++)
-    //    //{
-    //    //    while (i < Time.fixedTime)
-    //    //    {
-    //    //        transform.position = alwaysMoving;
-    //    //    }
-    //    //}
-    //}
-    private void Turn()
+    private void AutoMovement()
+    {
+        transform.Translate(Vector3.forward * m_Speed * Time.deltaTime);
+    }
+
+    private void AutoRotate()
+    {
+        Quaternion balancedRotation = Quaternion.Euler(0f, 0f, 0f);
+        //  if(currentRotation != balancedRotation)
+        //{ if (playerMovementInput == 0)}
+    }
+    private void Roll()
     {
         // Adjust the rotation of the tank based on the player's input.
-        //Make all variables are set up 
-        //left and right is turn 
-        float moveHorizontal = m_TurnInputValue * m_TurnSpeed * Time.deltaTime;
-        Quaternion turnRotation = Quaternion.Euler(moveHorizontal, 0f, 0f);
-        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);        
+        //moveHorizonal is now roll 
+        float roll = m_VerticalInputValue * m_TurnSpeed * Time.deltaTime;
+        Quaternion turnRotation = Quaternion.Euler(roll, 0f, 0f);
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+    }
+    private void Pitch()
+    {
+        //moveHorizonal is now pitch
+       
+        float pitch = m_HorizontalInputValue * m_TurnSpeed * Time.deltaTime;
+        Quaternion turnRotation = Quaternion.Euler(0, pitch, 0f);
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+    }
+    
+    private void Yaw()
+    {
+        //moveHorizonal is now yaw
+        float yaw = m_HorizontalInputValue * m_TurnSpeed * Time.deltaTime;
+        Quaternion turnRotation = Quaternion.Euler(0f, 0f, yaw);
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+        // Vector3 movement = transform.forward * m_VerticalInputValue * m_Speed * Time.deltaTime;
     }
 }

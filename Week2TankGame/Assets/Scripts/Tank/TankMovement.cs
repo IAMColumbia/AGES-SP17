@@ -23,22 +23,16 @@ public class TankMovement : MonoBehaviour
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
-
-
     private void OnEnable ()
     {
         m_Rigidbody.isKinematic = false;
         m_MovementInputValue = 0f;
         m_TurnInputValue = 0f;
     }
-
-
     private void OnDisable ()
     {
         m_Rigidbody.isKinematic = true;
     }
-
-
     private void Start()
     {
         m_MovementAxisName = "Vertical" + m_PlayerNumber;
@@ -46,8 +40,6 @@ public class TankMovement : MonoBehaviour
 
         m_OriginalPitch = m_MovementAudio.pitch;
     }
-    
-
     private void Update()
     {
         // Store the player's input and make sure the audio for the engine is playing.
@@ -55,8 +47,6 @@ public class TankMovement : MonoBehaviour
         m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
         EngineAudio();
     }
-
-
     private void EngineAudio()
     {
         // Play the correct audio clip based on whether or not the tank is moving and what audio is currently playing.
@@ -79,24 +69,18 @@ public class TankMovement : MonoBehaviour
             }
         }
     }
-
-
     private void FixedUpdate()
     {
         // Move and turn the tank.
         Move();
         Turn();
     }
-
-
     private void Move()
     {
         // Adjust the position of the tank based on the player's input.
         Vector3 movement = transform.forward * m_MovementInputValue * m_Speed * Time.deltaTime;
         m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
     }
-
-
     private void Turn()
     {
         // Adjust the rotation of the tank based on the player's input.
