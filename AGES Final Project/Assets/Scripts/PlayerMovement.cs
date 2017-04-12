@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if(other.gameObject.tag == "Holding Point")
         {
