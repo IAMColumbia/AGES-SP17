@@ -45,7 +45,6 @@ public class TorpedoInfoPanel : MonoBehaviour {
         while(t > 0)
         {
             float newMinHeight = Mathf.Lerp(0, layoutInitialHeight, t / removeDuration);
-            Debug.Log(newMinHeight);
             layout.minHeight = newMinHeight;
 
             yield return 0;

@@ -30,12 +30,12 @@ public class CameraPosition : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             nextCameraPosition();
-            updateTorpedoUI();
+            //updateTorpedoUI();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             prevCameraPosition();
-            updateTorpedoUI();
+            //updateTorpedoUI();
         }
 	}
 

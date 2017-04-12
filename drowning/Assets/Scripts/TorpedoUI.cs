@@ -23,9 +23,13 @@ public class TorpedoUI : MonoBehaviour {
 
     public Transform torpedoInfoList;
 
+    Quaternion headingCircleInitialRotation;
+    Vector3 headingCircleRotationAxis;
+
 	// Use this for initialization
 	void Start () {
-	
+        headingCircleInitialRotation = headingCircle.transform.rotation;
+        headingCircleRotationAxis = headingCircle.transform.forward;
 	}
 	
 	// Update is called once per frame
@@ -37,11 +41,9 @@ public class TorpedoUI : MonoBehaviour {
         if(ATheta > 180) { ATheta = -180; }
         if(ATheta < -180) { ATheta = 180; }
 
-        headingCircle.eulerAngles = new Vector3(0, 0, -ATheta);
+        headingCircle.rotation = Quaternion.AngleAxis(-ATheta, headingCircleRotationAxis) * headingCircleInitialRotation;
 
         angleText.text = Mathf.Floor(ATheta).ToString();
-
-        torpedoInformationPanel.verticalScrollbar.value += scrollAmount;
 	}
 
 
