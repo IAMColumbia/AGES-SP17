@@ -30,6 +30,9 @@ namespace GridMaster
         [SerializeField]
         Vector3 endNodePosition;
 
+        [SerializeField]
+        int agents;
+
         public Node[,,] grid;
 
         // Singleton Pattern
@@ -87,7 +90,7 @@ namespace GridMaster
             {
                 startTest = false;
 
-                Pathfinding.Pathfinder path = new Pathfinding.Pathfinder();
+                //Pathfinding.Pathfinder path = new Pathfinding.Pathfinder();
 
                 // Make a node unwalkable to test avoidance
                 grid[1, 0, 1].isWalkable = false;
@@ -96,19 +99,29 @@ namespace GridMaster
                 Node startNode = GetNodeFromVector3(startNodePosition);
                 Node endNode = GetNodeFromVector3(endNodePosition);
 
-                path.startPosition = startNode;
-                path.endPosition = endNode;
+                //path.startPosition = startNode;
+                //path.endPosition = endNode;
 
                 // Find the path
-                List<Node> p = path.FindPath();
-
-                // Disable the world object for each node passed through
+                //List<Node> p = path.FindPath();
                 startNode.worldObject.SetActive(false);
-                foreach (Node n in p)
+
+                for (int i = 0; i < agents; i++)
                 {
-                    n.worldObject.SetActive(false);
+                    Pathfinding.PathfindMaster.Instance.RequestPathfind(startNode, endNode, ShowPath);
                 }
             }
+        }
+
+        public void ShowPath(List<Node> path)
+        {
+            // Disable the world object for each node passed through
+            foreach (Node n in path)
+            {
+                n.worldObject.SetActive(false);
+            }
+
+            //Debug.Log("Agent Complete");
         }
 
         public Node GetNodeFromVector3(Vector3 position)
@@ -124,8 +137,7 @@ namespace GridMaster
 
         public Node GetNode(int x, int y, int z)
         {
-            // will return null if greater than max values
-
+            // Will return null if greater than max values
             Node returnNode = null;
 
             if (x < xMax && x >= 0 && y < yMax && y >= 0 && z < zMax && z >= 0)

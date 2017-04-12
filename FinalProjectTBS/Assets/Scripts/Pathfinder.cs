@@ -12,11 +12,31 @@ namespace Pathfinding
         public Node startPosition;
         public Node endPosition;
 
-        public List<Node> FindPath()
-        {
-            gridBase = GridBase.Instance;
+        public volatile bool jobDone = false;
+        PathfindMaster.PathfindingJobComplete completeCallback;
+        List<Node> foundPath;
 
-            return ActualFindPath(startPosition, endPosition);
+        public Pathfinder(Node start, Node target, PathfindMaster.PathfindingJobComplete callback)
+        {
+            startPosition = start;
+            endPosition = target;
+            completeCallback = callback;
+            gridBase = GridBase.Instance;
+        }
+
+        public void NotifyComplete()
+        {
+            if (completeCallback != null)
+            {
+                completeCallback(foundPath);
+            }
+        }
+
+        public void FindPath()
+        {
+            foundPath = ActualFindPath(startPosition, endPosition);
+
+            jobDone = true;
         }
 
         List<Node> ActualFindPath(Node start, Node target)
@@ -158,7 +178,7 @@ namespace Pathfinding
 
             Node returnNode = null;
 
-            Node node = gridBase.GetNode(adjacentPosition.xPosition, adjacentPosition.yPosition, adjacentPosition.zPosition);
+            Node node = GetNode(adjacentPosition.xPosition, adjacentPosition.yPosition, adjacentPosition.zPosition);
 
             // Check that it's not null and is walkable
             if (node != null && node.isWalkable)
@@ -170,7 +190,7 @@ namespace Pathfinding
             {
                 // Look at what's below adjacent node
                 adjacentPosition.yPosition -= 1;
-                Node bottomBlock = gridBase.GetNode(adjacentPosition.xPosition, adjacentPosition.yPosition, adjacentPosition.zPosition);
+                Node bottomBlock = GetNode(adjacentPosition.xPosition, adjacentPosition.yPosition, adjacentPosition.zPosition);
 
                 // Check that it's not null and is walkable
                 if (bottomBlock != null && bottomBlock.isWalkable)
@@ -181,7 +201,7 @@ namespace Pathfinding
                 {
                     // Look at what's above adjacent node (+= 2 because currently below adjacent node)
                     adjacentPosition.yPosition += 2;
-                    Node topBlock = gridBase.GetNode(adjacentPosition.xPosition, adjacentPosition.yPosition, adjacentPosition.zPosition);
+                    Node topBlock = GetNode(adjacentPosition.xPosition, adjacentPosition.yPosition, adjacentPosition.zPosition);
 
                     // Check that it's not null and is walkable
                     if (topBlock != null && topBlock.isWalkable)
@@ -198,14 +218,14 @@ namespace Pathfinding
             if (Mathf.Abs(originalXPosition) == 1 && Mathf.Abs(originalZPosition) == 1)
             {
                 // Neighbor node (originalXPosition, 0)
-                Node neighbor1 = gridBase.GetNode(currentNodePosition.xPosition + originalXPosition, currentNodePosition.yPosition, currentNodePosition.zPosition);
+                Node neighbor1 = GetNode(currentNodePosition.xPosition + originalXPosition, currentNodePosition.yPosition, currentNodePosition.zPosition);
                 if (neighbor1 == null || !neighbor1.isWalkable)
                 {
                     returnNode = null;
                 }
 
                 // Neighbor node (0, originalZPosition)
-                Node neighbor2 = gridBase.GetNode(currentNodePosition.xPosition, currentNodePosition.yPosition, currentNodePosition.zPosition + originalZPosition);
+                Node neighbor2 = GetNode(currentNodePosition.xPosition, currentNodePosition.yPosition, currentNodePosition.zPosition + originalZPosition);
                 if (neighbor2 == null || !neighbor2.isWalkable)
                 {
                     returnNode = null;
@@ -213,6 +233,18 @@ namespace Pathfinding
             }
 
             return returnNode;
+        }
+
+        Node GetNode(int x, int y, int z)
+        {
+            Node n = null;
+
+            lock(gridBase)
+            {
+                n = gridBase.GetNode(x, y, z);
+            }
+
+            return n;
         }
 
         int GetDistance(Node a, Node b)
