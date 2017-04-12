@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     //public AudioSource m_MovementAudio;    
     //public AudioClip m_EngineIdling;       
     //public AudioClip m_EngineDriving;      
-    public float m_PitchRange = 0.2f;
+    //public float m_PitchRange = 0.2f;
 
     
     private string m_MovementAxisName;     
