@@ -6,7 +6,7 @@ public class MovingPlatform : MonoBehaviour {
     [SerializeField]
     int Xcoordinate, Ycoordinate, Zcoordinate;
 
-    public float speed;
+    public float OriginalSpeed;
 
     private int direction = 1;
 
@@ -19,7 +19,7 @@ public class MovingPlatform : MonoBehaviour {
     
 	void Update ()
     {
-        transform.Translate(vector * speed * direction * Time.deltaTime);
+        transform.Translate(vector * OriginalSpeed * direction * Time.deltaTime);
 	}
 
     void OnTriggerEnter(Collider collider)

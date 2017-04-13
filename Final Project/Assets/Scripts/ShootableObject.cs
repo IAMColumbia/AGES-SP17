@@ -12,13 +12,13 @@ public class ShootableObject : MonoBehaviour
 
     public void Damage(int damageAmount)
     {    
-        if (movingPlatform.speed > 0)
+        if (movingPlatform.OriginalSpeed > 0)
         {            
-            movingPlatform.speed = 0;
+            movingPlatform.OriginalSpeed = 0;
         }
-        else if (movingPlatform.speed <= 0)
+        else if (movingPlatform.OriginalSpeed <= 0)
         {
-            movingPlatform.speed = newSpeed;
+            movingPlatform.OriginalSpeed = newSpeed;
         }
     }
 }

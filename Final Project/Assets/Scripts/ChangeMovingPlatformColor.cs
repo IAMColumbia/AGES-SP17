@@ -26,11 +26,11 @@ public class ChangeMovingPlatformColor : MonoBehaviour {
 
     private void ChangePlatformColor()
     {
-        if (movingPlatform.speed > 0)
+        if (movingPlatform.OriginalSpeed > 0)
         {
             movingPlatformRenderer.material.color = movingPlatformMaterial.color;
         }
-        else if (movingPlatform.speed <= 0)
+        else if (movingPlatform.OriginalSpeed <= 0)
         {
             movingPlatformRenderer.material.color = stoppedPlatformMaterial.color;
         }

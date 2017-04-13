@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DeathandRespawn : MonoBehaviour {
 
@@ -36,10 +37,10 @@ public class DeathandRespawn : MonoBehaviour {
     {
         if (collider.tag == "DeathGround")
         {
+            isPlayerDead = true;
             firstPersonController.enabled = false;
 
             deathScreenPanel.gameObject.SetActive(true);
-            isPlayerDead = true;
             gameObject.transform.position = respawnPoint.position;
         }
     }
@@ -50,9 +51,7 @@ public class DeathandRespawn : MonoBehaviour {
         {
             if (Input.GetButtonDown("Respawn"))
             {
-                deathScreenPanel.gameObject.SetActive(false);
-                firstPersonController.enabled = true;
-                isPlayerDead = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }

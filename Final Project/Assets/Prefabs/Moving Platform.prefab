@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013969433448}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 0.5, z: -14.4}
+  m_LocalPosition: {x: 6, y: 0.5, z: -25.4}
   m_LocalScale: {x: 1, y: 1, z: 1.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -138,8 +138,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.1228848, y: 1.0079184, z: 4.0727844}
-  m_Center: {x: 0.008554935, y: 0.003959179, z: -0.0005970001}
+  m_Size: {x: 4.0201125, y: 1.0079184, z: 4.0127764}
+  m_Center: {x: 0.00051403046, y: 0.003959179, z: -0.0021505354}
 --- !u!65 &65000012926612804
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingPlatform: {fileID: 114000012681406874}
-  newSpeed: 1
+  newSpeed: 2
 --- !u!114 &114000011780576868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,9 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30b843d6dbb22e4780d1e1a121ed768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingPlatformMaterial: {fileID: 2100000, guid: 8ab678852b3fb114db38bac6b1477a0c,
+  movingPlatformMaterial: {fileID: 2100000, guid: 8ffd0751c41f8a04b9a163bc057b6c6d,
     type: 2}
-  stoppedPlatformMaterial: {fileID: 2100000, guid: 76664a167e49520458438fe04e1dc83e,
+  stoppedPlatformMaterial: {fileID: 2100000, guid: ad7383c3bd3de5c4bbacbdcc2bad4ade,
     type: 2}
   movingPlatformRenderer: {fileID: 23000011909045942}
   movingPlatform: {fileID: 114000012681406874}
@@ -207,4 +207,4 @@ MonoBehaviour:
   Xcoordinate: 0
   Ycoordinate: 0
   Zcoordinate: 1
-  speed: 1
+  speed: 0
