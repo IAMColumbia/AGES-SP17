@@ -36,6 +36,21 @@ public class GameManager : MonoBehaviour {
             Players[i].Instance = Instantiate(PlayerPrefabs[i], Players[i].SpawnPoint.position, Players[i].SpawnPoint.rotation) as GameObject;
             Players[i].PlayerNumber = i + 1;
             Players[i].Setup();
+            
+        }
+    }
+
+    public void RespawnPlayers()
+    {
+        for (int i = 0; i < Players.Length; i++)
+        {
+            if(!Players[i].Instance.activeSelf)
+            {
+                Players[i].Instance = Instantiate(PlayerPrefabs[i], Players[i].SpawnPoint.position, Players[i].SpawnPoint.rotation) as GameObject;
+                Players[i].PlayerNumber = i + 1;
+                Players[i].Setup();
+                SetCameraTargets();
+            }
         }
     }
 
@@ -50,9 +65,5 @@ public class GameManager : MonoBehaviour {
 
         CameraControl.Targets = players;
     }
-
-    // Update is called once per frame
-    void Update () {
-	
-	}
+    
 }

@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour {
         GetAxis();
         HandleMovement();
         HandleJump();
-        Debug.Log(rBody2D.velocity.x);
     }
 
     private void HandleMovement()

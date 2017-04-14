@@ -13,6 +13,8 @@ public class PlayerManager {
     [HideInInspector]
     public int ButtsBlasted;
 
+    public Transform markerTransformPoint;
+
     private PlayerController movement;
 
     public void Setup()
