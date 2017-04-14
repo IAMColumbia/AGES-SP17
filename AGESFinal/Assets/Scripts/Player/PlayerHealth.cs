@@ -5,8 +5,7 @@ public class PlayerHealth : MonoBehaviour {
 
     [SerializeField]
     private ParticleSystem HazardDeathParticles;
-
-
+    
     private GameManager gameManager;
 
     private void OnEnable()
@@ -16,8 +15,12 @@ public class PlayerHealth : MonoBehaviour {
     public void CueHazardDeathParticles()
     {
         HazardDeathParticles.transform.parent = null;
-        gameObject.SetActive(false);
+
         HazardDeathParticles.Play();
+
+        Destroy(HazardDeathParticles.gameObject, HazardDeathParticles.duration);
+
         gameManager.RespawnPlayers();
+
     }
 }

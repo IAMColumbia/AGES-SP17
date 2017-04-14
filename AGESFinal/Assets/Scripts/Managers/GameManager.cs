@@ -54,6 +54,25 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private PlayerManager GetGameWinner()
+    {
+        for (int i = 0; i < Players.Length; i++)
+        {
+            if (Players[i].ButtsBlasted == ButtsToBlast)
+                return Players[i];
+        }
+
+        return null;
+    }
+
+    public void StoreButtsBlasted()
+    {
+        for (int i = 0; i < Players.Length; i++)
+        {
+            Players[i].ButtsBlasted++;
+        }
+    }
+
     private void SetCameraTargets()
     {
         Transform[] players = new Transform[Players.Length];

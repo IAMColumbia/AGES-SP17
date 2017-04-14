@@ -10,11 +10,9 @@ public class PlayerManager {
     public float PlayerNumber;
     [HideInInspector]
     public GameObject Instance;
-    [HideInInspector]
+    //[HideInInspector]
     public int ButtsBlasted;
-
-    public Transform markerTransformPoint;
-
+    
     private PlayerController movement;
 
     public void Setup()

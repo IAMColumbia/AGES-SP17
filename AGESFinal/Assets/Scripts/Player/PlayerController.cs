@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 
 
     private float HorizontalAxis;
-    private float JumpAxis;
     private float overlapSphereRadius = 1.4f;
     private float clampMaxRigidbodySpeed = 10;
     private float clampMaxRigidbodyJumpHeight = 15;
@@ -47,21 +46,35 @@ public class PlayerController : MonoBehaviour {
         GetAxis();
         HandleMovement();
         HandleJump();
+        
     }
 
     private void HandleMovement()
     {
 
-        anim.SetFloat("HorizontalSpeed", Mathf.Abs(HorizontalAxis));
 
-        rBody2D.velocity = new Vector2(HorizontalAxis * movementSpeed, rBody2D.velocity.y);
+        if (grounded && Input.GetButton("Duck" + playerNumber))
+        {
 
-        if (rBody2D.velocity.x > 0.1f || rBody2D.velocity.x < -0.1f)
-            particleSystem.gameObject.SetActive(true);
+            anim.SetBool("isDucking", true);
+            
+        }
         else
-            particleSystem.gameObject.SetActive(false);
+        {
+            anim.SetFloat("HorizontalSpeed", Mathf.Abs(HorizontalAxis));
 
-        HandleFlipSpriteCondition();
+            anim.SetBool("isDucking", false);
+
+            rBody2D.velocity = new Vector2(HorizontalAxis * movementSpeed, rBody2D.velocity.y);
+
+            if (rBody2D.velocity.x > 0.1f || rBody2D.velocity.x < -0.1f)
+                particleSystem.gameObject.SetActive(true);
+            else
+                particleSystem.gameObject.SetActive(false);
+
+            HandleFlipSpriteCondition();
+
+        }
 
     }
 
@@ -101,6 +114,5 @@ public class PlayerController : MonoBehaviour {
     private void GetAxis()
     {
         HorizontalAxis = Input.GetAxis("Horizontal" + playerNumber);
-        JumpAxis = Input.GetAxisRaw("Jump" + playerNumber);
     }
 }
