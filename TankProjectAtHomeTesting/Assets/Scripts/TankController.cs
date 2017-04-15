@@ -56,6 +56,9 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     private float normalDrag;
     private float normalAngularDrag;
 
+    // There's too many variables for this (2 in TankHealth plus this!), should be simplified
+    private bool isDestroyed = false;
+
     private Rigidbody rigidbody_useThis;
 
     public Player ControllingPlayer { get; set; }
@@ -64,7 +67,7 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     {
         get
         {
-            return ControllingPlayer != null;
+            return ControllingPlayer != null && !isDestroyed;
         }
     }
 
@@ -272,10 +275,12 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
         yield return new WaitForSeconds(time);
 
         Debug.Log("Blowing up now!");
-
+       
         float massReductionFactor = 4;
         // Reduce the mass so the explosion looks cooler
         rigidbody_useThis.mass = rigidbody_useThis.mass / massReductionFactor;
+
+        isDestroyed = true;
 
         // TODO: make the explosions more random, less hardcoded / magic numbers
         Explode(Vector3.up, explosionPoint.position, explosionRadius: 10);
