@@ -65,12 +65,20 @@ public class Movement : MonoBehaviour
 
     private void AccelerateForward()
     {
-        playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed);
+        playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed,ForceMode.Force);
     }
 
     private void MoveShipPosition()
     {
-        gameObject.transform.Translate(leftStickInputHorizontal, leftStickInputVertical, zeroConstant, Space.World);
+        //gameObject.transform.Translate(leftStickInputHorizontal, leftStickInputVertical, zeroConstant, Space.World);
+
+        Vector3 positionToMoveTo = new Vector3(leftStickInputHorizontal, leftStickInputVertical);
+
+        Quaternion roatationToRotateTo = Quaternion.Euler(leftStickInputVertical, leftStickInputHorizontal, zeroConstant);
+
+        playerRigidBody.MoveRotation(roatationToRotateTo);
+
+        //playerRigidBody.MovePosition(positionToMoveTo);
 
         //Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
     }

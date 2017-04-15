@@ -45,7 +45,7 @@ public class Shooting : MonoBehaviour
 
     private void MoveReticle()
     {
-        shootingPosition.gameObject.transform.Translate(rightStickHorizontalInput, rightStickVerticalInput, zeroConstant, Space.World);
+        gameObject.transform.Translate(rightStickHorizontalInput, rightStickVerticalInput, zeroConstant, Space.World);
         maxDistanceToActivate = shootingPosition.position.z - gameObject.transform.position.z;
     }
 
