@@ -12,28 +12,21 @@ public class AnswerQuestion : MonoBehaviour
 
     public void AnswerButtonPressed()
     {
-        //Debug.Log(energyMeter.startingEnergy + " starting");
         if (energyMeter.startingEnergy == 7)
         {
-            //Debug.Log(energyMeter.energyLeft + " left before");
             switch (energyMeter.energyLeft)
             {
                 case 7:
-                    //Debug.Log("bleh");
                     dialogue.SetDialogueText(0);
-                    //Debug.Log(energyMeter.energyLeft + " left after 7");
                     break;
                 case 6:
                     dialogue.SetDialogueText(1);
-                    //Debug.Log(energyMeter.energyLeft + " left after 6");
                     break;
                 case 5:
                     dialogue.SetDialogueText(2);
-                    //Debug.Log(energyMeter.energyLeft + " left after 5");
                     break;
                 case 4:
                     dialogue.SetDialogueText(3);
-                    //Debug.Log(energyMeter.energyLeft + " left after 4");
                     break;
                 case 3:
                     dialogue.SetDialogueText(4);

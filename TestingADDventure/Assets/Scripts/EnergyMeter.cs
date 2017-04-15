@@ -20,7 +20,7 @@ public class EnergyMeter : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(energyLeft);
+        //Debug.Log(energyLeft);
     }
 
     public void ReduceEnergy()

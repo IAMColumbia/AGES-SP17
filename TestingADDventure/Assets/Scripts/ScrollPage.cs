@@ -27,11 +27,6 @@ public class ScrollPage : MonoBehaviour
 
     public void Scroll()
     {
-        //float ScrollWheel = Input.GetAxis("Mouse ScrollWheel");
-
-        pages.transform.position = Vector3.Lerp(new Vector3(0, -scrollAmount), new Vector3(0, scrollAmount + 3), GetComponent<Scrollbar>().value);
-        //page2.transform.position = Vector3.Lerp(new Vector3(0, -scrollAmount - 20), new Vector3(0, scrollAmount - 20), GetComponent<Scrollbar>().value);
-        //page1.transform.position += new Vector3(0, ScrollWheel * scrollAmount);
-        //page2.transform.position += new Vector3(0, ScrollWheel * scrollAmount);
+        pages.transform.position = Vector3.Lerp(new Vector3(0, -scrollAmount), new Vector3(0, scrollAmount), GetComponent<Scrollbar>().value);
     }
 }

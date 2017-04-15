@@ -12,9 +12,6 @@ public class Dialogue : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start");
-        //dialogueText.text = "Okay, let's get started. ";
-
         dialogueList.Add("That one was easy. I got this. "); //0
         dialogueList.Add("This is pretty simple so far. "); //1
         dialogueList.Add("Ok I think that’s right. Next question."); //2
