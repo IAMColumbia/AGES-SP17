@@ -9,7 +9,7 @@ public class FootSoldierController : MonoBehaviour
     private new Rigidbody rigidbody;
     float xInput;
     float yInput;
-
+    Vector3 moveDirection;
     private void Start()
     {
         ControllingPlayer = new Player(1);
@@ -25,6 +25,12 @@ public class FootSoldierController : MonoBehaviour
         }
     }
 
+    private void ConvertInputToCameraRelative()
+    {
+        moveDirection = new Vector3(yInput, 0, -xInput);
+        moveDirection = Camera.main.transform.InverseTransformDirection(moveDirection);
+    }
+
     private void Update()
     {
         GetInput();
@@ -32,33 +38,27 @@ public class FootSoldierController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateMovement();
+        ConvertInputToCameraRelative();
+      //  UpdateMovement();
         UpdateRotation();
 
     }
 
     private void UpdateRotation()
-    {
-        Vector3 moveDirection = new Vector3(xInput, 0, yInput);
-       
-  
-      //  Debug.Log(moveDirection);
-        Debug.DrawRay(rigidbody.position, moveDirection * 3, Color.red);
+    {     
+        // Debug.DrawRay(rigidbody.position, moveDirection * 3, Color.red);
 
         float turnThreshold = 0.1f;
         if (moveDirection.magnitude > turnThreshold)
         {
             Quaternion newRotation = Quaternion.LookRotation(moveDirection);
+            newRotation.eulerAngles = new Vector3(0, newRotation.eulerAngles.y, 0);
             transform.rotation = newRotation;
         }
-        // TODO: get vector 3 pointed in direction of input
-        // then use
-        // Quaternion.LookRotation(
     }
 
     private void UpdateMovement()
     {
-        Vector3 moveDirection = new Vector3(xInput, 0, yInput);
         float speed = 3;
         rigidbody.MovePosition(rigidbody.position + (moveDirection * speed * Time.deltaTime));
     }
