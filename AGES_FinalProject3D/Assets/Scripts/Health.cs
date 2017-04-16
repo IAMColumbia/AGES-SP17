@@ -7,6 +7,9 @@ public class Health : MonoBehaviour
     [SerializeField]
     private int healthValue;
 
+    [SerializeField]
+    private ParticleSystem deathExplosion;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -36,6 +39,8 @@ public class Health : MonoBehaviour
     //Used for what sequence of events happens when player "Dies"
     private void Die()
     {
+        deathExplosion.gameObject.transform.position = gameObject.transform.position;
+        deathExplosion.Play();
         gameObject.SetActive(false);
     }
 }

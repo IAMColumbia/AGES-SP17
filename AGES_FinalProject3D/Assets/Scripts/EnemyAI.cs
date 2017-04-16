@@ -5,8 +5,6 @@ using System;
 [RequireComponent(typeof(Health))]
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject deathExplosion;
 
     private Health enemyInstanceHealth;
 

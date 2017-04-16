@@ -23,10 +23,12 @@ public class Shooting : MonoBehaviour
     private float rightStickVerticalInput;
     private float rightStickHorizontalInput;
 
+    private ParticleSystem laserParticles;
+
 	// Use this for initialization
 	void Start ()
     {
-	
+        laserParticles = GetComponentInChildren<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -59,8 +61,10 @@ public class Shooting : MonoBehaviour
 
             Health enemyHealth;
 
+            laserParticles.Play();
+
             //Shooting works but drawline does not currently
-            Debug.DrawLine(transform.position, endpoint, Color.green, 2);
+            Debug.DrawLine(transform.position, endpoint, Color.green, 5);
 
             //Change max distance to activate float so it's at the same location as the reticle
             //Check about where the ray is being cast.
@@ -73,6 +77,11 @@ public class Shooting : MonoBehaviour
                     enemyHealth.TakeDamage(1);
                 }
             }
+        }
+
+        else
+        {
+            //laserParticles.Stop();
         }
     }
 
