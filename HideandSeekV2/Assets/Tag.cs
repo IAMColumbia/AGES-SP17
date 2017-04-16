@@ -4,9 +4,6 @@ using System.Collections;
 public class Tag : MonoBehaviour {
     [SerializeField]
     float TagDistance;
-
-    [SerializeField]
-    Camera SeekerCam, Hider1Cam, Hider2Cam, Hider3Cam;
  
     // Use this for initialization
     void Start ()
@@ -24,27 +21,12 @@ public class Tag : MonoBehaviour {
            
         if (Physics.Raycast(transform.position, Vector3.forward, out Tagged, TagDistance))
         {
-            if (Tagged.collider.gameObject.tag == "Hider1")
-            {
-                Hider1Cam = SeekerCam;
+            if (Tagged.collider.gameObject.tag == "Hider")
+            {                
                 Debug.Log("Player Tagged");
-                Destroy(Tagged.collider.gameObject, 1f);
+                Destroy(Tagged.collider.gameObject, 1f); //Destroys Hider After 1 Second
             }
 
-            if (Tagged.collider.gameObject.tag == "Hider2")
-            {
-                Hider2Cam = SeekerCam;
-                Debug.Log("Player Tagged");
-                Destroy(Tagged.collider.gameObject, 1f);
-            }
-
-
-            if (Tagged.collider.gameObject.tag == "Hider3")
-            {
-                Hider3Cam = SeekerCam;
-                Debug.Log("Player Tagged");
-                Destroy(Tagged.collider.gameObject, 1f);
-            }
             Debug.Log("Hit " + Tagged.collider.gameObject.name);
         }
         #endregion
@@ -54,9 +36,5 @@ public class Tag : MonoBehaviour {
 
             }
 
-    void HandleMovement ()
-    {
 
-
-    }
 }
