@@ -19,9 +19,14 @@ public class SwitchWorlds : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(!isInWorld2)
+        HandleInput();
+    }
+
+    private void HandleInput()
+    {
+        if (!isInWorld2)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButtonDown("Warp"))
             {
                 this.transform.position = world2Position.position;
                 isInWorld2 = true;
@@ -29,11 +34,11 @@ public class SwitchWorlds : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButtonDown("Warp"))
             {
                 this.transform.position = world1Position.position;
                 isInWorld2 = false;
             }
         }
-	}
+    }
 }
