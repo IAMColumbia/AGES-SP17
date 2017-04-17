@@ -22,13 +22,16 @@ public class Shooting : MonoBehaviour
     private const float zeroConstant = 0;
     private float rightStickVerticalInput;
     private float rightStickHorizontalInput;
+    private bool isShooting = false;
 
     private ParticleSystem laserParticles;
+    private AudioSource laserAudio;
 
 	// Use this for initialization
 	void Start ()
     {
         laserParticles = GetComponentInChildren<ParticleSystem>();
+        laserAudio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -36,6 +39,7 @@ public class Shooting : MonoBehaviour
     {
         Shoot();
         UpdateRightStickInput();
+        ShootingAudio();
         MoveReticle();
 	}
 
@@ -61,6 +65,7 @@ public class Shooting : MonoBehaviour
 
             Health enemyHealth;
 
+            isShooting = true;
             laserParticles.gameObject.SetActive(true);
             laserParticles.Play();
 
@@ -84,11 +89,19 @@ public class Shooting : MonoBehaviour
         {
             laserParticles.gameObject.SetActive(false);
             laserParticles.Stop();
+            isShooting = false;
         }
     }
 
-    //void RotateToReticle()
-    //{
-    //    gameObject.transform.LookAt(reticle);
-    //}
+    private void ShootingAudio()
+    {
+        if (isShooting && laserAudio.isPlaying == false)
+        {
+            laserAudio.Play();
+        }
+        if (!isShooting)
+        {
+            laserAudio.Stop();
+        }
+    }
 }
