@@ -11,18 +11,26 @@ public class PlayerHealth : MonoBehaviour {
     private void OnEnable()
     {
         gameManager = FindObjectOfType<GameManager>();
+        HazardDeathParticles.gameObject.SetActive(false);
     }
-    public void CueHazardDeathParticles()
+    
+    public IEnumerator CueDeath()
     {
         HazardDeathParticles.transform.parent = null; //unparent the particles
 
-        gameObject.SetActive(false);
-
+        HazardDeathParticles.gameObject.SetActive(true);
+        
         HazardDeathParticles.Play();
 
-        Destroy(HazardDeathParticles.gameObject, HazardDeathParticles.duration); //destroy them after their done
+        GetComponent<Rigidbody2D>().isKinematic = true;
 
+        yield return new WaitForSeconds(HazardDeathParticles.duration);
+        
         gameManager.RespawnPlayers(); //respawn the player
 
+        HazardDeathParticles.transform.parent = this.transform;
+
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        yield return null;
     }
 }

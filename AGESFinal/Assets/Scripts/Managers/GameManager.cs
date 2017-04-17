@@ -44,15 +44,16 @@ public class GameManager : MonoBehaviour {
     {
         for (int i = 0; i < Players.Length; i++)
         {
-            if(!Players[i].Instance.activeSelf)
+            if(!Players[i].Instance.GetComponent<Rigidbody2D>().isKinematic == true)
             {
-                Players[i].Instance = Instantiate(PlayerPrefabs[i], Players[i].SpawnPoint.position, Players[i].SpawnPoint.rotation) as GameObject;
+                Players[i].Instance.transform.position = Players[i].SpawnPoint.position;
                 Players[i].PlayerNumber = i + 1;
-                Players[i].Setup();
+                Players[i].Reset();
                 SetCameraTargets();
             }
         }
     }
+    
 
     private PlayerManager GetGameWinner()
     {

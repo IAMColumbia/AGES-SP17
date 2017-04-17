@@ -37,12 +37,12 @@ public class BulletScript : MonoBehaviour {
 
             Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
 
-            //PlayerHealth targetHealth = targetRigidbody.GetComponent<PlayerHealth>();
+            PlayerHealth targetHealth = targetRigidbody.GetComponent<PlayerHealth>();
 
-            //if (!targetHealth)
-            //    continue;
+            if (!targetHealth)
+                continue;
 
-            //targetHealth.TakeDamage();
+            targetHealth.CueDeath();
 
         }
 

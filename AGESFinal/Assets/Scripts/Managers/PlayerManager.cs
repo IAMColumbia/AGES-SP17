@@ -14,6 +14,7 @@ public class PlayerManager {
     public int ButtsBlasted;
     
     private PlayerController movement;
+    private PlayerHealth playerHealth;
 
     public void Setup()
     {

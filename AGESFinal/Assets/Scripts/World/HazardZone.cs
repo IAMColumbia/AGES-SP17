@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class HazardZone : MonoBehaviour {
 
@@ -25,9 +26,8 @@ public class HazardZone : MonoBehaviour {
             if (!playerHealth)
                 continue;
 
-            playerHealth.CueHazardDeathParticles(); //jumps to PlayerHealth
+            playerHealth.StartCoroutine("CueDeath"); //jumps to PlayerHealth
         }
         
     }
-    
 }

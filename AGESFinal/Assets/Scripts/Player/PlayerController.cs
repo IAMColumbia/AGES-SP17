@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour {
 
 
     private bool grounded = false;
-    private bool facingRight = true;
 
 
     private Transform jumpPoint;
@@ -97,24 +96,16 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleFlipSpriteCondition()
     {
-        if (HorizontalAxis > 0 && !facingRight)
-            FlipSprite();
-        else if (HorizontalAxis < 0 && facingRight)
-            FlipSprite();
-    }
-
-    private void FlipSprite()
-    {
-        facingRight = !facingRight;
-        Vector3 parentScale = transform.localScale;
-        parentScale.x *= -1;
-        transform.localScale = parentScale;
-        foreach (Transform child in transform)
+        if (HorizontalAxis > 0)
         {
-            Vector3 childScale = transform.localScale;
-            childScale.x *= -1;
-            transform.localScale = parentScale;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
+        else if (HorizontalAxis < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
     }
 
     private void GetAxis()

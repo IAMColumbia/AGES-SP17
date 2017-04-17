@@ -7,6 +7,9 @@ public class PlayerShooting : MonoBehaviour
     private string playerNumber;
 
     [SerializeField]
+    private float bulletLaunchForce = 50;
+
+    [SerializeField]
     private Transform bulletSpawnPoint;
 
     [SerializeField]
@@ -15,12 +18,11 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
-    [SerializeField]
-    private float bulletLaunchForce = 50;
-
-    private string ShootingInputAxis;
+    private float ShootingInputAxis;
     private float horizontalShootingAxis;
     private float verticalShootingAxis;
+    private float fireRate = .25f;
+    private float nextFire = 0;
 
     private GameManager gmanager;
     private PlayerController player;
@@ -28,27 +30,32 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         gmanager = FindObjectOfType<GameManager>();
-        player = GameObject.Find("Player" + playerNumber).GetComponent<PlayerController>();
 
     }
     private void Update()
     {
         GetAxis();
         HandleAimingDirection();
+        Fire();
 
-        if(Input.GetButtonDown(ShootingInputAxis))
+    }
+    
+
+    private void Fire()
+    {
+        if (ShootingInputAxis == 1 && Time.time > nextFire)
         {
+            nextFire = Time.time + fireRate;
 
             Rigidbody2D spawnBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation) as Rigidbody2D;
 
-            spawnBullet.velocity = bulletLaunchForce * bulletSpawnPoint.transform.up;
-            
+            spawnBullet.velocity = bulletLaunchForce * bulletSpawnPoint.transform.right;
         }
     }
 
     private void GetAxis()
     {
-        ShootingInputAxis = "Fire" + playerNumber;
+        ShootingInputAxis = Input.GetAxis("Fire" + playerNumber);
     }
 
     private void HandleAimingDirection()
