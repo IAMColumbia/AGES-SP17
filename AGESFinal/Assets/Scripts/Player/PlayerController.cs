@@ -109,6 +109,12 @@ public class PlayerController : MonoBehaviour {
         Vector3 parentScale = transform.localScale;
         parentScale.x *= -1;
         transform.localScale = parentScale;
+        foreach (Transform child in transform)
+        {
+            Vector3 childScale = transform.localScale;
+            childScale.x *= -1;
+            transform.localScale = parentScale;
+        }
     }
 
     private void GetAxis()

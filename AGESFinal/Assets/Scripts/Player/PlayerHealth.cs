@@ -14,13 +14,15 @@ public class PlayerHealth : MonoBehaviour {
     }
     public void CueHazardDeathParticles()
     {
-        HazardDeathParticles.transform.parent = null;
+        HazardDeathParticles.transform.parent = null; //unparent the particles
+
+        gameObject.SetActive(false);
 
         HazardDeathParticles.Play();
 
-        Destroy(HazardDeathParticles.gameObject, HazardDeathParticles.duration);
+        Destroy(HazardDeathParticles.gameObject, HazardDeathParticles.duration); //destroy them after their done
 
-        gameManager.RespawnPlayers();
+        gameManager.RespawnPlayers(); //respawn the player
 
     }
 }
