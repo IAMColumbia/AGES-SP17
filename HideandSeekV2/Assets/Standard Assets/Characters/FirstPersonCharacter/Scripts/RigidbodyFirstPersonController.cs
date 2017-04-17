@@ -6,8 +6,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof (Rigidbody))]
     [RequireComponent(typeof (CapsuleCollider))]
+
+    
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
+       
+
         [Serializable]
         public class MovementSettings
         {
@@ -82,6 +86,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
 
+       
+
 
         private Rigidbody m_RigidBody;
         private CapsuleCollider m_Capsule;
@@ -117,7 +123,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-
+        
         private void Start()
         {
             m_RigidBody = GetComponent<Rigidbody>();
