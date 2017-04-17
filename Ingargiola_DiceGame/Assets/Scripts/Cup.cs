@@ -10,6 +10,8 @@ public class Cup : MonoBehaviour
 	void Start ()
     {
         cupRigidbody = GetComponent<Rigidbody>();
+
+        StartCoroutine(Shake());
 	}
 	
 	// Update is called once per frame
@@ -20,13 +22,37 @@ public class Cup : MonoBehaviour
 
     private void FixedUpdate()
     {
-        cupRigidbody.AddRelativeForce(Vector3.forward * 10);
     }
 
+    public IEnumerator Shake()
+    {
+        //multiply by random
+        //different direction by random amount
+
+
+        float randomShakeSpeed = Random.Range(50f, 100f);
+        float randomShakeTime = Random.Range(0f, 0.2f);
+
+        cupRigidbody.AddForce(Vector3.forward * randomShakeSpeed);
+        print(randomShakeSpeed);
+
+        //TODO: should the time be random??
+        yield return new WaitForSeconds(randomShakeTime);
+        cupRigidbody.AddForce(Vector3.back * randomShakeSpeed);
+
+        yield return new WaitForSeconds(randomShakeTime);
+        cupRigidbody.AddForce(Vector3.left * randomShakeSpeed);
+
+        yield return new WaitForSeconds(randomShakeTime);
+        RotateCup();
+
+
+    }
 
 
     public void RotateCup()
     {
-        transform.Rotate(0,0,120);
+        //rotate on Z
+        //transform.Rotate(0,0,120);
     }
 }
