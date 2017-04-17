@@ -30,6 +30,7 @@ public class Health : MonoBehaviour
         healthValue = healthValue - damageToTake;
         DieWhenHealthIsAtZero();
     }
+
     private void DieWhenHealthIsAtZero()
     {
         if (healthValue <= 0)

@@ -10,9 +10,17 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private string leftStickHorizontal;
     [SerializeField]
+    private string slowDownButton;
+    [SerializeField]
     private float turnMultiplier;
     [SerializeField]
+    private float turnMultiplierWhenSlow;
+    [SerializeField]
     private float accelerationSpeed;
+    [SerializeField]
+    private float slowdownSpeed;
+    [SerializeField]
+    private float minSpeedinMPH;
     [SerializeField]
     private float maxSpeedinMPH;
 
@@ -20,6 +28,7 @@ public class Movement : MonoBehaviour
 
     private float leftStickInputVertical;
     private float leftStickInputHorizontal;
+    private float inGameTurnMultiplier;
 
     private float currentVerticalTilt;
     private float currentHorizontalTilt;
@@ -38,20 +47,21 @@ public class Movement : MonoBehaviour
     {
         UpdateTurnInput();
         UpdateCurrentTilt();
+        Debug.Log("acceleration speed is " + accelerationSpeed.ToString());
     }
 
 
     private void FixedUpdate()
     {
         AccelerateForward();
-        MoveShipPosition();
+        MoveRotation();
     }
 
 
     private void UpdateTurnInput()
     {
-        leftStickInputVertical = (Input.GetAxis(leftStickVertical) * turnMultiplier);
-        leftStickInputHorizontal = (Input.GetAxis(leftStickHorizontal) * turnMultiplier);
+        leftStickInputVertical = (Input.GetAxis(leftStickVertical) * inGameTurnMultiplier);
+        leftStickInputHorizontal = (Input.GetAxis(leftStickHorizontal) * inGameTurnMultiplier);
     }
 
     private void UpdateCurrentTilt()
@@ -66,9 +76,25 @@ public class Movement : MonoBehaviour
     private void AccelerateForward()
     {
         playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed,ForceMode.Force);
+
+        //Add condition so you can't slow down too much
+        if (Input.GetButton(slowDownButton))
+        {
+            SlowDown();
+            inGameTurnMultiplier = Mathf.Lerp(turnMultiplierWhenSlow, turnMultiplier, Time.deltaTime);
+        }
+        else
+        {
+            inGameTurnMultiplier = Mathf.Lerp(turnMultiplier, turnMultiplierWhenSlow,Time.deltaTime);
+        }
     }
 
-    private void MoveShipPosition()
+    private void SlowDown()
+    {
+        accelerationSpeed = slowdownSpeed;
+    }
+
+    private void MoveRotation()
     {
         //gameObject.transform.Translate(leftStickInputHorizontal, leftStickInputVertical, zeroConstant, Space.World);
 
