@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyShooting : MonoBehaviour
 {
+    [SerializeField]
+    private float shootingDelayInFloat;
+    [SerializeField]
+    private LayerMask layerToCheckForPlayer;
     private GameObject playerToShootAt;
 
     private SphereCollider activationZone;
@@ -11,20 +16,44 @@ public class EnemyShooting : MonoBehaviour
 
     private bool isShooting;
 
+    private WaitForSeconds shootingDelay;
+
 	// Use this for initialization
 	void Start ()
     {
         playerToShootAt = GameObject.Find("Player");
         laserAudio = GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        LookAtAndShootPlayer();
+        shootingDelay = new WaitForSeconds(shootingDelayInFloat);
+        StartCoroutine(ShootOnTimer());
 	}
 
-    private void LookAtAndShootPlayer()
+    //shoots character on a timer
+    private IEnumerator ShootOnTimer()
+    {
+        while (playerToShootAt != null)
+        {
+            Shoot();
+            yield return shootingDelay;
+        }
+    }
+
+    private void Shoot()
+    {
+        //declare shooting endpoint
+        Vector3 endPoint;
+
+        RaycastHit raycastHit;
+
+        Health playerHealth;
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+        LookAtPlayer();
+	}
+
+    private void LookAtPlayer()
     {
         gameObject.transform.LookAt(playerToShootAt.transform);
     }
