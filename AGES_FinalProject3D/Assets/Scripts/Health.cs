@@ -10,10 +10,12 @@ public class Health : MonoBehaviour
     [SerializeField]
     private ParticleSystem deathExplosion;
 
+    private AudioSource deathSound;
+
 	// Use this for initialization
 	void Start ()
     {
-	
+        deathSound = deathExplosion.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +43,7 @@ public class Health : MonoBehaviour
     {
         deathExplosion.gameObject.transform.position = gameObject.transform.position;
         deathExplosion.Play();
+        deathSound.Play();
         gameObject.SetActive(false);
     }
 }

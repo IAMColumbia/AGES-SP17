@@ -61,6 +61,7 @@ public class Shooting : MonoBehaviour
 
             Health enemyHealth;
 
+            laserParticles.gameObject.SetActive(true);
             laserParticles.Play();
 
             //Shooting works but drawline does not currently
@@ -81,7 +82,8 @@ public class Shooting : MonoBehaviour
 
         else
         {
-            //laserParticles.Stop();
+            laserParticles.gameObject.SetActive(false);
+            laserParticles.Stop();
         }
     }
 
