@@ -10,6 +10,9 @@ public class FootSoldierMovement : MonoBehaviour
     [SerializeField]
     Rigidbody movementRigidBody;
 
+    [SerializeField]
+    float speed = 5;
+
     #endregion
 
     #region Fields
@@ -26,7 +29,8 @@ public class FootSoldierMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ConvertInputToCameraRelative();
+        // We aren't going to do this for now. Only change if camera needs to move.
+        //ConvertInputToCameraRelative();
         UpdateMovement();
         UpdateRotation();
     }
@@ -36,11 +40,13 @@ public class FootSoldierMovement : MonoBehaviour
     {
         xInput = Input.GetAxis("HorizontalP" + footSoldierController.ControllingPlayer.PlayerNumber);
         yInput = Input.GetAxis("VerticalP" + footSoldierController.ControllingPlayer.PlayerNumber);
+
+        moveDirection = new Vector3(xInput, 0, yInput);
     }
 
     private void ConvertInputToCameraRelative()
     {
-        moveDirection = new Vector3(yInput, 0, -xInput);
+        // We aren't going to do this for now. Only change if camera needs to move.
         moveDirection = Camera.main.transform.InverseTransformDirection(moveDirection);
     }
 
@@ -52,13 +58,12 @@ public class FootSoldierMovement : MonoBehaviour
         {
             Quaternion newRotation = Quaternion.LookRotation(moveDirection);
             newRotation.eulerAngles = new Vector3(0, newRotation.eulerAngles.y, 0);
-            transform.rotation = newRotation;
+           movementRigidBody.transform.rotation = newRotation;
         }
     }
 
     private void UpdateMovement()
     {
-        float speed = 3;
-        GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + (moveDirection * speed * Time.deltaTime));
+        movementRigidBody.MovePosition(movementRigidBody.position + (moveDirection * speed * Time.deltaTime));
     }
 }

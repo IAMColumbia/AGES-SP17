@@ -155,7 +155,7 @@ public class TankHealth : MonoBehaviour, IDamageable
         foreach (var particleSystem in criticalDamageParticleSystems)
         {
             particleSystem.Stop();
-            Debug.Log(particleSystem.isPlaying);
+           // Debug.Log(particleSystem.isPlaying);
         }
 
         // For stopping stubborn particles. Not sure why they are stubborn.
@@ -171,7 +171,7 @@ public class TankHealth : MonoBehaviour, IDamageable
         foreach (var particleSystem in criticalDamageParticleSystems)
         {
             particleSystem.Stop();
-            Debug.Log(particleSystem.isPlaying);
+            //Debug.Log(particleSystem.isPlaying);
         }
         foreach (var particleSystem in lightDamageParticleSystems)
         {

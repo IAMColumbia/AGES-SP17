@@ -60,10 +60,29 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     private bool isDestroyed = false;
 
     private Rigidbody rigidbody_useThis;
+    private FootSoldierController controllingSoldier = null;
 
     //public Player ControllingPlayer { get; set; }
 
-    public FootSoldierController ControllingSoldier { get; set; }
+    public FootSoldierController ControllingSoldier
+    {
+        get
+        {
+            return controllingSoldier;
+        }
+
+        set
+        {
+            controllingSoldier = value;
+
+            var coloring = GetComponent<ColorModelFromPlayerNumber>();
+
+            if (value != null)
+                coloring.ApplyColor(value.ControllingPlayer.PlayerNumber);
+            else
+                coloring.ApplyColor(Color.white);
+        }
+    }
 
     public bool TankCanBeControlled
     {
@@ -126,7 +145,10 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
         normalAngularDrag = rigidbody_useThis.angularDrag;
         normalDrag = rigidbody_useThis.drag;
-	}
+
+        var coloring = GetComponent<ColorModelFromPlayerNumber>();
+        coloring.ApplyColor(Color.white);
+    }
 
 
     // Update is called once per frame
