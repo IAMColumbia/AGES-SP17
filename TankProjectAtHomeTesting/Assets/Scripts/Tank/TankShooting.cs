@@ -36,7 +36,7 @@ public class TankShooting : MonoBehaviour
     {
         if (tankController.TankCanBeControlled && canShoot)
         {
-            if (Input.GetButtonDown("Fire1P" + tankController.ControllingPlayer.PlayerNumber))
+            if (Input.GetButtonDown("Fire1P" + tankController.ControllingSoldier.ControllingPlayer.PlayerNumber))
             {
                 Fire();
             }
@@ -54,7 +54,7 @@ public class TankShooting : MonoBehaviour
         // TankShell script is on a collier child object so that onTriggerEnter works.
         // The collider must be on a child because otherwise it's custom settings don't save with the prefab.
         // I think this might be a probuilder issue.
-        firedShell.GetComponentInChildren<TankShell>().ControllingPlayer = tankController.ControllingPlayer;
+        firedShell.GetComponentInChildren<TankShell>().ControllingPlayer = tankController.ControllingSoldier.ControllingPlayer;
 
         turretRigidBody.AddForce(turretRigidBody.transform.forward * -recoilForce);
     }    

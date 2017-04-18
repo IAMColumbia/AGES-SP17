@@ -56,8 +56,8 @@ public class TankTurret : MonoBehaviour
     {
         if (tankController.TankCanBeControlled)
         {
-            rotationInput = Input.GetAxis("RotateTurretP" + tankController.ControllingPlayer.PlayerNumber);
-            resetRotationPressed = Input.GetButtonDown("ResetTurretP" + tankController.ControllingPlayer.PlayerNumber);
+            rotationInput = Input.GetAxis("RotateTurretP" + tankController.ControllingSoldier.ControllingPlayer.PlayerNumber);
+            resetRotationPressed = Input.GetButtonDown("ResetTurretP" + tankController.ControllingSoldier.ControllingPlayer.PlayerNumber);
         }
         else
         {

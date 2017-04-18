@@ -61,13 +61,15 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
 
     private Rigidbody rigidbody_useThis;
 
-    public Player ControllingPlayer { get; set; }
+    //public Player ControllingPlayer { get; set; }
+
+    public FootSoldierController ControllingSoldier { get; set; }
 
     public bool TankCanBeControlled
     {
         get
         {
-            return ControllingPlayer != null && !isDestroyed;
+            return ControllingSoldier != null && !isDestroyed;
         }
     }
 
@@ -137,8 +139,8 @@ public class TankController : MonoBehaviour, IHeavyExplodableObject
     {
         if (TankCanBeControlled)
         {
-            leftTrackInput = Input.GetAxis("Left Tank TrackP" + ControllingPlayer.PlayerNumber);
-            rightTrackInput = Input.GetAxis("Right Tank TrackP" + ControllingPlayer.PlayerNumber);
+            leftTrackInput = Input.GetAxis("Left Tank TrackP" + ControllingSoldier.ControllingPlayer.PlayerNumber);
+            rightTrackInput = Input.GetAxis("Right Tank TrackP" + ControllingSoldier.ControllingPlayer.PlayerNumber);
         }
         else
         {
