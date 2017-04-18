@@ -5,12 +5,13 @@ using System;
 
 public class NoteMovement : MonoBehaviour
 {
+    DistractionManager distractionManager;
     float ySpawnLocation = 500;
     float fallSpeed = -150;
 
     void Awake()
     {
-        //transform.SetParent(GameObject.Find("RhythmGameBoardPanel").transform);
+        distractionManager = GameObject.Find("DistractionManager").GetComponent<DistractionManager>();
         transform.localPosition = new Vector3(transform.parent.GetComponent<PlayNoteSequence>().xPos, ySpawnLocation, 0);
     }
 
@@ -21,11 +22,9 @@ public class NoteMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("enter");
         if (other.gameObject.name == "FailCollider")
         {
             Destroy(gameObject);
-            Debug.Log("fail");
         }
     }
 
@@ -35,7 +34,6 @@ public class NoteMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && clickHit == other)
         {
-            Debug.Log("click");
             bool noteHit = false;
             bool noteMiss = false;
 
@@ -50,6 +48,7 @@ public class NoteMovement : MonoBehaviour
 
             if ((noteHit && noteMiss) || noteHit)
             {
+                distractionManager.rhythmGameScore++;
                 Destroy(gameObject);
             }
             else if (noteMiss)
