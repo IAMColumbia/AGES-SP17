@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour {
 
     Rigidbody2D bulletHull;
 
-    private float timeToDestroyBullet = 10f;
+    private float timeToDestroyBullet = 3f;
 
 	// Use this for initialization
 	void Start ()
@@ -31,11 +31,13 @@ public class Bullet : MonoBehaviour {
     {
         if (other.tag == enemyTag)
         {
-            Debug.Log("Encountered enemy!");
+            //Debug.Log("Encountered enemy!");
             other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             if (other.tag == "Player")
             {
+                Debug.Log("Player shot!");
                 other.gameObject.GetComponent<PlayerController>().playerControlActive = false;
+                other.gameObject.GetComponent<PlayerController>().canFire = false;
             }
             this.gameObject.SetActive(false);
         }

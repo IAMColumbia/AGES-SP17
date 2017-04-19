@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Enemy1_Behaviour : MonoBehaviour {
 
+    //TODO: Every enemy is going to have a specific animation!
+    //      Make it so that there's a reference for what the enemy's animation is.
+    //TODO: Renderer.isVisible for optimization.
+
     [SerializeField]
     public Bullet bulletPrefab;
 
@@ -12,12 +16,13 @@ public class Enemy1_Behaviour : MonoBehaviour {
     [SerializeField]
     public float bulletFireCooldown = 0.01f;
     
-    private bool canFire = true;
+    public bool canFire = true;
+    public bool animationIsPlaying = false;
 
     // Use this for initialization
     void Start ()
     {
-       
+
     }
 	
 	// Update is called once per frame

@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float bulletFireCooldown = 0.5f;
 
-    private bool canFire = true;
+    public bool canFire = true;
     public bool playerControlActive = true;
 
     // Use this for initialization
@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
     {
         if (this.gameObject.GetComponent<SpriteRenderer>().enabled == false)
         {
-            Debug.Log("Coroutine started.");
+            //Debug.Log("Coroutine started.");
             StartCoroutine(HandleSpawning());
         }
     }
@@ -190,8 +190,9 @@ public class PlayerController : MonoBehaviour
     private IEnumerator HandleSpawning()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log("Player respawned.");
+        //Debug.Log("Player respawned.");
         this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        canFire = true;
         playerControlActive = true;
         
     }
