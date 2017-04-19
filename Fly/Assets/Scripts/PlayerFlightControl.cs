@@ -20,6 +20,8 @@ public class PlayerFlightControl : MonoBehaviour {
     Vector3 eulerAngleVelocity;
 
     Rigidbody m_Rigidbody;
+    const float Z_ANGLE_MIN = -15F;
+    const float Z_ANGLE_MAX = 15F;
     string m_MovementAxisName;
     string m_TurnAxisName;
 
@@ -102,13 +104,16 @@ public class PlayerFlightControl : MonoBehaviour {
         Quaternion turnRotation = Quaternion.Euler(0, pitch, 0f);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
     }
-    
+
     private void Yaw()
     {
         //moveHorizonal is now yaw
+        //float currentZ;
         float yaw = m_HorizontalInputValue * m_TurnSpeed * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, 0f, yaw);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+        yaw = Mathf.Clamp(transform.rotation.z, Z_ANGLE_MIN, Z_ANGLE_MAX);
+      
         // Vector3 movement = transform.forward * m_VerticalInputValue * m_Speed * Time.deltaTime;
     }
 }
