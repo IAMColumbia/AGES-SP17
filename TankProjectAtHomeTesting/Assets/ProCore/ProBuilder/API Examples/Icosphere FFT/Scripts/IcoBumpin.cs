@@ -1,5 +1,4 @@
-#define PROTOTYPE
-#if UNITY_EDITOR || UNITY_STANDALONE
+﻿#if UNITY_EDITOR || UNITY_STANDALONE
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -135,12 +134,10 @@ namespace ProBuilder2.Examples
 			ico.gameObject.GetComponent<MeshRenderer>().sharedMaterial = material;
 #endif
 
-			pb_Face[] connectingFaces;
-
 			// Extrude all faces on the icosphere by a small amount.  The third boolean parameter
 			// specifies that extrusion should treat each face as an individual, not try to group
 			// all faces together.
-			ico.Extrude(shell, startingExtrusion, false, out connectingFaces);
+			ico.Extrude(shell, ExtrudeMethod.IndividualFaces, startingExtrusion);
 
 			// ToMesh builds the mesh positions, submesh, and triangle arrays.  Call after adding
 			// or deleting vertices, or changing face properties.
@@ -176,9 +173,12 @@ namespace ProBuilder2.Examples
 			icoPosition = icoTransform.position;
 #if UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3 || UNITY_5_4
 			waveform.SetVertexCount(WAVEFORM_SAMPLES);
-#else
+#elif UNITY_5_5
 			waveform.numPositions = WAVEFORM_SAMPLES;
+#else
+			waveform.positionCount = WAVEFORM_SAMPLES;
 #endif
+
 
 			if( bounceWaveform )
 				waveform.transform.parent = icoTransform;

@@ -1,4 +1,5 @@
-#define PROTOTYPE
+﻿#if UNITY_EDITOR || UNITY_STANDALONE
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -70,3 +71,4 @@ public class ExtrudeRandomEdges : MonoBehaviour
 		pb.Refresh();
 	}
 }
+#endif

@@ -4,13 +4,20 @@
 
 	SubShader
 	{
-		Tags { "ProBuilderPicker"="VertexPass" "RenderType"="Opaque" "IgnoreProjector"="True" }
+		Tags
+		{
+			"ProBuilderPicker"="VertexPass"
+			"RenderType"="Transparent"
+			"IgnoreProjector"="True"
+			"DisableBatching"="True"
+		}
+
 		Lighting Off
 		ZTest LEqual
 		ZWrite On
 		Cull Off
 		Blend Off
-		Offset 10, -1
+		Offset -1, -1
 
 		Pass 
 		{
@@ -42,8 +49,12 @@
 			{
 				v2f o;
 
+				#if UNITY_VERSION > 550
+				o.pos = float4(UnityObjectToViewPos(v.vertex.xyz), 1);
+				#else
 				o.pos = mul(UNITY_MATRIX_MV, v.vertex);
-				o.pos.xyz *= .99;
+				#endif
+				o.pos.xyz *= .95;
 				o.pos = mul(UNITY_MATRIX_P, o.pos);
 
 				// convert vertex to screen space, add pixel-unit xy to vertex, then transform back to clip space.
@@ -54,7 +65,7 @@
 				clip.xy *= _ScreenParams.xy;
 
 				clip.xy += v.texcoord1.xy * 3.5;
-				clip.z -= .01 * (1 - UNITY_MATRIX_P[3][3]);
+				clip.z -= .0001 * (1 - UNITY_MATRIX_P[3][3]);
 
 				clip.xy /= _ScreenParams.xy;
 				clip.xy = (clip.xy - .5) / .5;

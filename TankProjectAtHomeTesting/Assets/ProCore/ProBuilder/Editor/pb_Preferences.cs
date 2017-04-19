@@ -1,4 +1,15 @@
-#define PROTOTYPE
+#if UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3 || UNITY_5_4
+#define UNITY_5_4_OR_LOWER
+#else
+#define UNITY_5_5_OR_HIGHER
+#endif
+
+#if UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3 || UNITY_5_4 || UNITY_5_5
+#define UNITY_5_5_OR_LOWER
+#else
+#define UNITY_5_6_OR_HIGHER
+#endif
+
 using UnityEngine;
 using UnityEditor;
 #if !UNITY_4_7
@@ -8,10 +19,6 @@ using ProBuilder2.Common;
 using ProBuilder2.EditorCommon;
 using System.Collections;
 using System.Linq;
-
-#if PB_DEBUG
-using Parabox.Debug;
-#endif
 
 public class pb_Preferences
 {
@@ -34,7 +41,6 @@ public class pb_Preferences
 	static bool pbPBOSelectionOnly;
 	static bool pbCloseShapeWindow = false;
 	static bool pbUVEditorFloating = true;
-	// static bool pbShowSceneToolbar = true;
 	static bool pbStripProBuilderOnBuild = true;
 	static bool pbDisableAutoUV2Generation = false;
 	static bool pbShowSceneInfo = false;
@@ -45,6 +51,7 @@ public class pb_Preferences
 	static bool pbMeshesAreAssets = false;
 	static bool pbElementSelectIsHamFisted = false;
 	static bool pbDragSelectWholeElement = false;
+	static bool pbEnableExperimental = false;
 	#if !UNITY_4_7
 	static ShadowCastingMode pbShadowCastingMode = ShadowCastingMode.On;
 	#endif
@@ -153,6 +160,7 @@ public class pb_Preferences
 
 		GUILayout.Label("Experimental", EditorStyles.boldLabel);
 
+		pbEnableExperimental = EditorGUILayout.Toggle(new GUIContent("Experimental Features", "Enables some experimental new features that we're trying out.  These may be incomplete or buggy, so please exercise caution when making use of this functionality!"), pbEnableExperimental);
 		pbMeshesAreAssets = EditorGUILayout.Toggle(new GUIContent("Meshes Are Assets", "Experimental!  Instead of storing mesh data in the scene, this toggle creates a Mesh cache in the Project that ProBuilder will use."), pbMeshesAreAssets);
 
 		GUILayout.Space(4);
@@ -237,6 +245,7 @@ public class pb_Preferences
 			EditorPrefs.DeleteKey(pb_Constant.pbMeshesAreAssets);
 			EditorPrefs.DeleteKey(pb_Constant.pbElementSelectIsHamFisted);
 			EditorPrefs.DeleteKey(pb_Constant.pbDragSelectWholeElement);
+			EditorPrefs.DeleteKey(pb_Constant.pbEnableExperimental);
 			EditorPrefs.DeleteKey(pb_Constant.pbFillHoleSelectsEntirePath);
 			EditorPrefs.DeleteKey(pb_Constant.pbDetachToNewObject);
 			EditorPrefs.DeleteKey(pb_Constant.pbPreserveFaces);
@@ -267,7 +276,13 @@ public class pb_Preferences
 	}
 
 	static int shortcutIndex = 0;
+
+#if UNITY_5_6_OR_HIGHER
+	static Rect selectBox = new Rect(0, 234, 183, 156);
+#else
 	static Rect selectBox = new Rect(130, 253, 183, 142);
+#endif
+
 
 	static Rect resetRect = new Rect(0,0,0,0);
 	static Vector2 shortcutScroll = Vector2.zero;
@@ -316,14 +331,21 @@ public class pb_Preferences
 
 	}
 
-	static Rect keyRect 		= new Rect(324, 248, 168, 18);
-	static Rect keyInputRect 	= new Rect(356, 248, 133, 18);
-
-	static Rect descriptionTitleRect = new Rect(324, 300, 168, 200);
-	static Rect descriptionRect = new Rect(324, 320, 168, 200);
-
-	static Rect modifiersRect = new Rect(324, 270, 168, 18);
-	static Rect modifiersInputRect = new Rect(383, 270, 107, 18);
+#if UNITY_5_6_OR_HIGHER
+	static Rect modifiersRect 			= new Rect(190, 270, 168, 18);
+	static Rect modifiersInputRect 		= new Rect(250, 270, 107, 18);
+	static Rect keyRect 				= new Rect(190, 248, 168, 18);
+	static Rect keyInputRect 			= new Rect(225, 248, 133, 18);
+	static Rect descriptionTitleRect 	= new Rect(190, 300, 168, 200);
+	static Rect descriptionRect 		= new Rect(190, 320, 168, 200);
+#else
+	static Rect modifiersRect 			= new Rect(324, 270, 168, 18);
+	static Rect modifiersInputRect 		= new Rect(383, 270, 107, 18);
+	static Rect keyRect 				= new Rect(324, 248, 168, 18);
+	static Rect keyInputRect 			= new Rect(356, 248, 133, 18);
+	static Rect descriptionTitleRect 	= new Rect(324, 300, 168, 200);
+	static Rect descriptionRect 		= new Rect(324, 320, 168, 200);
+#endif
 
 	static void ShortcutEditPanel()
 	{
@@ -369,6 +391,7 @@ public class pb_Preferences
 		pbMeshesAreAssets 					= pb_Preferences_Internal.GetBool(pb_Constant.pbMeshesAreAssets);
 		pbElementSelectIsHamFisted			= pb_Preferences_Internal.GetBool(pb_Constant.pbElementSelectIsHamFisted);
 		pbDragSelectWholeElement			= pb_Preferences_Internal.GetBool(pb_Constant.pbDragSelectWholeElement);
+		pbEnableExperimental				= pb_Preferences_Internal.GetBool(pb_Constant.pbEnableExperimental);
 
 
 		pbDefaultFaceColor 					= pb_Preferences_Internal.GetColor( pb_Constant.pbDefaultFaceColor );
@@ -431,6 +454,7 @@ public class pb_Preferences
 		EditorPrefs.SetBool		(pb_Constant.pbMeshesAreAssets, pbMeshesAreAssets);
 		EditorPrefs.SetBool		(pb_Constant.pbElementSelectIsHamFisted, pbElementSelectIsHamFisted);
 		EditorPrefs.SetBool		(pb_Constant.pbDragSelectWholeElement, pbDragSelectWholeElement);
+		EditorPrefs.SetBool		(pb_Constant.pbEnableExperimental, pbEnableExperimental);
 
 		EditorPrefs.SetFloat	(pb_Constant.pbVertexHandleSize, pbVertexHandleSize);
 		EditorPrefs.SetFloat 	(pb_Constant.pbUVGridSnapValue, pbUVGridSnapValue);
