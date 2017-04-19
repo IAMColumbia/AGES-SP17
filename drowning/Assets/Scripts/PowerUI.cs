@@ -15,6 +15,14 @@ public class PowerUI : MonoBehaviour {
     public float speed;
     public Color finishedColor;
 
+    public bool IsAtFullPower
+    {
+        get
+        {
+            return t >= 1;
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
         
@@ -22,8 +30,11 @@ public class PowerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        t += Time.deltaTime * speed;
-        goToPercent(t);
+        if (!IsAtFullPower)
+        {
+            t += Time.deltaTime * speed;
+            goToPercent(t);
+        }
 	}
 
     void goToPercent(float percentage)
