@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public float bulletFireCooldown = 0.5f;
 
     private bool canFire = true;
-    private bool playerControlActive = true;
+    public bool playerControlActive = true;
 
     // Use this for initialization
     void Start ()
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
         PlayerShooting();
         SpriteUpdate();
+        PlayerDeath();
 	}
 
     //This function is run when a new player is created. A short animation is played to move the player onto the screen, during which they are invincible, and 
@@ -178,6 +180,19 @@ public class PlayerController : MonoBehaviour
     //Finally, we subtract a player life from the player manager, and kill the player entity. 
     void PlayerDeath()
     {
+        if (this.gameObject.GetComponent<SpriteRenderer>().enabled == false)
+        {
+            Debug.Log("Coroutine started.");
+            StartCoroutine(HandleSpawning());
+        }
+    }
 
+    private IEnumerator HandleSpawning()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("Player respawned.");
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        playerControlActive = true;
+        
     }
 }

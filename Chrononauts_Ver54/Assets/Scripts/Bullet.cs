@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour {
 
     [SerializeField]
     int bulletSpeed = 5;
+    [SerializeField]
+    string enemyTag;
 
     Rigidbody2D bulletHull;
 
@@ -27,9 +29,15 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == enemyTag)
         {
-
+            Debug.Log("Encountered enemy!");
+            other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            if (other.tag == "Player")
+            {
+                other.gameObject.GetComponent<PlayerController>().playerControlActive = false;
+            }
+            this.gameObject.SetActive(false);
         }
     }
 
