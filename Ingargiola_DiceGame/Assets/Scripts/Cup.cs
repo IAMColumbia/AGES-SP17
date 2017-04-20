@@ -26,6 +26,7 @@ public class Cup : MonoBehaviour
 
     public IEnumerator Shake()
     {
+
         //multiply by random
         //different direction by random amount
 
@@ -43,8 +44,8 @@ public class Cup : MonoBehaviour
         yield return new WaitForSeconds(randomShakeTime);
         cupRigidbody.AddForce(Vector3.left * randomShakeSpeed);
 
-        yield return new WaitForSeconds(randomShakeTime);
-        RotateCup();
+        yield return new WaitForSeconds(10);
+        //RotateCup();
 
 
     }
@@ -54,5 +55,7 @@ public class Cup : MonoBehaviour
     {
         //rotate on Z
         //transform.Rotate(0,0,120);
+
+        cupRigidbody.transform.Rotate(0,0,120);
     }
 }
