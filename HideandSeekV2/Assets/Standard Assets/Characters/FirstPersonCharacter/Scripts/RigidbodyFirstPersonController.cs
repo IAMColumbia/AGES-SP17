@@ -15,6 +15,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [Serializable]
         public class MovementSettings
         {
+          
+
             public float ForwardSpeed = 8.0f;   // Speed when walking forward
             public float BackwardSpeed = 4.0f;  // Speed when walking backwards
             public float StrafeSpeed = 4.0f;    // Speed when walking sideways
@@ -23,6 +25,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             public float JumpForce = 30f;
             public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
             [HideInInspector] public float CurrentTargetSpeed = 8f;
+
+
 
 #if !MOBILE_INPUT
             private bool m_Running;
@@ -95,6 +99,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
 
+        public int m_PlayerNumber = 1; // Player Number        
+        string m_MovementAxisName;        
+        string m_TurnAxisName;
+
 
         public Vector3 Velocity
         {
@@ -129,6 +137,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
+
+            // The axes names are based on player number.
+            m_MovementAxisName = "Vertical" + m_PlayerNumber;
+            m_TurnAxisName = "Horizontal" + m_PlayerNumber;
+
         }
 
 
@@ -220,8 +233,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             
             Vector2 input = new Vector2
                 {
-                    x = CrossPlatformInputManager.GetAxis("Horizontal"),
-                    y = CrossPlatformInputManager.GetAxis("Vertical")
+                    x = CrossPlatformInputManager.GetAxis(m_TurnAxisName),
+                    y = CrossPlatformInputManager.GetAxis(m_MovementAxisName)
                 };
 			movementSettings.UpdateDesiredTargetSpeed(input);
             return input;
