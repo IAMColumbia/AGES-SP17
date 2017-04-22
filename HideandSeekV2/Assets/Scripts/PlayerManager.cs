@@ -25,26 +25,26 @@ public class PlayerManager : MonoBehaviour {
 
         if (m_Instance.name == "Player1")
         {
-            m_Instance.gameObject.layer = LayerMask.NameToLayer("Player1");
-            PlayerCam.cullingMask ^= 1 << LayerMask.NameToLayer("Player1");
-            PlayerCam.rect = new Rect( 0f, .5f, .5f, .5f);
-            m_Instance.gameObject.tag = "Seeker";
+            m_Instance.gameObject.layer = LayerMask.NameToLayer("Player1"); // Sets Player Layer
+            PlayerCam.cullingMask ^= 1 << LayerMask.NameToLayer("Player1"); // Sets Camera Culling Mask
+            PlayerCam.rect = new Rect( .51f,.52f,.49f,48f); // Sets Camera Viewport
+            m_Instance.gameObject.tag = "Seeker"; // Sets Tag of Player
         }
 
         if (m_Instance.name == "Player2")
         {
             m_Instance.gameObject.layer = LayerMask.NameToLayer("Player2");
             PlayerCam.cullingMask ^= 1 << LayerMask.NameToLayer("Player2");
-            PlayerCam.rect = new Rect(.5f, .5f, .5f, .5f);
+            PlayerCam.rect = new Rect(0f,.52f,.49f,.48f);
             m_Instance.gameObject.tag = "Hider";
            m_Instance.GetComponentInChildren<AudioListener>().enabled = false;
         }
 
         if (m_Instance.name == "Player3")
         {
-            m_Instance.gameObject.layer = LayerMask.NameToLayer("Player3");
+            m_Instance.gameObject.layer = LayerMask.NameToLayer("Player3"); 
             PlayerCam.cullingMask ^= 1 << LayerMask.NameToLayer("Player3");
-            PlayerCam.rect = new Rect(0f, 0f, .5f, .5f);
+            PlayerCam.rect = new Rect(0f,0f,.49f,.48f);
             m_Instance.gameObject.tag = "Hider";
             m_Instance.GetComponentInChildren<AudioListener>().enabled = false;
         }
@@ -53,7 +53,7 @@ public class PlayerManager : MonoBehaviour {
         {
             m_Instance.gameObject.layer = LayerMask.NameToLayer("Player4");
             PlayerCam.cullingMask ^= 1 << LayerMask.NameToLayer("Player4");
-            PlayerCam.rect = new Rect(.5f, 0f, .5f, .5f);
+            PlayerCam.rect = new Rect(.51f,0f,.49f,.48f);
             m_Instance.gameObject.tag = "Hider";
             m_Instance.GetComponentInChildren<AudioListener>().enabled = false;
         }
