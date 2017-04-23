@@ -25,15 +25,21 @@ public class PlayerFlightControl : MonoBehaviour {
     string m_MovementAxisName;
     string m_TurnAxisName;
 
+    float m_HorizontalInputValue;
+    float m_VerticalInputValue;
+    //m_Jump = Input.GetButton("Jump" + m_PlayerNumber);
 
     //Pitch, Roll, Yaw
     //Pitch is tilt Up/Down (Y axis)  || Vertical refactor to Pitch
     //Yaw is moving forward/back (Z axis  || Movement refactor to Yaw
     //Roll is tilting left/right (X axis) || Turn refactor to Roll
-    float m_HorizontalInputValue;
-    float m_VerticalInputValue;
+
+
+
     float m_OriginalPitch;
-    
+
+    //Public variables go here. 
+    public int m_PlayerNumber = 1;
     //mvem
     /// <summary>
     //
@@ -61,8 +67,10 @@ public class PlayerFlightControl : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        m_HorizontalInputValue = Input.GetAxis("Horizontal");
-        m_VerticalInputValue = Input.GetAxis("Vertical");
+        //m_HorizontalInputValue = Input.GetAxis("Horizontal");
+        //m_VerticalInputValue = Input.GetAxis("Vertical");
+         m_HorizontalInputValue = Input.GetAxis("Horizontal" + m_PlayerNumber);
+         m_VerticalInputValue = Input.GetAxis("Vertical" + m_PlayerNumber);
     }
     void FixedUpdate()
     {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 //using UnityEngine.SceneManagement;
+//using UnityStandardAssets.Characters.ThirdPerson;
 using System;
 
 public class Enemy : MonoBehaviour {
@@ -18,6 +19,8 @@ public class Enemy : MonoBehaviour {
     float timeLeftToFire;
     float isMoving;
 
+    [SerializeField]
+    WaterBlast waterBlastScript;
 
     // public int sceneToStart = 2;
     //Animator anim;
@@ -58,7 +61,7 @@ public class Enemy : MonoBehaviour {
     Debug.Log("Fire weapon!");
         if (timeLeftToFire <= 0)
         {
-            
+            waterBlastScript.waterBlastAttack();
             justFired = true;
         }
         if (justFired)

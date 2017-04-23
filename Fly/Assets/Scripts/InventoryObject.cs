@@ -5,7 +5,7 @@ using System;
 namespace UnitySampleAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof(AudioSource))]
-    public class InventoryObject : MonoBehaviour, IActivatable //Icommand
+    public class InventoryObject : MonoBehaviour, IActivatable
     {
         [SerializeField]
         string displayText;
@@ -15,9 +15,6 @@ namespace UnitySampleAssets.Characters.ThirdPerson
 
         [SerializeField]
         string displayCommand;
-
-        [SerializeField]
-        InventoryManager inventoryManager;
 
         [SerializeField]
         GameObject player;
@@ -79,20 +76,8 @@ namespace UnitySampleAssets.Characters.ThirdPerson
             }
         }
 
-        public string DisplayCommand
-        {
-            get
-            {
-                return displayCommand;
-            }
-        }
-        public void DoCommand()
-        {
-            
-            Animator anim = player.GetComponent<Animator>();
-            anim.Play("");
-            DoActivate();
-        }
+   
+       
 
         public void DoActivate()
         {
@@ -101,8 +86,7 @@ namespace UnitySampleAssets.Characters.ThirdPerson
             //Gets added to inventory list(to do)
 
             audioSource.Play();
-            inventoryManager.InventoryObjects.Add(this);
-            Debug.Log("Inventory Objects:" + inventoryManager.InventoryObjects[0]);
+        
             shouldDisableWhenDonePlayingSoundEffect = true;
 
         }
@@ -114,18 +98,7 @@ namespace UnitySampleAssets.Characters.ThirdPerson
             //GetComponent<MeshRenderer>().enabled = true;
             //colorStart = GetComponentInChildren<SkinnedMeshRenderer>().material.color;
             audioSource = GetComponent<AudioSource>();
-            try
-            {
-                inventoryManager = GameObject.Find("Inventory Manager").GetComponent<InventoryManager>();
-            }
-            catch (Exception)
-            {
-                if (inventoryManager == null)
-                {
-                    throw new System.Exception("Scene must contain a gameObject named 'inventory Manager' " +
-                        "With an InventoryManager Script Attached");
-                }
-            }
+        
         }
 
         // Update is called once per frame
