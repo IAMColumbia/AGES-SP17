@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
+    float deadZoneMinimum;
+    [SerializeField]
     float speed;
     [SerializeField]
     float rotationSpeed;
@@ -13,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     float jumpHeight;
     [SerializeField]
     float chargeSpeed;
-    [SerializeField]
-    CharacterController controller;
+    //[SerializeField]
+    //CharacterController controller;
     [SerializeField]
     Rigidbody playerRB;
 
@@ -22,14 +24,29 @@ public class PlayerMovement : MonoBehaviour
     private Transform originalObject;
 
     private float currentSpeed;
-    private bool isGrounded = true;
+
+    [HideInInspector]
+    public bool isGrounded = true;
+
+    public int playerNumber = 1;
+
+    private string movementAxisName;
+    private string rotateAxisName;
+    private string chargeAxisName;
+    private string jumpAxisName;
 
     void Start()
     {
         // Store reference to attached component
-        controller = GetComponent<CharacterController>();
+        //controller = GetComponent<CharacterController>();
         playerRB = GetComponent<Rigidbody>();
         originalObject = GetComponent<Transform>();
+
+        //Set up multiplayer controls
+        movementAxisName = "Vertical" + playerNumber;
+        rotateAxisName = "Rotate" + playerNumber;
+        chargeAxisName = "Charge" + playerNumber;
+        jumpAxisName = "Jump" + playerNumber;
     }
 
     void Update()
@@ -40,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         var vel = playerRB.velocity;
         currentSpeed = vel.magnitude;
     }
-
+    
     private void FixedUpdate()
     {
         //Move();
@@ -49,48 +66,28 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        // Character is on ground (built-in functionality of Character Controller)
-        if (controller.isGrounded)
-        {
-            // Use input up and down for direction, multiplied by speed
-            //moveDirection = new Vector3(Input.GetAxis("Horizontal"),
-            //    Input.GetAxis("Jump"), Input.GetAxis("Vertical"));
-            //moveDirection = transform.TransformDirection(moveDirection);
-            //moveDirection *= speed;
-        }
-
-        // Apply gravity manually.
-        //moveDirection.y -= gravity * Time.deltaTime;
-
-        // Move Character Controller
-        //controller.Move(moveDirection * Time.deltaTime);
-
         //movement rotation
-        playerRB.transform.Rotate(0, Input.GetAxis("Rotate") * rotationSpeed * Time.deltaTime, 0);
+        playerRB.transform.Rotate(0, Input.GetAxis(rotateAxisName) * rotationSpeed * Time.deltaTime, 0);
 
         //Movement forward and backward
-        if(Input.GetAxis("Vertical") > 0)
+        if(Input.GetAxis(movementAxisName) > deadZoneMinimum)
             playerRB.AddRelativeForce(Vector3.forward * speed);
-        else if(Input.GetAxis("Vertical") < 0)
+        else if(Input.GetAxis(movementAxisName) < deadZoneMinimum)
             playerRB.AddRelativeForce(Vector3.forward * -speed);
     }
 
     void Jump()
     {
-        if (Input.GetAxis("Jump") > 0 && isGrounded)
+        if (Input.GetAxis(jumpAxisName) > deadZoneMinimum && isGrounded)
             playerRB.velocity = jumpHeight * Vector3.up;
-            //playerRB.AddForce(Vector3.up * jumpHeight);
-
-        //if (Input.GetKeyDown("space") && isGrounded)
-        //    playerRB.velocity = jumpHeight * Vector3.up;
     }
 
     void Charge()
     {
-        if(Input.GetAxis("Charge") > 0)
+        if(Input.GetAxis(chargeAxisName) > deadZoneMinimum)
         {
-            //playerRB.AddRelativeForce(Vector3.forward * chargeSpeed * speed);
-            playerRB.AddRelativeForce(transform.forward * chargeSpeed * speed);
+            playerRB.AddRelativeForce(Vector3.forward * chargeSpeed * speed);
+            //playerRB.AddRelativeForce(transform.forward * chargeSpeed * speed);
         }
     }
 

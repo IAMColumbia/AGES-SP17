@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public Color flashColour = new Color(1f, 0f, 0f, 1f);     // The colour the damageImage is set to, to flash.
     public Color FullHealthColor = Color.green;
     public Color ZeroHealthColor = Color.red;
+    public Image sliderFill;
 
 
     //Animator anim;                                              // Reference to the Animator component.
@@ -23,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
     bool damaged;                                               // True when the player gets damaged.
 
     public Rigidbody playerRB;
+    public PlayerHealth playerHealth;
 
 
     void Awake()
@@ -38,11 +40,14 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         playerMovement.enabled = true;
+        sliderFill.color = FullHealthColor;
     }
 
 
     void Update()
     {
+        SliderColor(); //sets the color of the slider based on health
+
         // If the player has just been damaged...
         if (damaged)
         {
@@ -75,6 +80,17 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "DeathLeave")
+        {
+            currentHealth = 0;
+            isDead = true;
+            Death();
+        }
+    }
+    
+
     public void TakeDamage(int amount)
     {
         // Set the damaged flag so the screen will flash.
@@ -102,6 +118,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // Set the death flag so this function won't be called again.
         isDead = true;
+        //healthSlider.image.color = ZeroHealthColor;
 
         // Tell the animator that the player is dead.
         //anim.SetTrigger("Die");
@@ -113,11 +130,15 @@ public class PlayerHealth : MonoBehaviour
         // Turn off the movement and shooting scripts.
         playerMovement.enabled = false;
         playerRB.gameObject.SetActive(false);
-
     }
 
     void SliderColor()
     {
-        
+        if (currentHealth > 35 && !isDead)            
+            sliderFill.color = FullHealthColor;
+        else if (currentHealth < 35 && !isDead)            
+            sliderFill.color = ZeroHealthColor;
+        else if (currentHealth <= 0 && isDead)           
+            sliderFill.color = ZeroHealthColor;
     }
 }

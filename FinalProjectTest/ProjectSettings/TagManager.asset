@@ -7,6 +7,7 @@ TagManager:
   - Death
   - Hurt
   - Ground
+  - DeathLeave
   layers:
   - Default
   - TransparentFX

@@ -24,7 +24,6 @@ GameObject:
   - 23: {fileID: 23000010987731234}
   - 54: {fileID: 54000013978393486}
   - 114: {fileID: 114000012156276768}
-  - 143: {fileID: 143000010965945914}
   - 114: {fileID: 114000012315557058}
   - 82: {fileID: 82000013836743618}
   m_Layer: 0
@@ -41,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014207269006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06932407, y: 0.551, z: -2.2929363}
+  m_LocalPosition: {x: 10.07, y: 0.551, z: -17.29}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -97,7 +96,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!82 &82000013836743618
 AudioSource:
   m_ObjectHideFlags: 1
@@ -108,7 +107,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 85b05fe3fae7cba48a2fce3a7e21d404, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -183,13 +182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed838e7f829b11a41b25421dfc0c7434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadZoneMinimum: 0
   speed: 75
   rotationSpeed: 100
   gravity: 20
   jumpHeight: 5
   chargeSpeed: 2
-  controller: {fileID: 143000010965945914}
   playerRB: {fileID: 54000013978393486}
+  playerNumber: 1
 --- !u!114 &114000012315557058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,10 +204,13 @@ MonoBehaviour:
   startingHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 0}
-  deathClip: {fileID: 0}
+  damageImage: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 8077dac427990f44a9f71a428e596707, type: 3}
   flashSpeed: 5
+  flashColour: {r: 1, g: 0, b: 0, a: 1}
   FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  sliderFill: {fileID: 0}
   playerRB: {fileID: 54000013978393486}
 --- !u!136 &136000011265406650
 CapsuleCollider:
@@ -221,21 +224,4 @@ CapsuleCollider:
   m_Radius: 0.6
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &143000010965945914
-CharacterController:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014207269006}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 1.9
-  m_Radius: 0.4
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
