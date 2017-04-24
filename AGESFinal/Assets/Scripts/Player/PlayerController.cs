@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private LayerMask groundLayer;
 
+    [SerializeField]
+    private GameObject butt;
+
 
     private float HorizontalAxis;
     private float overlapSphereRadius = 1.4f;
@@ -50,11 +53,9 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleMovement()
     {
-
-
-        if (grounded && Input.GetButton("Duck" + playerNumber))
+        if (grounded && Input.GetAxis("Duck" + playerNumber) > .5f)
         {
-
+            particleSystem.gameObject.SetActive(false);
             anim.SetBool("isDucking", true);
             
         }
@@ -98,14 +99,22 @@ public class PlayerController : MonoBehaviour {
     {
         if (HorizontalAxis > 0)
         {
+            butt.GetComponent<BoxCollider2D>().offset = new Vector2(-1.5f, 0);
+            butt.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
             GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (HorizontalAxis < 0)
         {
+            butt.GetComponent<BoxCollider2D>().offset = new Vector2(1.5f, 0);
+            butt.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
+        {
+            butt.GetComponent<BoxCollider2D>().offset = new Vector2(0, 0);
+            butt.GetComponent<BoxCollider2D>().size = new Vector2(0, 0);
             GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     private void GetAxis()

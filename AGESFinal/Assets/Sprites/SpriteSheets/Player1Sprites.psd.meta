@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3c1528150aef44541b2cc7cd65d2d271
-timeCreated: 1491711732
+guid: 256a545b3c1717d4fa77dbbf897d080b
+timeCreated: 1493049430
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -70,11 +70,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 225
-        width: 267
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -82,12 +82,12 @@ TextureImporter:
       name: Player1Sprites_1
       rect:
         serializedVersion: 2
-        x: 267
-        y: 225
-        width: 267
+        x: 238
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -95,12 +95,12 @@ TextureImporter:
       name: Player1Sprites_2
       rect:
         serializedVersion: 2
-        x: 534
-        y: 225
-        width: 267
+        x: 476
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -108,12 +108,12 @@ TextureImporter:
       name: Player1Sprites_3
       rect:
         serializedVersion: 2
-        x: 801
-        y: 225
-        width: 267
+        x: 714
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -121,12 +121,12 @@ TextureImporter:
       name: Player1Sprites_4
       rect:
         serializedVersion: 2
-        x: 1068
-        y: 225
-        width: 267
+        x: 952
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -134,12 +134,12 @@ TextureImporter:
       name: Player1Sprites_5
       rect:
         serializedVersion: 2
-        x: 1335
-        y: 225
-        width: 267
+        x: 1190
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -147,12 +147,12 @@ TextureImporter:
       name: Player1Sprites_6
       rect:
         serializedVersion: 2
-        x: 1602
-        y: 225
-        width: 267
+        x: 1428
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -160,12 +160,12 @@ TextureImporter:
       name: Player1Sprites_7
       rect:
         serializedVersion: 2
-        x: 1869
-        y: 225
-        width: 267
+        x: 1666
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -173,64 +173,12 @@ TextureImporter:
       name: Player1Sprites_8
       rect:
         serializedVersion: 2
-        x: 2136
-        y: 225
-        width: 267
+        x: 1904
+        y: 1
+        width: 238
         height: 225
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player1Sprites_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 267
-        height: 225
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player1Sprites_10
-      rect:
-        serializedVersion: 2
-        x: 267
-        y: 0
-        width: 267
-        height: 225
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player1Sprites_11
-      rect:
-        serializedVersion: 2
-        x: 534
-        y: 0
-        width: 267
-        height: 225
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player1Sprites_12
-      rect:
-        serializedVersion: 2
-        x: 1602
-        y: 0
-        width: 267
-        height: 225
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

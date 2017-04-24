@@ -12,21 +12,21 @@ public class HazardZone : MonoBehaviour {
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Collider2D[] playerColliders = Physics2D.OverlapAreaAll(new Vector2(0, -125), new Vector2(400, -175), playerMask); //finds all the colliders in an area below the map
-
-        for (int i = 0; i < playerColliders.Length; i++) // goes through those colliders
+        Collider2D[] playerColliders = Physics2D.OverlapAreaAll(new Vector2(0, -125), new Vector2(400, -175), playerMask); 
+        Debug.Log("1");
+        for (int i = 0; i < playerColliders.Length; i++) 
         {
-            Rigidbody2D targetrigidbody = playerColliders[i].GetComponent<Rigidbody2D>(); //finds their rigidbody
-
-            if (!targetrigidbody)
+            BoxCollider2D targetButt = playerColliders[i].GetComponent<BoxCollider2D>(); 
+            Debug.Log("2");
+            if (!targetButt)
                 continue;
             
-            PlayerHealth playerHealth = targetrigidbody.GetComponent<PlayerHealth>(); //find their health component
-            
+            PlayerHealth playerHealth = targetButt.GetComponentInChildren<PlayerHealth>(); 
+            Debug.Log("3");
             if (!playerHealth)
                 continue;
-
-            playerHealth.StartCoroutine("CueDeath"); //jumps to PlayerHealth
+            Debug.Log("4");
+            playerHealth.CueDeath(); 
         }
         
     }

@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField]
-    private string playerNumber;
+    private int playerNumber;
 
     [SerializeField]
     private float bulletLaunchForce = 50;
-
+    
     [SerializeField]
     private Transform bulletSpawnPoint;
 
@@ -18,18 +19,29 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
+    [SerializeField]
+    private GameObject GunAxis;
+
+    [SerializeField]
+    private Text scoreText;
+    
+
     private float ShootingInputAxis;
     private float horizontalShootingAxis;
     private float verticalShootingAxis;
     private float fireRate = .25f;
     private float nextFire = 0;
+    
+    private int score;
 
     private GameManager gmanager;
-    private PlayerController player;
+    private PlayerController playercontroller;
+    private PlayerManager player;
 
     private void Start()
     {
         gmanager = FindObjectOfType<GameManager>();
+        scoreText = GameObject.Find("P" + playerNumber + "ScoreText").GetComponent<Text>();
 
     }
     private void Update()
@@ -40,17 +52,24 @@ public class PlayerShooting : MonoBehaviour
 
     }
     
-
     private void Fire()
     {
-        if (ShootingInputAxis == 1 && Time.time > nextFire)
+        if (Input.GetButtonDown("Fire" + playerNumber) )
         {
-            nextFire = Time.time + fireRate;
-
             Rigidbody2D spawnBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation) as Rigidbody2D;
 
-            spawnBullet.velocity = bulletLaunchForce * bulletSpawnPoint.transform.right;
+            spawnBullet.velocity = bulletLaunchForce * bulletSpawnPoint.transform.up;
+
+            spawnBullet.GetComponent<BulletScript>().shooter = transform;
+            
         }
+    }
+
+    private void AddToScore(int points)
+    {
+        gmanager.Players[playerNumber].ButtsBlasted++;
+        score++;
+        scoreText.text = "X " + score;
     }
 
     private void GetAxis()
@@ -60,25 +79,12 @@ public class PlayerShooting : MonoBehaviour
 
     private void HandleAimingDirection()
     {
-        //if(Input.GetKey(KeyCode.Space))
-        //    gmanager.StoreButtsBlasted();
-
 
         horizontalShootingAxis = Input.GetAxis("ShootHorizontal" + playerNumber) * Time.deltaTime * 15;
         verticalShootingAxis = Input.GetAxis("ShootVertical" + playerNumber) * Time.deltaTime * 15;
 
         float angle = Mathf.Atan2(horizontalShootingAxis, verticalShootingAxis) * Mathf.Rad2Deg;
-
-        //transform.localPosition = new Vector2(horizontalShootingAxis * 15, -1 * verticalShootingAxis * 15);
-
-        transform.localEulerAngles = new Vector3(0, 0, angle);
-
-
-
-        //Vector3 moveAngle = new Vector3(0, 0, 45);
-
-
-        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        //transform.Rotate(transform.parent.position, 15f);
+        
+        GunAxis.transform.eulerAngles = new Vector3(0,0,angle);
     }
 }

@@ -4,7 +4,7 @@ using System.Collections;
 public class BulletScript : MonoBehaviour {
 
     [SerializeField]
-    private LayerMask PlayerMask;
+    private LayerMask ButtMask;
 
     [SerializeField]
     public ParticleSystem ExplosionParticles;
@@ -17,7 +17,8 @@ public class BulletScript : MonoBehaviour {
 
     [SerializeField]
     public float SearchRadius = 5f;
-    
+
+    public Transform shooter;
 
     void Start()
     {
@@ -26,25 +27,28 @@ public class BulletScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Collider2D[] playercolliders = Physics2D.OverlapCircleAll(transform.position, SearchRadius, PlayerMask);
-
-        for (int i = 0; i < playercolliders.Length; i++)
+        Collider2D[] buttcolliders = Physics2D.OverlapCircleAll(transform.position, SearchRadius, ButtMask);
+        
+        for (int i = 0; i < buttcolliders.Length; i++)
         {
-            Rigidbody2D targetRigidbody = playercolliders[i].GetComponent<Rigidbody2D>();
+            BoxCollider2D targetButt = buttcolliders[i].GetComponent<BoxCollider2D>();
 
-            if (!targetRigidbody)
+            if (!targetButt)
                 continue;
 
-            Debug.Log("Shell hit: " + targetRigidbody.gameObject.name);
+            Debug.Log("Shell hit: " + targetButt.gameObject.name);
 
-            PlayerHealth targetHealth = targetRigidbody.GetComponent<PlayerHealth>();
+            PlayerHealth targetHealth = targetButt.GetComponentInParent<PlayerHealth>();
 
             if (!targetHealth)
                 continue;
 
             targetHealth.CueDeath();
 
+            shooter.SendMessage("AddToScore", 1);
+            
         }
+
 
         ExplosionParticles.transform.parent = null;
         ExplosionParticles.Play();
@@ -53,5 +57,6 @@ public class BulletScript : MonoBehaviour {
 
         Destroy(ExplosionParticles.gameObject, ExplosionParticles.duration);
         Destroy(gameObject);
+
     }
 }

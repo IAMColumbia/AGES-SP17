@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 53723e666ebdaf241bae51806c6d8295
-timeCreated: 1491733797
+guid: e2d134f0661523649823f720eada88fd
+timeCreated: 1493050782
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -67,7 +67,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -78,9 +78,9 @@ TextureImporter:
       name: Player3Sprites_1
       rect:
         serializedVersion: 2
-        x: 233
+        x: 240
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -91,9 +91,9 @@ TextureImporter:
       name: Player3Sprites_2
       rect:
         serializedVersion: 2
-        x: 466
+        x: 480
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -104,9 +104,9 @@ TextureImporter:
       name: Player3Sprites_3
       rect:
         serializedVersion: 2
-        x: 699
+        x: 720
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -117,9 +117,9 @@ TextureImporter:
       name: Player3Sprites_4
       rect:
         serializedVersion: 2
-        x: 932
+        x: 960
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -130,9 +130,9 @@ TextureImporter:
       name: Player3Sprites_5
       rect:
         serializedVersion: 2
-        x: 1165
+        x: 1200
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -143,9 +143,9 @@ TextureImporter:
       name: Player3Sprites_6
       rect:
         serializedVersion: 2
-        x: 1398
+        x: 1440
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,9 +156,9 @@ TextureImporter:
       name: Player3Sprites_7
       rect:
         serializedVersion: 2
-        x: 1631
+        x: 1680
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -169,9 +169,9 @@ TextureImporter:
       name: Player3Sprites_8
       rect:
         serializedVersion: 2
-        x: 1864
+        x: 1920
         y: 0
-        width: 233
+        width: 240
         height: 188
       alignment: 0
       pivot: {x: 0, y: 0}

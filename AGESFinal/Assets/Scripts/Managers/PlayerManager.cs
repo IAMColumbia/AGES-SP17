@@ -6,32 +6,41 @@ using System;
 public class PlayerManager {
 
     public Transform SpawnPoint;
-    [HideInInspector]
+    public Color PlayerColor;
+    //[HideInInspector]
     public float PlayerNumber;
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject Instance;
     //[HideInInspector]
     public int ButtsBlasted;
-    
+    //[HideInInspector]
+    public string PlayerColorText;
+
     private PlayerController movement;
+    private PlayerShooting shooting;
     private PlayerHealth playerHealth;
 
     public void Setup()
     {
         movement = Instance.GetComponent<PlayerController>();
+        shooting = Instance.GetComponent<PlayerShooting>();
 
         movement.playerNumber = PlayerNumber;
+
+        PlayerColorText = "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerColor) + ">PLAYER " + PlayerNumber + "</color>";
  
     }
 
     public void DisableControl()
     {
         movement.enabled = false;
+        shooting.enabled = false;
     }
 
     public void EnableControl()
     {
-        movement.enabled = false;
+        movement.enabled = true;
+        shooting.enabled = true;
     }
 
     public void Reset()
