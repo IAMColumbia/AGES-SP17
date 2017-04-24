@@ -9,18 +9,12 @@ public class EnergyMeter : MonoBehaviour
     [HideInInspector]
     public int energyLeft;
     [HideInInspector]
-    public bool canReduceEnergy; //{ get; set; }
+    public bool canReduceEnergy;
 
     void Start()
     {
-        //GetComponent<Slider>().maxValue = startingEnergy;
         canReduceEnergy = true;
         energyLeft = startingEnergy;
-    }
-
-    private void Update()
-    {
-        //Debug.Log(energyLeft);
     }
 
     public void ReduceEnergy()
@@ -28,7 +22,6 @@ public class EnergyMeter : MonoBehaviour
         if (canReduceEnergy)
         {
             energyLeft--;
-            //GetComponent<Slider>().value = energyLeft;
             canReduceEnergy = false;
             Invoke("ReduceEnergyTrue", 1);
         }
