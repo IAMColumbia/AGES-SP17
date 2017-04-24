@@ -1,0 +1,27 @@
+The systems in this game aren't necessarily connected.  I have a lot of information that can be bounced between classes.
+	HOWEVER, something will often change in one class that changes the game entirely, and NOTHING KNOWS ABOUT IT.
+	This can currently be seen in...
+
+- Tiles changing objects (maybe create an update objectOnTile method inside Tile that has a collider.  It checks inside the collider to see what's in it.  This way,
+	it doesn't matter what other classes tell it.  I knows what it owns by itself)
+
+- Interacting and player death (when the player is in the middle of interacting and he/she dies, the state changes.  However, this doesn't prevent objects from being
+	interacted with.  I can still push a block when I'm dead.  To fix this, I prevented movement between tiles for all objects if the player is dead (which might
+	be a good thing).  Unfortunatley, there's no place that says: "Hey, if the player is dead, the rest of the program will refuse to run."  I have a bunch of
+	small checks that asks, "Is the player alive?  Okay."  I need a clean master switch in the game (in the controller), which controls everything.  If the
+	game shouldn't run anymore, then it needs to stop checking.
+
+- The CURRENT BUG below is another example of this.  A pressure plate reactivating a deactivated gameObject 
+
+
+
+
+
+CURRENT BUG:
+* When a player is on a pressure plate, which deactivates an adjacent object.  That object will be considered walkable.  That's good!  But, when the player walks OFF
+	the pressure plate, the player moves to that space and the object reappears.  This causes the player to walk into the middle of a wall, allowing them to pass
+	through.  There are two things I can do: 1) prevent the player from moving onto the space (reactivate the gameobject first, THEN try moving the player).
+	Or, 2) reactivate the gameObject when the player moves off the tile.  This could make for some interesting puzzles, but the concept might be confusing.
+
+- NOTE: I'm considering adding a boolean to PlaceableObjects which checks if movement onto the tile should come BEFORE activating it.
+	This could prevent problems in the future.
