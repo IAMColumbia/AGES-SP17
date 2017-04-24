@@ -48,14 +48,14 @@ using UnitySampleAssets.Characters.ThirdPerson;
         {
             //If bool is true and start button pressed. Pause game. Freeze time.
             //Else will unpause and hide the pause menu.
-            if (Input.GetButton("startButton") && IsPauseMenuShowing)
+            if (Input.GetButton("Start") && IsPauseMenuShowing)
             {              
                     Debug.Log("Closing Pause Menu");
                     HidePauseMenu();
                     Time.timeScale = 1;
                     paused = false;                                                               
             }
-            else if (Input.GetButton("startButton") && !IsPauseMenuShowing)
+            else if (Input.GetButton("Start") && !IsPauseMenuShowing)
             {
                 ShowPauseMenu();
                 Time.timeScale = 0;
