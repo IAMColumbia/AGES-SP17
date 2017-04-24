@@ -16,7 +16,11 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float turnMultiplierWhenSlow;
     [SerializeField]
-    private float accelerationSpeed;
+    private float xAxisMovementMultiplier;
+    [SerializeField]
+    private float yAxisMovementMultiplier;
+    [SerializeField]
+    private float normalAccelerationSpeed;
     [SerializeField]
     private float slowdownSpeed;
     [SerializeField]
@@ -29,6 +33,7 @@ public class Movement : MonoBehaviour
     private float leftStickInputVertical;
     private float leftStickInputHorizontal;
     private float inGameTurnMultiplier;
+    private float currentAccelerationSpeed;
 
     private float currentVerticalTilt;
     private float currentHorizontalTilt;
@@ -47,7 +52,7 @@ public class Movement : MonoBehaviour
     {
         UpdateTurnInput();
         UpdateCurrentTilt();
-        Debug.Log("acceleration speed is " + accelerationSpeed.ToString());
+        Debug.Log("acceleration speed is " + currentAccelerationSpeed.ToString());
     }
 
 
@@ -75,11 +80,11 @@ public class Movement : MonoBehaviour
 
     private void AccelerateForward()
     {
-        playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed,ForceMode.Force);
+        //playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed,ForceMode.Force);
 
-        //Vector3 velocityToSet = new Vector3(zeroConstant, zeroConstant, accelerationSpeed);
+        Vector3 velocityToSet = new Vector3((leftStickInputHorizontal * xAxisMovementMultiplier), (leftStickInputVertical*yAxisMovementMultiplier), currentAccelerationSpeed) * Time.deltaTime;
 
-        //playerRigidBody.angularVelocity = velocityToSet;
+        playerRigidBody.velocity = velocityToSet;
         //Add condition so you can't slow down too much
         if (Input.GetButton(slowDownButton))
         {
@@ -88,13 +93,19 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            SetMovementSpeedBackToNormal();
             inGameTurnMultiplier = Mathf.Lerp(turnMultiplier, turnMultiplierWhenSlow,Time.deltaTime);
         }
     }
 
     private void SlowDown()
     {
-        accelerationSpeed = slowdownSpeed;
+        currentAccelerationSpeed = slowdownSpeed;
+    }
+
+    private void SetMovementSpeedBackToNormal()
+    {
+        currentAccelerationSpeed = normalAccelerationSpeed;
     }
 
     private void MoveRotation()

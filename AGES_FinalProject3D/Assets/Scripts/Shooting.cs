@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class Shooting : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class Shooting : MonoBehaviour
     private Transform shootingPosition;
     [SerializeField]
     private float shootingReticleSpeed;
+    [SerializeField]
+    private float shootingDurationSeconds;
+
+    [SerializeField]
+    private Color noEnemyColor;
+    [SerializeField]
+    private Color yesEnemyColor;
 
     private float maxDistanceToActivate = 10;
     private const float zeroConstant = 0;
@@ -26,12 +34,16 @@ public class Shooting : MonoBehaviour
 
     private ParticleSystem laserParticles;
     private AudioSource laserAudio;
+    private WaitForSeconds shootingDuration;
+    private Image reticleImage;
 
 	// Use this for initialization
 	void Start ()
     {
         laserParticles = GetComponentInChildren<ParticleSystem>();
         laserAudio = GetComponent<AudioSource>();
+        reticleImage = GetComponentInChildren<Image>();
+        shootingDuration = new WaitForSeconds(shootingDurationSeconds);
 	}
 	
 	// Update is called once per frame
@@ -39,6 +51,7 @@ public class Shooting : MonoBehaviour
     {
         Shoot();
         UpdateRightStickInput();
+        UpdateReticleColor();
         ShootingAudio();
         MoveReticle();
 	}
@@ -57,40 +70,72 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetButton(shootButton))
+        if (Input.GetButtonDown(shootButton))
         {
-            Vector3 endpoint = shootingPosition.position;
+            StartCoroutine(ShootLaser());
+        }
+    }
 
-            RaycastHit raycastHit;
+    private void UpdateReticleColor()
+    {
+        Vector3 endpoint = shootingPosition.position;
 
-            Health enemyHealth;
+        RaycastHit raycastHit;
 
-            isShooting = true;
-            laserParticles.gameObject.SetActive(true);
-            laserParticles.Play();
+        Health enemyHealth;
 
-            //Shooting works but drawline does not currently
-            Debug.DrawLine(transform.position, endpoint, Color.green, 5);
+        //Checks to see if an enemy is in range
+        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, maxDistanceToActivate, layerToCheckForEnemies))
+        {
+            enemyHealth = raycastHit.transform.gameObject.GetComponent<Health>();
+        }
+        else
+        {
+            enemyHealth = null;
+        }
 
-            //Change max distance to activate float so it's at the same location as the reticle
-            //Check about where the ray is being cast.
-            if (Physics.Raycast(transform.position,transform.forward, out raycastHit,maxDistanceToActivate,layerToCheckForEnemies))
+        //colors the reticle based on if an enemy is in range or not
+        if (enemyHealth == null)
+        {
+            //color it green
+            reticleImage.color = noEnemyColor;
+        }
+        else
+        {
+            //color it red
+            reticleImage.color = yesEnemyColor;
+        }
+    }
+
+    private IEnumerator ShootLaser()
+    {
+        Vector3 endpoint = shootingPosition.position;
+
+        RaycastHit raycastHit;
+
+        Health enemyHealth;
+
+        isShooting = true;
+        laserParticles.gameObject.SetActive(true);
+        laserParticles.Play();
+
+        //Change max distance to activate float so it's at the same location as the reticle
+        //Check about where the ray is being cast.
+        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, maxDistanceToActivate, layerToCheckForEnemies))
+        {
+            enemyHealth = raycastHit.transform.gameObject.GetComponent<Health>();
+
+            if (enemyHealth != null)
             {
-                enemyHealth = raycastHit.transform.gameObject.GetComponent<Health>();
-
-                if (enemyHealth != null)
-                {
-                    enemyHealth.TakeDamage(1);
-                }
+                enemyHealth.TakeDamage(1);
             }
         }
 
-        else
-        {
-            laserParticles.gameObject.SetActive(false);
-            laserParticles.Stop();
-            isShooting = false;
-        }
+        yield return shootingDuration;
+
+        laserParticles.gameObject.SetActive(false);
+        laserParticles.Stop();
+        isShooting = false;
     }
 
     private void ShootingAudio()

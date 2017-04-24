@@ -8,10 +8,16 @@ public class EnemyAI : MonoBehaviour
 
     private Health enemyInstanceHealth;
 
+    private GameUI gameUI;
+
+    [SerializeField]
+    private int scoreValue = 10;
+
 	// Use this for initialization
 	void Start ()
     {
         enemyInstanceHealth = GetComponent<Health>();
+        gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
 	}
 	
 	// Update is called once per frame
@@ -33,5 +39,10 @@ public class EnemyAI : MonoBehaviour
 
             enemyInstanceHealth.TakeDamage(1);
         }
+    }
+
+    private void OnDisable()
+    {
+        gameUI.UpdateScoreText(scoreValue);
     }
 }

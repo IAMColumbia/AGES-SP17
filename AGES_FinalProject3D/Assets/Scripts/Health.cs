@@ -12,6 +12,14 @@ public class Health : MonoBehaviour
 
     private AudioSource deathSound;
 
+    public int HealthValue
+    {
+        get
+        {
+            return healthValue;
+        }
+    }
+
 	// Use this for initialization
 	void Start ()
     {
