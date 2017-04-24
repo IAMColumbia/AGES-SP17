@@ -7,7 +7,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float playerSpeed = 4f;
     public enum PlayerState { Safe, InDanger };
 
     private PlayerState curPlayerState;
