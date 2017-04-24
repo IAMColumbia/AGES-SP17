@@ -62,7 +62,7 @@ public class Cup : MonoBehaviour
         //transform.Rotate(0,0,120);
         //if z variable
        
-        cupRigidbody.transform.Rotate(new Vector3(0,0,120), Time.deltaTime);
+        cupRigidbody.transform.Rotate(0, 0, 120);
         Debug.Log(cupRigidbody.gameObject.transform.eulerAngles.z);
         cupTopCollider.SetActive(false);
         
