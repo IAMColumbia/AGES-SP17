@@ -51,7 +51,7 @@ public class SwitchWorlds : MonoBehaviour
 
     private IEnumerator ChangeAnimation()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         animator.SetBool("HasWarped", false);
     }
 }

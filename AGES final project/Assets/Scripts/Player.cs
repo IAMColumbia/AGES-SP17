@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,12 +14,18 @@ public class Player : MonoBehaviour
     Transform groundDetectPoint;
     [SerializeField]
     float groundDetectRadius = 0.2f;
+    [SerializeField]
+    GameObject respawnText;
+    [SerializeField]
+    Transform spritePosition;
 
     GameManager gameManager;
     Rigidbody2D rigidBody2D;
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+    float aliveMoveSpeed;
+    float aliveJumpHeight;
     float deathMoveSpeed = 0f;
     float deathJumpHeight = 0f;
     bool isOnGround;
@@ -54,11 +61,11 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        //moveSpeed = moveSpeed;
+        aliveMoveSpeed = moveSpeed;
         float moveInput = Input.GetAxis("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(moveInput));
         float currentYVelocity = rigidBody2D.velocity.y;
-        Vector2 velocityToSet = new Vector2(moveSpeed * moveInput, currentYVelocity);
+        Vector2 velocityToSet = new Vector2(aliveMoveSpeed * moveInput, currentYVelocity);
         rigidBody2D.velocity = velocityToSet;
         if(moveInput < 0)
         {
@@ -75,10 +82,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
-            //jumpHeight = jumpHeight;
+            aliveJumpHeight = jumpHeight;
             animator.SetBool("IsOnGround", false);
             float currentXVelocity = rigidBody2D.velocity.x;
-            Vector2 velocityToSet = new Vector2(currentXVelocity, jumpHeight);
+            Vector2 velocityToSet = new Vector2(currentXVelocity, aliveJumpHeight);
             rigidBody2D.velocity = velocityToSet;
         }
         else if(isOnGround)
@@ -99,20 +106,23 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
+        respawnText.SetActive(true);
         animator.SetBool("IsAlive", false);
-        moveSpeed = deathMoveSpeed;
-        jumpHeight = deathJumpHeight;
+        aliveMoveSpeed = deathMoveSpeed;
+        aliveJumpHeight = deathJumpHeight;
     }
 
     private void CheckForReSpawn()
     {
         if(!isAlive && Input.GetButtonDown("Jump"))
         {
+            respawnText.SetActive(false);
             animator.SetBool("IsAlive", true);
             isAlive = true;
-            this.gameObject.transform.position = gameManager.currentCheckpoint.position;
-            moveSpeed = 5f;
-            jumpHeight = 5f;
+            spritePosition.position = gameManager.currentCheckpoint.position;
+            this.transform.position = gameManager.currentCheckpointMirror.position;
+            aliveMoveSpeed = moveSpeed;
+            aliveJumpHeight = jumpHeight;
         }
     }
 }

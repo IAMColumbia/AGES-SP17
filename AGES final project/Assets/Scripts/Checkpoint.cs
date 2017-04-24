@@ -5,6 +5,8 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField]
     Color activatedColor;
+    [SerializeField]
+    Transform checkpointMirror;
 
     GameManager gameManager;
     SpriteRenderer spriteRenderer;
@@ -29,6 +31,7 @@ public class Checkpoint : MonoBehaviour
         {
             spriteRenderer.color = activatedColor;
             gameManager.currentCheckpoint = this.transform;
+            gameManager.currentCheckpointMirror = checkpointMirror.transform;
         }
     }
 }
