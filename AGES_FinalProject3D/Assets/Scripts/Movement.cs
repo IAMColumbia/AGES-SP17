@@ -77,6 +77,9 @@ public class Movement : MonoBehaviour
     {
         playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed,ForceMode.Force);
 
+        //Vector3 velocityToSet = new Vector3(zeroConstant, zeroConstant, accelerationSpeed);
+
+        //playerRigidBody.angularVelocity = velocityToSet;
         //Add condition so you can't slow down too much
         if (Input.GetButton(slowDownButton))
         {
