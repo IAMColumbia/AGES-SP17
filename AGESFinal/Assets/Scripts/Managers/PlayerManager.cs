@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
+using UnityEngine.UI;
 [Serializable]
 public class PlayerManager {
 
@@ -15,6 +15,8 @@ public class PlayerManager {
     public int ButtsBlasted;
     //[HideInInspector]
     public string PlayerColorText;
+    //[HideInInspector]
+    public Text scoreText;
 
     private PlayerController movement;
     private PlayerShooting shooting;
@@ -28,7 +30,9 @@ public class PlayerManager {
         movement.playerNumber = PlayerNumber;
 
         PlayerColorText = "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerColor) + ">PLAYER " + PlayerNumber + "</color>";
- 
+
+        scoreText = GameObject.Find("P" + PlayerNumber + "ScoreText").GetComponent<Text>();
+
     }
 
     public void DisableControl()

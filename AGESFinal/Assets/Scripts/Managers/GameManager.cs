@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Image[] PlayerSpriteImage;
-
+    
     private CameraControl CameraControl;
     private WaitForSeconds startWait;
     private WaitForSeconds endWait;
@@ -181,6 +181,14 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < Players.Length; i++)
         {
             PlayerSpriteImage[i].sprite = normalSprites[i];
+        }
+    }
+
+    public void UpdateUIButtsBlasted()
+    {
+        for (int i = 0; i < Players.Length; i++)
+        {
+            Players[i].scoreText.text = "X " + Players[i].ButtsBlasted;
         }
     }
 

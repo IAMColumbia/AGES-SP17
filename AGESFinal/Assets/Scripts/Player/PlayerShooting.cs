@@ -21,11 +21,7 @@ public class PlayerShooting : MonoBehaviour
 
     [SerializeField]
     private GameObject GunAxis;
-
-    [SerializeField]
-    private Text scoreText;
     
-
     private float ShootingInputAxis;
     private float horizontalShootingAxis;
     private float verticalShootingAxis;
@@ -41,8 +37,7 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         gmanager = FindObjectOfType<GameManager>();
-        scoreText = GameObject.Find("P" + playerNumber + "ScoreText").GetComponent<Text>();
-
+        
     }
     private void Update()
     {
@@ -68,8 +63,7 @@ public class PlayerShooting : MonoBehaviour
     private void AddToScore(int points)
     {
         gmanager.Players[playerNumber].ButtsBlasted++;
-        score++;
-        scoreText.text = "X " + score;
+        gmanager.UpdateUIButtsBlasted();
     }
 
     private void GetAxis()
