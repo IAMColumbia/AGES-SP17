@@ -73,6 +73,7 @@ public class PlayerFlightControl : MonoBehaviour {
         //m_VerticalInputValue = Input.GetAxis("Vertical");
          m_HorizontalInputValue = Input.GetAxis("Horizontal" + m_PlayerNumber);
          m_VerticalInputValue = Input.GetAxis("Vertical" + m_PlayerNumber);
+       
     }
     void FixedUpdate()
     {
@@ -88,7 +89,14 @@ public class PlayerFlightControl : MonoBehaviour {
 
     private void AutoMovement()
     {     
-        transform.Translate(Vector3.forward * m_Speed * Time.deltaTime);      
+        transform.Translate(Vector3.forward * m_Speed * Time.deltaTime);
+        m_Speed -= transform.forward.y * 2.0f * Time.deltaTime * 10f;
+
+        if(m_Speed < 20.0f)
+        {
+            m_Speed = 20.0f;
+        }
+       // m_Speed += transform.forward.y * 2.0f * Time.deltaTime;
     }
     private void AutoRotate()
     {
@@ -107,7 +115,7 @@ public class PlayerFlightControl : MonoBehaviour {
             float anyInput = m_VerticalInputValue + m_HorizontalInputValue;
             if (anyInput < .25f)
             {             
-                balancedRotation.y = camera.transform.position.y;            
+                balancedRotation.y = camera.transform.rotation.y;            
                 m_Rigidbody.MoveRotation(autoRotation);                
             }
             if (anyInput < .25f)
@@ -117,7 +125,7 @@ public class PlayerFlightControl : MonoBehaviour {
             }
             if(anyInput < .25f)
             {              
-                balancedRotation.z = camera.transform.position.z;
+                balancedRotation.z = camera.transform.rotation.z;
                 m_Rigidbody.MoveRotation(autoRotation);                    
             }                   
         }
@@ -144,7 +152,6 @@ public class PlayerFlightControl : MonoBehaviour {
         //float currentZ;
         float yaw = m_HorizontalInputValue * m_TurnSpeed * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, 0f, -yaw);
-
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
         m_Rigidbody.MovePosition(Vector3.left);
         yaw = Mathf.Clamp(transform.rotation.z, Z_ANGLE_MIN, Z_ANGLE_MAX);     

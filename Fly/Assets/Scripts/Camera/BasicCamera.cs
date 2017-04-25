@@ -14,7 +14,6 @@ using UnitySampleAssets.Characters.ThirdPerson;
         //Refactor so lookAt is temporary targeting system    
         [SerializeField]
         Transform lookAt;
-
         [SerializeField]
         Transform player;
         [SerializeField]
@@ -25,7 +24,6 @@ using UnitySampleAssets.Characters.ThirdPerson;
         //Use panel activity to control camera controls.
         [SerializeField]
         GameObject mainEnemy;
- 
         [SerializeField]
         GameObject pauseMenuPanel;
         //Ray used to determine if an object can be activated. 
@@ -51,8 +49,25 @@ using UnitySampleAssets.Characters.ThirdPerson;
         const float Z_ANGLE_MIN = -90F;
         const float Z_ANGLE_MAX = 90F;
 
+    public float
+      clampMarginMinX = 0.0f,
+      clampMarginMaxX = 0.0f,
+      clampMarginMinY = 0.0f,
+      clampMarginMaxY = 0.0f;
+    float speed = 0.0f;
+
+    // The minimum and maximum values which the object can go
+    private float
+        m_clampMinX,
+        m_clampMaxX,
+        m_clampMinY,
+        m_clampMaxY;
+
+    //Dir variables for cameraNewPosition.
     [SerializeField]
-        float cameraDistance = 5f;
+        float cameraAngle = 5f;
+        [SerializeField]
+        float cameraDistance = 5f; //z variable
         //Player Movement Input
         float m_HorizontalInputValue;
         float m_VerticalInputValue;
@@ -69,83 +84,43 @@ using UnitySampleAssets.Characters.ThirdPerson;
     void Start()
         {
            // camTransform = transform;
-            float desiredTargetX = currentX;
-            float desiredTargetY = currentY;
+           
             cam = GetComponent<Camera>();
-        }        
+        //Keep player Object in camera view variables
+        m_clampMinX = Camera.main.ScreenToWorldPoint(new Vector2(0 + clampMarginMinX, 0)).x;
+        m_clampMaxX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width - clampMarginMaxX, 0)).x;
+        m_clampMinY = Camera.main.ScreenToWorldPoint(new Vector2(0, 0 + clampMarginMinY)).y;
+        m_clampMaxY = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height + clampMarginMaxY)).y;
+
+    }        
         private void Update()
         {
-        m_HorizontalInputValue = Input.GetAxis("Horizontal" + m_PlayerNumber);
-        m_VerticalInputValue = Input.GetAxis("Vertical" + m_PlayerNumber);
-        anyPlayerMovementInput = m_HorizontalInputValue + m_VerticalInputValue;
-        anyPlayerCameraMovementInput = currentX + currentY;                
+       
+       
         checkForTargets();
-        }
+        CamPlayerLock();
+    }
     void LateUpdate()
     {
         
-        Vector3 dir = new Vector3(0, 0, -cameraDistance);
-        Quaternion cameraMovementRotation = Quaternion.Euler(player.transform.rotation.x, player.transform.rotation.y, 0);
-        cameraNewPosition = player.transform.position + cameraMovementRotation * dir;
-        transform.position = Vector3.MoveTowards(transform.position, cameraNewPosition, cameraDistance);      
-        if (anyPlayerMovementInput != 0)
-         
-        {
-            camZoom();
-            //  camControl();
-            //camTransform.position = lookAt.position + cameraMovementRotation * dir;
-            // camTransform.transform.Rotate(lookAt.rotation.x * Time.deltaTime, lookAt.rotation.y * Time.deltaTime, lookAt.rotation.z * Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, cameraMovementRotation, Time.deltaTime * rotationDamping);
-        }
-        else if (anyPlayerCameraMovementInput != 0)
-        {
-            camBalance();
-            //camTransform.LookAt(lookAt.position);
-           // camTransform.transform.Rotate(player.rotation.x * Time.deltaTime, player.rotation.y * Time.deltaTime, lookAt.rotation.z * Time.deltaTime);
-        }
-        else
-        {
-            camBalance();
-        }
-                          
-        //If player camera input is 0,0 then maybe do something
        
-        //if(mainEnemy.range > 20)
-        //{
 
-        //}
+      camBalance();
+        //camZoom();          
     }
     private void camBalance()
     {
-        cameraCurrentPosition = transform.position;
-        Quaternion balancedRotation = Quaternion.Euler(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.z);
-        Quaternion currentRotation = transform.rotation;
-        journeyLength = Vector3.Distance(cameraCurrentPosition, cameraNewPosition);
-        float distCovered = (Time.time - startTime) * autoSpeed;
-        float fracJourney = distCovered / journeyLength;
-        startTime = Time.time;
-        Quaternion autoRotation = Quaternion.Lerp(currentRotation, balancedRotation, fracJourney);
-
-        if (isAlive && anyPlayerMovementInput == 0f)
-        {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, balancedRotation, distCovered);
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, distCovered);
-            //currentX = Mathf.Clamp(player.transform.rotation.x, X_ANGLE_MIN, X_ANGLE_MAX);
-            //currentY = Mathf.Clamp(player.transform.position.y, Y_ANGLE_MIN, Y_ANGLE_MAX);
-            currentZ = Mathf.Clamp(player.transform.rotation.z, Z_ANGLE_MIN, Z_ANGLE_MAX);
-        }
+        cameraNewPosition = player.transform.position - player.transform.forward * 10.0f + Vector3.up * 5f;
+        float bias = 0.96f;
+        transform.position = transform.position * bias + cameraNewPosition * (1.0f-bias);
+        transform.LookAt(player.transform.position + player.transform.forward * 30.0f);
     }
     private void camControl()
         {              
-            if (mainEnemy.activeSelf)
-            {
-                currentY = Mathf.Clamp(mainEnemy.transform.position.y + 4, Y_ANGLE_MIN, Y_ANGLE_MAX);
-                currentX = Mathf.Clamp(mainEnemy.transform.position.y + 4, X_ANGLE_MIN, X_ANGLE_MAX);                
-            }
-                      
+          
             if (!pauseMenuPanel.activeSelf)
             {
-                //playerCamInputs();
+               
             }
             if (Input.GetButton("Start"))
             {
@@ -155,13 +130,8 @@ using UnitySampleAssets.Characters.ThirdPerson;
                 cameraOffset = transform.position - lookAt.position;
             }
         }
-        //private void playerCamInputs()
-        //{
-        //    currentX += Input.GetAxis("rightJoystickHorizontal");
-        //    currentY += Input.GetAxis("rightJoystickVertical");
-        //    currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);         
-        //}      
-        private void checkForTargets()
+  
+    private void checkForTargets()
         {           
             RaycastHit hit;
             Vector3 endPoint = transform.position + maxDistanceToActivateObjects * transform.forward;
@@ -177,7 +147,7 @@ using UnitySampleAssets.Characters.ThirdPerson;
             }
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
         }
-        private void targetActivatable()
+    private void targetActivatable()
         {
             if (gameObject.tag == "Enemy")
             {
@@ -196,13 +166,66 @@ using UnitySampleAssets.Characters.ThirdPerson;
 
             }
         }
-       private void camZoom()
+    private void camZoom()
         {
             camTransform.forward = player.transform.forward;
             desiredAngle = player.transform.eulerAngles.y;
-            Quaternion rotation = Quaternion.Euler(0, desiredAngle * rotationDamping, 0);           
+            Quaternion rotation = Quaternion.Euler(0, desiredAngle * rotationDamping, 0);
+      
+    }        
+    private void CamPlayerLock()
+    {
+       
+    Vector3 direction = Vector3.zero;
+        // Going left
+        if (Input.GetKey(KeyCode.A))
+        {
+            direction = Vector2.right * -1;
         }
-    
-          
+        // Going right
+        else if (Input.GetKey(KeyCode.D))
+        {
+            direction = Vector2.right;
+
+        }
+        //going down
+        else if (Input.GetKey(KeyCode.S))
+        {
+            direction = Vector2.down;
+        }
+        // Going up
+        else if (Input.GetKey(KeyCode.W))
+        {
+            direction = Vector2.up;
+        }
+
+        if (player.transform.position.x < m_clampMinX)
+        {
+            // If the object position tries to exceed the left screen bound clamp the min x position to 0.
+            // The maximum x position won't be clamped so the object can move to the right.
+            direction.x = Mathf.Clamp(direction.x, 0, Mathf.Infinity);
+        }
+
+        if (player.transform.position.x > m_clampMaxX)
+        {
+            // Same goes here
+            direction.x = Mathf.Clamp(direction.x, Mathf.NegativeInfinity, 0);
+
+        }
+        if (player.transform.position.y < m_clampMinY)
+        {
+            // If the object position tries to exceed the left screen bound clamp the min x position to 0.
+            // The maximum x position won't be clamped so the object can move to the right.
+            direction.x = Mathf.Clamp(direction.y, 0, Mathf.Infinity);
+        }
+        if (player.transform.position.y > m_clampMaxY)
+        {
+            // Same goes here
+            direction.y = Mathf.Clamp(direction.y, Mathf.NegativeInfinity, 0);
+        }
+
+        transform.position += direction * (Time.deltaTime * speed);
     }
+}
+          
 
