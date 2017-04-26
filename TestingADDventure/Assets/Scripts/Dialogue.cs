@@ -41,20 +41,10 @@ public class Dialogue : MonoBehaviour
             dialogueList.Clear();
 
             //Test 2
-            dialogueList.Add("0"); //0
-            dialogueList.Add("1"); //1
-            dialogueList.Add("2"); //2
-            dialogueList.Add("3"); //3
-            dialogueList.Add("4"); //4
-            dialogueList.Add("5"); //5
-            dialogueList.Add("6"); //6
-            dialogueList.Add("7"); //7
-            dialogueList.Add("8"); //8
-            dialogueList.Add("9"); //9
-            dialogueList.Add("10"); //10
-            dialogueList.Add("11"); //11
-            dialogueList.Add("12"); //12
-            dialogueList.Add("13"); //13
+            dialogueList.Add("Ugh, I can’t stop tapping my finger on the desk. "); //0
+            dialogueList.Add("It’s almost as distracting as not being on the meds. "); //1
+            dialogueList.Add("This is really making my finger hurt. "); //2
+            dialogueList.Add("At least I can think straight. "); //3
         }
     }
 

@@ -43,22 +43,30 @@ public class BetweenTestDialogue : MonoBehaviour
             dialogueList.Clear();
 
             //Dialogue 2
-            dialogueList.Add("0");
-            dialogueList.Add("1");
-            dialogueList.Add("2");
-            dialogueList.Add("3");
-            dialogueList.Add("4");
+            dialogueList.Add("I’ve started taking medication that should help me focus. ");
+            dialogueList.Add("It has been working well enough so far but it has been making me feel jittery. ");
+            dialogueList.Add("I can’t sit still anymore and I keep biting my lip. ");
+            dialogueList.Add("I keep taking short breaths and tapping my finger on the table too. ");
+            dialogueList.Add("The worst part is that I have no appetite. ");
+            dialogueList.Add("I have to force myself to to eat and even then I can barely stomach a bowl of cereal. ");
+            dialogueList.Add("It’s all really annoying but it’s worth it if it means I can pay attention. ");
+            dialogueList.Add("I guess. ");
         }
         else if (sceneNumber == 5)
         {
             dialogueList.Clear();
 
             //Dialogue 3
-            dialogueList.Add("5");
-            dialogueList.Add("6");
-            dialogueList.Add("7");
-            dialogueList.Add("8");
-            dialogueList.Add("9");
+            dialogueList.Add("I’ve been taking this medication for a while now. ");
+            dialogueList.Add("Even still the jitters haven’t really gotten any less annoying. ");
+            dialogueList.Add("Eating substantial meals is still a struggle. ");
+            dialogueList.Add("Other than that the medication has been doing its job so I guess it’s worthwhile to keep taking it. ");
+            dialogueList.Add("I’ve been told that many people with ADD no longer need medication after they finish school. ");
+            dialogueList.Add("So far it’s not looking like that will be the case for me but I should try to keep a positive outlook. ");
+            dialogueList.Add("It will be tough; as tough as it has always been. ");
+            dialogueList.Add("Having ADD and taking these medications are both a part of my life now. ");
+            dialogueList.Add("That’s just something I have to accept. ");
+            dialogueList.Add("That sounds like something I can do. ");
         }
 
         dialogueText.text = dialogueList[dialogueNum];
