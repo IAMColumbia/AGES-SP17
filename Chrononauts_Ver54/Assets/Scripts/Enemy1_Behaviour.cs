@@ -15,6 +15,9 @@ public class Enemy1_Behaviour : MonoBehaviour {
 
     [SerializeField]
     public float bulletFireCooldown = 0.01f;
+
+    [SerializeField]
+    public TimeController tc;
     
     public bool canFire = true;
     public bool animationIsPlaying = false;
@@ -37,6 +40,7 @@ public class Enemy1_Behaviour : MonoBehaviour {
     {
         if (this.gameObject.GetComponent<SpriteRenderer>().enabled == false)
         {
+            tc.gameObject.GetComponent<TimeController>().globalTimer = tc.gameObject.GetComponent<TimeController>().globalTimer + 2;
             Debug.Log("Disabling object");
             this.gameObject.SetActive(false);
         }
