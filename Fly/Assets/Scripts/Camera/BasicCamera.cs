@@ -26,8 +26,10 @@ using UnitySampleAssets.Characters.ThirdPerson;
         GameObject mainEnemy;
         [SerializeField]
         GameObject pauseMenuPanel;
-        //Ray used to determine if an object can be activated. 
         [SerializeField]
+        GameObject water;
+    //Ray used to determine if an object can be activated. 
+    [SerializeField]
         float maxDistanceToActivateObjects = 3;
         [SerializeField]
         float rotationDamping;
@@ -55,14 +57,12 @@ using UnitySampleAssets.Characters.ThirdPerson;
       clampMarginMinY = 0.0f,
       clampMarginMaxY = 0.0f;
     float speed = 0.0f;
-
     // The minimum and maximum values which the object can go
     private float
         m_clampMinX,
         m_clampMaxX,
         m_clampMinY,
         m_clampMaxY;
-
     //Dir variables for cameraNewPosition.
     [SerializeField]
         float cameraAngle = 5f;
@@ -83,28 +83,31 @@ using UnitySampleAssets.Characters.ThirdPerson;
     public int m_PlayerNumber = 1;
     void Start()
         {
-           // camTransform = transform;
-           
+           // camTransform = transform;          
             cam = GetComponent<Camera>();
         //Keep player Object in camera view variables
         m_clampMinX = Camera.main.ScreenToWorldPoint(new Vector2(0 + clampMarginMinX, 0)).x;
         m_clampMaxX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width - clampMarginMaxX, 0)).x;
         m_clampMinY = Camera.main.ScreenToWorldPoint(new Vector2(0, 0 + clampMarginMinY)).y;
         m_clampMaxY = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height + clampMarginMaxY)).y;
-
     }        
         private void Update()
-        {
-       
-       
+        {            
         checkForTargets();
+        checkEnvironment();
         CamPlayerLock();
     }
-    void LateUpdate()
-    {
-        
-       
 
+    private void checkEnvironment()
+    {
+       if(transform.position.y >= water.transform.position.y)
+        {
+
+        }
+    }
+
+    void LateUpdate()
+    {             
       camBalance();
         //camZoom();          
     }
@@ -116,8 +119,7 @@ using UnitySampleAssets.Characters.ThirdPerson;
         transform.LookAt(player.transform.position + player.transform.forward * 30.0f);
     }
     private void camControl()
-        {              
-          
+        {                        
             if (!pauseMenuPanel.activeSelf)
             {
                
@@ -129,8 +131,7 @@ using UnitySampleAssets.Characters.ThirdPerson;
                 currentY = lookAt.position.y;
                 cameraOffset = transform.position - lookAt.position;
             }
-        }
-  
+        } 
     private void checkForTargets()
         {           
             RaycastHit hit;
@@ -170,12 +171,10 @@ using UnitySampleAssets.Characters.ThirdPerson;
         {
             camTransform.forward = player.transform.forward;
             desiredAngle = player.transform.eulerAngles.y;
-            Quaternion rotation = Quaternion.Euler(0, desiredAngle * rotationDamping, 0);
-      
+            Quaternion rotation = Quaternion.Euler(0, desiredAngle * rotationDamping, 0);      
     }        
     private void CamPlayerLock()
-    {
-       
+    {      
     Vector3 direction = Vector3.zero;
         // Going left
         if (Input.GetKey(KeyCode.A))
@@ -223,7 +222,6 @@ using UnitySampleAssets.Characters.ThirdPerson;
             // Same goes here
             direction.y = Mathf.Clamp(direction.y, Mathf.NegativeInfinity, 0);
         }
-
         transform.position += direction * (Time.deltaTime * speed);
     }
 }

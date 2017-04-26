@@ -6,7 +6,15 @@ public class PlayerFlightControl : MonoBehaviour {
 
     // Use this for initialization
     [SerializeField]
-    float m_Speed = 12f;
+    float m_Speed = 20f;
+    float m_MinSpeed;
+    float m_MaxSpeed;
+    [SerializeField]
+    protected float shield = 5;
+    public float MaxShield { get; private set; }
+    public float Shield { get { return shield; } }
+    [SerializeField]
+    float brakeVariable = 2f;
     [SerializeField]
     float m_TurnSpeed = 180f;
     [SerializeField]
@@ -16,7 +24,12 @@ public class PlayerFlightControl : MonoBehaviour {
     [SerializeField]
     AudioClip m_EngineDriving;
     [SerializeField]
-    Camera camera;
+    Camera cameraAlignment;
+
+    [SerializeField]
+    Transform cameraAlignmentTool;
+    [SerializeField]
+    GameObject Water;
 
     //Variables private
     Vector3 eulerAngleVelocity;
@@ -24,6 +37,7 @@ public class PlayerFlightControl : MonoBehaviour {
     Vector3 newPosition;
 
     Rigidbody m_Rigidbody;
+   
     const float Z_ANGLE_MIN = -15F;
     const float Z_ANGLE_MAX = 15F;
     string m_MovementAxisName;
@@ -31,13 +45,17 @@ public class PlayerFlightControl : MonoBehaviour {
 
     float m_HorizontalInputValue;
     float m_VerticalInputValue;
+    bool isGoing = false;
+    bool belowWater;
     //AutoRotation variables 
-    public float autoSpeed = 60F;
+    public float autoSpeed = 10F;
     private float startTime;
     private float journeyLength;
+    private float recoverTime = 5f;
   
     void Start()
     {
+        GetComponent<Rigidbody>().rotation = Quaternion.identity;
        
     }
 
@@ -49,10 +67,10 @@ public class PlayerFlightControl : MonoBehaviour {
     float m_OriginalPitch;
 
     //Public variables go here. 
-    public int m_PlayerNumber = 1;
-  
+    public int m_PlayerNumber = 1;  
     void Awake()
     {
+        MaxShield = shield;
         m_Rigidbody = GetComponent<Rigidbody>();
     }
     void OnEnable()
@@ -68,66 +86,103 @@ public class PlayerFlightControl : MonoBehaviour {
         m_Rigidbody.isKinematic = true;
     }
     // Update is called once per frame
-    void Update () {
-        //m_HorizontalInputValue = Input.GetAxis("Horizontal");
-        //m_VerticalInputValue = Input.GetAxis("Vertical");
+    void Update () {   
          m_HorizontalInputValue = Input.GetAxis("Horizontal" + m_PlayerNumber);
          m_VerticalInputValue = Input.GetAxis("Vertical" + m_PlayerNumber);
-       
+         isGoing = Input.GetButton("Jump" + m_PlayerNumber);   
+         float anyInput = m_VerticalInputValue + m_HorizontalInputValue;
+        if (isGoing == true) //Input.GetButtonDown("JUmp")
+        {         
+            m_Speed += autoSpeed * Time.deltaTime;
+        }
+        else if (isGoing == false)
+        {
+            m_Speed -= autoSpeed / brakeVariable * Time.deltaTime;
+        }
     }
     void FixedUpdate()
     {
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         m_Rigidbody = GetComponent<Rigidbody>();
-             
+
+        AutoEnvironmentCheck();
         Roll();  //Roll is tilting left/right (X axis)
         Pitch(); //Pitch is tilt Up/Down (Y axis)
-        Yaw();  //Yaw is moving forward/back (Z axis
+        Yaw();  //Yaw is moving forward/back (Z axis    
         AutoRotate();
         AutoMovement();
+        AutoShieldRecover();     
+    }
+
+    public virtual void AutoShieldRecover()
+    {
+        if (recoverTime == 0)
+        {
+            shield += MaxShield * Time.deltaTime;
+        }
+        if(shield == 0)
+        {
+
+        }      
+    }
+
+
+    private void AutoEnvironmentCheck()
+    {        
+        if (transform.position.y <= Water.transform.position.y)
+        {
+            belowWater = true;
+        }
+        else belowWater = false;             
     }
 
     private void AutoMovement()
-    {     
+    {
+        m_MinSpeed = 10f;
+        m_MaxSpeed = 80f;
         transform.Translate(Vector3.forward * m_Speed * Time.deltaTime);
         m_Speed -= transform.forward.y * 2.0f * Time.deltaTime * 10f;
-
-        if(m_Speed < 20.0f)
+        if(m_Speed < m_MinSpeed)
         {
-            m_Speed = 20.0f;
+            m_Speed = m_MinSpeed;
         }
-       // m_Speed += transform.forward.y * 2.0f * Time.deltaTime;
+        else if (m_Speed > m_MaxSpeed)
+        {
+            m_Speed = m_MaxSpeed;
+        }
+        else if (belowWater == true)
+        {
+            m_MaxSpeed = 3.5f;
+            autoSpeed = 10f;
+            m_TurnSpeed = 30f;
+            if (m_Speed < 1.5f && belowWater)
+            {
+                m_Speed = 1.5f;
+               
+            }
+        }    
     }
     private void AutoRotate()
     {
-        currentPosition = transform.position;
-       
-        Quaternion balancedRotation = Quaternion.Euler(camera.transform.rotation.x, camera.transform.rotation.y, camera.transform.rotation.z);
+
+        currentPosition = transform.position;      
+        newPosition = cameraAlignmentTool.transform.position;
         Quaternion currentRotation = m_Rigidbody.rotation;
+        Quaternion balancedRotation = cameraAlignment.transform.rotation;     
         journeyLength = Vector3.Distance(currentPosition, newPosition);
         float distCovered = (Time.time - startTime) * autoSpeed;
         float fracJourney = distCovered / journeyLength;
         startTime = Time.time;
         Quaternion autoRotation = Quaternion.Lerp(currentRotation, balancedRotation, fracJourney);
+      
         if (currentRotation != balancedRotation)
         {
             //Calculates whether a large enough input was made. 
             float anyInput = m_VerticalInputValue + m_HorizontalInputValue;
             if (anyInput < .25f)
-            {             
-                balancedRotation.y = camera.transform.rotation.y;            
-                m_Rigidbody.MoveRotation(autoRotation);                
+           {             
+                m_Rigidbody.MoveRotation(autoRotation);             
             }
-            if (anyInput < .25f)
-            {                
-                balancedRotation.x = camera.transform.rotation.x;             
-                m_Rigidbody.MoveRotation(autoRotation);
-            }
-            if(anyInput < .25f)
-            {              
-                balancedRotation.z = camera.transform.rotation.z;
-                m_Rigidbody.MoveRotation(autoRotation);                    
-            }                   
         }
     }
     private void Roll()
