@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour {
     // Use this for initialization
 
     [SerializeField]
-    GameObject[] objectsToSpawn;
+    public GameObject[] objectsToSpawn;
 
 	void Start ()
     {
