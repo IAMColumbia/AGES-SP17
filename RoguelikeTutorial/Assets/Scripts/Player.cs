@@ -138,6 +138,21 @@ public class Player : MovingObject
         SceneManager.LoadScene(0);
     }
 
+    public void GoToBattleScene()//<T>(T component)
+    {
+        Debug.Log("Reached GoToBattleScene");
+
+        //Enemy enemy = component as Enemy;
+
+        SceneManager.LoadScene("testScene", LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("testScene"));
+    }
+
+    void OnMouseDown()
+    {
+        GoToBattleScene();
+    }
+
     void CheckIfGameOver()
     {
         if (food <= 0)

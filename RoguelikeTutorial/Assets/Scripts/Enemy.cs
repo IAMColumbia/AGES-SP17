@@ -66,5 +66,7 @@ public class Enemy : MovingObject
         SoundManager.instance.RandomizeSFX(enemyAttack1, enemyAttack2);
 
         hitPlayer.LoseFood(playerDamage);
+
+        //hitPlayer.GoToBattleScene(gameObject);
     }
 }
