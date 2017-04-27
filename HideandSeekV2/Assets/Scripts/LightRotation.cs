@@ -10,6 +10,6 @@ public class LightRotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.gameObject.transform.Rotate(new Vector3(0, .5f, 0) );
+        this.gameObject.transform.Rotate(new Vector3(0, .35f, 0) );
 	}
 }

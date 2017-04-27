@@ -98,11 +98,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
-
+        public GameObject Cube;
         public int m_PlayerNumber = 1; // Player Number        
         string m_MovementAxisName;        
         string m_TurnAxisName;
-
+        public string SubmitName;
 
         public Vector3 Velocity
         {
@@ -141,7 +141,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // The axes names are based on player number.
             m_MovementAxisName = "Vertical" + m_PlayerNumber;
             m_TurnAxisName = "Horizontal" + m_PlayerNumber;
-
+            SubmitName = "Submit" + m_PlayerNumber;
+           Cube.gameObject.layer = LayerMask.NameToLayer("Player" + m_PlayerNumber);
         }
 
 
