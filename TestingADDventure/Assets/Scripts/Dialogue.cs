@@ -45,6 +45,7 @@ public class Dialogue : MonoBehaviour
             dialogueList.Add("It’s almost as distracting as not being on the meds. "); //1
             dialogueList.Add("This is really making my finger hurt. "); //2
             dialogueList.Add("At least I can think straight. "); //3
+            dialogueList.Add("I don't think I can focus on this anymore. "); //4
         }
     }
 

@@ -129,7 +129,6 @@ public class CalculateScore : MonoBehaviour
                 }
             }
 
-            setDialogue.SetDialogueText(12);
             hasSetQuestionsOff = true;
         }
 
@@ -154,7 +153,6 @@ public class CalculateScore : MonoBehaviour
                 }
             }
 
-            setDialogue.SetDialogueText(13);
             scoreText.text = gradeString(score);
             scorePanel.SetActive(true);
             tryAgainButton.SetActive(true);
