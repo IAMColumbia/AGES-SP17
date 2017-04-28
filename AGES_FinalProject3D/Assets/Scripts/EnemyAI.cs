@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
 
     private Health enemyInstanceHealth;
+    private Health player;
 
     private GameUI gameUI;
 
@@ -28,7 +29,6 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Health player;
         if (collision.gameObject.tag == "Player")
         {
             player = collision.GetComponent<Health>();
@@ -36,13 +36,15 @@ public class EnemyAI : MonoBehaviour
             {
                 player.TakeDamage(1);
             }
-
             enemyInstanceHealth.TakeDamage(1);
         }
     }
 
     private void OnDisable()
     {
-        gameUI.UpdateScoreText(scoreValue);
+        if (player == null)
+        {
+            gameUI.UpdateScoreText(scoreValue);
+        }
     }
 }
