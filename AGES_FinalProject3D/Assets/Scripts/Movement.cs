@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     private float maxSpeedinMPH;
 
     private Rigidbody playerRigidBody;
+    private GameUI gameUI;
 
     private float leftStickInputVertical;
     private float leftStickInputHorizontal;
@@ -45,6 +46,7 @@ public class Movement : MonoBehaviour
 	void Start ()
     {
         playerRigidBody = GetComponent<Rigidbody>();
+        gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
 	}
 	
 	// Update is called once per frame
@@ -112,14 +114,23 @@ public class Movement : MonoBehaviour
     {
         //gameObject.transform.Translate(leftStickInputHorizontal, leftStickInputVertical, zeroConstant, Space.World);
 
-        Vector3 positionToMoveTo = new Vector3(leftStickInputHorizontal, leftStickInputVertical);
-
         Quaternion roatationToRotateTo = Quaternion.Euler(leftStickInputVertical, leftStickInputHorizontal, zeroConstant);
 
         playerRigidBody.MoveRotation(roatationToRotateTo);
 
-        //playerRigidBody.MovePosition(positionToMoveTo);
-
         //Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "End")
+        {
+            gameUI.Win();
+        }
+    }
+
+    private void OnDisable()
+    {
+        gameUI.Lose();
     }
 }
