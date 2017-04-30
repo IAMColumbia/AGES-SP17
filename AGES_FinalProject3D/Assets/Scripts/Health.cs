@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class Health : MonoBehaviour
 {
@@ -35,7 +34,11 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damageToTake)
     {
+        float xRandom = Random.Range(2.5f, 5);
+        float yRandom = Random.Range(2.5f, 5);
+        float zRandom = Random.Range(2.5f, 5);
         healthValue = healthValue - damageToTake;
+        gameObject.transform.Rotate(xRandom, yRandom, zRandom);
         DieWhenHealthIsAtZero();
     }
 
