@@ -30,7 +30,8 @@ public class EnemyShooting : MonoBehaviour
         laserAudio = GetComponent<AudioSource>();
         shootingDelay = new WaitForSeconds(shootingDelayInFloat);
         laserParticles = GetComponentInChildren<ParticleSystem>();
-	}
+        StartCoroutine(ShootOnTimer());
+    }
 
     // Update is called once per frame
     void Update()
@@ -47,19 +48,21 @@ public class EnemyShooting : MonoBehaviour
         {
             playerToShootAt = player.gameObject;
         }
-
-        StartCoroutine(ShootOnTimer());
     }
 
     //shoots character on a timer
     private IEnumerator ShootOnTimer()
     {
-        while (playerToShootAt !=null)
+        while (Time.timeScale == 1)
         {
-            TurnOnLaser();
             yield return shootingDelay;
-            TurnOffLaser();
-            yield return shootingDelay;
+            while (playerToShootAt != null)
+            {
+                TurnOnLaser();
+                yield return shootingDelay;
+                TurnOffLaser();
+                yield return shootingDelay;
+            }
         }
     }
 
