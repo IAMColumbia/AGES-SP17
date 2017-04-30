@@ -7,6 +7,7 @@ public class Cup : MonoBehaviour
     Rigidbody cupRigidbody;
     [SerializeField] GameObject cupAnchor;
     [SerializeField] GameObject cupTopCollider;
+    [SerializeField] float shakeTime = 0.2f;
 
     // Use this for initialization
     void Start ()
@@ -40,10 +41,10 @@ public class Cup : MonoBehaviour
         print(randomShakeSpeed);
 
         //TODO: should the time be random??
-        yield return new WaitForSeconds(randomShakeTime);
+        yield return new WaitForSeconds(shakeTime);
         cupRigidbody.AddForce(Vector3.back * randomShakeSpeed);
 
-        yield return new WaitForSeconds(randomShakeTime);
+        yield return new WaitForSeconds(shakeTime);
         cupRigidbody.AddForce(Vector3.left * randomShakeSpeed);
 
         yield return new WaitForSeconds(1);
