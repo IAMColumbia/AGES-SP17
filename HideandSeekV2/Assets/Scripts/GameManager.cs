@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
             endGameText.text = "HIDERS WIN";
 
         }
-        if (NumOfHiders < 0)
+        if (NumOfHiders <= 0)
         {
             endGameText.text = "SEEKER WINS";
         }

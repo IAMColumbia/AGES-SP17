@@ -32,4 +32,23 @@ public class ButtonScitps : MonoBehaviour {
 
         SceneManager.LoadScene("MainMenu");
     }
+
+
+    public void ONCOREYCLICK ()
+    {
+
+        Application.OpenURL("https://www.linkedin.com/in/corey-king2018");
+    }
+
+    public void OnMusicClick ()
+    {
+
+        Application.OpenURL("https://www.soundcloud.com/no-audible-dialogue");
+    }
+
+    public void SoundEffects ()
+    {
+        Application.OpenURL("https://www.assetstore.unity3d.com/en/#!/content/53575");
+
+    }
 }
