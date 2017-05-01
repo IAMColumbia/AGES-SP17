@@ -7,6 +7,10 @@ public class SwitchWorlds : MonoBehaviour
     Transform world2Position;
     [SerializeField]
     Transform world1Position;
+    [SerializeField]
+    ParticleSystem particle;
+    [SerializeField]
+    GameObject particleGameObject;
 
     Player player;
     Animator animator;
@@ -17,6 +21,8 @@ public class SwitchWorlds : MonoBehaviour
         player = gameObject.GetComponentInParent<Player>();
         animator = gameObject.GetComponentInChildren<Animator>();
         isInWorld2 = false;
+        //particleGameObject.SetActive(false);
+        
 	}
 	
 	// Update is called once per frame
@@ -31,6 +37,8 @@ public class SwitchWorlds : MonoBehaviour
         {
             if (Input.GetButtonDown("Warp") && player.isAlive)
             {
+                //particleGameObject.SetActive(true);
+                particle.Play();
                 animator.SetBool("HasWarped", true);
                 this.transform.position = world2Position.position;
                 isInWorld2 = true;
@@ -41,6 +49,8 @@ public class SwitchWorlds : MonoBehaviour
         {
             if (Input.GetButtonDown("Warp") && player.isAlive)
             {
+                //particleGameObject.SetActive(true);
+                particle.Play();
                 animator.SetBool("HasWarped", true);
                 this.transform.position = world1Position.position;
                 isInWorld2 = false;
@@ -52,6 +62,8 @@ public class SwitchWorlds : MonoBehaviour
     private IEnumerator ChangeAnimation()
     {
         yield return new WaitForSeconds(0.1f);
+        //particleGameObject.SetActive(false);
+        particle.Stop();
         animator.SetBool("HasWarped", false);
     }
 }

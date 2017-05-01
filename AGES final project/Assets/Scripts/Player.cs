@@ -119,8 +119,7 @@ public class Player : MonoBehaviour
             respawnText.SetActive(false);
             animator.SetBool("IsAlive", true);
             isAlive = true;
-            spritePosition.position = gameManager.currentCheckpoint.position;
-            this.transform.position = gameManager.currentCheckpointMirror.position;
+            this.transform.position = gameManager.currentCheckpoint.position;
             aliveMoveSpeed = moveSpeed;
             aliveJumpHeight = jumpHeight;
         }

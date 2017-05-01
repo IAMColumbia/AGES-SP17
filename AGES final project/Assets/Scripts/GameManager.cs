@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,15 +9,24 @@ public class GameManager : MonoBehaviour
     Image gameEndPanel;
     [SerializeField]
     GameObject youWinText;
+    [SerializeField]
+    GameObject pausePanel;
+    [SerializeField]
+    string sceneToLoad;
+    [SerializeField]
+    string restartSceneToLoad;
+
+    bool isPaused = false;
 
     public Transform currentCheckpoint;
-    public Transform currentCheckpointMirror;
     public bool ReachedGoal = false;
 
 	// Use this for initialization
 	void Start ()
     {
         gameEndPanel.canvasRenderer.SetAlpha(0);
+        pausePanel.SetActive(false);
+        HandlePause();
 	
 	}
 	
@@ -27,6 +37,8 @@ public class GameManager : MonoBehaviour
         {
             HandleWinning();
         }
+
+        HandlePause();
 	
 	}
 
@@ -34,5 +46,40 @@ public class GameManager : MonoBehaviour
     {
         gameEndPanel.CrossFadeAlpha(1, 1, false);
         youWinText.SetActive(true);
+    }
+
+    private void HandlePause()
+    {
+        if(Input.GetButtonDown("Cancel") && isPaused == false)
+        {
+            isPaused = true;
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else if(Input.GetButtonDown("Cancel") && isPaused)
+        {
+            isPaused = false;
+            pausePanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void ContinueButtonPressed()
+    {
+        isPaused = false;
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void RestartButtonPressed()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(restartSceneToLoad);
+    }
+
+    public void MainMenuButtonPressed()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
     }
 }
