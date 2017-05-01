@@ -10,6 +10,8 @@ public class EnemyShooting : MonoBehaviour
     private LayerMask layerToCheckForPlayer;
     [SerializeField]
     private float shootRange;
+    [SerializeField]
+    private float activationRange;
 
     private GameObject playerToShootAt;
 
@@ -42,7 +44,7 @@ public class EnemyShooting : MonoBehaviour
 
     private void CheckActivationZoneForPlayer()
     {
-        Collider[] activateZoneArray = Physics.OverlapSphere(gameObject.transform.position, 10,layerToCheckForPlayer);
+        Collider[] activateZoneArray = Physics.OverlapSphere(gameObject.transform.position, activationRange,layerToCheckForPlayer);
 
         foreach (Collider player in activateZoneArray)
         {
