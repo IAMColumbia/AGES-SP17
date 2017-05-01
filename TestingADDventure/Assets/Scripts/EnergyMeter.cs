@@ -6,7 +6,7 @@ public class EnergyMeter : MonoBehaviour
 {
     public int startingEnergy;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int energyLeft;
     [HideInInspector]
     public bool canReduceEnergy;

@@ -5,43 +5,21 @@ using System;
 
 public class DropSlot : MonoBehaviour, IDropHandler
 {
-    /*public GameObject droppedObject
-    {
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }*/
+    public bool isBackground;
 
     public void OnDrop(PointerEventData eventData)
     {
         DragObject d = eventData.pointerDrag.GetComponent<DragObject>();
 
-        d.parentReturn = transform;
-        d.transform.position = transform.position;
-        /*if (!droppedObject)
+        if (!isBackground)
         {
-            DragObject.draggedObject.transform.SetParent(transform);
+            d.parentReturn = transform;
+            d.transform.position = transform.position;
         }
-        else
+        else if (isBackground)
         {
-            Transform swap = DragObject.draggedObject.transform.parent;
-            DragObject.draggedObject.transform.SetParent(transform);
-            droppedObject.transform.SetParent(swap);
-        }*/
+            d.parentReturn = d.startParent;
+            d.transform.position = d.startParent.position;
+        }
     }
 }
-/*ObjectDrag d = eventData.pointerDrag.GetComponent<ObjectDrag>();
-
-        if (d.ItemType == SlotType && d.ItemSubType == SlotNumber)
-        {
-            d.ParentReturn = transform;
-        }
-*/

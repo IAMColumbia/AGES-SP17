@@ -12,6 +12,8 @@ public class DistractionManager : MonoBehaviour
     [SerializeField]
     Slider rhythmGameScoreSlider;
     [SerializeField]
+    GameObject draggingPuzzleDistraction;
+    [SerializeField]
     Slider tappingSlider;
     [SerializeField]
     Button tappingStopButton;
@@ -20,13 +22,17 @@ public class DistractionManager : MonoBehaviour
     [SerializeField]
     bool rhythmGameEnabled;
     [SerializeField]
-    bool tappingSliderEnabled;
+    bool draggingPuzzleEnabled;
+    //[SerializeField]
+    public bool tappingSliderEnabled;
 
     public int rhythmGameScore = 0;
+    public int draggingPuzzleScore;
 
     bool canTap = true;
     int rhythmGameScoreGoal = 6;
-    float rhythmGameEnergyLevel = 3;
+    float rhythmGameEnergyLevel = 2;
+    float draggingPuzzleEnergyLevel = 5;
     float tappingEnergyLevel = 9;
 
     void Update()
@@ -36,14 +42,28 @@ public class DistractionManager : MonoBehaviour
             ManageRhythmGame();
         }
 
+        if (draggingPuzzleEnabled)
+        {
+            ManageDraggingPuzzle();
+        }
+
         if (tappingSliderEnabled)
         {
             ManageTappingSlider();
         }
+        else if (!tappingSliderEnabled)
+        {
+            CancelInvoke("TapEffects");
+        }
     }
 
+    IEnumerator SetInactive(GameObject go)
+    {
+        yield return new WaitForSeconds(1.5f);
+        go.SetActive(false);
+    }
 
-    void ManageRhythmGame()
+    public void ManageRhythmGame()
     {
         if (energyManager.energyLeft == rhythmGameEnergyLevel)
         {
@@ -53,7 +73,24 @@ public class DistractionManager : MonoBehaviour
 
             if (rhythmGameScore == rhythmGameScoreGoal)
             {
-                rhythmGameDistraction.SetActive(false);
+                //play win sound
+                energyManager.energyLeft--;
+                StartCoroutine(SetInactive(rhythmGameDistraction));
+            }
+        }
+    }
+
+    void ManageDraggingPuzzle()
+    {
+        if (energyManager.energyLeft == draggingPuzzleEnergyLevel)
+        {
+            draggingPuzzleDistraction.SetActive(true);
+
+            if (draggingPuzzleScore == 4)
+            {
+                //play win sound, triumphant chord
+                energyManager.energyLeft--;
+                StartCoroutine(SetInactive(draggingPuzzleDistraction));
             }
         }
     }

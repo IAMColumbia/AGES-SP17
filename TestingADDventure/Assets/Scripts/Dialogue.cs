@@ -26,8 +26,8 @@ public class Dialogue : MonoBehaviour
             dialogueList.Add("I just want to go home and play video games. "); //2
             dialogueList.Add("I'm not sure if that's right but I need to keep going. "); //3
             dialogueList.Add("That's probably right. How much time do I have left? "); //4
-            dialogueList.Add("No that's definitely wrong. I should change my answer. "); //5
-            dialogueList.Add("This is really boring. "); //6
+            dialogueList.Add("No that's definitely wrong. I should change my answer. "); //6
+            dialogueList.Add("This is really boring. "); //5
             dialogueList.Add("I can't think straight. "); //7
             dialogueList.Add("I need to focus. "); //8
             dialogueList.Add("This is really difficult now. "); //9

@@ -59,6 +59,14 @@ public class CalculateScore : MonoBehaviour
     GameObject tryAgainButton;
     [SerializeField]
     GameObject continueButton;
+    [SerializeField]
+    GameObject tappingSlider;
+    [SerializeField]
+    GameObject tappingStopButton;
+    [SerializeField]
+    GameObject tappingCoverImage;
+    [SerializeField]
+    DistractionManager distractionManager;
 
     List<Toggle[]> questions = new List<Toggle[]>();
     List<Toggle> answers = new List<Toggle>();
@@ -153,6 +161,13 @@ public class CalculateScore : MonoBehaviour
                 }
             }
 
+            if (distractionManager.tappingSliderEnabled)
+            {
+                distractionManager.tappingSliderEnabled = false;
+                tappingSlider.SetActive(false);
+                tappingStopButton.SetActive(false);
+                tappingCoverImage.SetActive(false);
+            }
             scoreText.text = gradeString(score);
             scorePanel.SetActive(true);
             tryAgainButton.SetActive(true);
