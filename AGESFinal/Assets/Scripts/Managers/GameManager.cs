@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
@@ -45,11 +45,13 @@ public class GameManager : MonoBehaviour {
     private WaitForSeconds endWait;
     private WaitForSeconds respawnWait;
     private PlayerManager gameWinner;
+    private EventSystem eventSystem;
 
     void Start() {
         startWait = new WaitForSeconds(startDelay);
         endWait = new WaitForSeconds(endDelay);
         respawnWait = new WaitForSeconds(respawnDelay);
+        eventSystem = FindObjectOfType<EventSystem>();
         
         CameraControl = GameObject.FindObjectOfType<CameraControl>();
 
@@ -109,23 +111,23 @@ public class GameManager : MonoBehaviour {
 
 
         yield return endWait;
-        StartCoroutine(DisplayEndGameScreen()); 
+
+        StartCoroutine(DisplayEndGameScreen());
     }
     
     private IEnumerator DisplayEndGameScreen()
     {
+        float progress = 0;
+
+        eventSystem.SetSelectedGameObject(GameObject.Find("PlayAgainButton"));
+
         while(GameOverCanvas.GetComponent<CanvasGroup>().alpha <= 1)
         {
-            GameOverCanvas.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(-1, 1, .2f * Time.time);
+            progress += 0.01f;
+            GameOverCanvas.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, progress);
+
             yield return null;
         }
-
-        for (int i = 0; i < Players.Length; i++)
-        {
-            Players[i].Instance.SetActive(false);
-        }
-
-        yield return null;
     }
 
     private IEnumerator GamePlaying()

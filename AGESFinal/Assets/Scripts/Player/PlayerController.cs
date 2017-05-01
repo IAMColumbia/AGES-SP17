@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     public float playerNumber;
@@ -18,22 +18,39 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private GameObject butt;
 
+    
+
 
     private float HorizontalAxis;
     private float overlapSphereRadius = 1.4f;
     private float clampMaxRigidbodySpeed = 10;
     private float clampMaxRigidbodyJumpHeight = 15;
+    private float timerStartDelay = 2;
+    private float time = 5;
 
 
     private bool grounded = false;
 
-
+    private Text deathTimer; 
+    private Color lerpedcolor = Color.white;
     private Transform jumpPoint;
     private Rigidbody2D rBody2D;
     private Animator anim;
     private ParticleSystem particleSystem;
 
+    private void Awake()
+    {
+        GameObject timerGameObject = GameObject.Find("P" + playerNumber + "DeathTimer");
+        
+        if (timerGameObject != null)
+        {
+            deathTimer = timerGameObject.GetComponent<Text>();
+            deathTimer.color = new Color(255, 237, 0, 0);
+        }
+    }
+
     void Start () {
+
 
         particleSystem = GetComponentInChildren<ParticleSystem>();
         jumpPoint = GetComponentInChildren<Transform>();
@@ -48,7 +65,46 @@ public class PlayerController : MonoBehaviour {
         GetAxis();
         HandleMovement();
         HandleJump();
-        
+
+        if (deathTimer != null) 
+            DeathTimer();
+    }
+
+    private void DeathTimer()
+    {
+        float minutes = (int)time / 60;
+        float seconds = (int)time % 60;
+        deathTimer.text = minutes.ToString() + ":" + seconds.ToString("00");
+        if (HorizontalAxis == 0)
+        {
+            timerStartDelay -= Time.deltaTime;
+
+            if (timerStartDelay < 0)
+            {
+                deathTimer.color = new Color(255, 237, 0, 1);
+                deathTimer.text = minutes.ToString() + ":" + seconds.ToString("00");
+                lerpedcolor = Color.Lerp(Color.yellow, Color.red, Mathf.PingPong(Time.time, 1));
+                deathTimer.color = lerpedcolor;
+
+                time -= Time.deltaTime;
+
+                if (time < 0)
+                {
+                    deathTimer.color = new Color(255, 237, 0, 0);
+                    time = 5;
+                    timerStartDelay = 5;
+                    GetComponentInChildren<PlayerHealth>().CueDeath();
+                }
+
+            }
+        }
+        else
+        {
+            deathTimer.color = new Color(255, 237, 0, 0);
+            time = 5;
+            timerStartDelay = 5;
+            deathTimer.text = minutes.ToString() + ":" + seconds.ToString("00");
+        }
     }
 
     private void HandleMovement()
