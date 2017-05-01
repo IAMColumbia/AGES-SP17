@@ -3,80 +3,92 @@ using System.Collections;
 
 public class Cup : MonoBehaviour
 {
-    //[SerializeField] 
-    Rigidbody cupRigidbody;
     [SerializeField] GameObject cupAnchor;
     [SerializeField] GameObject cupTopCollider;
-    [SerializeField] float shakeTime = 0.2f;
+
+    [SerializeField] float randomShakeTimeMin = 0f;
+    [SerializeField] float randomShakeTimeMax = 0.2f;
+    //[SerializeField] float shakeTime = 0.2f;
+
+    [SerializeField] float randomShakeSpeedMin = 100f;
+    [SerializeField] float randomShakeSpeedMax = 300f;
+
+    [SerializeField] float delayBeforeRotating = 3;
+    [SerializeField] float delayBeforeResetting = 2;
+
+
+    Rigidbody cupRigidbody;
+    Vector3 initialPosition;
+    Quaternion initialRotation;
 
     // Use this for initialization
     void Start ()
     {
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
         cupRigidbody = GetComponent<Rigidbody>();
 
-        StartCoroutine(Shake());
-	}
+       StartCoroutine(Shake());
+
+	}//end Start()
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //RotateCup();
-	}
 
-    private void FixedUpdate()
-    {
-    }
+	}//end Update()
 
     public IEnumerator Shake()
     {
-
-        //multiply by random
-        //different direction by random amount
-
-
-        float randomShakeSpeed = Random.Range(50f, 100f);
-        float randomShakeTime = Random.Range(0f, 0.2f);
+        float randomShakeSpeed = Random.Range(randomShakeSpeedMin, randomShakeSpeedMax);
+        float randomShakeTime = Random.Range(randomShakeTimeMin, randomShakeTimeMax);
 
         cupRigidbody.AddForce(Vector3.forward * randomShakeSpeed);
         print(randomShakeSpeed);
 
-        //TODO: should the time be random??
-        yield return new WaitForSeconds(shakeTime);
+        yield return new WaitForSeconds(randomShakeTime);
         cupRigidbody.AddForce(Vector3.back * randomShakeSpeed);
 
-        yield return new WaitForSeconds(shakeTime);
+        yield return new WaitForSeconds(randomShakeTime);
         cupRigidbody.AddForce(Vector3.left * randomShakeSpeed);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(delayBeforeRotating);
         cupRigidbody.velocity = Vector3.zero;
-        cupAnchor.SetActive(false);
-        RotateCup();
-
-
-    }
-
-    //rotatecup as a coroutine that checks for what the Z-eulerangle is
-    //while its less than 120 keep rotating
-    public void RotateCup()
-    {
-        //rotate on Z
-        //transform.Rotate(0,0,120);
-        //if z variable
-       
-        cupRigidbody.transform.Rotate(0, 0, 120);
-        Debug.Log(cupRigidbody.gameObject.transform.eulerAngles.z);
-        cupTopCollider.SetActive(false);
+        cupAnchor.GetComponent<ConfigurableJoint>().connectedBody = null;
+        cupRigidbody.isKinematic = true;
         
-    }
-}
+        cupTopCollider.SetActive(false);
+        StartCoroutine(RotateCup());
 
+    } //end Coroutine Shake()
 
+    void ResetCup()
+    {
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        //ToDO: Put dice back in cup!
+        cupTopCollider.SetActive(true);
+        cupAnchor.GetComponent<ConfigurableJoint>().connectedBody = cupRigidbody;
+        cupRigidbody.isKinematic = false;
 
-/*
- select infventory object and add homeobjectscript to the inventory object once it is in the house
- if(gameObject.GetComponent<Pawn>() == null)   (could be in start to check if GameObject is set up correctly)
-        Pawn newPawn = gameObject.AddComponent<Pawn>();
-else
-        rest of script
-    
-*/
+    }//end ResetCup()
+
+    public IEnumerator RotateCup()
+    {
+        float rotationTime = .5f;
+        float rotationSpeed = 5;
+        
+
+        for (float i = 0; i < rotationTime; i+=Time.deltaTime)
+        {
+            transform.Rotate(0, 0, rotationSpeed);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(delayBeforeResetting);
+        ResetCup();
+        
+    }//end Coroutine RotateCup()
+
+}//end Cup Class
+
