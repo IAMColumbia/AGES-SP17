@@ -8,25 +8,32 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     private Health playerHealth;
     [SerializeField]
-    private GameObject AfterActionReport;
+    private GameObject afterActionReport;
+    [SerializeField]
+    private GameObject pauseScreen;
     [SerializeField]
     private Text finalScoreText;
+    [SerializeField]
+    private string pauseButton;
 
     private int score = 0;
+    private bool isPaused = false;
     private Text scoreText;
     private Text winOrLoseText;
     private Slider healthSlider;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         scoreText = GetComponentInChildren<Text>();
 
-        winOrLoseText = AfterActionReport.GetComponentInChildren<Text>();
+        winOrLoseText = afterActionReport.GetComponentInChildren<Text>();
 
         winOrLoseText.text = "";
 
-        AfterActionReport.SetActive(false);
+        afterActionReport.SetActive(false);
+        pauseScreen.SetActive(false);
+
         healthSlider = GetComponentInChildren<Slider>();
         healthSlider.maxValue = playerHealth.HealthValue;
 	}
@@ -35,7 +42,26 @@ public class GameUI : MonoBehaviour
 	void Update ()
     {
         healthSlider.value = playerHealth.HealthValue;
+        if (Input.GetButtonDown(pauseButton))
+        {
+            Pause();
+        }
 	}
+
+    private void Pause()
+    {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseScreen.SetActive(false);
+        }
+    }
 
     public void UpdateScoreText(int additionalScore)
     {
@@ -45,14 +71,14 @@ public class GameUI : MonoBehaviour
 
     public void Win()
     {
-        AfterActionReport.SetActive(true);
+        afterActionReport.SetActive(true);
         winOrLoseText.text = "You Win!";
         finalScoreText.text += score.ToString();
     }
 
     public void Lose()
     {
-        AfterActionReport.SetActive(true);
+        afterActionReport.SetActive(true);
         winOrLoseText.text = "You Lose!";
         finalScoreText.text += score.ToString();
     }

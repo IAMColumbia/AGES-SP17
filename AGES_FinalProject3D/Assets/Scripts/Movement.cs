@@ -36,9 +36,6 @@ public class Movement : MonoBehaviour
     private float inGameTurnMultiplier;
     private float currentAccelerationSpeed;
 
-    private float currentVerticalTilt;
-    private float currentHorizontalTilt;
-
     private const float zeroConstant = 0;
     private const float rotationEulerConstant = 360;
 
@@ -53,8 +50,6 @@ public class Movement : MonoBehaviour
 	void Update ()
     {
         UpdateTurnInput();
-        UpdateCurrentTilt();
-        Debug.Log("acceleration speed is " + currentAccelerationSpeed.ToString());
     }
 
 
@@ -69,15 +64,6 @@ public class Movement : MonoBehaviour
     {
         leftStickInputVertical = (Input.GetAxis(leftStickVertical) * inGameTurnMultiplier);
         leftStickInputHorizontal = (Input.GetAxis(leftStickHorizontal) * inGameTurnMultiplier);
-    }
-
-    private void UpdateCurrentTilt()
-    {
-        currentVerticalTilt = gameObject.transform.rotation.eulerAngles.x;
-
-        currentHorizontalTilt = gameObject.transform.rotation.eulerAngles.y;
-
-        //Debug.Log("X tilt is " + currentVerticalTilt + " Y tilt is " + currentHorizontalTilt);
     }
 
     private void AccelerateForward()

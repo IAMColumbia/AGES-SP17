@@ -7,10 +7,6 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField]
     private string shootButton;
-    [SerializeField]
-    private string rightStickVertical;
-    [SerializeField]
-    private string rightStickHorizontal;
 
     [SerializeField]
     LayerMask layerToCheckForEnemies;
@@ -28,8 +24,6 @@ public class Shooting : MonoBehaviour
 
     private float maxDistanceToActivate = 10;
     private const float zeroConstant = 0;
-    private float rightStickVerticalInput;
-    private float rightStickHorizontalInput;
     private bool isShooting = false;
 
     private ParticleSystem laserParticles;
@@ -49,23 +43,13 @@ public class Shooting : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        Shoot();
-        UpdateRightStickInput();
         UpdateReticleColor();
-        ShootingAudio();
-        MoveReticle();
 	}
 
-    private void UpdateRightStickInput()
+    void FixedUpdate()
     {
-        rightStickHorizontalInput = Input.GetAxis(rightStickHorizontal) * shootingReticleSpeed;
-        rightStickVerticalInput = Input.GetAxis(rightStickVertical) * shootingReticleSpeed;
-    }
-
-    private void MoveReticle()
-    {
-        gameObject.transform.Translate(rightStickHorizontalInput, rightStickVerticalInput, zeroConstant, Space.World);
-        maxDistanceToActivate = shootingPosition.position.z - gameObject.transform.position.z;
+        Shoot();
+        ShootingAudio();
     }
 
     void Shoot()
