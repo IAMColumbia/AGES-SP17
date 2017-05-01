@@ -124,4 +124,20 @@ public class Player : MonoBehaviour
             aliveJumpHeight = jumpHeight;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(coll.transform.tag == "MovingPlatform")
+        {
+            transform.parent = coll.transform;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.transform.tag == "MovingPlatform")
+        {
+            transform.parent = null;
+        }
+    }
 }

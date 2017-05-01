@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     string sceneToLoad;
     [SerializeField]
     string restartSceneToLoad;
+    [SerializeField]
+    SwitchWorlds switchWorlds;
 
     bool isPaused = false;
 
@@ -55,12 +57,14 @@ public class GameManager : MonoBehaviour
             isPaused = true;
             pausePanel.SetActive(true);
             Time.timeScale = 0;
+            switchWorlds.enabled = false;
         }
         else if(Input.GetButtonDown("Cancel") && isPaused)
         {
             isPaused = false;
             pausePanel.SetActive(false);
             Time.timeScale = 1;
+            switchWorlds.enabled = true;
         }
     }
 
