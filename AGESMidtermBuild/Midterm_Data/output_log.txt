@@ -24,9 +24,13 @@ Platform assembly: C:\Users\SmokeyTheButt\Desktop\Spring 2017 Assignments\AGES\A
 Loading C:\Users\SmokeyTheButt\Desktop\Spring 2017 Assignments\AGES\AGES-SP17\AGESMidtermBuild\Midterm_Data\Managed\pb_Stl.dll into Unity Child Domain
 Platform assembly: C:\Users\SmokeyTheButt\Desktop\Spring 2017 Assignments\AGES\AGES-SP17\AGESMidtermBuild\Midterm_Data\Managed\Triangle.dll (this message is harmless)
 Loading C:\Users\SmokeyTheButt\Desktop\Spring 2017 Assignments\AGES\AGES-SP17\AGESMidtermBuild\Midterm_Data\Managed\Triangle.dll into Unity Child Domain
-- Completed reload, in  0.042 seconds
+- Completed reload, in  0.205 seconds
 Platform assembly: C:\Users\SmokeyTheButt\Desktop\Spring 2017 Assignments\AGES\AGES-SP17\AGESMidtermBuild\Midterm_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\SmokeyTheButt\Desktop\Spring 2017 Assignments\AGES\AGES-SP17\AGESMidtermBuild\Midterm_Data\Managed\System.dll (this message is harmless)
 desktop: 2560x1440 144Hz; virtual: 4480x1440 at -1920,0
 <RI> Initializing input.
 <RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.674966 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2508 -> priority: 1 

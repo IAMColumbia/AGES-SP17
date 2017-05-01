@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Image[] PlayerSpriteImage;
+
+    [SerializeField]
+    private GameObject GameOverCanvas;
     
     private CameraControl CameraControl;
     private WaitForSeconds startWait;
@@ -104,7 +107,25 @@ public class GameManager : MonoBehaviour {
         string message = EndMessage();
         messageText.text = message;
 
+
         yield return endWait;
+        StartCoroutine(DisplayEndGameScreen()); 
+    }
+    
+    private IEnumerator DisplayEndGameScreen()
+    {
+        while(GameOverCanvas.GetComponent<CanvasGroup>().alpha <= 1)
+        {
+            GameOverCanvas.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(-1, 1, .2f * Time.time);
+            yield return null;
+        }
+
+        for (int i = 0; i < Players.Length; i++)
+        {
+            Players[i].Instance.SetActive(false);
+        }
+
+        yield return null;
     }
 
     private IEnumerator GamePlaying()
