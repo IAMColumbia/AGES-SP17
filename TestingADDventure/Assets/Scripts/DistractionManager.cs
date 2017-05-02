@@ -23,7 +23,7 @@ public class DistractionManager : MonoBehaviour
     bool rhythmGameEnabled;
     [SerializeField]
     bool draggingPuzzleEnabled;
-    //[SerializeField]
+
     public bool tappingSliderEnabled;
 
     public int rhythmGameScore = 0;
@@ -131,6 +131,7 @@ public class DistractionManager : MonoBehaviour
     void TapEffects()
     {
         Debug.Log("tap");
+        tappingSlider.GetComponent<ChangeSize>().Pulse();
         //play tap sound
         //sound volume = slider.value
         //increase size animation

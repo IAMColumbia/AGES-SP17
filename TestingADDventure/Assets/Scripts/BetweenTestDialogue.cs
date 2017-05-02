@@ -78,10 +78,12 @@ public class BetweenTestDialogue : MonoBehaviour
 
     public void NextButtonPressed()
     {
-        //fade out animation
+        nextButton.GetComponent<Button>().interactable = false;
+        previousButton.GetComponent<Button>().interactable = false;
+        continueButton.GetComponent<Button>().interactable = false;
         dialogueNum++;
-        dialogueText.text = dialogueList[dialogueNum];
-        //fade in animation
+        Invoke("ChangeTextWait", 0.5f);
+        Invoke("ResetButtonPress", 1);
 
         if (dialogueNum >= 1)
             previousButton.SetActive(true);
@@ -95,10 +97,12 @@ public class BetweenTestDialogue : MonoBehaviour
 
     public void PreviousButtonPressed()
     {
-        //fade out animation
+        nextButton.GetComponent<Button>().interactable = false;
+        previousButton.GetComponent<Button>().interactable = false;
+        continueButton.GetComponent<Button>().interactable = false;
         dialogueNum--;
-        dialogueText.text = dialogueList[dialogueNum];
-        //fade in animation
+        Invoke("ChangeTextWait", 0.5f);
+        Invoke("ResetButtonPress", 1);
 
         if (dialogueNum <= 0)
             previousButton.SetActive(false);
@@ -113,5 +117,17 @@ public class BetweenTestDialogue : MonoBehaviour
     public void ContinueButtonPressed()
     {
         SceneManager.LoadScene(nextScene);
+    }
+
+    void ChangeTextWait()
+    {
+        dialogueText.text = dialogueList[dialogueNum];
+    }
+
+    void ResetButtonPress()
+    {
+        nextButton.GetComponent<Button>().interactable = true;
+        previousButton.GetComponent<Button>().interactable = true;
+        continueButton.GetComponent<Button>().interactable = true;
     }
 }
