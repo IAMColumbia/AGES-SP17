@@ -106,7 +106,10 @@ public class DistractionManager : MonoBehaviour
                 InvokeRepeating("IncreaseSlider", 2, 0.05f);
             }
 
-            InvokeRepeating("TapEffects", 0, 0.3f);
+            if (!IsInvoking("TapEffects"))
+            {
+                InvokeRepeating("TapEffects", 0, 0.3f);
+            }
 
             canTap = false;
         }
