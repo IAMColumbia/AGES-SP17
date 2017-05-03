@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour {
         {
             //Debug.Log("Encountered enemy!");
             other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            //TODO: disable collider for object!
             if (other.tag == "Player")
             {
                 Debug.Log("Player shot!");
