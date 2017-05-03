@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
     void CreateBullets()
     {
-        //I know these error, but it works, so just try to avoid touching the i
+
         Bullet bullet;
         Bullet bullet2;
         bullet = Instantiate(bulletPrefab, bulletSpawner1.transform.position, bulletSpawner1.transform.rotation) as Bullet;
@@ -182,7 +182,6 @@ public class PlayerController : MonoBehaviour
     {
         if (this.gameObject.GetComponent<SpriteRenderer>().enabled == false)
         {
-            //Debug.Log("Coroutine started.");
             StartCoroutine(HandleSpawning());
         }
     }
@@ -190,7 +189,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator HandleSpawning()
     {
         yield return new WaitForSeconds(3);
-        //Debug.Log("Player respawned.");
         this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         playerControlActive = true;
         
