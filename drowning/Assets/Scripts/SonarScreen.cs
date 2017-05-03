@@ -64,16 +64,13 @@ public class SonarScreen : MonoBehaviour {
 
     public SonarPing SpawnPingAt(float theta, float range)
     {
-        float rangeOnScreen = Mathf.Clamp(range, 0, maxRange) / maxRange * screenRadius; //convert range units to screen units
-
-        Vector2 targetLocation = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)) * rangeOnScreen;
-
         Image newPing = Instantiate<Image>(pingPrefab);
         newPing.transform.SetParent(pingPanel, false);
 
         newPing.rectTransform.anchorMin = Vector2.one / 2;
         newPing.rectTransform.anchorMax = Vector2.one / 2;
 
+        Vector2 targetLocation = GetAnchoredPosition(theta, range);
         newPing.rectTransform.anchoredPosition = targetLocation;
 
         SonarPing p = new SonarPing(theta, range, newPing);
@@ -81,6 +78,15 @@ public class SonarScreen : MonoBehaviour {
         pingsOnScreen.Add(p);
 
         return p;
+    }
+
+    public Vector2 GetAnchoredPosition(float theta, float range)
+    {
+        float rangeOnScreen = Mathf.Clamp(range, 0, maxRange) / maxRange * screenRadius; //convert range units to screen units
+
+        Vector2 targetLocation = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)) * rangeOnScreen;
+
+        return targetLocation;
     }
 
     public void RemovePing(SonarPing ping)
@@ -118,6 +124,11 @@ public class SonarPing
         Decay(9999); // ping starts invisible
     }
 
+    public void SetImage(Sprite imageToUse)
+    {
+        pingImage.sprite = imageToUse;
+    }
+
     public void Decay(float amount)
     {
         Color c = pingImage.color;
@@ -142,5 +153,10 @@ public class SonarPing
     public void DeletePing()
     {
         GameObject.Destroy(pingImage.gameObject);
+    }
+
+    public void MoveTo(Vector2 position)
+    {
+        pingImage.rectTransform.anchoredPosition = position;
     }
 }

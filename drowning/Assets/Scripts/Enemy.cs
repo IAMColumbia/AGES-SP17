@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
+    [SerializeField]
+    Sprite pingImage;
+
     SonarScreen sonarScreen;
     SonarPing sonarPing;
 
@@ -12,6 +15,11 @@ public class Enemy : MonoBehaviour {
 
     float minRange = 15;
     float maxRange = 85;
+
+    [SerializeField]
+    float moveSpeed = 2, attackRate = 7;
+
+    float timeOfLastAttack = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -28,14 +36,38 @@ public class Enemy : MonoBehaviour {
 	
 	}
 
+    void FixedUpdate()
+    {
+        if (range > minRange)
+        {
+            range -= moveSpeed * Time.fixedDeltaTime;
+
+            range = Mathf.Clamp(range, minRange, maxRange);
+
+            transform.localPosition = new Vector3(Mathf.Cos(theta), Mathf.Sin(theta)) * range;
+
+            sonarPing.MoveTo(sonarScreen.GetAnchoredPosition(theta, range));
+        }
+        else if(range <= minRange && Time.time > timeOfLastAttack + attackRate)
+        {
+            timeOfLastAttack = Time.time;
+            FindObjectOfType<Player>().EnemyAttack(Random.Range(7, 10), 3);
+        }
+    }
+
     public void SpawnAtRandomLocation()
     {
         theta = Random.Range(0, 6.28f);
-        range = Random.Range(minRange, maxRange);
+        range = maxRange;
 
         transform.localPosition = new Vector3(Mathf.Cos(theta), Mathf.Sin(theta)) * range;
 
         ActivatePing();
+
+        if (pingImage != null)
+        {
+            sonarPing.SetImage(pingImage);
+        }
     }
 
     public void ActivatePing()

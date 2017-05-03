@@ -7,7 +7,9 @@ public class TorpedoUI : MonoBehaviour {
     float ATheta = 0;
 
     [SerializeField]
-    float scrollSpeed;
+    float scrollSpeed, reloadTime;
+
+    float timeOfLastShot = 0;
 
     [SerializeField]
     RectTransform headingCircle;
@@ -21,10 +23,15 @@ public class TorpedoUI : MonoBehaviour {
     [SerializeField]
     TorpedoLauncher torpedoLauncher;
 
+    [SerializeField]
+    Image fireButtonFill;
+
     public Transform torpedoInfoList;
 
     Quaternion headingCircleInitialRotation;
     Vector3 headingCircleRotationAxis;
+
+    bool readyToFire = true;
 
 	// Use this for initialization
 	void Start () {
@@ -44,12 +51,35 @@ public class TorpedoUI : MonoBehaviour {
         headingCircle.rotation = Quaternion.AngleAxis(-ATheta, headingCircleRotationAxis) * headingCircleInitialRotation;
 
         angleText.text = Mathf.Floor(ATheta).ToString();
+
+        if (!readyToFire)
+        {
+            float normalizedFillAmount = (Time.time - timeOfLastShot) / reloadTime;
+            normalizedFillAmount = Mathf.Clamp01(normalizedFillAmount);
+
+            fireButtonFill.fillAmount = normalizedFillAmount;
+
+            if(normalizedFillAmount == 1)
+            {
+                readyToFire = true;
+            }
+        }
 	}
 
+    void startReload()
+    {
+        readyToFire = false;
+        fireButtonFill.fillAmount = 0;
+        timeOfLastShot = Time.time;
+    }
 
     public void Fire()
     {
-        Debug.Log("firing torpedo from tube A; heading is " + ATheta);
-        torpedoLauncher.LaunchTorpedo(ATheta);
+        if (readyToFire)
+        {
+            Debug.Log("firing torpedo from tube A; heading is " + ATheta);
+            torpedoLauncher.LaunchTorpedo(ATheta);
+            startReload();
+        }
     }
 }

@@ -6,7 +6,7 @@ public class CameraPosition : MonoBehaviour {
     //these are the animation trigger names
     string[] cameraPositions =
     {
-        "Center",
+        //"Center",
         "Sonar",
         "Engine",
         "Torpedo"
@@ -27,15 +27,18 @@ public class CameraPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (!m_animator.IsInTransition(0))
         {
-            nextCameraPosition();
-            //updateTorpedoUI();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            prevCameraPosition();
-            //updateTorpedoUI();
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                nextCameraPosition();
+                //updateTorpedoUI();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                prevCameraPosition();
+                //updateTorpedoUI();
+            }
         }
 	}
 
