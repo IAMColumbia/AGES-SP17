@@ -34,11 +34,11 @@ public class Bullet : MonoBehaviour {
             //Debug.Log("Encountered enemy!");
             other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             //TODO: disable collider for object!
+            other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             if (other.tag == "Player")
             {
                 Debug.Log("Player shot!");
                 other.gameObject.GetComponent<PlayerController>().playerControlActive = false;
-                other.gameObject.GetComponent<PlayerController>().canFire = false;
             }
             this.gameObject.SetActive(false);
         }

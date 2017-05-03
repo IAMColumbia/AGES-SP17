@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float bulletFireCooldown = 0.5f;
 
-    public bool canFire = true;
+    private bool isFiringOnCooldown = false;
     public bool playerControlActive = true;
 
     // Use this for initialization
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
     void PlayerShooting()
     {
         //TODO: Use input manager! (Input.GetButton)
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") && playerControlActive)
         {
             Fire();            
         }
@@ -128,10 +128,10 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        if (canFire)
+        if (!isFiringOnCooldown)
         {
+            isFiringOnCooldown = true;
             CreateBullets();
-            canFire = false;
             StartCoroutine(HandleCooldown());
         }
     }
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(bulletFireCooldown);
 
-        canFire = true;
+        isFiringOnCooldown = false;
     }
 
     void CreateBullets()
@@ -192,7 +192,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(3);
         //Debug.Log("Player respawned.");
         this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        canFire = true;
         playerControlActive = true;
         
     }
