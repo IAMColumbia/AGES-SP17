@@ -18,28 +18,17 @@ public class Enemy : MonoBehaviour {
     float rotationDamping;  
     float timeLeftToFire;
     float isMoving;
-
-    [SerializeField]
-    WaterBlast waterBlastScript;
-
-    // public int sceneToStart = 2;
-    //Animator anim;
-    //Animation animation;
-    //Rigidbody rigidBody; 
-
+ 
     bool isDead = false;
     bool justFired = false;
-
 
     void Start()
     {
         timeLeftToFire = 3;
-        
-        //anim = GetComponent<Animator>();
-        //animation = GetComponent<Animation>();
+      
     }
 	
-	// Update is called once per frame
+	
 	void Update () {
        // if (player == null)
             player = GameObject.FindWithTag("Player");
@@ -60,8 +49,7 @@ public class Enemy : MonoBehaviour {
         
     Debug.Log("Fire weapon!");
         if (timeLeftToFire <= 0)
-        {
-            waterBlastScript.waterBlastAttack();
+        { 
             justFired = true;
         }
         if (justFired)
@@ -77,8 +65,6 @@ public class Enemy : MonoBehaviour {
         Quaternion rotation = Quaternion.LookRotation(player.transform.position + transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
     }
-
-    
 
     private void lookAtPlayer()
     {

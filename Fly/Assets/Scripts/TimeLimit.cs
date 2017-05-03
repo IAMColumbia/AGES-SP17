@@ -16,18 +16,8 @@ public class TimeLimit : MonoBehaviour {
     Text m_MessageText;
 
     [SerializeField]
-    GameObject[] weightedObjects;
+    GameObject timeUpToggle;
     
-    [SerializeField]
-    float itemSpawnHeight = 15;
-
-    [SerializeField]
-    GameObject goalSphereToggle;
-    [SerializeField]
-    GameObject waterPlane;
-
-
-
     public float TimeLeft
     {
         get
@@ -43,13 +33,12 @@ public class TimeLimit : MonoBehaviour {
     {
         get
         {                  
-            return goalSphereToggle.activeSelf;
+            return timeUpToggle.activeSelf;
 
         }
 
     }
-    float timeLeft = 112;
-
+    float timeLeft = 110;
     float timeAdded;
     public void TimeUP()
     {
@@ -57,9 +46,7 @@ public class TimeLimit : MonoBehaviour {
         timeLeft += timeAdded;
         Debug.Log("Current Time: " + timeLeft + "\n" + "Time Added: " + timeAdded);
         
-    }
-
-   
+    } 
     void start()
     {      
         timeText = GetComponent<UnityEngine.UI.Text>();             
@@ -70,49 +57,34 @@ public class TimeLimit : MonoBehaviour {
         timeText.text = ((int)TimeLeft).ToString();
 
         // Debug.Log("Time Left: " + timeLeft);
-      
-        if (TimeLeft <= 50)
+        if(TimeLeft >= 100)
+        {
+            timeText.text = "∞";
+        }
+        if (TimeLeft <= 30)
         {
             float warningMessageInterval = 5;
-           
-           warningMessageInterval -= Time.deltaTime;
-            if(warningMessageInterval <= 0)
+          
+            warningMessageInterval -= Time.deltaTime;
+            m_MessageText.text = "Hurry up!";
+            if (warningMessageInterval <= 0)
             {
              m_MessageText.text = "";
-            }
-           SlowWaterRise();
-           m_MessageText.text = "Hurry up!";
-        }
-        //if (TimeLeft == 80)
+            }        
+        }  
+        //if (HasGoal)
         //{
-        //    SpawnItems();
+        //    TimeLeft = 99;
         //}
-        if (HasGoal)
+        if(TimeLeft <= 0)
         {
-            TimeLeft = 99;
+            GameOver();
         }
     }
 
-    private void SlowWaterRise()
-    {
-        float waterSpeed;
-
-        waterSpeed = 0.03f;
-        waterPlane.transform.Translate(Vector3.up * waterSpeed * Time.deltaTime, Space.World);
-        waterPlane.transform.Translate(Vector3.up);                
-    }
-
-    private void SpawnItems()
-    {
-        for (int i = 0; i < weightedObjects.Length; i++)
-        {                           
-            int r = UnityEngine.Random.Range(0, weightedObjects.Length);
-            Vector3 position = new Vector3(UnityEngine.Random.Range(-10.0f, 10.0f), itemSpawnHeight, UnityEngine.Random.Range(-10.0f, 10.0f));
-            Instantiate(weightedObjects[r], position, Quaternion.identity);
-        }                         
-    }   
+   
     private void GameOver()
     {
-        throw new NotImplementedException();
+        m_MessageText.text = "Time Up!";
     }
 }

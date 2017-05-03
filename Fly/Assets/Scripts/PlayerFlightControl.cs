@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class PlayerFlightControl : MonoBehaviour {
 
@@ -23,13 +24,18 @@ public class PlayerFlightControl : MonoBehaviour {
      AudioClip m_EngineIdling;
     [SerializeField]
     AudioClip m_EngineDriving;
-    [SerializeField]
-    Camera cameraAlignment;
+   
+    Camera camera;
 
     [SerializeField]
     Transform cameraAlignmentTool;
-    [SerializeField]
-    GameObject Water;
+    //[SerializeField]
+   
+    Text countText;
+
+  
+   
+    GameObject water;
 
     //Variables private
     Vector3 eulerAngleVelocity;
@@ -48,25 +54,23 @@ public class PlayerFlightControl : MonoBehaviour {
     bool isGoing = false;
     bool belowWater;
     //AutoRotation variables 
-    public float autoSpeed = 10F;
+    public float autoRotationSpeed = 10F;
     private float startTime;
     private float journeyLength;
     private float recoverTime = 5f;
-  
+
     void Start()
     {
-        GetComponent<Rigidbody>().rotation = Quaternion.identity;
        
+        GetComponent<Rigidbody>().rotation = Quaternion.identity;
+        water = GameObject.FindGameObjectWithTag("Water");
+        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        countText = GameObject.Find("Rings Collected").GetComponent<Text>();  
+        // float m_OriginalPitch;
     }
 
-    //Pitch, Roll, Yaw
-    //Pitch is tilt Up/Down (Y axis)  || Vertical refactor to Pitch
-    //Yaw is moving forward/back (Z axis  || Movement refactor to Yaw
-    //Roll is tilting left/right (X axis) || Turn refactor to Roll
-
-    float m_OriginalPitch;
-
-    //Public variables go here. 
+    //Public variables go here.
+    public int ringCount = 0; 
     public int m_PlayerNumber = 1;  
     void Awake()
     {
@@ -93,11 +97,11 @@ public class PlayerFlightControl : MonoBehaviour {
          float anyInput = m_VerticalInputValue + m_HorizontalInputValue;
         if (isGoing == true) //Input.GetButtonDown("JUmp")
         {         
-            m_Speed += autoSpeed * Time.deltaTime;
+            m_Speed += autoRotationSpeed * Time.deltaTime;
         }
         else if (isGoing == false)
         {
-            m_Speed -= autoSpeed / brakeVariable * Time.deltaTime;
+            m_Speed -= brakeVariable / autoRotationSpeed * Time.deltaTime;
         }
     }
     void FixedUpdate()
@@ -112,6 +116,20 @@ public class PlayerFlightControl : MonoBehaviour {
         AutoRotate();
         AutoMovement();
         AutoShieldRecover();     
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Rings")
+        {
+            other.gameObject.SetActive(false);
+            ringCount++;
+            SetCountText();
+        }
+    }
+
+    private void SetCountText()
+    {
+        countText.text = ringCount.ToString();
     }
 
     public virtual void AutoShieldRecover()
@@ -129,7 +147,7 @@ public class PlayerFlightControl : MonoBehaviour {
 
     private void AutoEnvironmentCheck()
     {        
-        if (transform.position.y <= Water.transform.position.y)
+        if (transform.position.y <= water.transform.position.y)
         {
             belowWater = true;
         }
@@ -153,7 +171,7 @@ public class PlayerFlightControl : MonoBehaviour {
         else if (belowWater == true)
         {
             m_MaxSpeed = 3.5f;
-            autoSpeed = 10f;
+            autoRotationSpeed = 10f;
             m_TurnSpeed = 30f;
             if (m_Speed < 1.5f && belowWater)
             {
@@ -168,9 +186,9 @@ public class PlayerFlightControl : MonoBehaviour {
         currentPosition = transform.position;      
         newPosition = cameraAlignmentTool.transform.position;
         Quaternion currentRotation = m_Rigidbody.rotation;
-        Quaternion balancedRotation = cameraAlignment.transform.rotation;     
+        Quaternion balancedRotation = camera.transform.rotation;     
         journeyLength = Vector3.Distance(currentPosition, newPosition);
-        float distCovered = (Time.time - startTime) * autoSpeed;
+        float distCovered = (Time.time - startTime) * autoRotationSpeed;
         float fracJourney = distCovered / journeyLength;
         startTime = Time.time;
         Quaternion autoRotation = Quaternion.Lerp(currentRotation, balancedRotation, fracJourney);

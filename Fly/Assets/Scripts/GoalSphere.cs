@@ -12,15 +12,10 @@ public class GoalSphere : MonoBehaviour
 
     [SerializeField]
     GameObject goalSphereToggle;
-    GameManager gameManager;
-    [SerializeField]
-    GameObject centerPlatform;
-    [SerializeField]
-    GameObject[] waterSpray;
-    Vector3 centerPlatformPosition;
+    GameManager gameManager;  
     [SerializeField]
     Vector3 winnerPlatform;
-    PlayerManager[] m_Tanks;
+   RingManager[] rings;
     public bool HasGoal
     {
         get
@@ -44,11 +39,11 @@ public class GoalSphere : MonoBehaviour
         if (HasGoal)
         {
             Debug.Log("goalSphereToggle.SetActive(False)Drown other players!");
-            ShowWaterParticles();           
+                 
         }
         else if (!HasGoal)
         {
-            HideWaterParticles();
+          
         }
     }
 
@@ -66,28 +61,12 @@ public class GoalSphere : MonoBehaviour
         {
             Debug.Log("Player touched Sphere");
             audioSource.Play();
-            goalSphereToggle.SetActive(true);
-            centerPlatform.SetActive(true);
+            goalSphereToggle.SetActive(true);        
             other.gameObject.transform.position = winnerPlatform;
             
         }
     }   
-    void HideWaterParticles()
-    {
-        for (int i = 0; i < waterSpray.Length; i++)
-        {
-            waterSpray[i].SetActive(false);
-            audioSource.Stop();
-        }
-    }
-    void ShowWaterParticles()
-    {
-        for (int i = 0; i < waterSpray.Length; i++)
-        {
-            waterSpray[i].SetActive(true);
-            audioSource.Play();
-        }
-    }
+   
 }
    
 

@@ -24,7 +24,7 @@ public class HUD : MonoBehaviour
     private void Update()
     {
         //Visual representation of current player health.       
-       shieldUI.sprite = shieldSprites[(int)player.Shield];
+      // shieldUI.sprite = shieldSprites[(int)player.Shield];
        poofUI.sprite = poofSprites[(int)player.Shield];
     }
 }

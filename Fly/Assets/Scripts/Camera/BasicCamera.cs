@@ -26,7 +26,7 @@ using UnitySampleAssets.Characters.ThirdPerson;
         GameObject mainEnemy;
         [SerializeField]
         GameObject pauseMenuPanel;
-        [SerializeField]
+     
         GameObject water;
     //Ray used to determine if an object can be activated. 
     [SerializeField]
@@ -34,7 +34,7 @@ using UnitySampleAssets.Characters.ThirdPerson;
         [SerializeField]
         float rotationDamping;
     // cam is used to manipulate any features exclusive to the Camera functions. 
-        Camera cam;
+        Camera camera;
         Vector3 cameraCurrentPosition; //Camera at
         Vector3 cameraNewPosition;     //Camera to
         Vector3 cameraOffset;           //distance from player at all times
@@ -83,8 +83,10 @@ using UnitySampleAssets.Characters.ThirdPerson;
     public int m_PlayerNumber = 1;
     void Start()
         {
-           // camTransform = transform;          
-            cam = GetComponent<Camera>();
+        // camTransform = transform;          
+        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        // float m_OriginalPitch;
+        water = GameObject.FindGameObjectWithTag("Water");
         //Keep player Object in camera view variables
         m_clampMinX = Camera.main.ScreenToWorldPoint(new Vector2(0 + clampMarginMinX, 0)).x;
         m_clampMaxX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width - clampMarginMaxX, 0)).x;
@@ -94,17 +96,17 @@ using UnitySampleAssets.Characters.ThirdPerson;
         private void Update()
         {            
         checkForTargets();
-        checkEnvironment();
+     //   checkEnvironment();
         CamPlayerLock();
     }
 
-    private void checkEnvironment()
-    {
-       if(transform.position.y >= water.transform.position.y)
-        {
+    //private void checkEnvironment()
+    //{
+    //   if(transform.position.y >= water.transform.position.y)
+    //    {
 
-        }
-    }
+    //    }
+    //}
 
     void LateUpdate()
     {             
@@ -113,7 +115,7 @@ using UnitySampleAssets.Characters.ThirdPerson;
     }
     private void camBalance()
     {
-        cameraNewPosition = player.transform.position - player.transform.forward * 10.0f + Vector3.up * 5f;
+        cameraNewPosition = player.transform.position - player.transform.forward * 1.5f + Vector3.up * 3f;
         float bias = 0.96f;
         transform.position = transform.position * bias + cameraNewPosition * (1.0f-bias);
         transform.LookAt(player.transform.position + player.transform.forward * 30.0f);
@@ -137,7 +139,7 @@ using UnitySampleAssets.Characters.ThirdPerson;
             RaycastHit hit;
             Vector3 endPoint = transform.position + maxDistanceToActivateObjects * transform.forward;
           
-            Ray ray = cam.ScreenPointToRay(new Vector3(250, 250, 0));
+            Ray ray = camera.ScreenPointToRay(new Vector3(250, 250, 0));
            
             if (Physics.Raycast(ray, out hit))
             {
