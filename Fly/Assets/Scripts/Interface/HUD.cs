@@ -6,11 +6,11 @@ public class HUD : MonoBehaviour
 {
 
     // Use this for initialization
-    [SerializeField]
-    Sprite[] shieldSprites;
-    [SerializeField]
-    Image shieldUI;
-    [SerializeField]
+    //[SerializeField]
+    //Sprite[] shieldSprites;
+    //[SerializeField]
+    //Image shieldUI;
+    //[SerializeField]
     Sprite[] poofSprites;
     [SerializeField]
     Image poofUI;
@@ -24,7 +24,11 @@ public class HUD : MonoBehaviour
     private void Update()
     {
         //Visual representation of current player health.       
+<<<<<<< HEAD
       // shieldUI.sprite = shieldSprites[(int)player.Shield];
+=======
+       //shieldUI.sprite = shieldSprites[(int)player.Shield];
+>>>>>>> origin/deandre.test
        poofUI.sprite = poofSprites[(int)player.Shield];
     }
 }
