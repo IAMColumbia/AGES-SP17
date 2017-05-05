@@ -20,6 +20,12 @@ public class DistractionManager : MonoBehaviour
     [SerializeField]
     GameObject tappingCoverImage;
     [SerializeField]
+    AudioSource music1;
+    [SerializeField]
+    AudioSource music2;
+    [SerializeField]
+    AudioSource music3;
+    [SerializeField]
     bool rhythmGameEnabled;
     [SerializeField]
     bool draggingPuzzleEnabled;
@@ -30,6 +36,7 @@ public class DistractionManager : MonoBehaviour
     public int draggingPuzzleScore;
 
     bool canTap = true;
+    bool rhythmGameRepeat = true;
     int rhythmGameScoreGoal = 6;
     float rhythmGameEnergyLevel = 2;
     float draggingPuzzleEnergyLevel = 5;
@@ -67,13 +74,23 @@ public class DistractionManager : MonoBehaviour
     {
         if (energyManager.energyLeft == rhythmGameEnergyLevel)
         {
-            rhythmGameDistraction.SetActive(true);
+            if (rhythmGameRepeat)
+            {
+                rhythmGameDistraction.SetActive(true);
+                if (music1.isPlaying)
+                    music1.Stop();
+
+                music2.Play();
+                rhythmGameRepeat = false;
+            }
 
             rhythmGameScoreSlider.value = rhythmGameScore;
 
             if (rhythmGameScore == rhythmGameScoreGoal)
             {
+                music2.Stop();
                 //play win sound
+                music3.PlayDelayed(1.5f);
                 energyManager.energyLeft--;
                 StartCoroutine(SetInactive(rhythmGameDistraction));
             }
@@ -146,5 +163,10 @@ public class DistractionManager : MonoBehaviour
         tappingStopButton.gameObject.SetActive(false);
         tappingCoverImage.SetActive(false);
         canTap = true;
+    }
+
+    public void StartMusic1()
+    {
+        music1.Play();
     }
 }

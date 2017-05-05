@@ -11,6 +11,8 @@ public class AnswerQuestion : MonoBehaviour
     GameObject dialogueBox;
     [SerializeField]
     GameObject dismissButton;
+    [SerializeField]
+    AudioSource pencilMark;
 
     bool shouldShowDialogue = true;
 
@@ -118,6 +120,7 @@ public class AnswerQuestion : MonoBehaviour
         }
 
         energyMeter.ReduceEnergy();
+        pencilMark.Play();
 
         if (shouldShowDialogue)
         {
