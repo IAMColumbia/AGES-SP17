@@ -1,19 +1,23 @@
 fileFormatVersion: 2
-guid: b77cffdef6ca50f49b2210ecd79ce65c
-timeCreated: 1494082935
+guid: 80eac5b5fc2bc6a43ac5018f958136e6
+timeCreated: 1494084673
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: KnightAttack_0
-    21300002: KnightAttack_1
-    21300004: KnightAttack_2
-    21300006: KnightAttack_3
-    21300008: KnightAttack_4
-    21300010: KnightAttack_5
-    21300012: KnightAttack_6
-    21300014: KnightAttack_7
-    21300016: KnightAttack_8
-    21300018: KnightAttack_9
+    21300000: NecroAttack_0
+    21300002: NecroAttack_1
+    21300004: NecroAttack_2
+    21300006: NecroAttack_3
+    21300008: NecroAttack_4
+    21300010: NecroAttack_5
+    21300012: NecroAttack_6
+    21300014: NecroAttack_7
+    21300016: NecroAttack_8
+    21300018: NecroAttack_9
+    21300020: NecroAttack_10
+    21300022: NecroAttack_11
+    21300024: NecroAttack_12
+    21300026: NecroAttack_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,7 +58,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 42
+  spritePixelsToUnits: 80
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -68,132 +72,184 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KnightAttack_0
+      name: NecroAttack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_1
+      name: NecroAttack_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 100
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_2
+      name: NecroAttack_2
       rect:
         serializedVersion: 2
-        x: 160
+        x: 200
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_3
+      name: NecroAttack_3
       rect:
         serializedVersion: 2
-        x: 240
+        x: 300
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: KnightAttack_5
+      name: NecroAttack_4
       rect:
         serializedVersion: 2
         x: 400
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_6
+      name: NecroAttack_5
       rect:
         serializedVersion: 2
-        x: 480
+        x: 500
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_7
+      name: NecroAttack_6
       rect:
         serializedVersion: 2
-        x: 560
+        x: 600
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_8
+      name: NecroAttack_7
       rect:
         serializedVersion: 2
-        x: 640
+        x: 700
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: KnightAttack_9
+      name: NecroAttack_8
       rect:
         serializedVersion: 2
-        x: 720
+        x: 800
         y: 0
-        width: 42
-        height: 42
+        width: 100
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NecroAttack_9
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NecroAttack_10
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NecroAttack_11
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NecroAttack_12
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NecroAttack_13
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
