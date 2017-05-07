@@ -39,11 +39,24 @@ public class EnemyAI : MonoBehaviour
         //rigidbody addforce, recognize this means adding a rigidbody to ALL enemies that hope to move aimlessly
     }
 
-    private void OnTriggerEnter(Collider collision)
+    //private void OnTriggerEnter(Collider collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        player = collision.GetComponent<Health>();
+    //        if (player != null)
+    //        {
+    //            player.TakeDamage(1);
+    //        }
+    //        enemyInstanceHealth.TakeDamage(1);
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            player = collision.GetComponent<Health>();
+            player = collision.gameObject.GetComponent<Health>();
             if (player != null)
             {
                 player.TakeDamage(1);

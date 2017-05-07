@@ -104,7 +104,10 @@ public class EnemyShooting : MonoBehaviour
 
     private void LookAtPlayer()
     {
-        gameObject.transform.LookAt(playerToShootAt.transform);
+        if (playerToShootAt !=null)
+        {
+            gameObject.transform.LookAt(playerToShootAt.transform);
+        }
     }
 
     private void ShootingAudio()

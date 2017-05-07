@@ -8,37 +8,38 @@ public class EnemyChasing : MonoBehaviour
     [SerializeField]
     private float activationRange;
 
-    private GameObject playerToChase;
+    private Vector3 playerToChasePosition;
+    private Vector3 nullChasePosition = new Vector3();
 
+    private Transform physicalBody;
 
     // Use this for initialization
     void Start ()
     {
-	
+        playerToChasePosition = nullChasePosition;
+        physicalBody = gameObject.transform.parent;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        CheckActivationZoneForPlayer();
         ChasePlayer();
 	}
 
-    private void CheckActivationZoneForPlayer()
+    private void ChasePlayer()
     {
-        Collider[] activateZoneArray = Physics.OverlapSphere(gameObject.transform.position, activationRange, layerToCheckForPlayer);
-
-        foreach (Collider player in activateZoneArray)
+        if (playerToChasePosition != nullChasePosition)
         {
-            playerToChase = player.gameObject;
+            //gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, playerToChasePosition, Time.deltaTime);
+            gameObject.transform.position = Vector3.Lerp(physicalBody.gameObject.transform.position, playerToChasePosition, Time.deltaTime);
         }
     }
 
-    private void ChasePlayer()
+    private void OnTriggerEnter(Collider other)
     {
-        if (playerToChase != null)
+        if (other.gameObject.tag == "Player")
         {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, playerToChase.transform.position, Time.deltaTime);
+            playerToChasePosition = other.transform.position;
         }
     }
 }
