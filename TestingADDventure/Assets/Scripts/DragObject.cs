@@ -11,8 +11,14 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public static GameObject draggedObject;
     Vector3 startPosition;
 
+    [SerializeField]
+    AudioSource pickUpSlide;
+    [SerializeField]
+    AudioSource dropClick;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        pickUpSlide.Play();
         parentReturn = transform.parent;
         transform.SetParent(transform.parent.parent);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -27,6 +33,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        dropClick.Play();
         transform.SetParent(parentReturn);
         transform.position = parentReturn.position;
         GetComponent<CanvasGroup>().blocksRaycasts = true;

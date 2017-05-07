@@ -26,6 +26,10 @@ public class DistractionManager : MonoBehaviour
     [SerializeField]
     AudioSource music3;
     [SerializeField]
+    AudioSource tap;
+    [SerializeField]
+    AudioSource winChord;
+    [SerializeField]
     bool rhythmGameEnabled;
     [SerializeField]
     bool draggingPuzzleEnabled;
@@ -40,7 +44,7 @@ public class DistractionManager : MonoBehaviour
     int rhythmGameScoreGoal = 6;
     float rhythmGameEnergyLevel = 2;
     float draggingPuzzleEnergyLevel = 5;
-    float tappingEnergyLevel = 9;
+    float tappingEnergyLevel = 14;
 
     void Update()
     {
@@ -89,7 +93,7 @@ public class DistractionManager : MonoBehaviour
             if (rhythmGameScore == rhythmGameScoreGoal)
             {
                 music2.Stop();
-                //play win sound
+                winChord.Play();
                 music3.PlayDelayed(1.5f);
                 energyManager.energyLeft--;
                 StartCoroutine(SetInactive(rhythmGameDistraction));
@@ -105,7 +109,7 @@ public class DistractionManager : MonoBehaviour
 
             if (draggingPuzzleScore == 4)
             {
-                //play win sound, triumphant chord
+                winChord.Play();
                 energyManager.energyLeft--;
                 StartCoroutine(SetInactive(draggingPuzzleDistraction));
             }
@@ -120,7 +124,7 @@ public class DistractionManager : MonoBehaviour
 
             if (tappingSlider.value >= 0 && tappingSlider.value < 100)
             {
-                InvokeRepeating("IncreaseSlider", 2, 0.05f);
+                InvokeRepeating("IncreaseSlider", 2, 0.08f);
             }
 
             if (!IsInvoking("TapEffects"))
@@ -150,11 +154,12 @@ public class DistractionManager : MonoBehaviour
 
     void TapEffects()
     {
-        Debug.Log("tap");
-        tappingSlider.GetComponent<ChangeSize>().Pulse();
-        //play tap sound
-        //sound volume = slider.value
-        //increase size animation
+        if (tappingSlider.gameObject.activeSelf)
+        {
+            tappingSlider.GetComponent<ChangeSize>().Pulse();
+            tap.volume = tappingSlider.value * 0.01f;
+            tap.Play();
+        }
     }
 
     public void StopButtonPressed()

@@ -67,6 +67,8 @@ public class CalculateScore : MonoBehaviour
     GameObject tappingCoverImage;
     [SerializeField]
     DistractionManager distractionManager;
+    [SerializeField]
+    GameObject noEnergyPanels;
 
     List<Toggle[]> questions = new List<Toggle[]>();
     List<Toggle> answers = new List<Toggle>();
@@ -134,6 +136,7 @@ public class CalculateScore : MonoBehaviour
                 foreach (var answer in question)
                 {
                     answer.interactable = false;
+                    noEnergyPanels.SetActive(true);
                 }
             }
 
@@ -172,6 +175,7 @@ public class CalculateScore : MonoBehaviour
             scorePanel.SetActive(true);
             tryAgainButton.SetActive(true);
             continueButton.SetActive(true);
+            noEnergyPanels.SetActive(false);
             hasCheckedAnswers = true;
         }
     }

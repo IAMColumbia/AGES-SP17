@@ -23,6 +23,8 @@ public class DragPuzzleFinish : MonoBehaviour
     GameObject dragPuzzleBackground;
     [SerializeField]
     DistractionManager distractionManager;
+    [SerializeField]
+    AudioSource loseChord;
 
     Transform tile1CorrectSlot;
     Transform tile2CorrectSlot;
@@ -65,8 +67,7 @@ public class DragPuzzleFinish : MonoBehaviour
         }
         else
         {
-            //play incorrect answer sound, buzzer
-            Debug.Log("lose");
+            loseChord.Play();
         }
     }
 }
