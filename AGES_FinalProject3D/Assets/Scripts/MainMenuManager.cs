@@ -55,4 +55,14 @@ public class MainMenuManager : MonoBehaviour
         CreditsPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void OpenAssetSourceLink(string sourceLinkURL)
+    {
+        Application.OpenURL(sourceLinkURL);
+    }
 }
