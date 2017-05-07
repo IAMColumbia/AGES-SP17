@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private GameObject butt;
 
+    [SerializeField]
+    private AudioSource jumpSound;
     
-
-
     private float HorizontalAxis;
     private float overlapSphereRadius = 1.4f;
     private float clampMaxRigidbodySpeed = 10;
@@ -145,6 +145,8 @@ public class PlayerController : MonoBehaviour {
 
         if (grounded && Input.GetButtonDown("Jump" + playerNumber))
         {
+            jumpSound.Play();
+
             anim.SetBool("Ground", false);
 
             rBody2D.AddForce(new Vector2(0, jumpForce));

@@ -6,6 +6,9 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     private ParticleSystem HazardDeathParticles;
 
+    [SerializeField]
+    private AudioSource deathSound;
+
     private int blinkTime = 8;
 
     private GameManager gameManager;
@@ -14,6 +17,7 @@ public class PlayerHealth : MonoBehaviour {
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        deathSound = HazardDeathParticles.GetComponent<AudioSource>();
 
         HazardDeathParticles.gameObject.SetActive(false);
     }
@@ -22,7 +26,10 @@ public class PlayerHealth : MonoBehaviour {
     {
         HazardDeathParticles.transform.parent = null;
         HazardDeathParticles.gameObject.SetActive(true);
+
         HazardDeathParticles.Play();
+        deathSound.Play();
+
         transform.parent.gameObject.SetActive(false);
         gameManager.StartCoroutine("RespawnPlayers");
         

@@ -6,6 +6,6 @@ public class LoadScene : MonoBehaviour {
 
     public void LoadPlayerAmountScene(string level)
     {
-        SceneManager.LoadScene(level);
+        LoadingScreen.LoadNewScene(level);
     }
 }

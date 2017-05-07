@@ -37,6 +37,7 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         gmanager = FindObjectOfType<GameManager>();
+        audioSource.GetComponent<AudioSource>();
         
     }
     private void Update()
@@ -51,6 +52,8 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire" + playerNumber) )
         {
+            audioSource.Play();
+
             Rigidbody2D spawnBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation) as Rigidbody2D;
 
             spawnBullet.velocity = bulletLaunchForce * bulletSpawnPoint.transform.up;

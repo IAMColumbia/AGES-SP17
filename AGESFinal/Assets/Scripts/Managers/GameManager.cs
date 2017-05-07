@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
-
+    
     [SerializeField]
     private Text messageText;
 
@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour {
 
     public PlayerManager[] Players;
 
-    [SerializeField]
-    private int buttsToBlast = 15;
+    
+    public int buttsToBlast;
 
     [SerializeField]
     private float startDelay = 5f;
@@ -47,7 +47,13 @@ public class GameManager : MonoBehaviour {
     private PlayerManager gameWinner;
     private EventSystem eventSystem;
 
+    private Animator messageTextAnimator;
+
     void Start() {
+
+        DontDestroyOnLoad(gameObject);
+        messageTextAnimator = messageText.GetComponent<Animator>();
+
         startWait = new WaitForSeconds(startDelay);
         endWait = new WaitForSeconds(endDelay);
         respawnWait = new WaitForSeconds(respawnDelay);
@@ -102,6 +108,8 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator GameEnding()
     {
+        messageTextAnimator.SetTrigger("PlayerHasWon");
+
         DisablePlayerControl();
         
         gameWinner = GetGameWinner();
@@ -134,7 +142,7 @@ public class GameManager : MonoBehaviour {
     {
         EnablePlayerControl();
 
-        messageText.text = string.Empty;
+        messageTextAnimator.SetTrigger("FlyOut");
         
         while(GetGameWinner() == null)
             yield return null;
@@ -145,9 +153,14 @@ public class GameManager : MonoBehaviour {
     {
         DisablePlayerControl();
         CameraControl.SetStartPositionAndSize();
-        
-        messageText.text = "BLAST BUTTS";
 
+        messageText.text = "READY";
+
+        messageTextAnimator.SetTrigger("FlyIn");
+
+        yield return startWait;
+
+        messageText.text = "BLAST BUTTS!";
         yield return startWait;
     }
 
@@ -164,6 +177,8 @@ public class GameManager : MonoBehaviour {
     
     private string EndMessage()
     {
+
+
         string message = "DRAW!";
 
         message += "\n\n\n\n";

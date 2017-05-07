@@ -24,18 +24,21 @@ public class MainMenuTriggers : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision)
     {
         YButtonSprite.SetActive(true);
-        if(Input.GetButtonDown("MainMenuButton"))
+        if (Input.GetButtonDown("MainMenuButton"))
         {
             PanelToShow.SetActive(true);
             eventSystem.SetSelectedGameObject(null);
             FindObjectOfType<PlayerController>().enabled = false;
             eventSystem.SetSelectedGameObject(NextSelectedGameObject);
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         YButtonSprite.SetActive(false);
     }
+    
+
     
 }
