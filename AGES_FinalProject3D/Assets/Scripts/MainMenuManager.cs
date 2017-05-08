@@ -17,6 +17,7 @@ public class MainMenuManager : MonoBehaviour
     private GameObject TitlePanel;
     private GameObject CreditsPanel;
     private GameObject HowToPlayPanel;
+
     private EventSystem mainEventSystem;
 
 	// Use this for initialization
