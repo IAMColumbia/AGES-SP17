@@ -3,46 +3,35 @@ using System.Collections;
 
 public class Cup : MonoBehaviour
 {
-    [SerializeField]
-    GameObject cupAnchor;
-    [SerializeField]
-    GameObject cupTopCollider;
+    [Header("Cup Settings")]
+    [SerializeField] GameObject cupAnchor;
+    [SerializeField] GameObject cupTopCollider;
+    Rigidbody cupRigidbody;
+    Vector3 cupInitialPosition;
+    Quaternion cupInitialRotation;
 
-    [SerializeField]
-    float randomShakeTimeMin = 0f;
-    [SerializeField]
-    float randomShakeTimeMax = 0.2f;
+    [SerializeField] float randomShakeTimeMin = 0f;
+    [SerializeField] float randomShakeTimeMax = 0.2f;
     //[SerializeField] float shakeTime = 0.2f;
 
-    [SerializeField]
-    float randomShakeSpeedMin = 100f;
-    [SerializeField]
-    float randomShakeSpeedMax = 300f;
+    [SerializeField] float randomShakeSpeedMin = 100f;
+    [SerializeField] float randomShakeSpeedMax = 300f;
 
-    [SerializeField]
-    float delayBeforeRotating = 3;
-    [SerializeField]
-    float delayBeforeResetting = 2;
+    [SerializeField] float delayBeforeRotating = 3;
+    [SerializeField] float delayBeforeResetting = 2;
 
-    [SerializeField]
-    string rollAxisName;
-
-    Rigidbody cupRigidbody;
-    Vector3 initialPosition;
-    Quaternion initialRotation;
-
-    [SerializeField]
-    GameObject rollCamera;
-    [SerializeField]
-    GameObject diceGameObject;
+    [SerializeField] GameObject rollCamera;
+    [SerializeField] GameObject diceGameObject;
     Vector3 dicePositionInsideCup;
-    //Quaternion diceRotationInsideCup;
+    Quaternion diceRotationInsideCup;
+    [SerializeField] string rollAxisName;
 
     // Use this for initialization
     void Start()
     {
-        initialPosition = transform.position;
-        initialRotation = transform.rotation;
+        cupInitialPosition = transform.position;
+        //ahHaha = transform.position;
+        cupInitialRotation = transform.rotation;
         cupRigidbody = GetComponent<Rigidbody>();
 
         //diceRotationInsideCup = diceGameObject.GetComponent<Transform>().rotation;
@@ -75,7 +64,7 @@ public class Cup : MonoBehaviour
         float randomShakeTime = Random.Range(randomShakeTimeMin, randomShakeTimeMax);
 
         cupRigidbody.AddForce(Vector3.forward * randomShakeSpeed);
-        print(randomShakeSpeed);
+        print("Random Shake Speed: " + randomShakeSpeed);
 
         yield return new WaitForSeconds(randomShakeTime);
         cupRigidbody.AddForce(Vector3.back * randomShakeSpeed);
@@ -97,8 +86,8 @@ public class Cup : MonoBehaviour
     {
         rollCamera.SetActive(false);
 
-        transform.position = initialPosition;
-        transform.rotation = initialRotation;
+        transform.position = cupInitialPosition;
+        transform.rotation = cupInitialRotation;
         diceGameObject.transform.position = dicePositionInsideCup;
 
         cupTopCollider.SetActive(true);

@@ -1,29 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
-public class DiceSideLogic : MonoBehaviour
+public class DiceSideLogic : Pawn
 {
-    #region Dice Side Bools
-    bool diceSideOneIsDown = false;
-    bool diceSideTwoIsDown = false;
-    bool diceSideThreeIsDown = false;
-    bool diceSideFourIsDown = false;
-    bool diceSideFiveIsDown = false;
-    bool diceSideSixIsDown = false;
-    #endregion
-
-    //[SerializeField] string diceSideOneName;
-    //[SerializeField] string diceSideTwoName;
-    //[SerializeField] string diceSideThreeName;
-    //[SerializeField] string diceSideFourName;
-    //[SerializeField] string diceSideFiveName;
-    //[SerializeField] string diceSideSixName;
-
+    [SerializeField] Pawn pawnRefernce;
+    public Text rollTextObject;//dice logic
+    public string rollTextDefault = "Roll the dice!";//dice logic
+    public string rolledText = "You rolled a ";//dice logic
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(WaitUntilDiceStops());
+        rollTextObject.text = rollTextDefault;
+        //StartCoroutine(WaitUntilDiceStops());
 
     }
 
@@ -31,23 +21,7 @@ public class DiceSideLogic : MonoBehaviour
     void Update()
     {
     }
-
-    private void ThisSideIsDown()
-    {
-        if (diceSideOneIsDown == true)
-            print("You rolled a 6");
-        if (diceSideTwoIsDown == true)
-            print("You rolled a 5");
-        if (diceSideThreeIsDown == true)
-            print("You rolled a 4");
-        if (diceSideFourIsDown == true)
-            print("You rolled a 3");
-        if (diceSideFiveIsDown == true)
-            print("You rolled a 2");
-        if (diceSideSixIsDown == true)
-            print("You rolled a 1");
-    }
-
+    
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Dice")
@@ -56,7 +30,11 @@ public class DiceSideLogic : MonoBehaviour
             switch (col.gameObject.name)
             {
                 case "DiceSideCollision (1)": //Side 6 is up
-                    diceSideOneIsDown = true;
+                    rollTextObject.text = rolledText + "6!";
+                    pawnRefernce.diceRoll = 6;
+                    //print(pawnRefernce.pawnMovementZ);
+
+                    //diceSideOneIsDown = true;
                     //diceSideTwoIsDown = false;
                     //diceSideThreeIsDown = false;
                     //diceSideFourIsDown = false;
@@ -65,7 +43,11 @@ public class DiceSideLogic : MonoBehaviour
                     break;
 
                 case "DiceSideCollision (2)": //Side 5 is up
-                    diceSideTwoIsDown = true;
+                    rollTextObject.text = rolledText + "5!";
+                    pawnRefernce.diceRoll = 5;
+                    //print(pawnRefernce.pawnMovementZ);
+
+                    //diceSideTwoIsDown = true;
                     //diceSideOneIsDown = false;
                     //diceSideThreeIsDown = false;
                     //diceSideFourIsDown = false;
@@ -74,7 +56,11 @@ public class DiceSideLogic : MonoBehaviour
                     break;
 
                 case "DiceSideCollision (3)": //Side 4 is up
-                    diceSideThreeIsDown = true;
+                    rollTextObject.text = rolledText + "4!";
+                    pawnRefernce.diceRoll = 4;
+                    //print(pawnRefernce.pawnMovementZ);
+
+                    //diceSideThreeIsDown = true;
                     //diceSideOneIsDown = false;
                     //diceSideTwoIsDown = false;
                     //diceSideFourIsDown = false;
@@ -83,7 +69,11 @@ public class DiceSideLogic : MonoBehaviour
                     break;
 
                 case "DiceSideCollision (4)": //Side 3 is up
-                    diceSideFourIsDown = true;
+                    rollTextObject.text = rolledText + "3!";
+                    pawnRefernce.diceRoll = 3;
+                    //print(pawnRefernce.pawnMovementZ);
+
+                    //diceSideFourIsDown = true;
                     //diceSideOneIsDown = false;
                     //diceSideTwoIsDown = false;
                     //diceSideThreeIsDown = false;
@@ -92,7 +82,11 @@ public class DiceSideLogic : MonoBehaviour
                     break;
 
                 case "DiceSideCollision (5)": //Side 2 is up
-                    diceSideFiveIsDown = true;
+                    rollTextObject.text = rolledText + "2!";
+                    pawnRefernce.diceRoll = 2;
+                    //print(pawnRefernce.pawnMovementZ);
+
+                    //diceSideFiveIsDown = true;
                     //diceSideOneIsDown = false;
                     //diceSideTwoIsDown = false;
                     //diceSideThreeIsDown = false;
@@ -101,7 +95,11 @@ public class DiceSideLogic : MonoBehaviour
                     break;
 
                 case "DiceSideCollision (6)": //Side 1 is up
-                    diceSideSixIsDown = true;
+                    rollTextObject.text = rolledText + "1!";
+                    pawnRefernce.diceRoll = 1;
+                    //print(pawnRefernce.pawnMovementZ);
+                    
+                    // diceSideSixIsDown = true;
                     //diceSideOneIsDown = false;
                     //diceSideTwoIsDown = false;
                     //diceSideThreeIsDown = false;
@@ -116,11 +114,41 @@ public class DiceSideLogic : MonoBehaviour
          //Debug.Log(this.name);
     }//end OnTriggerStay
 
-    private IEnumerator WaitUntilDiceStops()
-    {
-        yield return new WaitForSeconds(5);
-        ThisSideIsDown();
-    }
+    //private void ThisSideIsDown()
+    //{
+    //    if (diceSideOneIsDown == true)
+    //        print("You rolled a 6");
+    //        rollText.text = "6";
+
+    //    if (diceSideTwoIsDown == true)
+    //        print("You rolled a 5");
+    //        rollText.text = "5";
+
+    //    if (diceSideThreeIsDown == true)
+    //        print("You rolled a 4");
+    //        rollText.text = "4";
+
+    //    if (diceSideFourIsDown == true)
+    //        print("You rolled a 3");
+    //        rollText.text = "3";
+
+    //    if (diceSideFiveIsDown == true)
+    //        print("You rolled a 2");
+    //        rollText.text = "2";
+
+    //    if (diceSideSixIsDown == true)
+    //        print("You rolled a 1");
+    //        rollText.text = "1";
+
+    //}//end ThisSideIsDown()
+
+    //private IEnumerator WaitUntilDiceStops()
+    //{
+    //    yield return new WaitForSeconds(5);
+    //    ThisSideIsDown();
+    //}//end Coroutine WaitUntilDiceStops()
+
+
 }//end DiceSideLogic Class
 
 

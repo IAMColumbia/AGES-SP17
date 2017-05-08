@@ -1,20 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dice : MonoBehaviour
-
-{
+public class Interfaces : MonoBehaviour {
 
 	// Use this for initialization
-	void Start ()
-    {
+	void Start () {
 	
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
+	void Update () {
 	
 	}
-   
 }
