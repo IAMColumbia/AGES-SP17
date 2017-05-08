@@ -41,6 +41,8 @@ public class GameUI : MonoBehaviour
         healthSlider.maxValue = playerHealth.HealthValue;
 
         gameEventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+
+        Time.timeScale = 1;
 	}
 	
 	// Update is called once per frame
@@ -80,6 +82,8 @@ public class GameUI : MonoBehaviour
         winOrLoseText.text = "You Win!";
         finalScoreText.text += score.ToString();
         gameEventSystem.SetSelectedGameObject(firstSelectedButton);
+
+        Time.timeScale = 0;
     }
 
     public void Lose()
@@ -88,6 +92,8 @@ public class GameUI : MonoBehaviour
         winOrLoseText.text = "You Lose!";
         finalScoreText.text += score.ToString();
         gameEventSystem.SetSelectedGameObject(firstSelectedButton);
+
+        Time.timeScale = 1;
     }
 
     #region buttonFunctions

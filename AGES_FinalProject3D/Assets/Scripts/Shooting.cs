@@ -16,13 +16,14 @@ public class Shooting : MonoBehaviour
     private float shootingReticleSpeed;
     [SerializeField]
     private float shootingDurationSeconds;
+    [SerializeField]
+    private float maxDistanceToActivate = 10;
 
     [SerializeField]
     private Color noEnemyColor;
     [SerializeField]
     private Color yesEnemyColor;
 
-    private float maxDistanceToActivate = 10;
     private const float zeroConstant = 0;
     private bool isShooting = false;
 

@@ -39,8 +39,8 @@ public class Movement : MonoBehaviour
     private const float zeroConstant = 0;
     private const float rotationEulerConstant = 360;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         playerRigidBody = GetComponent<Rigidbody>();
         gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
@@ -68,12 +68,11 @@ public class Movement : MonoBehaviour
 
     private void AccelerateForward()
     {
-        //playerRigidBody.AddRelativeForce(zeroConstant, zeroConstant, accelerationSpeed,ForceMode.Force);
 
         Vector3 velocityToSet = new Vector3((leftStickInputHorizontal * xAxisMovementMultiplier), (leftStickInputVertical*yAxisMovementMultiplier), currentAccelerationSpeed) * Time.deltaTime;
 
         playerRigidBody.velocity = velocityToSet;
-        //Add condition so you can't slow down too much
+
         if (Input.GetButton(slowDownButton))
         {
             SlowDown();
@@ -98,13 +97,10 @@ public class Movement : MonoBehaviour
 
     private void MoveRotation()
     {
-        //gameObject.transform.Translate(leftStickInputHorizontal, leftStickInputVertical, zeroConstant, Space.World);
 
         Quaternion roatationToRotateTo = Quaternion.Euler(leftStickInputVertical, leftStickInputHorizontal, zeroConstant);
 
         playerRigidBody.MoveRotation(roatationToRotateTo);
-
-        //Debug.Log("X input is " + leftStickInputVertical + " Y input is " + leftStickInputHorizontal);
     }
 
     private void OnTriggerEnter(Collider other)
