@@ -19,7 +19,8 @@ public class Pawn : MonoBehaviour
     [HideInInspector]
     public bool canResetCup;
 
-
+    [SerializeField] Animation pawnMove;
+    [SerializeField] ParticleSystem pawnParticles;
 
     // Use this for initialization
     void Start ()
@@ -44,6 +45,8 @@ public class Pawn : MonoBehaviour
         if (Input.GetButtonDown(pawnMovementAxisName) && canPawnMove == true)
             if (Input.GetAxisRaw(pawnMovementAxisName) > 0)
             {
+                //pawnMove.Play();
+                pawnParticles.Simulate(10, true, true);
                 transform.Translate(pawnMovementX, pawnMovementY, pawnMovementZ);
                 canResetCup = true;
             }
@@ -58,6 +61,13 @@ public class Pawn : MonoBehaviour
        
     }//end PawnMovement()
     
+    private void OnTriggerStay(Collider other)
+    {
+        print(other.gameObject);
+    }
+
+
+
     //private void PawnCheckDiceRoll()
     //{
     //    //TODO: move based on number rolled, if dice bool is true(run animation, move to location)
