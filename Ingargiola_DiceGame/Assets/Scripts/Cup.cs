@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Cup : MonoBehaviour
+public class Cup : Pawn
 {
+    [SerializeField]
+    Pawn pawnReference;
+
+
     [Header("Cup Settings")]
     [SerializeField] GameObject cupAnchor;
     [SerializeField] GameObject cupTopCollider;
@@ -20,11 +24,13 @@ public class Cup : MonoBehaviour
     [SerializeField] float delayBeforeRotating = 3;
     [SerializeField] float delayBeforeResetting = 2;
 
+    [SerializeField] string rollAxisName;
     [SerializeField] GameObject rollCamera;
     [SerializeField] GameObject diceGameObject;
     Vector3 dicePositionInsideCup;
     Quaternion diceRotationInsideCup;
-    [SerializeField] string rollAxisName;
+
+
 
     // Use this for initialization
     void Start()
@@ -53,6 +59,9 @@ public class Cup : MonoBehaviour
     {
         if (Input.GetButtonDown(rollAxisName))
         {
+            pawnReference.diceRoll = 0;
+            pawnReference.canPawnMove = true;
+            pawnReference.canResetCup = false;
             rollCamera.SetActive(true);
             StartCoroutine(Shake());
         }
@@ -60,6 +69,7 @@ public class Cup : MonoBehaviour
 
     public IEnumerator Shake()
     {
+
         float randomShakeSpeed = Random.Range(randomShakeSpeedMin, randomShakeSpeedMax);
         float randomShakeTime = Random.Range(randomShakeTimeMin, randomShakeTimeMax);
 
@@ -93,6 +103,8 @@ public class Cup : MonoBehaviour
         cupTopCollider.SetActive(true);
         cupAnchor.GetComponent<ConfigurableJoint>().connectedBody = cupRigidbody;
         cupRigidbody.isKinematic = false;
+        print("can't move");
+        pawnReference.canPawnMove = false;
 
     }//end ResetCup()
 
@@ -108,7 +120,7 @@ public class Cup : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(delayBeforeResetting);
+        yield return new WaitUntil(() => pawnReference.canResetCup == true);
         ResetCup();
 
     }//end Coroutine RotateCup()

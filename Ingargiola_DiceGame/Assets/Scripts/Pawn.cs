@@ -4,55 +4,60 @@ using System;
 
 public class Pawn : MonoBehaviour
 {
-    [SerializeField] string pawnMovementAxisName;
     private float pawnMovementX;
     private float pawnMovementY;
     private float pawnMovementZ;
 
+    [SerializeField] string pawnMovementAxisName;
+
     public float pawnDefaultZMovement = 2;
+    [HideInInspector]
     public float diceRoll;
+
+    [HideInInspector]
+    public bool canPawnMove;
+    [HideInInspector]
+    public bool canResetCup;
+
+
 
     // Use this for initialization
     void Start ()
     {
-        //pawnDefaultMovementZ = pawnMovementZ;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         //TODO: controls for minigames
 
         PawnMovement();
         //PawnCheckDiceRoll();
-
-    }
+        //print(diceRoll);
+    }//end Update
 
     private void PawnMovement()
     {
         pawnMovementZ = pawnDefaultZMovement * diceRoll;
 
-        if (Input.GetButtonDown(pawnMovementAxisName))
+        if (Input.GetButtonDown(pawnMovementAxisName) && canPawnMove == true)
             if (Input.GetAxisRaw(pawnMovementAxisName) > 0)
+            {
                 transform.Translate(pawnMovementX, pawnMovementY, pawnMovementZ);
+                canResetCup = true;
+            }
+
+            //backwards movement
             //else if(Input.GetAxisRaw(pawnMovementAxisName) < 0)
             //    transform.Translate(pawnMovementX, pawnMovementY, -pawnMovementZ);
 
         
-
-        //trying to store current position of pawn
-        Vector3 currentPositino = transform.position;
+        //Vector3 currentPosition = transform.position;
        //print(currentPositino);
        
-
-    }
-
-    public void PawnRollsDice()
-    {
-        //TODO: button to roll dice
-        //pawnMovementZ = pawnDefaultMovementZ;
-    }
-
+    }//end PawnMovement()
+    
     //private void PawnCheckDiceRoll()
     //{
     //    //TODO: move based on number rolled, if dice bool is true(run animation, move to location)
@@ -75,4 +80,4 @@ public class Pawn : MonoBehaviour
     //        print("same thing");
 
     //}
-}
+}//end Pawn Class
