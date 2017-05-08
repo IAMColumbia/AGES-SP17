@@ -14,29 +14,71 @@ Platform assembly: C:\Users\lexus\Documents\GitHub\AGES-SP17\AGES-P1-Test1\teste
 Loading C:\Users\lexus\Documents\GitHub\AGES-SP17\AGES-P1-Test1\testexe_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\lexus\Documents\GitHub\AGES-SP17\AGES-P1-Test1\testexe_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\lexus\Documents\GitHub\AGES-SP17\AGES-P1-Test1\testexe_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.225 seconds
+- Completed reload, in  0.551 seconds
 Platform assembly: C:\Users\lexus\Documents\GitHub\AGES-SP17\AGES-P1-Test1\testexe_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\lexus\Documents\GitHub\AGES-SP17\AGES-P1-Test1\testexe_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 2.672709 ms
+UnloadTime: 2.012844 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: de70 -> priority: 1 
+  Thread -> id: 3788 -> priority: 1 
+Joystick connected ("Controller (XBOX 360 For Windows)").
+ 
+(Filename:  Line: 1353)
+
 Joystick connected ("Controller (XBOX 360 For Windows)").
  
 (Filename:  Line: 1353)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 16.819233 ms
+UnloadTime: 17.909185 ms
 
 Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 196.
-Total: 2.566835 ms (FindLiveObjects: 0.039395 ms CreateObjectMapping: 0.037343 ms MarkObjects: 0.421034 ms  DeleteObjects: 2.067010 ms)
+Total: 2.663274 ms (FindLiveObjects: 0.038984 ms CreateObjectMapping: 0.037753 ms MarkObjects: 0.413238 ms  DeleteObjects: 2.171656 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.632022 ms
+UnloadTime: 1.275827 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 196.
+Total: 0.517060 ms (FindLiveObjects: 0.038984 ms CreateObjectMapping: 0.033649 ms MarkObjects: 0.416110 ms  DeleteObjects: 0.026263 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.112912 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 196.
+Total: 2.637421 ms (FindLiveObjects: 0.040215 ms CreateObjectMapping: 0.028315 ms MarkObjects: 0.390668 ms  DeleteObjects: 2.175349 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.920040 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 196.
+Total: 0.482590 ms (FindLiveObjects: 0.038164 ms CreateObjectMapping: 0.027904 ms MarkObjects: 0.394771 ms  DeleteObjects: 0.019287 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.270492 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 196.
+Total: 2.627162 ms (FindLiveObjects: 0.042678 ms CreateObjectMapping: 0.028315 ms MarkObjects: 0.400517 ms  DeleteObjects: 2.153189 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.461723 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 196.
-Total: 0.531833 ms (FindLiveObjects: 0.045550 ms CreateObjectMapping: 0.027904 ms MarkObjects: 0.430062 ms  DeleteObjects: 0.026263 ms)
+Total: 0.578205 ms (FindLiveObjects: 0.049654 ms CreateObjectMapping: 0.036932 ms MarkObjects: 0.463303 ms  DeleteObjects: 0.026263 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.313642 ms
+
+Unloading 209 unused Assets to reduce memory usage. Loaded Objects now: 232.
+Total: 4.787738 ms (FindLiveObjects: 0.058682 ms CreateObjectMapping: 0.052937 ms MarkObjects: 0.558507 ms  DeleteObjects: 4.115559 ms)
+
+Joystick disconnected ("Controller (XBOX 360 For Windows)").
+ 
+(Filename:  Line: 714)
+
+Joystick disconnected ("Controller (XBOX 360 For Windows)").
+ 
+(Filename:  Line: 714)
 
