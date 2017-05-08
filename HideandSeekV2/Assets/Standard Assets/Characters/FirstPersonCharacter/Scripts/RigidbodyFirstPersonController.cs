@@ -89,15 +89,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public MovementSettings movementSettings = new MovementSettings();
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
-
-       
-
+        public bool isSeeker = false;
+        public string seekerName;
+        public int jumpCount = 0;
 
         private Rigidbody m_RigidBody;
         private CapsuleCollider m_Capsule;
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
-        private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
+        public bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
         public GameObject Cube;
         public int m_PlayerNumber = 1; // Player Number        
         string m_MovementAxisName;        
@@ -149,11 +149,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             RotateView();
+            Debug.Log(seekerName);
 
-            if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
-            {
-                m_Jump = true;
-            }
+            //if (CrossPlatformInputManager.GetButtonDown(seekerName) && !m_Jump)
+            //{
+
+            //        m_Jump = true;
+
+            //}
         }
 
 

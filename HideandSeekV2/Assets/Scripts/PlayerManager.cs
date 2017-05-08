@@ -150,8 +150,11 @@ public class PlayerManager : MonoBehaviour
                         GM.hasSeeker = true;
                         m_Instance.AddComponent<Seeker>();
                         SeekerText.enabled = true;
-                        
-            
+                        PlayerCam.enabled = false;
+                        m_Movement.isSeeker = true;
+                       m_Movement.seekerName = "Jump" + m_PlayerNumber;
+
+
 
                         break;
 
@@ -190,7 +193,9 @@ public class PlayerManager : MonoBehaviour
             AL = PlayerCam.GetComponent<AudioListener>();
             AL.enabled = true;
             SeekerText.enabled = true;
-
+            PlayerCam.enabled = false;
+            m_Movement.isSeeker = true;
+            m_Movement.seekerName = "Jump" + m_PlayerNumber;
 
         }
 

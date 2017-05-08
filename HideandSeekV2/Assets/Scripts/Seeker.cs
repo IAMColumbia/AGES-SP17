@@ -13,8 +13,9 @@ public class Seeker : MonoBehaviour {
     GameManager GM;
     RigidbodyFirstPersonController RFPC;
     PlayerManager PM;
-    int PlayerNumber;
- 
+    int PlayerNumber, jumpLimit = 2;
+
+    bool gameStarted = false;
 
 
 
@@ -24,16 +25,19 @@ public class Seeker : MonoBehaviour {
 	void Start () {
 
         GM = FindObjectOfType<GameManager>();
-
+        PM = GetComponent<PlayerManager>();
         RFPC = GetComponent<RigidbodyFirstPersonController>();
         tagLayer = 1 << 8 | 1 << 9 | 1 << 10 | 1 << 11;
-
+        RFPC.movementSettings.ForwardSpeed = 0f;
+        RFPC.movementSettings.BackwardSpeed = 0f;
+       
 
     }
 
     void Update()
     {
-        
+        StartCoroutine(SeekerWait());
+
         if (Input.GetButtonDown(RFPC.SubmitName))
         {
             Debug.Log(RFPC.SubmitName);
@@ -41,6 +45,14 @@ public class Seeker : MonoBehaviour {
             GM.audioSource.volume = .25f;
             GM.audioSource.Play();
             Tag();
+        }
+
+        if (Input.GetButtonDown(RFPC.seekerName) && GM.jumpCount < jumpLimit && RFPC.m_IsGrounded == true && gameStarted == true)
+        {
+            
+            GM.Jump();
+            GM.hasJumped = true;
+            
         }
 
     }
@@ -76,5 +88,22 @@ public class Seeker : MonoBehaviour {
     }
 
 
- 
+    IEnumerator SeekerWait()
+    {
+
+
+        yield return new WaitForSeconds(20);
+
+        RFPC.cam.enabled = true;
+        RFPC.movementSettings.ForwardSpeed = 8f;
+        RFPC.movementSettings.BackwardSpeed = 4f;
+        gameStarted = true; 
+     
+
+
+
+    }
+
+
+
 }

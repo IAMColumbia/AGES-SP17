@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour {
     GameObject EndGamePanel;
     [SerializeField]
     Text endGameText;
+    public int jumpCount;
 
+    public bool hasJumped = false;
 
     private void SpawnPlayers()
     {
@@ -73,6 +75,12 @@ public class GameManager : MonoBehaviour {
             EndGame();
 
         }
+
+  
+       
+
+
+            
     }
 
     void EndGame()
@@ -87,6 +95,22 @@ public class GameManager : MonoBehaviour {
             endGameText.text = "SEEKER WINS";
         }
         EndGamePanel.SetActive(true);
+    }
+
+    public void Jump()
+    {
+        for (int i = 0; i < m_Players.Length; i++)
+        {
+            m_Players[i].m_Movement.m_Jump = true;
+
+            
+        }
+        if (hasJumped == true)
+        {
+            jumpCount++;
+            Debug.Log(jumpCount);
+            hasJumped = false;
+        }
     }
 
 }
