@@ -18,9 +18,9 @@ public class Goal : MonoBehaviour
 	
 	}
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if(coll.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
             gameManager.ReachedGoal = true;
         }

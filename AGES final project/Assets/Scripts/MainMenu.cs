@@ -60,4 +60,24 @@ public class MainMenu : MonoBehaviour
     {
         Application.OpenURL("https://www.assetstore.unity3d.com/en/#!/content/51503");
     }
+
+    public void SFXButtonPressed()
+    {
+        Application.OpenURL("http://www.bfxr.net/");
+    }
+
+    public void MainMenuMusicButtonPressed()
+    {
+        Application.OpenURL("https://opengameart.org/content/no-more-magic");
+    }
+
+    public void LevelMusicButtonPressed()
+    {
+        Application.OpenURL("https://opengameart.org/content/mysterious-ambience-song21");
+    }
+
+    public void FontButtonPressed()
+    {
+        Application.OpenURL("http://www.dafont.com/spideray.d2865");
+    }
 }

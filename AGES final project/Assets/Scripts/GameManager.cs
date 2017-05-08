@@ -6,17 +6,23 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    Image gameEndPanel;
-    [SerializeField]
-    GameObject youWinText;
+    Text youWinText;
     [SerializeField]
     GameObject pausePanel;
     [SerializeField]
     string sceneToLoad;
     [SerializeField]
+    string nextLevelToLoad;
+    [SerializeField]
     string restartSceneToLoad;
     [SerializeField]
     SwitchWorlds switchWorlds;
+    [SerializeField]
+    ParticleSystem particleSystem;
+    [SerializeField]
+    ParticleSystem particleSystem2;
+    [SerializeField]
+    Player player;
 
     bool isPaused = false;
 
@@ -26,10 +32,9 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        gameEndPanel.canvasRenderer.SetAlpha(0);
+        youWinText.canvasRenderer.SetAlpha(0f);
         pausePanel.SetActive(false);
         HandlePause();
-	
 	}
 	
 	// Update is called once per frame
@@ -46,8 +51,15 @@ public class GameManager : MonoBehaviour
 
     private void HandleWinning()
     {
-        gameEndPanel.CrossFadeAlpha(1, 1, false);
-        youWinText.SetActive(true);
+        player.DisablePlayer();
+        particleSystem.startColor = Color.green;
+        particleSystem2.startColor = Color.green;
+        youWinText.CrossFadeAlpha(1f, 1f, false);     
+        if(Input.GetButtonDown("Submit"))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(nextLevelToLoad);
+        }
+
     }
 
     private void HandlePause()

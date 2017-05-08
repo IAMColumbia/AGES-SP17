@@ -18,7 +18,14 @@ public class Player : MonoBehaviour
     GameObject respawnText;
     [SerializeField]
     Transform spritePosition;
+    [SerializeField]
+    AudioClip jumpSound;
+    [SerializeField]
+    AudioClip deathSound;
+    [SerializeField]
 
+    SwitchWorlds switchWorlds;
+    AudioSource audioSource;
     GameManager gameManager;
     Rigidbody2D rigidBody2D;
     SpriteRenderer spriteRenderer;
@@ -29,12 +36,17 @@ public class Player : MonoBehaviour
     float deathMoveSpeed = 0f;
     float deathJumpHeight = 0f;
     bool isOnGround;
+    bool playDeathSoundOnce = true;
+    bool canMove = true;
+    bool canJump = true;
 
     public bool isAlive;
 
     // Use this for initialization
     void Start ()
     {
+        switchWorlds = gameObject.GetComponentInChildren<SwitchWorlds>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -61,41 +73,55 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        aliveMoveSpeed = moveSpeed;
-        float moveInput = Input.GetAxis("Horizontal");
-        animator.SetFloat("Speed", Mathf.Abs(moveInput));
-        float currentYVelocity = rigidBody2D.velocity.y;
-        Vector2 velocityToSet = new Vector2(aliveMoveSpeed * moveInput, currentYVelocity);
-        rigidBody2D.velocity = velocityToSet;
-        if(moveInput < 0)
+        if(canMove)
         {
+            aliveMoveSpeed = moveSpeed;
+            float moveInput = Input.GetAxis("Horizontal");
+            animator.SetFloat("Speed", Mathf.Abs(moveInput));
+            float currentYVelocity = rigidBody2D.velocity.y;
+            Vector2 velocityToSet = new Vector2(aliveMoveSpeed * moveInput, currentYVelocity);
+            rigidBody2D.velocity = velocityToSet;
+            if (moveInput < 0)
+            {
 
-            spriteRenderer.flipX = true;
+                spriteRenderer.flipX = true;
+            }
+            else if (moveInput > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
         }
-        else if(moveInput > 0)
+        else
         {
-            spriteRenderer.flipX = false;
+            rigidBody2D.velocity = new Vector2(0f, 0f);
         }
+
     }
 
     private void HandleJump()
     {
-        if (Input.GetButtonDown("Jump") && isOnGround)
+        if(canJump)
         {
-            aliveJumpHeight = jumpHeight;
-            animator.SetBool("IsOnGround", false);
-            float currentXVelocity = rigidBody2D.velocity.x;
-            Vector2 velocityToSet = new Vector2(currentXVelocity, aliveJumpHeight);
-            rigidBody2D.velocity = velocityToSet;
+            if (Input.GetButtonDown("Jump") && isOnGround)
+            {
+                audioSource.clip = jumpSound;
+                audioSource.Play();
+                aliveJumpHeight = jumpHeight;
+                animator.SetBool("IsOnGround", false);
+                float currentXVelocity = rigidBody2D.velocity.x;
+                Vector2 velocityToSet = new Vector2(currentXVelocity, aliveJumpHeight);
+                rigidBody2D.velocity = velocityToSet;
+            }
+            else if (isOnGround)
+            {
+                animator.SetBool("IsOnGround", true);
+            }
+            else if (isOnGround == false)
+            {
+                animator.SetBool("IsOnGround", false);
+            }
         }
-        else if(isOnGround)
-        {
-            animator.SetBool("IsOnGround", true);
-        }
-        else if(isOnGround == false)
-        {
-            animator.SetBool("IsOnGround", false);
-        }
+
     }
 
     private void CheckIsOnGround()
@@ -106,6 +132,16 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
+        if(playDeathSoundOnce)
+        {
+            audioSource.clip = deathSound;
+            audioSource.Play();
+            playDeathSoundOnce = false;
+        }
+        else
+        {
+            audioSource.Stop();
+        }
         respawnText.SetActive(true);
         animator.SetBool("IsAlive", false);
         aliveMoveSpeed = deathMoveSpeed;
@@ -122,6 +158,7 @@ public class Player : MonoBehaviour
             this.transform.position = gameManager.currentCheckpoint.position;
             aliveMoveSpeed = moveSpeed;
             aliveJumpHeight = jumpHeight;
+            playDeathSoundOnce = true;
         }
     }
 
@@ -139,5 +176,13 @@ public class Player : MonoBehaviour
         {
             transform.parent = null;
         }
+    }
+
+    public void DisablePlayer()
+    {
+        canMove = false;
+        animator.SetFloat("Speed", 0f);
+        canJump = false;
+        switchWorlds.enabled = false; 
     }
 }
