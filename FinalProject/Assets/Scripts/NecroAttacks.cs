@@ -6,14 +6,24 @@ public class NecroAttacks : MonoBehaviour
     Stats necro;
     Stats knight;
 
+    BattleManager battleManager;
+
+    bool canUseAbsorb = true;
+    bool canUseBoneArmor = true;
+
     void Start()
     {
         necro = this.gameObject.GetComponent<Stats>();
         knight = GameObject.Find("Knight").GetComponent<Stats>();
+
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
 
-    public void AttackStrength()
+    void AttackStrength()
     {
+        // add animation
+        // play sfx
+
         int amount = necro.Strength - knight.Armor;
 
         if (amount < 1)
@@ -22,17 +32,29 @@ public class NecroAttacks : MonoBehaviour
         }
 
         knight.TakeStrengthDamage(amount);
+
+        battleManager.EndTurn();
     }
 
-    public void AttackArmor()
+    void AttackArmor()
     {
+        // add animation
+        // play sfx
+
         int amount = necro.Strength;
 
         knight.TakeArmorDamage(amount);
+
+        battleManager.EndTurn();
     }
 
-    public void Absorb()
+    void Absorb()
     {
+        canUseAbsorb = false;
+
+        // add animation
+        // play sfx
+
         int amount = necro.Strength - knight.Armor;
 
         if (amount < 1)
@@ -48,12 +70,40 @@ public class NecroAttacks : MonoBehaviour
         }
 
         knight.TakeStrengthDamage(amount);
+
+        battleManager.EndTurn();
     }
 
-    public void BoneArmor()
+    void BoneArmor()
     {
+        canUseBoneArmor = false;
+
+        //play sfx
+
         int amount = necro.MaxStrength - necro.Strength;
 
         necro.Armor += amount;
+
+        battleManager.EndTurn();
+    }
+
+    public void ChooseAttack()
+    {
+        if (necro.Strength <= 5 && canUseBoneArmor)
+        {
+            BoneArmor();
+        }
+        else if (necro.Strength < knight.Armor)
+        {
+            AttackArmor();
+        }
+        else if (canUseAbsorb)
+        {
+            Absorb();
+        }
+        else
+        {
+            AttackStrength();
+        }
     }
 }

@@ -49,15 +49,30 @@ public class Stats : MonoBehaviour
         }
     }
 
+    BattleManager battleManager;
+
     void Start()
     {
         strength = maxStrength;
         armor = maxArmor;
+
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
 
     public void TakeStrengthDamage(int amount)
     {
         strength -= amount;
+
+        if (strength <= 0)
+        {
+            strength = 0;
+
+            Die();
+        }
+        else
+        {
+            // play sfx
+        }
     }
 
     public void TakeArmorDamage(int amount)
@@ -68,5 +83,14 @@ public class Stats : MonoBehaviour
         {
             armor = 0;
         }
+
+        // play sfx
+    }
+
+    void Die()
+    {
+        // play sfx
+
+        battleManager.EndBattle();
     }
 }
