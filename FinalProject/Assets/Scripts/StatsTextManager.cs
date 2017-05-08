@@ -8,13 +8,13 @@ public class StatsTextManager : MonoBehaviour
     Text knightStrengthText2;
     Text knightArmorText;
     Text knightArmorText2;
-    Text necroStrengthText;
-    Text necroStrengthText2;
-    Text necroArmorText;
-    Text necroArmorText2;
+    Text enemyStrengthText;
+    Text enemyStrengthText2;
+    Text enemyArmorText;
+    Text enemyArmorText2;
 
     Stats knight;
-    Stats necro;
+    Stats enemy;
 
     void Start()
     {
@@ -22,13 +22,13 @@ public class StatsTextManager : MonoBehaviour
         knightStrengthText2 = GameObject.Find("KnightStrengthText2").GetComponent<Text>();
         knightArmorText = GameObject.Find("KnightArmorText").GetComponent<Text>();
         knightArmorText2 = GameObject.Find("KnightArmorText2").GetComponent<Text>();
-        necroStrengthText = GameObject.Find("NecroStrengthText").GetComponent<Text>();
-        necroStrengthText2 = GameObject.Find("NecroStrengthText2").GetComponent<Text>();
-        necroArmorText = GameObject.Find("NecroArmorText").GetComponent<Text>();
-        necroArmorText2 = GameObject.Find("NecroArmorText2").GetComponent<Text>();
+        enemyStrengthText = GameObject.Find("NecroStrengthText").GetComponent<Text>();
+        enemyStrengthText2 = GameObject.Find("NecroStrengthText2").GetComponent<Text>();
+        enemyArmorText = GameObject.Find("NecroArmorText").GetComponent<Text>();
+        enemyArmorText2 = GameObject.Find("NecroArmorText2").GetComponent<Text>();
 
         knight = GameObject.Find("Knight").GetComponent<Stats>();
-        necro = GameObject.Find("Necro").GetComponent<Stats>();
+        enemy = GameObject.Find("Necro").GetComponent<Stats>();
     }
 
     void Update()
@@ -39,10 +39,10 @@ public class StatsTextManager : MonoBehaviour
         knightArmorText.text = "Armor: " + knight.Armor;
         knightArmorText2.text = "Armor: " + knight.Armor;
 
-        necroStrengthText.text = "Strength: " + necro.Strength;
-        necroStrengthText2.text = "Strength: " + necro.Strength;
+        enemyStrengthText.text = "Strength: " + enemy.Strength;
+        enemyStrengthText2.text = "Strength: " + enemy.Strength;
 
-        necroArmorText.text = "Armor: " + necro.Armor;
-        necroArmorText2.text = "Armor: " + necro.Armor;
+        enemyArmorText.text = "Armor: " + enemy.Armor;
+        enemyArmorText2.text = "Armor: " + enemy.Armor;
     }
 }
