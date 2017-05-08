@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -10,9 +11,27 @@ public class MainMenuUI : MonoBehaviour
     GameObject creditsImage;
     [SerializeField]
     GameObject quitDialogueImage;
+    [SerializeField]
+    Image fadeOutImage;
+    [SerializeField]
+    AudioSource musicLoop;
 
     public void StartButtonPressed()
     {
+        StartCoroutine(FadeOutToNextScene());
+    }
+
+    IEnumerator FadeOutToNextScene()
+    {
+        fadeOutImage.gameObject.SetActive(true);
+
+        for (int i = 0; i < 100; i++)
+        {
+            fadeOutImage.color = new Color(fadeOutImage.color.r, fadeOutImage.color.g, fadeOutImage.color.b, fadeOutImage.color.a + 0.01f);
+            musicLoop.volume -= 0.01f;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
         SceneManager.LoadScene(nextScene);
     }
 

@@ -56,10 +56,6 @@ public class CalculateScore : MonoBehaviour
     [SerializeField]
     Text scoreText;
     [SerializeField]
-    GameObject tryAgainButton;
-    [SerializeField]
-    GameObject continueButton;
-    [SerializeField]
     GameObject tappingSlider;
     [SerializeField]
     GameObject tappingStopButton;
@@ -173,8 +169,6 @@ public class CalculateScore : MonoBehaviour
             }
             scoreText.text = gradeString(score);
             scorePanel.SetActive(true);
-            tryAgainButton.SetActive(true);
-            continueButton.SetActive(true);
             noEnergyPanels.SetActive(false);
             hasCheckedAnswers = true;
         }
