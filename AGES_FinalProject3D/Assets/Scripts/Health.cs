@@ -6,8 +6,10 @@ public class Health : MonoBehaviour
     [SerializeField]
     private int healthValue;
 
-    [SerializeField]
+    //[SerializeField]
     private ParticleSystem deathExplosion;
+    [SerializeField]
+    private string deathExplosionName;
 
     private AudioSource deathSound;
 
@@ -22,6 +24,7 @@ public class Health : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        deathExplosion = GameObject.Find(deathExplosionName).GetComponent<ParticleSystem>();
         deathSound = deathExplosion.GetComponent<AudioSource>();
 	}
 	
