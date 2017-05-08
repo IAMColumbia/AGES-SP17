@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameUI : MonoBehaviour
 {
@@ -15,13 +16,15 @@ public class GameUI : MonoBehaviour
     private Text finalScoreText;
     [SerializeField]
     private string pauseButton;
+    [SerializeField]
+    private GameObject firstSelectedButton;
 
     private int score = 0;
     private bool isPaused = false;
     private Text scoreText;
     private Text winOrLoseText;
     private Slider healthSlider;
-
+    private EventSystem gameEventSystem;
     // Use this for initialization
     void Start ()
     {
@@ -36,6 +39,8 @@ public class GameUI : MonoBehaviour
 
         healthSlider = GetComponentInChildren<Slider>();
         healthSlider.maxValue = playerHealth.HealthValue;
+
+        gameEventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 	}
 	
 	// Update is called once per frame
@@ -74,6 +79,7 @@ public class GameUI : MonoBehaviour
         afterActionReport.SetActive(true);
         winOrLoseText.text = "You Win!";
         finalScoreText.text += score.ToString();
+        gameEventSystem.SetSelectedGameObject(firstSelectedButton);
     }
 
     public void Lose()
@@ -81,6 +87,7 @@ public class GameUI : MonoBehaviour
         afterActionReport.SetActive(true);
         winOrLoseText.text = "You Lose!";
         finalScoreText.text += score.ToString();
+        gameEventSystem.SetSelectedGameObject(firstSelectedButton);
     }
 
     #region buttonFunctions

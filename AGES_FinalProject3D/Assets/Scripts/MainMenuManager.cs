@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
     private string cancelButton;
+    [SerializeField]
+    private GameObject TitlePanelFirstSelected;
+    [SerializeField]
+    private GameObject CreditsPanelFirstSelected;
+    [SerializeField]
+    private GameObject HowToPlayPanelFirstSelected;
 
     private GameObject TitlePanel;
     private GameObject CreditsPanel;
     private GameObject HowToPlayPanel;
+    private EventSystem mainEventSystem;
 
 	// Use this for initialization
 	void Start ()
@@ -17,6 +25,7 @@ public class MainMenuManager : MonoBehaviour
         TitlePanel = GameObject.Find("TitlePanel");
         CreditsPanel = GameObject.Find("CreditsPanel");
         HowToPlayPanel = GameObject.Find("HowToPlayPanel");
+        mainEventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 
         CloseInstuctionsAndCredits();
 	}
@@ -40,6 +49,8 @@ public class MainMenuManager : MonoBehaviour
         TitlePanel.SetActive(false);
         CreditsPanel.SetActive(true);
         HowToPlayPanel.SetActive(false);
+
+        mainEventSystem.SetSelectedGameObject(CreditsPanelFirstSelected);
     }
 
     public void OpenHowToPlayPanel()
@@ -47,6 +58,8 @@ public class MainMenuManager : MonoBehaviour
         TitlePanel.SetActive(false);
         CreditsPanel.SetActive(false);
         HowToPlayPanel.SetActive(true);
+
+        mainEventSystem.SetSelectedGameObject(HowToPlayPanelFirstSelected);
     }
 
     public void CloseInstuctionsAndCredits()
@@ -54,6 +67,8 @@ public class MainMenuManager : MonoBehaviour
         TitlePanel.SetActive(true);
         CreditsPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
+
+        mainEventSystem.SetSelectedGameObject(TitlePanelFirstSelected);
     }
 
     public void Quit()
