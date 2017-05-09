@@ -3,10 +3,15 @@ using System.Collections;
 
 public class NecroAttacks : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip attackAudio;
+
     Stats necro;
     Stats knight;
 
     BattleManager battleManager;
+    AudioSource sfx;
+    Animator anim;
 
     bool canUseAbsorb = true;
     bool canUseBoneArmor = true;
@@ -17,12 +22,15 @@ public class NecroAttacks : MonoBehaviour
         knight = GameObject.Find("Knight").GetComponent<Stats>();
 
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        sfx = this.GetComponent<AudioSource>();
+        anim = this.GetComponent<Animator>();
     }
 
     void AttackStrength()
     {
-        // add animation
-        // play sfx
+        anim.SetTrigger("Attack");
+        sfx.clip = attackAudio;
+        sfx.PlayDelayed(0.5f);
 
         int amount = necro.Strength - knight.Armor;
 
@@ -38,8 +46,9 @@ public class NecroAttacks : MonoBehaviour
 
     void AttackArmor()
     {
-        // add animation
-        // play sfx
+        anim.SetTrigger("Attack");
+        sfx.clip = attackAudio;
+        sfx.PlayDelayed(0.5f);
 
         int amount = necro.Strength;
 
@@ -51,9 +60,10 @@ public class NecroAttacks : MonoBehaviour
     void Absorb()
     {
         canUseAbsorb = false;
-
-        // add animation
-        // play sfx
+        
+        anim.SetTrigger("Attack");
+        sfx.clip = attackAudio;
+        sfx.PlayDelayed(0.5f);
 
         int amount = necro.Strength - knight.Armor;
 
@@ -78,7 +88,8 @@ public class NecroAttacks : MonoBehaviour
     {
         canUseBoneArmor = false;
 
-        //play sfx
+        sfx.clip = attackAudio;
+        sfx.PlayDelayed(0.5f);
 
         int amount = necro.MaxStrength - necro.Strength;
 
@@ -89,21 +100,25 @@ public class NecroAttacks : MonoBehaviour
 
     public void ChooseAttack()
     {
-        if (necro.Strength <= 5 && canUseBoneArmor)
+        if (necro.Strength > 0)
         {
-            BoneArmor();
-        }
-        else if (necro.Strength < knight.Armor)
-        {
-            AttackArmor();
-        }
-        else if (canUseAbsorb)
-        {
-            Absorb();
-        }
-        else
-        {
-            AttackStrength();
+            if (necro.Strength <= 5 && canUseBoneArmor)
+            {
+                BoneArmor();
+            }
+            
+            else if ((necro.Strength - knight.Armor < knight.Strength / 2) && (necro.Strength / 2 <= knight.Armor))
+            {
+                AttackArmor();
+            }
+            else if (canUseAbsorb)
+            {
+                Absorb();
+            }
+            else
+            {
+                AttackStrength();
+            }
         }
     }
 }

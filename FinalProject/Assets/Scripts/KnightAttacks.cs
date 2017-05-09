@@ -3,10 +3,15 @@ using System.Collections;
 
 public class KnightAttacks : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip attackAudio;
+
     Stats knight;
     Stats enemy;
 
     BattleManager battleManager;
+    AudioSource sfx;
+    Animator anim;
 
     bool canUseRecklessCharge = true;
     bool canUseBattlePrayer = true;
@@ -17,12 +22,15 @@ public class KnightAttacks : MonoBehaviour
         enemy = GameObject.Find("Necro").GetComponent<Stats>();
 
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        sfx = this.GetComponent<AudioSource>();
+        anim = this.GetComponent<Animator>();
     }
 
     public void AttackStrength()
     {
-        // add animation
-        // play sfx
+        anim.SetTrigger("Attack");
+        sfx.clip = attackAudio;
+        sfx.PlayDelayed(0.5f);
 
         int amount = knight.Strength - enemy.Armor;
 
@@ -38,8 +46,9 @@ public class KnightAttacks : MonoBehaviour
 
     public void AttackArmor()
     {
-        // add animation
-        // play sfx
+        anim.SetTrigger("Attack");
+        sfx.clip = attackAudio;
+        sfx.PlayDelayed(0.5f);
 
         int amount = knight.Strength;
 
@@ -53,9 +62,10 @@ public class KnightAttacks : MonoBehaviour
         if (canUseRecklessCharge)
         {
             canUseRecklessCharge = false;
-
-            // add animation
-            // play sfx
+            
+            anim.SetTrigger("Attack");
+            sfx.clip = attackAudio;
+            sfx.PlayDelayed(0.5f);
 
             int amount = knight.Armor / 3;
 
@@ -77,7 +87,8 @@ public class KnightAttacks : MonoBehaviour
         {
             canUseBattlePrayer = false;
 
-            // play sfx
+            sfx.clip = attackAudio;
+            sfx.PlayDelayed(0.5f);
 
             int amount = knight.MaxArmor - knight.Armor;
 

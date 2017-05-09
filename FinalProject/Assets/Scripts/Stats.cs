@@ -4,6 +4,11 @@ using System.Collections;
 public class Stats : MonoBehaviour
 {
     [SerializeField]
+    AudioClip damageAudio;
+    [SerializeField]
+    AudioClip deathAudio;
+
+    [SerializeField]
     int maxStrength;
     public int MaxStrength
     {
@@ -50,6 +55,8 @@ public class Stats : MonoBehaviour
     }
 
     BattleManager battleManager;
+    AudioSource sfx;
+    Animator anim;
 
     void Start()
     {
@@ -57,6 +64,8 @@ public class Stats : MonoBehaviour
         armor = maxArmor;
 
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        sfx = this.GetComponent<AudioSource>();
+        anim = this.GetComponent<Animator>();
     }
 
     public void TakeStrengthDamage(int amount)
@@ -71,7 +80,8 @@ public class Stats : MonoBehaviour
         }
         else
         {
-            // play sfx
+            sfx.clip = damageAudio;
+            sfx.PlayDelayed(1.0f);
         }
     }
 
@@ -84,13 +94,17 @@ public class Stats : MonoBehaviour
             armor = 0;
         }
 
-        // play sfx
+        sfx.clip = damageAudio;
+        sfx.PlayDelayed(1.0f);
     }
 
     void Die()
     {
-        // play sfx
+        sfx.clip = deathAudio;
+        sfx.PlayDelayed(1.0f);
+        
+        anim.SetTrigger("Die");
 
-        battleManager.EndBattle();
+        StartCoroutine(battleManager.EndBattle());
     }
 }

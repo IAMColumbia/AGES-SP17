@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
     [SerializeField]
     Canvas battleCanvas;
+    [SerializeField]
+    Button[] battleButtons;
     [SerializeField]
     float pauseLengthBetweenTurns;
 
@@ -27,13 +30,25 @@ public class BattleManager : MonoBehaviour
 
     public void EndTurn()
     {
-        isPlayerTurn = !isPlayerTurn;
+        if (knight.Strength > 0)
+        {
+            isPlayerTurn = !isPlayerTurn;
 
-        StartCoroutine(PauseBetweenTurns());
+            StartCoroutine(PauseBetweenTurns());
+        }
     }
 
-    public void EndBattle()
+    public IEnumerator EndBattle()
     {
+        battleCanvas.enabled = true;
+
+        for (int i = 0; i < battleButtons.Length; i++)
+        {
+            battleButtons[i].enabled = false;
+        }
+        
+        yield return new WaitForSeconds(7.5f);
+
         if (knight.Strength > 0)
         {
             SceneManager.LoadScene("WinScreen");
