@@ -5,10 +5,13 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour {
 
     [SerializeField]
-    float maxHealth;
+    float maxHealth, startingHealth;
 
     [SerializeField]
     Alarm alarm;
+
+    [SerializeField]
+    PowerUI power;
 
     float health;
 
@@ -18,7 +21,9 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        health = maxHealth;
+        health = startingHealth;
+
+        power.goToPercent(health / maxHealth);
 	}
 	
 	// Update is called once per frame
@@ -49,6 +54,8 @@ public class Player : MonoBehaviour {
                 incomingAttacks.RemoveAt(i);
             }
         }
+
+        health = power.Power * maxHealth;
 	}
 
     void StartWarning()
@@ -71,6 +78,8 @@ public class Player : MonoBehaviour {
         health -= amount;
 
         Debug.Log("HIT FOR " + amount + "! REMAINING HEALTH: " + health);
+
+        power.goToPercent(health / maxHealth);
     }
 }
 

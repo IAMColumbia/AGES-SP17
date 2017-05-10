@@ -8,11 +8,11 @@ public class PowerUI : MonoBehaviour {
     Text PowerText, PercentageText;
 
     [SerializeField]
-    Image FillImage;
+    Image FillImage, BGFillImage;
 
     float t = 0;
 
-    public float speed;
+    public float speed, BGFillSpeed;
     public Color finishedColor;
 
     public bool IsAtFullPower
@@ -20,6 +20,14 @@ public class PowerUI : MonoBehaviour {
         get
         {
             return t >= 1;
+        }
+    }
+
+    public float Power
+    {
+        get
+        {
+            return t;
         }
     }
 
@@ -34,12 +42,27 @@ public class PowerUI : MonoBehaviour {
         {
             t += Time.deltaTime * speed;
             goToPercent(t);
+            updateBGFill();
         }
 	}
 
-    void goToPercent(float percentage)
+    void updateBGFill()
+    {
+        if(t > BGFillImage.fillAmount)
+        {
+            BGFillImage.fillAmount = t;
+        }
+
+        else
+        {
+            BGFillImage.fillAmount = Mathf.Lerp(BGFillImage.fillAmount, t, BGFillSpeed);
+        }
+    }
+
+    public void goToPercent(float percentage)
     {
         percentage = Mathf.Clamp01(percentage);
+        t = percentage;
         PercentageText.text = percentage.ToString("###.000%");
         FillImage.fillAmount = percentage;
 

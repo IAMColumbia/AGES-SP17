@@ -18,13 +18,9 @@ public class Engine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space) && !wonGame && power.IsAtFullPower)
-        {
-            winGame();
-        }
 	}
 
-    void winGame()
+    public void winGame()
     {
         wonGame = true;
         anim.SetTrigger("win");
