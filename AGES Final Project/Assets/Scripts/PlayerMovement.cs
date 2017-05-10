@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             targetPosition = player1Camera.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+			transform.position = targetPosition;
         }
     }
 
