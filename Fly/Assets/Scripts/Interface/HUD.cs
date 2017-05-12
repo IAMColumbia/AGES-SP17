@@ -11,7 +11,7 @@ public class HUD : MonoBehaviour
     //[SerializeField]
     //Image shieldUI;
     //[SerializeField]
-    Sprite[] poofSprites;
+    //Sprite[] poofSprites;
     [SerializeField]
     Image poofUI;
 
@@ -24,11 +24,11 @@ public class HUD : MonoBehaviour
     private void Update()
     {
         //Visual representation of current player health.       
-<<<<<<< HEAD
-      // shieldUI.sprite = shieldSprites[(int)player.Shield];
-=======
-       //shieldUI.sprite = shieldSprites[(int)player.Shield];
->>>>>>> origin/deandre.test
-       poofUI.sprite = poofSprites[(int)player.Shield];
+//<<<<<<< HEAD
+//      // shieldUI.sprite = shieldSprites[(int)player.Shield];
+//=======
+//       //shieldUI.sprite = shieldSprites[(int)player.Shield];
+//>>>>>>> origin/deandre.test
+//       poofUI.sprite = poofSprites[(int)player.Shield];
     }
 }

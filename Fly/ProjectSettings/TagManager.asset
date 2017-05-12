@@ -9,6 +9,7 @@ TagManager:
   - RoundWinner
   - Water
   - Rings
+  - Ring Trigger
   layers:
   - Default
   - TransparentFX

@@ -13,10 +13,14 @@ public class RingManager
     [HideInInspector]
     public int m_Wins;
 
+    
+    
+
  private GameObject m_CanvasGameObject;
     public void Setup()
     {              
-        MeshRenderer[] renderers = m_Instance.GetComponentsInChildren<MeshRenderer>();    
+        MeshRenderer[] renderers = m_Instance.GetComponentsInChildren<MeshRenderer>();
+            
     }
     public void EnableControl()
     {   
@@ -30,6 +34,9 @@ public class RingManager
         m_Instance.transform.rotation = m_SpawnPoint.rotation;
 
         m_Instance.SetActive(false);
-        m_Instance.SetActive(true);
+    
+
+        m_Instance.SetActive(true);      
+    
     }
 }

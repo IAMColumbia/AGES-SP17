@@ -8,15 +8,16 @@ using System;
 public class GameManager : MonoBehaviour
 {
    
-    public int m_NumRoundsToWin = 3;
-    public float m_StartDelay = 3f;
-    public float m_ResetDelay = 5f;
+    public int m_NumLapsToWin = 3;
+    public float m_StartDelay = .01f;
+    public float m_ResetDelay = .5f;
     float countDownTime = 4f;
-    public float m_EndDelay = 5f;
+    public float m_EndDelay = 0.01f;
 
-    PlayerFlightControl playerFlightControl;
+   
+    
     [SerializeField]
-    GameObject textBox;
+    public GameObject textBox;
     public Text m_MessageText;
     public GameObject ringToggle;
 
@@ -25,70 +26,97 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     GameObject[] rings;
-    [SerializeField]
-    GameObject ring;
+
+    //public GameObject roundWonPlane;
+   
     int ringIndex;
   
     public TimeLimit timeLimit;
     Text totalText;
-  
+    //[SerializeField]
+    bool roundWon;
     [SerializeField]
-    ArrayList[] ringSets;
-
+    public GameObject round1;
     [SerializeField]
-    GameObject m_RoundWinner;
+    public GameObject round2;
     [SerializeField]
-    GameObject m_GameWinner;
+    public GameObject round3;
+    public bool roundOneDone = false;
+    public bool roundTwoDone = false;
+    public bool roundThreeDone = false;
+    public GameObject m_RoundWinner;
+    [SerializeField]
+    public GameObject m_GameWinner;
     Text countText;
-    public bool HasGoal
-    {
-        get
-        {
-            return m_RoundWinner.activeSelf;
-        }
-    } 
-    private int m_RoundNumber = 1;
+    private int m_NumOfLaps = 1;
     private WaitForSeconds m_StartWait;
     private WaitForSeconds m_EndWait;
     private WaitForSeconds m_ResetTime;
-    //The scripts are aligned with player manager not tank manager...I think.        
+
+    public bool Round1
+    {
+        get
+        {
+            return round1.activeSelf;
+        }
+    }
+    public bool Round2
+    {
+        get
+        {
+            return round2.activeSelf;
+        }
+    }
+    public bool Round3
+    {
+        get
+        {
+            return round3.activeSelf;
+        }
+    }
+
+
+
+
+
     private void Start()
     {
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
         m_ResetTime = new WaitForSeconds(m_ResetDelay);
-
-       ring = GameObject.FindGameObjectWithTag("Ring");
-       rings = GameObject.FindGameObjectsWithTag("Rings");
+  
        totalText = GameObject.Find("Total Rings").GetComponent<Text>();
-       countText = GameObject.Find("Rings Collected").GetComponent<Text>();
-        //ShowRings();
-
-        SpawnAllRings();
+          
+        m_RoundWinner = GameObject.FindGameObjectWithTag("RoundWinner");
+        //roundWonPlane = GameObject.FindGameObjectWithTag("Finish");
+        rings = GameObject.FindGameObjectsWithTag("Ring Trigger");
+      
+      
+   //     SpawnAllRings();
         textBox.SetActive(false);
         StartCoroutine(GameLoop());
-        
+        m_GameWinner.SetActive(false);
+
     }
 
     private void SpawnAllRings()
-    {
+    {      
         for (int i = 0; i < ringSpawnPoints.Length; i++)
         {
             ringSpawnPoints[i].m_Instance = Instantiate(ringToggle, ringSpawnPoints[i].m_SpawnPoint.position, ringSpawnPoints[i].m_SpawnPoint.rotation) as GameObject;
-            ringSpawnPoints[i].m_RingNumber = i + 1;
-
-            ringSpawnPoints[i].Setup();
-        }
+            ringSpawnPoints[i].m_RingNumber = i + 1;           
+            ringSpawnPoints[i].Setup();     
+        }     
     }
     private IEnumerator GameLoop()
     {
-        
+      
         yield return StartCoroutine(RoundStarting());
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
         StartCoroutine(GameLoop());
-        if (m_GameWinner != null)
+        if (m_GameWinner.activeSelf)
         {
             SceneManager.LoadScene(0);
         }
@@ -101,11 +129,12 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundStarting()
     {
         totalText.text = ringSpawnPoints.Length.ToString();
-        GameObject m_RoundWinner;
+  
         m_RoundWinner = GameObject.FindGameObjectWithTag("RoundWinner");
-     
-        m_RoundWinner.SetActive(false);
-       ResetRings();//SpawnAllRings use to be here, now ResetRings placement
+        m_RoundWinner.transform.Translate(Vector3.up);
+        roundWon = false;
+        // m_RoundWinner.SetActive(false);
+        SpawnAllRings();
 
         for (int i = 0; i < ringSpawnPoints.Length; i++)
         {
@@ -115,29 +144,29 @@ public class GameManager : MonoBehaviour
             }
         }
         yield return StartCoroutine(StartCountDown());
-        m_RoundNumber++;
+       
         if (m_StartDelay == 0)
         {
-            m_MessageText.text = "ROUND" + m_RoundNumber + " Start!";
+      //    m_MessageText.text = "ROUND" + m_NumOfLaps + " Start!";
         }
         yield return m_StartWait;
     }
-    private IEnumerator WaitAGodDamnSecond()
-    {
-        yield return m_ResetDelay;
-    }
+    //private IEnumerator WaitAGodDamnSecond()
+    //{
+    //    yield return m_ResetDelay;
+    //}
     public IEnumerator StartCountDown()
     {
         while (countDownTime > 0f)
         {
             textBox.SetActive(true);
             countDownTime -= 1f;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
             m_MessageText.text = countDownTime.ToString();
         }
         if (countDownTime == 0)
         {
-            m_MessageText.text = "Round " + m_RoundNumber + " Start!";
+            m_MessageText.text = "Cycle " + m_NumOfLaps + " commence!";
         }
     }
     private IEnumerator RoundPlaying()
@@ -146,67 +175,72 @@ public class GameManager : MonoBehaviour
         textBox.SetActive(false);
       
         m_MessageText.text = string.Empty;
-        while (!noRingsActive())
+        while (!checkRoundWinner())
         {
             yield return null;
             Debug.Log("while loops no rings active");
-            yield return null;
-        }    
-    }
-
-    private bool noRingsActive()
-    {
-        //int numRingsCollected = 0;
-        int ringsNeeded = 3;
-        ring = rings[0]
-        foreach (GameObject ring in rings)
-        {
-            ringsNeeded--;
-            playerFlightControl.ringCount = ringIndex;
-
-            Debug.Log("RingsNeeded: " + ringsNeeded);
-            Debug.Log("playerFlightControl.ringCount: " + playerFlightControl.ringCount);
-            Debug.Log("ringIndex: " + ringIndex);
+           // yield return null;
         }
-        Debug.Log("foreachLoop");
-        return ringsNeeded <= 0;
+        Debug.Log("noringsActive now");
     }
 
-    //private bool OneTankLeft()
-    //{
-    //    int numTanksLeft = 0;
+    private bool checkRoundWinner()
+    {     
+        int ringsNeeded = 0;
 
-    //    for (int i = 0; i < m_Tanks.Length; i++)
-    //    {
-    //        if (m_Tanks[i].m_Instance.activeSelf)
-    //            numTanksLeft++;
-    //    }
-    //    return numTanksLeft <= 1;
-    //}
-
+        if (round3 == null)//if setactive(false) checkRoundWinner(true)
+        {
+            roundWon = true;
+            return roundWon;
+        }          
+       if(round3 != null)
+        {
+            if (Round3 == false)
+            {
+                return roundWon;
+            }
+            if (round2 == null)//if setactive(false) checkRoundWinner(false)
+                return false;
+            if (Round2 == false)
+            {
+                roundWon = true;
+                return roundWon;
+            }
+            if (round2 != null)
+            {
+                if (round1 == null)
+                    return false;
+                if (Round1 == false)
+                {
+                    roundWon = true;
+                    return roundWon;
+                }
+            }           
+        }      
+      
+       return ringsNeeded >= 30;
+    }
 
     private IEnumerator RoundEnding()
     {
     textBox.SetActive(true);
-    m_RoundWinner.SetActive(true);
-        Debug.Log("Round ended");       
+    //m_RoundWinner.SetActive(true);
+        Debug.Log("Round ended");
+
+        m_MessageText.text = "Cycle " + (m_NumOfLaps) + " complete...";
+        string message = EndMessage();
+        yield return m_EndWait;
         m_RoundWinner = null; //Original roundwinner placement                 
 
         //     HasGoal = GetGameWinner();
-       
-        m_MessageText.text = "Round "+ (m_RoundNumber - 1)+" Done, Good Job!";
-     
-        string message = EndMessage();
+        if (m_GameWinner != null)
+            m_NumOfLaps++;
+        if(m_NumOfLaps > 3)
+        {
+            m_GameWinner.SetActive(true);
+        }     
         yield return m_EndWait;
-    }
-   
-    private void GetGameWinner()
-    {
-     
-       
-    }
- 
-    
+    }  
     private string EndMessage()
     {
         textBox.SetActive(true);
@@ -216,7 +250,7 @@ public class GameManager : MonoBehaviour
         {
             return message = " Good job!";
         }
-        if (HasGoal)
+        if (m_GameWinner.activeSelf)
         {
             return message = "You Win!!";
         }
@@ -227,6 +261,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < ringSpawnPoints.Length; i++)
         {
             ringSpawnPoints[i].Reset();
-        }
+        } 
     }
 }

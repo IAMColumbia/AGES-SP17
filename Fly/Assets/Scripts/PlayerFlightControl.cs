@@ -3,9 +3,10 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 
-public class PlayerFlightControl : MonoBehaviour {
+public class PlayerFlightControl : GameManager {
 
     // Use this for initialization
+    GameManager gameManager;
     [SerializeField]
     float m_Speed = 20f;
     float m_MinSpeed;
@@ -30,11 +31,12 @@ public class PlayerFlightControl : MonoBehaviour {
     [SerializeField]
     Transform cameraAlignmentTool;
     //[SerializeField]
-   
+  //  [SerializeField]
+   // GameObject m_RoundWinnerTransform;
+    [SerializeField]
     Text countText;
+    float checkPointTextTime = 2.0f;
 
-  
-   
     GameObject water;
 
     //Variables private
@@ -53,6 +55,7 @@ public class PlayerFlightControl : MonoBehaviour {
     float m_VerticalInputValue;
     bool isGoing = false;
     bool belowWater;
+    bool isTriggered;
     //AutoRotation variables 
     public float autoRotationSpeed = 10F;
     private float startTime;
@@ -61,11 +64,13 @@ public class PlayerFlightControl : MonoBehaviour {
 
     void Start()
     {
-       
+        GameManager gameManager = GetComponent<GameManager>();
         GetComponent<Rigidbody>().rotation = Quaternion.identity;
         water = GameObject.FindGameObjectWithTag("Water");
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        countText = GameObject.Find("Rings Collected").GetComponent<Text>();  
+        countText = GameObject.Find("Rings Collected").GetComponent<Text>();
+      
+
         // float m_OriginalPitch;
     }
 
@@ -109,7 +114,8 @@ public class PlayerFlightControl : MonoBehaviour {
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         m_Rigidbody = GetComponent<Rigidbody>();
 
-        AutoEnvironmentCheck();
+        //AutoEnvironmentCheck();
+        GameCheck();
         Roll();  //Roll is tilting left/right (X axis)
         Pitch(); //Pitch is tilt Up/Down (Y axis)
         Yaw();  //Yaw is moving forward/back (Z axis    
@@ -117,13 +123,63 @@ public class PlayerFlightControl : MonoBehaviour {
         AutoMovement();
         AutoShieldRecover();     
     }
+
+    private void GameCheck()
+    {
+        //m_RoundWinner = gameManager.m_RoundWinner;
+       
+        if (ringCount >= 3)
+        {
+            roundOneDone = true;
+            round1.SetActive(false);
+            Debug.Log("Player Flight Control: Round 1 Done");
+            //m_RoundWinner.SetActive(true);                             
+        }
+        if(ringCount >= 6 && roundOneDone == true)
+        {
+            roundTwoDone = true;
+            round2.SetActive(false);
+            Debug.Log("Player Flight Control: Round 2 Done");
+            // m_RoundWinner.SetActive(true);
+        }
+        if (ringCount >= 9)
+        {
+            roundThreeDone = true;
+            round3.SetActive(false);
+            Debug.Log("Player Flight Control: Round 3 Done");
+            // m_RoundWinner.SetActive(true);
+        }
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Rings")
-        {
-            other.gameObject.SetActive(false);
+        if (other.gameObject.tag == "Ring Trigger" && isTriggered == false)
+        {          
+                other.gameObject.SetActive(false);
+            
+           
+            textBox.SetActive(true);
             ringCount++;
+            m_MessageText.text = "Check Point " + ringCount;
+            Debug.Log("Ring Count:" + ringCount);
             SetCountText();
+            
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        isTriggered = false;
+        Destroy(other);
+        if (isTriggered == false)
+        {
+            checkPointTextTime -= Time.deltaTime;
+        }
+        if (checkPointTextTime < 0)
+        {
+            checkPointTextTime = 2;
+            m_MessageText.text = "";
+            textBox.SetActive(false);
         }
     }
 
@@ -143,17 +199,6 @@ public class PlayerFlightControl : MonoBehaviour {
 
         }      
     }
-
-
-    private void AutoEnvironmentCheck()
-    {        
-        if (transform.position.y <= water.transform.position.y)
-        {
-            belowWater = true;
-        }
-        else belowWater = false;             
-    }
-
     private void AutoMovement()
     {
         m_MinSpeed = 10f;

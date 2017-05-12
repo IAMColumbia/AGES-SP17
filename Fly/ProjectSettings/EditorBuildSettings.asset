@@ -30,10 +30,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SampleScenes/Scenes/RollerBall.unity
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+  - enabled: 1
     path: Assets/Scenes/GameManagerScene.unity
   - enabled: 0
     path: Assets/Scenes/EnvironmentScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level1.unity
   - enabled: 1
     path: Assets/Scenes/Level1RingSequence.unity

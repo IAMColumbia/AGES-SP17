@@ -143,6 +143,10 @@ Prefab:
       propertyPath: loadName
       value: Level2RingSequence
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013832624894, guid: 6843a9d506688b64a9c3d354ae3f44cd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6843a9d506688b64a9c3d354ae3f44cd, type: 2}
   m_IsPrefabParent: 0
