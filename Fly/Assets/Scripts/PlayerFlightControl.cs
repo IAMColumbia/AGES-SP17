@@ -25,17 +25,24 @@ public class PlayerFlightControl : GameManager {
      AudioClip m_EngineIdling;
     [SerializeField]
     AudioClip m_EngineDriving;
-   
+    [SerializeField]
+    AudioSource collectSource;
+    [SerializeField]
+    AudioClip collectAudio;
+    private float m_OriginalPitch;
+    public float m_PitchRange = 0.2f;
+
     Camera camera;
 
     [SerializeField]
+    GameObject respawn;
+
+    [SerializeField]
     Transform cameraAlignmentTool;
-    //[SerializeField]
-  //  [SerializeField]
-   // GameObject m_RoundWinnerTransform;
+   
     [SerializeField]
     Text countText;
-    float checkPointTextTime = 2.0f;
+    float checkPointTextTime = 2.5f;
 
     GameObject water;
 
@@ -54,6 +61,7 @@ public class PlayerFlightControl : GameManager {
     float m_HorizontalInputValue;
     float m_VerticalInputValue;
     bool isGoing = false;
+    bool respawnPlayer = false;
     bool belowWater;
     bool isTriggered;
     //AutoRotation variables 
@@ -69,9 +77,7 @@ public class PlayerFlightControl : GameManager {
         water = GameObject.FindGameObjectWithTag("Water");
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         countText = GameObject.Find("Rings Collected").GetComponent<Text>();
-      
-
-        // float m_OriginalPitch;
+        m_OriginalPitch = m_MovementAudio.pitch;     
     }
 
     //Public variables go here.
@@ -98,15 +104,25 @@ public class PlayerFlightControl : GameManager {
     void Update () {   
          m_HorizontalInputValue = Input.GetAxis("Horizontal" + m_PlayerNumber);
          m_VerticalInputValue = Input.GetAxis("Vertical" + m_PlayerNumber);
-         isGoing = Input.GetButton("Jump" + m_PlayerNumber);   
+         isGoing = Input.GetButton("Jump" + m_PlayerNumber);
+        respawnPlayer = Input.GetButtonDown("Respawn" + m_PlayerNumber);
          float anyInput = m_VerticalInputValue + m_HorizontalInputValue;
         if (isGoing == true) //Input.GetButtonDown("JUmp")
-        {         
+        {
             m_Speed += autoRotationSpeed * Time.deltaTime;
+            TextBoxCheck();
         }
         else if (isGoing == false)
         {
             m_Speed -= brakeVariable / autoRotationSpeed * Time.deltaTime;
+          
+                textBox.SetActive(true);
+                m_MessageText.text = "Would you like to respawn? (Press R)";
+                if(respawnPlayer == true)
+                {
+                    Respawn();
+                }         
+            EngineAudio();
         }
     }
     void FixedUpdate()
@@ -121,66 +137,109 @@ public class PlayerFlightControl : GameManager {
         Yaw();  //Yaw is moving forward/back (Z axis    
         AutoRotate();
         AutoMovement();
+      
         AutoShieldRecover();     
     }
 
+    private void TextBoxCheck()
+    {
+       
+        if (textBox.activeSelf)
+        {
+            checkPointTextTime = .5f;
+            checkPointTextTime -= Time.deltaTime;
+            if (checkPointTextTime <= 0)
+            {
+                m_MessageText.text = "";
+                textBox.SetActive(false);          
+            }
+        }
+    }
+
+    private void EngineAudio()
+    {
+     
+        if (isGoing == true)
+        {
+            if (m_MovementAudio.clip == m_EngineDriving)
+            {
+                m_MovementAudio.clip = m_EngineIdling;
+                m_MovementAudio.pitch = UnityEngine.Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+                m_MovementAudio.Play();
+               
+            }
+        }
+        else
+        {
+            //This transformrotation will MAYBE fix any collision errors with flight control.
+            transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+            if (m_MovementAudio.clip == m_EngineIdling)
+            {
+                m_MovementAudio.clip = m_EngineDriving;
+                m_MovementAudio.pitch = UnityEngine.Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+                m_MovementAudio.Play();
+            }
+        }
+    }
     private void GameCheck()
     {
-        //m_RoundWinner = gameManager.m_RoundWinner;
+      
        
-        if (ringCount >= 3)
+        if (ringCount >= 25)
         {
             roundOneDone = true;
             round1.SetActive(false);
             Debug.Log("Player Flight Control: Round 1 Done");
-            //m_RoundWinner.SetActive(true);                             
+                                    
         }
-        if(ringCount >= 6 && roundOneDone == true)
+        if(ringCount >= 50 && roundOneDone == true)
         {
             roundTwoDone = true;
             round2.SetActive(false);
             Debug.Log("Player Flight Control: Round 2 Done");
-            // m_RoundWinner.SetActive(true);
+           
         }
-        if (ringCount >= 9)
+        if (ringCount >= 75 && roundTwoDone == true)
         {
             roundThreeDone = true;
             round3.SetActive(false);
             Debug.Log("Player Flight Control: Round 3 Done");
-            // m_RoundWinner.SetActive(true);
+           
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Ring Trigger" && isTriggered == false)
-        {          
-                other.gameObject.SetActive(false);
-            
-           
+        if (other.gameObject.tag == "Ring Trigger")
+        {
+            collectSource.clip = collectAudio;
+            collectSource.Play();
+                other.gameObject.SetActive(false);                     
             textBox.SetActive(true);
             ringCount++;
-            m_MessageText.text = "Check Point " + ringCount;
+            m_MessageText.text = "Ring " + ringCount;
             Debug.Log("Ring Count:" + ringCount);
             SetCountText();
             
         }
+        if(other.gameObject.tag == "Hazard")
+        {
+            this.gameObject.SetActive(false);
+            Respawn();
+        }
     }
-    void OnTriggerExit(Collider other)
+
+    private void Respawn()
     {
-        isTriggered = false;
+        transform.position = respawn.transform.position;
+        transform.rotation = respawn.transform.rotation;
+        this.gameObject.SetActive(true);
+    }
+
+    void OnTriggerExit(Collider other)
+    {     
         Destroy(other);
-        if (isTriggered == false)
-        {
-            checkPointTextTime -= Time.deltaTime;
-        }
-        if (checkPointTextTime < 0)
-        {
-            checkPointTextTime = 2;
-            m_MessageText.text = "";
-            textBox.SetActive(false);
-        }
+        TextBoxCheck();
     }
 
     private void SetCountText()
@@ -208,6 +267,7 @@ public class PlayerFlightControl : GameManager {
         if(m_Speed < m_MinSpeed)
         {
             m_Speed = m_MinSpeed;
+
         }
         else if (m_Speed > m_MaxSpeed)
         {
@@ -263,6 +323,7 @@ public class PlayerFlightControl : GameManager {
         float pitch = m_HorizontalInputValue * m_TurnSpeed * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0, pitch, 0f);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+        m_Speed -= Time.deltaTime;
     }
     private void Yaw()
     {
@@ -272,7 +333,8 @@ public class PlayerFlightControl : GameManager {
         Quaternion turnRotation = Quaternion.Euler(0f, 0f, -yaw);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
         m_Rigidbody.MovePosition(Vector3.left);
-        yaw = Mathf.Clamp(transform.rotation.z, Z_ANGLE_MIN, Z_ANGLE_MAX);     
+        yaw = Mathf.Clamp(transform.rotation.z, Z_ANGLE_MIN, Z_ANGLE_MAX);
+        m_Speed -= Time.deltaTime;
         // Vector3 movement = transform.forward * m_VerticalInputValue * m_Speed * Time.deltaTime;
     }
 }

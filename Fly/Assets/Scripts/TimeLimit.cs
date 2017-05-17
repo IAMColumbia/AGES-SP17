@@ -16,6 +16,9 @@ public class TimeLimit : MonoBehaviour {
     Text m_MessageText;
 
     [SerializeField]
+    GameObject roundWinner;
+
+    [SerializeField]
     GameObject timeUpToggle;
     
     public float TimeLeft
@@ -38,7 +41,7 @@ public class TimeLimit : MonoBehaviour {
         }
 
     }
-    float timeLeft = 110;
+    float timeLeft = 99;
     float timeAdded;
     public void TimeUP()
     {
@@ -49,7 +52,8 @@ public class TimeLimit : MonoBehaviour {
     } 
     void start()
     {      
-        timeText = GetComponent<UnityEngine.UI.Text>();             
+        timeText = GetComponent<UnityEngine.UI.Text>();
+        timeUpToggle.SetActive(false);            
     }   
     void Update()
     {      
@@ -63,7 +67,7 @@ public class TimeLimit : MonoBehaviour {
         }
         if (TimeLeft <= 30)
         {
-            float warningMessageInterval = 5;
+            float warningMessageInterval = 2.5f;
           
             warningMessageInterval -= Time.deltaTime;
             m_MessageText.text = "Hurry up!";
@@ -71,20 +75,34 @@ public class TimeLimit : MonoBehaviour {
             {
              m_MessageText.text = "";
             }        
-        }  
-        //if (HasGoal)
-        //{
-        //    TimeLeft = 99;
-        //}
+        }
+        checkWinner();
+       
+        if (HasGoal)
+        {
+            TimeLeft = 75;
+        }
         if(TimeLeft <= 0)
         {
             GameOver();
         }
     }
 
-   
+    private void checkWinner()
+    {
+        if (roundWinner.activeSelf)
+        {
+            timeUpToggle.SetActive(true);
+        }
+        else if (!roundWinner.activeSelf)
+        {
+            timeUpToggle.SetActive(false);
+        }
+    }
+
     private void GameOver()
     {
         m_MessageText.text = "Time Up!";
+        
     }
 }

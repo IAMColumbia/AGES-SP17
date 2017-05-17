@@ -9,26 +9,24 @@ public class HUD : MonoBehaviour
     //[SerializeField]
     //Sprite[] shieldSprites;
     //[SerializeField]
-    //Image shieldUI;
+    ////Image shieldUI;
     //[SerializeField]
     //Sprite[] poofSprites;
-    [SerializeField]
-    Image poofUI;
+    //[SerializeField]
+    //Image poofUI;
 
-    PlayerFlightControl player;
+    //PlayerFlightControl player;
     private void Start()
     {
         //Make sure player gameObject has tag "Player" toggled on. 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerFlightControl>();
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerFlightControl>();
     }
     private void Update()
     {
-        //Visual representation of current player health.       
-//<<<<<<< HEAD
-//      // shieldUI.sprite = shieldSprites[(int)player.Shield];
-//=======
-//       //shieldUI.sprite = shieldSprites[(int)player.Shield];
-//>>>>>>> origin/deandre.test
-//       poofUI.sprite = poofSprites[(int)player.Shield];
+    // shieldUI.sprite = shieldSprites[(int)player.Shield];
+
+        //shieldUI.sprite = shieldSprites[(int)player.Shield];
+
+        //poofUI.sprite = poofSprites[(int)player.Poof];
     }
 }

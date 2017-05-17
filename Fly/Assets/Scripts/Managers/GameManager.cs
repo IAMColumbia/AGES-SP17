@@ -8,14 +8,12 @@ using System;
 public class GameManager : MonoBehaviour
 {
    
-    public int m_NumLapsToWin = 3;
-    public float m_StartDelay = .01f;
+    public int m_NumLapsToWin = 4;
+    public float m_StartDelay = 1f;
     public float m_ResetDelay = .5f;
     float countDownTime = 4f;
-    public float m_EndDelay = 0.01f;
+    public float m_EndDelay = 1f;
 
-   
-    
     [SerializeField]
     public GameObject textBox;
     public Text m_MessageText;
@@ -44,7 +42,7 @@ public class GameManager : MonoBehaviour
     public bool roundOneDone = false;
     public bool roundTwoDone = false;
     public bool roundThreeDone = false;
-    public GameObject m_RoundWinner;
+  //  public GameObject m_RoundWinner;
     [SerializeField]
     public GameObject m_GameWinner;
     Text countText;
@@ -74,10 +72,13 @@ public class GameManager : MonoBehaviour
             return round3.activeSelf;
         }
     }
-
-
-
-
+    public bool GameWinner
+    {
+        get
+        {
+            return m_GameWinner.activeSelf;
+        }
+    }
 
     private void Start()
     {
@@ -86,13 +87,10 @@ public class GameManager : MonoBehaviour
         m_ResetTime = new WaitForSeconds(m_ResetDelay);
   
        totalText = GameObject.Find("Total Rings").GetComponent<Text>();
-          
-        m_RoundWinner = GameObject.FindGameObjectWithTag("RoundWinner");
-        //roundWonPlane = GameObject.FindGameObjectWithTag("Finish");
+         
         rings = GameObject.FindGameObjectsWithTag("Ring Trigger");
-      
-      
-   //     SpawnAllRings();
+
+        SpawnAllRings();
         textBox.SetActive(false);
         StartCoroutine(GameLoop());
         m_GameWinner.SetActive(false);
@@ -115,7 +113,6 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
-        StartCoroutine(GameLoop());
         if (m_GameWinner.activeSelf)
         {
             SceneManager.LoadScene(0);
@@ -129,26 +126,23 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundStarting()
     {
         totalText.text = ringSpawnPoints.Length.ToString();
-  
-        m_RoundWinner = GameObject.FindGameObjectWithTag("RoundWinner");
-        m_RoundWinner.transform.Translate(Vector3.up);
         roundWon = false;
-        // m_RoundWinner.SetActive(false);
-        SpawnAllRings();
+
+        ResetRings();
 
         for (int i = 0; i < ringSpawnPoints.Length; i++)
         {
             if (i != ringSpawnPoints.Length)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0);
             }
         }
         yield return StartCoroutine(StartCountDown());
        
-        if (m_StartDelay == 0)
-        {
-      //    m_MessageText.text = "ROUND" + m_NumOfLaps + " Start!";
-        }
+        //if (m_StartDelay == 0)
+        //{
+        //    m_MessageText.text = "ROUND" + m_NumOfLaps + " Start!";
+        //}
         yield return m_StartWait;
     }
     //private IEnumerator WaitAGodDamnSecond()
@@ -161,7 +155,7 @@ public class GameManager : MonoBehaviour
         {
             textBox.SetActive(true);
             countDownTime -= 1f;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1f);
             m_MessageText.text = countDownTime.ToString();
         }
         if (countDownTime == 0)
@@ -178,64 +172,57 @@ public class GameManager : MonoBehaviour
         while (!checkRoundWinner())
         {
             yield return null;
-            Debug.Log("while loops no rings active");
-           // yield return null;
+            Debug.Log("While round playing");
+        
         }
         Debug.Log("noringsActive now");
     }
 
     private bool checkRoundWinner()
-    {     
+    {
         int ringsNeeded = 0;
-
-        if (round3 == null)//if setactive(false) checkRoundWinner(true)
+        Debug.Log("NumofLaps: " + m_NumOfLaps);
+        if(m_NumOfLaps == 1)
         {
-            roundWon = true;
-            return roundWon;
-        }          
-       if(round3 != null)
+            if (Round1 == true)//if active round is not done
+                return false;
+            if (Round1 == false)//if object is inactive round1 done
+                roundWon = true;
+            roundOneDone = true;
+            return roundWon;           
+        }
+        if (m_NumOfLaps == 2)
         {
-            if (Round3 == false)
-            {
-                return roundWon;
-            }
-            if (round2 == null)//if setactive(false) checkRoundWinner(false)
+            if (Round2 == true)
                 return false;
             if (Round2 == false)
-            {
                 roundWon = true;
-                return roundWon;
-            }
-            if (round2 != null)
-            {
-                if (round1 == null)
-                    return false;
-                if (Round1 == false)
-                {
-                    roundWon = true;
-                    return roundWon;
-                }
-            }           
-        }      
-      
-       return ringsNeeded >= 30;
+            roundTwoDone = true;
+            return roundWon;            
+        }
+        if (m_NumOfLaps == 3)
+        {
+            if (Round3 == true)
+                return false;
+            if (Round3 == false)
+                roundWon = true;
+            roundThreeDone = true;
+            return roundWon;          
+        }
+        return ringsNeeded >= 30;       
     }
-
     private IEnumerator RoundEnding()
     {
     textBox.SetActive(true);
-    //m_RoundWinner.SetActive(true);
         Debug.Log("Round ended");
-
         m_MessageText.text = "Cycle " + (m_NumOfLaps) + " complete...";
         string message = EndMessage();
         yield return m_EndWait;
-        m_RoundWinner = null; //Original roundwinner placement                 
-
-        //     HasGoal = GetGameWinner();
-        if (m_GameWinner != null)
+     
+        if (GameWinner == false)
             m_NumOfLaps++;
-        if(m_NumOfLaps > 3)
+        Debug.Log("Ienumerator RoundEnding m_NumOfLaps: " + m_NumOfLaps);
+        if(m_NumOfLaps == m_NumLapsToWin)
         {
             m_GameWinner.SetActive(true);
         }     
@@ -246,11 +233,11 @@ public class GameManager : MonoBehaviour
         textBox.SetActive(true);
         string message = "Better luck next time!";
            
-        if (m_RoundWinner != null)
+        if (roundWon == true)
         {
             return message = " Good job!";
         }
-        if (m_GameWinner.activeSelf)
+        if (GameWinner == true)
         {
             return message = "You Win!!";
         }

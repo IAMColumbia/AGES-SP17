@@ -33,10 +33,8 @@ public class RingManager
         m_Instance.transform.position = m_SpawnPoint.position;
         m_Instance.transform.rotation = m_SpawnPoint.rotation;
 
-        m_Instance.SetActive(false);
-    
-
-        m_Instance.SetActive(true);      
-    
+        m_Instance.SetActive(false);            
+        m_Instance.SetActive(true);
+        m_Instance.transform.GetChild(0).gameObject.SetActive(true);
     }
 }

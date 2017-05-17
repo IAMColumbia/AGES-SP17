@@ -10,6 +10,7 @@ TagManager:
   - Water
   - Rings
   - Ring Trigger
+  - Hazard
   layers:
   - Default
   - TransparentFX

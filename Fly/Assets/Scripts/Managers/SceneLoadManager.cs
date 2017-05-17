@@ -4,16 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadManager : MonoBehaviour
 {
-
+   
     public static SceneLoadManager Instance { set; get; }
  
     private void Awake()
     {
         Instance = this;
-       // Load("Level1");
-           
-    
+        Load("Level0RingSequence");    
 }
+    
     public void Load(string sceneName)
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded)
