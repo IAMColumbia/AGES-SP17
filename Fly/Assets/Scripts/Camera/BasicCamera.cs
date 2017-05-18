@@ -35,11 +35,15 @@ using UnitySampleAssets.Characters.ThirdPerson;
         float rotationDamping;
     // cam is used to manipulate any features exclusive to the Camera functions. 
         Camera camera;
-        Vector3 cameraCurrentPosition; //Camera at
+        [SerializeField]
+        GameObject endGameCanvas;
+        [SerializeField]
+        GameObject mainGameCanvas;
+    Vector3 cameraCurrentPosition; //Camera at
         Vector3 cameraNewPosition;     //Camera to
         Vector3 cameraOffset;           //distance from player at all times
       
-        public float autoSpeed = 60F;
+   
         private float startTime;
         float journeyLength;
     //This is for the 3rd person control clamp
@@ -66,10 +70,8 @@ using UnitySampleAssets.Characters.ThirdPerson;
     //Dir variables for cameraNewPosition.
     [SerializeField]
         float cameraAngle = 5f;
-        [SerializeField]
-        float cameraDistance = 5f; //z variable
-        //Player Movement Input
-        float m_HorizontalInputValue;
+                                    //Player Movement Input
+    float m_HorizontalInputValue;
         float m_VerticalInputValue;
         float anyPlayerMovementInput;
         //Player Camera Movement Input
@@ -81,9 +83,21 @@ using UnitySampleAssets.Characters.ThirdPerson;
         bool isAlive;
         Vector3 desiredTarget;
     public int m_PlayerNumber = 1;
+    [SerializeField]
+    GameObject gameWinner;
+    bool GameWinner
+    {
+        get
+        {
+            return gameWinner.activeSelf;
+        }
+    }
     void Start()
         {
-        // camTransform = transform;          
+        // camTransform = transform;       
+        endGameCanvas.SetActive(false);
+        mainGameCanvas.SetActive(true);
+
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         // float m_OriginalPitch;
         water = GameObject.FindGameObjectWithTag("Water");
@@ -111,14 +125,16 @@ using UnitySampleAssets.Characters.ThirdPerson;
     void LateUpdate()
     {             
       camBalance();
+        checkGameState();
         //camZoom();          
     }
     private void camBalance()
     {
         cameraNewPosition = player.transform.position - player.transform.forward * 1.5f + Vector3.up * 3f;
-        float bias = 0.96f;
+        float bias = 0.99f;
         transform.position = transform.position * bias + cameraNewPosition * (1.0f-bias);
         transform.LookAt(player.transform.position + player.transform.forward * 30.0f);
+      
     }
     private void camControl()
         {                        
@@ -225,6 +241,15 @@ using UnitySampleAssets.Characters.ThirdPerson;
             direction.y = Mathf.Clamp(direction.y, Mathf.NegativeInfinity, 0);
         }
         transform.position += direction * (Time.deltaTime * speed);
+    }
+    private void checkGameState()
+    {
+        if (GameWinner == true)
+        {
+            endGameCanvas.SetActive(true);
+            mainGameCanvas.SetActive(false);
+         
+        }
     }
 }
           

@@ -146,7 +146,7 @@ public class PlayerFlightControl : GameManager {
        
         if (textBox.activeSelf)
         {
-            checkPointTextTime = .5f;
+            checkPointTextTime = 1f;
             checkPointTextTime -= Time.deltaTime;
             if (checkPointTextTime <= 0)
             {
@@ -190,6 +190,7 @@ public class PlayerFlightControl : GameManager {
             roundOneDone = true;
             round1.SetActive(false);
             Debug.Log("Player Flight Control: Round 1 Done");
+
                                     
         }
         if(ringCount >= 50 && roundOneDone == true)

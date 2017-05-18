@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public float m_StartDelay = 1f;
     public float m_ResetDelay = .5f;
     float countDownTime = 4f;
-    public float m_EndDelay = 1f;
+    public float m_EndDelay = 3f;
 
     [SerializeField]
     public GameObject textBox;
@@ -28,10 +28,9 @@ public class GameManager : MonoBehaviour
     //public GameObject roundWonPlane;
    
     int ringIndex;
-  
+    int lastRoundTotal = 25;
     public TimeLimit timeLimit;
     Text totalText;
-    //[SerializeField]
     bool roundWon;
     [SerializeField]
     public GameObject round1;
@@ -42,7 +41,6 @@ public class GameManager : MonoBehaviour
     public bool roundOneDone = false;
     public bool roundTwoDone = false;
     public bool roundThreeDone = false;
-  //  public GameObject m_RoundWinner;
     [SerializeField]
     public GameObject m_GameWinner;
     Text countText;
@@ -115,6 +113,7 @@ public class GameManager : MonoBehaviour
 
         if (m_GameWinner.activeSelf)
         {
+            yield return new WaitForSeconds(5);
             SceneManager.LoadScene(0);
         }
         else
@@ -125,7 +124,24 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundStarting()
     {
+       
         totalText.text = ringSpawnPoints.Length.ToString();
+        if (lastRoundTotal == 25 && Round1 == false)
+        {
+            lastRoundTotal += 25;
+            totalText.text = lastRoundTotal.ToString();
+        }
+        else if (lastRoundTotal == 50 && Round2 == false)
+        {
+            lastRoundTotal += 25;
+            totalText.text = lastRoundTotal.ToString();
+        }
+        else if (lastRoundTotal == 75 && Round3 == false)
+        {
+            lastRoundTotal += 25;
+            totalText.text = lastRoundTotal.ToString();
+        }
+
         roundWon = false;
 
         ResetRings();

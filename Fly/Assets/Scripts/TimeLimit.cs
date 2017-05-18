@@ -16,11 +16,15 @@ public class TimeLimit : MonoBehaviour {
     Text m_MessageText;
 
     [SerializeField]
-    GameObject roundWinner;
-
+   private GameObject round1;
     [SerializeField]
-    GameObject timeUpToggle;
-    
+    private GameObject round2;
+    [SerializeField]
+    private GameObject round3;
+    private bool roundOneDone = false;
+    private bool roundTwoDone = false;
+    private bool roundThreeDone = false;
+
     public float TimeLeft
     {
         get
@@ -32,16 +36,28 @@ public class TimeLimit : MonoBehaviour {
             timeLeft = value;
         }
     }
-    public bool HasGoal
+    public bool Round1
     {
         get
-        {                  
-            return timeUpToggle.activeSelf;
-
+        {
+            return round1.activeSelf;
         }
-
     }
-    float timeLeft = 99;
+    public bool Round2
+    {
+        get
+        {
+            return round2.activeSelf;
+        }
+    }
+    public bool Round3
+    {
+        get
+        {
+            return round3.activeSelf;
+        }
+    }
+    float timeLeft = 60;
     float timeAdded;
     public void TimeUP()
     {
@@ -53,7 +69,7 @@ public class TimeLimit : MonoBehaviour {
     void start()
     {      
         timeText = GetComponent<UnityEngine.UI.Text>();
-        timeUpToggle.SetActive(false);            
+                   
     }   
     void Update()
     {      
@@ -78,10 +94,7 @@ public class TimeLimit : MonoBehaviour {
         }
         checkWinner();
        
-        if (HasGoal)
-        {
-            TimeLeft = 75;
-        }
+      
         if(TimeLeft <= 0)
         {
             GameOver();
@@ -90,19 +103,25 @@ public class TimeLimit : MonoBehaviour {
 
     private void checkWinner()
     {
-        if (roundWinner.activeSelf)
+        if (Round1 == false && roundOneDone == false)
         {
-            timeUpToggle.SetActive(true);
+            TimeLeft += 30;
+            roundOneDone = true;
         }
-        else if (!roundWinner.activeSelf)
+        if (Round2 == false && roundTwoDone == false)
         {
-            timeUpToggle.SetActive(false);
+            TimeLeft += 30;
+            roundTwoDone = true;
+        }
+        if (Round3 == false && roundThreeDone == false)
+        {
+            TimeLeft += 30;
+            roundThreeDone = true;
         }
     }
 
     private void GameOver()
     {
-        m_MessageText.text = "Time Up!";
-        
+        m_MessageText.text = "Time Up!";        
     }
 }
