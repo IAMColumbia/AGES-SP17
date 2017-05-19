@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: be929ffb0b2002c47bcef6a9511cd157
+timeCreated: 1490106699
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - m_SpawnPoint: {fileID: 4000013817743400, guid: 8caf6662494e4ed43978cea0b6143848,
+      type: 2}
+  - m_Instance: {fileID: 1000013242847734, guid: 44135986ffd978d499ff77074423e7ee,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

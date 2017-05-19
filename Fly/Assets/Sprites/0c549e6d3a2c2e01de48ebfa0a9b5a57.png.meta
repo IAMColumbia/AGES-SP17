@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: 06bf06c460636df46857f23338756211
+timeCreated: 1493179933
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 0c549e6d3a2c2e01de48ebfa0a9b5a57_0
+    21300002: 0c549e6d3a2c2e01de48ebfa0a9b5a57_1
+    21300004: 0c549e6d3a2c2e01de48ebfa0a9b5a57_2
+    21300006: 0c549e6d3a2c2e01de48ebfa0a9b5a57_3
+    21300008: 0c549e6d3a2c2e01de48ebfa0a9b5a57_4
+    21300010: 0c549e6d3a2c2e01de48ebfa0a9b5a57_5
+    21300012: 0c549e6d3a2c2e01de48ebfa0a9b5a57_6
+    21300014: 0c549e6d3a2c2e01de48ebfa0a9b5a57_7
+    21300016: 0c549e6d3a2c2e01de48ebfa0a9b5a57_8
+    21300018: 0c549e6d3a2c2e01de48ebfa0a9b5a57_9
+    21300020: 0c549e6d3a2c2e01de48ebfa0a9b5a57_10
+    21300022: 0c549e6d3a2c2e01de48ebfa0a9b5a57_11
+    21300024: 0c549e6d3a2c2e01de48ebfa0a9b5a57_12
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 267
+        width: 96
+        height: 87
+      alignment: 9
+      pivot: {x: 0.52456874, y: 0.51531035}
+      border: {x: 0, y: 5, z: 0, w: 2}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 219
+        width: 202
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_2
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 222.5
+        width: 202
+        height: 222.5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_3
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 213
+        width: 186
+        height: 232
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_4
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 196
+        width: 177
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 49
+        width: 166
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_6
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 111
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_7
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 11
+        width: 96
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_8
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 0
+        width: 162
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_9
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 82
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_10
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 272
+        width: 97
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_11
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 2
+        width: 89
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 0c549e6d3a2c2e01de48ebfa0a9b5a57_12
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 30
+        width: 149
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
