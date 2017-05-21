@@ -2,46 +2,52 @@ Initialize engine version: 5.4.0f3 (a6d8d714de6f)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: AMD FirePro V5900 (FireGL V) Graphics Adapter (ID=0x6707)
-    Vendor:   ATI
-    VRAM:     2032 MB
+    Renderer: NVIDIA GeForce GTX 960M (ID=0x139b)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
 - Completed reload, in  0.050 seconds
-Platform assembly: C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\ryan.carpenter\Documents\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\System.dll (this message is harmless)
+Platform assembly: D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Columbia College Chicago\Schoolwork\Fourth Semester\Advanced Game Engine Scripting\AGES-SP17\AGES final project\Wizard'sWayBuild\Wizard'sWay_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
-desktop: 1280x1024 60Hz; virtual: 2560x1024 at 0,0
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initialized touch support.
-UnloadTime: 0.676043 ms
+UnloadTime: 0.736394 ms
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.268916 ms
+UnloadTime: 11.892142 ms
 
-Unloading 53 unused Assets to reduce memory usage. Loaded Objects now: 749.
-Total: 2.104544 ms (FindLiveObjects: 0.028227 ms CreateObjectMapping: 0.027657 ms MarkObjects: 0.225822 ms  DeleteObjects: 1.822550 ms)
+Unloading 53 unused Assets to reduce memory usage. Loaded Objects now: 765.
+Total: 3.251356 ms (FindLiveObjects: 0.057678 ms CreateObjectMapping: 0.053728 ms MarkObjects: 0.382024 ms  DeleteObjects: 2.757529 ms)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.611318 ms
+UnloadTime: 0.518715 ms
 
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 888.
-Total: 0.334172 ms (FindLiveObjects: 0.023380 ms CreateObjectMapping: 0.022240 ms MarkObjects: 0.241790 ms  DeleteObjects: 0.046476 ms)
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 887.
+Total: 0.493036 ms (FindLiveObjects: 0.052938 ms CreateObjectMapping: 0.033580 ms MarkObjects: 0.353580 ms  DeleteObjects: 0.050567 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.679505 ms
+
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 1361.
+Total: 0.410468 ms (FindLiveObjects: 0.053728 ms CreateObjectMapping: 0.023308 ms MarkObjects: 0.295901 ms  DeleteObjects: 0.036740 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.852538 ms
+UnloadTime: 0.934320 ms
 
-Unloading 153 unused Assets to reduce memory usage. Loaded Objects now: 499.
-Total: 1.397421 ms (FindLiveObjects: 0.018533 ms CreateObjectMapping: 0.021384 ms MarkObjects: 0.291402 ms  DeleteObjects: 1.065815 ms)
+Unloading 172 unused Assets to reduce memory usage. Loaded Objects now: 498.
+Total: 1.652937 ms (FindLiveObjects: 0.027259 ms CreateObjectMapping: 0.077827 ms MarkObjects: 0.387555 ms  DeleteObjects: 1.159900 ms)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2f50 -> priority: 1 
-  Thread -> id: 1930 -> priority: 1 
+  Thread -> id: 128c -> priority: 1 
+  Thread -> id: 19c8 -> priority: 1 
