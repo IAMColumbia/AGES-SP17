@@ -66,7 +66,7 @@ public class BetweenTestDialogue : MonoBehaviour
             dialogueList.Add("Eating substantial meals is still a struggle. ");
             dialogueList.Add("Other than that the medication has been doing its job so I guess it’s worthwhile to keep taking it. ");
             dialogueList.Add("I’ve been told that many people with ADD no longer need medication after they finish school. ");
-            dialogueList.Add("So far it’s not looking like that will be the case for me but I should try to keep a positive outlook. ");
+            dialogueList.Add("I’m still not sure if that will be the case for me but I should try to keep a positive outlook. ");
             dialogueList.Add("It will be tough; as tough as it has always been. ");
             dialogueList.Add("Having ADD and taking these medications are both a part of my life now. ");
             dialogueList.Add("That’s just something I have to accept. ");

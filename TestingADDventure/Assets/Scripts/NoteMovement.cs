@@ -24,9 +24,6 @@ public class NoteMovement : MonoBehaviour
     {
         if (other.gameObject.name == "FailCollider")
         {
-            ParticleSystem noteHitParticle = transform.GetChild(0).GetComponent<ParticleSystem>();
-            noteHitParticle.Play();
-            noteHitParticle.transform.parent = null;
             Destroy(gameObject);
         }
     }
